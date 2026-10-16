@@ -388,6 +388,7 @@ body {
   cursor: pointer !important;
   will-change: transform, opacity !important;
   transform-origin: 50% 50% !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .curved-card-inner {
@@ -424,7 +425,8 @@ body {
   left: -24px !important;
   right: -24px !important;
   text-align: center !important;
-  pointer-events: none !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
