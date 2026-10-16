@@ -2,7 +2,7 @@
   <defs>
     <linearGradient id="kuGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#00e5ff"/>
-      <stop offset="100%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#b5ff43"/>
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="36" fill="#080d1a"/>
