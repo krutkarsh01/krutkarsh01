@@ -324,197 +324,238 @@ nav { position: sticky !important; top: 0 !important; z-index: 100 !important; }
   #globe-canvas-wrap.kh-scene { aspect-ratio: 1; }
 }
 
-/* ---------- 15. Home portfolio: 3D Cylindrical Arc on Desktop (>=768px), Modern Interactive Card Slider on Mobile (<768px) ---------- */
+/* ---------- 15. Home portfolio: Responsive 3D Cylindrical Curved Carousel across Desktop, Tablet & Mobile ---------- */
 .kh-rail-wrap {
   display: none !important;
 }
 
-@media (min-width: 768px) {
-  #portfolio-curved-gallery .curved-gallery-viewport {
-    display: block !important;
-  }
-  #portfolio-curved-gallery .gallery-nav-bar {
-    display: flex !important;
-  }
+#portfolio-curved-gallery .curved-gallery-viewport {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1360px !important;
+  position: relative !important;
+  perspective: 1600px !important;
+  overflow: hidden !important;
+  margin: 1.5rem auto 1rem !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  cursor: grab !important;
+  touch-action: pan-y !important;
 }
 
-@media (max-width: 767px) {
-  #portfolio-curved-gallery {
-    padding-bottom: 24px !important;
-  }
-  #portfolio-curved-gallery .curved-gallery-viewport,
-  #portfolio-curved-gallery .gallery-nav-bar {
-    display: none !important;
-  }
-  .kh-rail-wrap {
-    display: block !important;
-    padding: 0 0 16px;
-    width: 100%;
-  }
-  .kh-rail {
-    list-style: none;
-    margin: 0;
-    padding: 8px 16px 16px;
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 16px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .kh-rail::-webkit-scrollbar {
-    display: none;
-  }
-  .kh-rail-item {
-    flex: 0 0 84%;
-    max-width: 320px;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-  }
-  .kh-rail-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    min-height: 330px;
-    padding: 0;
-    text-align: left;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    overflow: hidden;
-    cursor: pointer;
-    color: inherit;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .kh-rail-card:active {
-    transform: scale(0.985);
-  }
-  .kh-rail-card:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-  }
-  .kh-rail-img {
-    display: block;
-    aspect-ratio: 16 / 10;
-    width: 100%;
-    overflow: hidden;
-    background: #0b0f14;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .kh-rail-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transition: transform 0.3s ease;
-  }
-  .kh-rail-meta {
-    display: block;
-    padding: 12px 14px 0;
-    font: 600 11px/1.5 var(--font-mono);
-    letter-spacing: 0.05em;
-    color: var(--primary);
-    text-transform: uppercase;
-  }
-  .kh-rail-title {
-    display: block;
-    padding: 4px 14px 0;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.08rem;
-    line-height: 1.28;
-    color: var(--text-heading);
-  }
-  .kh-rail-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
-    padding: 12px 14px 14px;
-    font-size: 0.86rem;
-    font-weight: 600;
-    color: var(--primary);
-    border-top: 1px solid var(--border);
-  }
-  .kh-rail-nav-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin: 12px auto 16px;
-    padding: 0 16px;
-  }
-  .kh-rail-arrow {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text-heading);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-  }
-  .kh-rail-arrow:hover {
-    background: var(--primary-subtle);
-    border-color: var(--primary-border);
-    color: var(--primary);
-    transform: scale(1.06);
-  }
-  .kh-rail-arrow:active {
-    transform: scale(0.94);
-  }
-  .kh-rail-dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .kh-rail-dots span {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: var(--border);
-    cursor: pointer;
-    transition: width 0.22s ease, background-color 0.22s ease;
-    display: inline-block;
-  }
-  .kh-rail-dots span.on {
-    width: 20px;
-    background: var(--primary);
-    box-shadow: 0 0 8px var(--primary-glow);
-  }
-  .kh-rail-all {
-    display: flex;
-    width: calc(100% - 32px);
-    margin: 0 16px;
-    justify-content: center;
-  }
+#portfolio-curved-gallery .curved-gallery-viewport:active {
+  cursor: grabbing !important;
 }
 
-/* Light mode adjustments */
-[data-theme="light"] .kh-rail-card {
+#portfolio-curved-gallery .curved-gallery-track {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform-style: preserve-3d !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  will-change: transform !important;
+}
+
+/* Card base */
+.curved-card {
+  position: absolute !important;
+  transform-style: preserve-3d !important;
+  cursor: pointer !important;
+  will-change: transform, opacity !important;
+  transform-origin: 50% 50% !important;
+}
+
+.curved-card-inner {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: #090e18 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.08) !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.curved-card:hover .curved-card-inner {
+  border-color: var(--primary) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 229, 255, 0.4) !important;
+}
+
+[data-theme="light"] .curved-card-inner {
   background: #ffffff !important;
   border-color: rgba(15, 23, 42, 0.12) !important;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12) !important;
 }
-[data-theme="light"] .kh-rail-arrow {
-  background: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.15) !important;
-  color: #0f172a !important;
+
+[data-theme="light"] .curved-card:hover .curved-card-inner {
+  border-color: #0284c7 !important;
+  box-shadow: 0 22px 45px rgba(2, 132, 199, 0.25) !important;
 }
-[data-theme="light"] .kh-rail-meta {
-  color: #0284c7 !important;
+
+.curved-card-caption {
+  position: absolute !important;
+  bottom: -46px !important;
+  left: -24px !important;
+  right: -24px !important;
+  text-align: center !important;
+  pointer-events: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 3px !important;
+  transition: opacity 0.22s ease, visibility 0.22s ease !important;
+}
+
+.caption-title {
+  font-family: var(--font-heading) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--text-heading) !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 100% !important;
+}
+
+.caption-flag {
+  font-family: var(--font-mono) !important;
+  font-size: 0.76rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 500 !important;
+}
+
+/* Navigation bar */
+#portfolio-curved-gallery .gallery-nav-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1.25rem !important;
+  margin-top: 1.8rem !important;
+}
+
+.gallery-nav-arrow {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-main) !important;
+  font-size: 1.2rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+.gallery-nav-arrow:hover {
+  background: var(--primary) !important;
+  color: #040811 !important;
+  border-color: var(--primary) !important;
+  transform: scale(1.08) !important;
+}
+
+.gallery-nav-arrow:active {
+  transform: scale(0.94) !important;
+}
+
+.gallery-drag-hint {
+  font-family: var(--font-mono) !important;
+  font-size: 0.78rem !important;
+  color: var(--text-muted) !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Breakpoint 1: Desktop (>= 1024px) */
+@media (min-width: 1024px) {
+  #portfolio-curved-gallery .curved-gallery-viewport {
+    height: 490px !important;
+    perspective: 1600px !important;
+  }
+  .curved-card {
+    width: 280px !important;
+    height: 380px !important;
+  }
+}
+
+/* Breakpoint 2: Tablet (600px - 1023px) */
+@media (min-width: 600px) and (max-width: 1023px) {
+  #portfolio-curved-gallery .curved-gallery-viewport {
+    height: 450px !important;
+    perspective: 1200px !important;
+  }
+  .curved-card {
+    width: 240px !important;
+    height: 330px !important;
+  }
+  .curved-card-caption {
+    bottom: -44px !important;
+  }
+  .caption-title {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Breakpoint 3: Mobile (< 600px) - Refined 100% Center & 30% Side with Edge Fade */
+@media (max-width: 599px) {
+  #portfolio-curved-gallery {
+    padding-top: clamp(24px, 4vw, 40px) !important;
+    padding-bottom: clamp(24px, 4vw, 40px) !important;
+  }
+  #portfolio-curved-gallery .curved-gallery-viewport {
+    height: clamp(390px, 54vh, 430px) !important;
+    perspective: 950px !important;
+    margin: 1rem auto 0.75rem !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+  }
+  .curved-card {
+    width: clamp(220px, 62vw, 248px) !important;
+    height: clamp(285px, 40vh, 320px) !important;
+  }
+  .curved-card-caption {
+    bottom: -46px !important;
+    left: -24px !important;
+    right: -24px !important;
+  }
+  .caption-title {
+    font-size: 0.92rem !important;
+    max-width: 240px !important;
+  }
+  .caption-flag {
+    font-size: 0.74rem !important;
+  }
+  #portfolio-curved-gallery .gallery-nav-bar {
+    margin-top: 1.25rem !important;
+    gap: 1rem !important;
+  }
+  .gallery-nav-arrow {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1.1rem !important;
+  }
+  .gallery-drag-hint {
+    font-size: 0.74rem !important;
+  }
+}
+
+.gallery-see-all-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+.gallery-see-all-btn {
+  font-family: var(--font-heading) !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  padding: 8px 22px !important;
 }
 
 /* ---------- 16. Global spacing fix: the legacy sheet gives EVERY <section> clamp(4.5rem, 8vw, 7.5rem) padding ---------- */
