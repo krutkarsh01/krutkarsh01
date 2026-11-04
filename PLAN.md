@@ -1967,3 +1967,208 @@ With a single, unified, flagship centerpiece:
   - `Select LinkedIn`: 4 reviews
   - `Reset Click`: 13 reviews
 - **Production Build**: `npm run build` exits with code 0.
+
+
+---
+
+### [v4.3.0] - 2026-11-04: Master Replacement Architecture — Interactive Osiris Globe & Enlargeable Tactical Command Deck
+
+#### 1. Strategic Rationale & Forensic Need Analysis
+Following visual design review of user-provided architecture blueprints (Images 1, 2, and 3):
+- **Image 1 (Current State Evaluation)**:
+  - The content architecture (live client deliveries, prototypes, and country-level testimonials) provides outstanding UX value.
+  - **The Core Issue**: The existing globe has restricted interactivity:
+    - On Desktop: No mouse scroll-wheel zoom in / zoom out; camera distance and FOV are rigid.
+    - On Mobile / Touch: No pinch-to-zoom; touch handlers restrict gestures to 1-finger rotation only and fail to support multi-touch scaling.
+- **Image 2 (Scope Demarcation)**:
+  - **Left Hero Column (`.kh-intro`)**: Marked **"THIS IS GOOD"** — preserved 100% untouched (headline, typewriter, description, CTAs, portrait card, stats dl).
+  - **Right Globe Card (`.kh-atlas`)**: Marked **"REMOVE THIS AND REPLACE WITH SOMETHING NEW"** — slated for full replacement with the Osiris-grade interactive architecture.
+- **Image 3 (Target Replacement Blueprint)**:
+  - **Top Enlarge / Expand Mechanism**: Dedicated toggle to enlarge the globe into an expansive theatre view on desktop and mobile (`[⛶ Enlarge / Fullscreen]`), with an intuitive close button (`[✕ Close]`) when open.
+  - **New Osiris WebGL Globe Engine**: Fluid zoom in/out (scroll-wheel on desktop, pinch-to-zoom on touch/mobile), pitch & yaw rotational inertia, tactical glowing atmosphere, chakra nodes, and orbital flight arcs.
+  - **Bottom Tactical Action Deck ("Some good options about what I can do here")**: High-density tactical intelligence dossier card, quick perspective layer switches (`[🌍 All Markets]`, `[🚀 Live Prototypes]`, `[⭐ Client Reviews]`), regional country chips, and direct 1-click links to prototypes and verified client reviews.
+
+---
+
+#### 2. Detailed Technical Architecture & Component Blueprint
+
+##### A. Component Layout Structure (`#osiris-command-deck`)
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│  • 01 / GLOBAL CLIENT ATLAS               [⛶ Enlarge View] [✕ Close (when open)]     │  ← HUD Masthead
+│  Delivering in 34 Global Markets Across 5 Continents                                   │
+│  Explore client engagements, interactive prototypes, and verified client reviews.      │
+│  [👆 Drag: Rotate | 🔍 Scroll/Pinch: Zoom]                    40.4168° N, 3.7038° W     │  ← Real-Time Telemetry Bar
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│                                                                                        │
+│                       🌐 OSIRIS INTERACTIVE WEBGL GLOBE CANVAS                         │
+│                    • Mouse wheel zoom (Desktop: 0.6x to 2.8x)                          │
+│                    • Pinch-to-zoom (Touch/Mobile: smooth distance calc)                │
+│                    • Glowing chakra nodes & Noida -> World arcs                        │
+│                    • Tactical cursor coordinate telemetry                              │
+│                                                                                        │
+│   [+ Zoom In]  [- Zoom Out]  [↺ Reset]  [⏸ Pause]  [← Prev]  [→ Next]  [⛶ Fullscreen] │  ← Floating Tactical HUD
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│  TACTICAL PERSPECTIVE SELECTOR:                                                        │
+│  [🌍 ALL 34 MARKETS]      [🚀 17 LIVE PROTOTYPES]      [⭐ 13 VERIFIED REVIEWS]         │  ← Perspective Layer Rail
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│  OPERATIONS DOSSIER CARD (Country Intel & Actions):                                    │
+│  🇪🇸 SPAIN · EUROPE                             [Living Prototype Hub · Client Review]  │
+│  MEAX Logistics Marketplace · 112 Veterinarios Triage · El Manantial Living Ecosystem │
+│  Delivered multi-role interactive prototypes and verified executive client reviews.    │
+│  [34 Countries] [700+ Projects] [17 Interactive Prototypes] [35% Rework Cut]          │
+│                                                                                        │
+│  [🚀 Open Live Prototype ↗]   [⭐ Read Verified Review ↗]   [↺ Reset to Global View]   │  ← Direct Action Matrix
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+##### B. Detailed Engine Capabilities
+
+1. **Desktop Zoom & Interaction**:
+   - `wheel` event listener with passive: false to prevent background page scroll while hovering the globe.
+   - Smooth camera FOV / distance clamping between `minDistance: 1.8` and `maxDistance: 6.0` (or FOV `20°` to `75°`).
+   - Exponential smoothing (`lerp` damping) for fluid zoom transitions.
+
+2. **Mobile / Touch Pinch-to-Zoom**:
+   - `touchstart`, `touchmove`, `touchend` multi-touch handling.
+   - When `touches.length === 2`: Calculates Euclidean distance between touch points `Math.hypot(t1.x - t2.x, t1.y - t2.y)`.
+   - Compares previous pinch distance to current pinch distance to scale camera zoom smoothly.
+   - Seamlessly falls back to 1-finger drag for pitch/yaw rotation when `touches.length === 1`.
+
+3. **Enlarge / Expanded Theatre View Mode**:
+   - Clicking `[⛶ Enlarge]` toggles the deck into `.is-expanded` (fixed full-viewport tactical modal with `z-index: 9999`).
+   - Globe automatically resizes via `ResizeObserver` to utilize the full display.
+   - User can zoom right in on country capitals, rotate freely, and inspect nodes in high fidelity.
+   - A prominent `[✕ Close / Restore]` button in the top-right restores the card cleanly back into the hero grid without page jump.
+   - `Escape` key listener closes the enlarged state.
+
+4. **Bottom Tactical Actions ("What I Can Do Here")**:
+   - **Mode Layer Buttons**:
+     - `[🌍 All Markets]`: Displays global delivery telemetry across 34 countries.
+     - `[🚀 Live Prototypes]`: Highlights the 11 countries with active Living Prototypes.
+     - `[⭐ Client Reviews]`: Highlights the 10 countries with verified client reviews.
+   - **Interactive Country Dossier**:
+     - Dynamic flag, country title, strategic tags, and descriptive brief.
+     - Direct button to launch the interactive prototype (via `openProtoQuickView(protoId)` or direct link).
+     - Direct button to view verified reviews on `/testimonials/`.
+     - 1-click reset to global view.
+   - **Quick Sector Chips**:
+     - Horizontal chip rail with quick jumps: `[🇪🇸 Spain] [🇺🇸 USA] [🇨🇭 Switzerland] [🇱🇹 Lithuania] [🇬🇧 UK] [🇫🇮 Finland] [🇷🇼 Rwanda] [🇮🇳 India] [🇩🇪 Germany] [🇦🇺 Australia]`.
+
+---
+
+#### 3. Execution & Verification Roadmap
+
+- [x] **Milestone 1**: Enhanced Three.js WebGL globe engine in `_astro/atlas-globe.Deg8bG5e.js` and `_astro/hoisted.Bjdt1Es-.js`:
+  - Implemented desktop mouse-wheel zoom in/out with smooth distance interpolation (`2.2` to `8.0`).
+  - Implemented mobile 2-finger pinch-to-zoom calculating touch Euclidean distance ratios.
+  - Implemented direct pin click and tap hit detection using 2D screen projected coordinate radius test.
+  - Connected real-time latitude / longitude telemetry update directly to `#globe-hud-coords`.
+  - Exported `zoomIn()`, `zoomOut()`, `resetView()`, and `resize()` methods on `window.__atlas`.
+- [x] **Milestone 2**: In `css/shinobi-theme.css` and `css/site-overrides.css`, added tactical Osiris styling:
+  - Deep obsidian void card background with gold/orange glowing borders and backdrop blur.
+  - Implemented `.osiris-deck.is-expanded` full-viewport tactical theatre mode with backdrop blur, auto-resize, and dedicated `[✕ Close View (Esc)]` button.
+  - Implemented floating tactical HUD cluster buttons (`+`, `−`, `↺`, `←`, `⏸`, `→`).
+  - Implemented perspective layer rail (`[🌍 All 34 Markets]`, `[🚀 17 Prototypes]`, `[⭐ 13 Reviews]`), quick country chips rail, and high-density dossier card.
+- [x] **Milestone 3**: In `index.html`, replaced `<figure class="kh-atlas">` with `#osiris-command-deck`, strictly leaving `.kh-intro` and all other sections untouched.
+- [x] **Milestone 4**: Wired up all actions, prototype links (`/prototypes/#card-protoId` or live URLs), `/testimonials/` reviews, and global reset (`focusGlobeHub('all')`).
+- [x] **Milestone 5**: Comprehensive Multi-Device Responsive Testing:
+  - Desktop 1440x900 verified (`screenshots/v4_osiris_deck_desktop.png` & `screenshots/v4_audit_home_desktop_1440x900.png`).
+  - Fullscreen theatre mode verified (`screenshots/v4_osiris_deck_theatre.png`).
+  - Tablet 768x1024 verified (`screenshots/v4_audit_home_tablet_768x1024.png`).
+  - Mobile 375x812 verified (`screenshots/v4_audit_home_mobile_deck_tall.png`).
+  - Netlify build check (`npm run build`) exits with code 0.
+
+
+---
+
+### [v4.4.0] - 2026-11-04: UI De-Cluttering, Star-Sparkle Dot Enhancement & Non-Biased Global Default State
+
+#### 1. Strategic Rationale & Forensic Need Analysis (Images 1 & 2)
+- **Image 1 Corrections**:
+  - **Remove Redundant Top Clutter**: Remove `[ ⛶ Enlarge View ]` and the redundant `👆 Drag: Rotate · Pinch/Scroll: Zoom` cue bar. This frees up vertical space and removes repeated instruction text.
+  - **Fix Floating Controls Collision & Overflow**: The previous floating overlay cluster (`+ - ↺` and `← ⏸ →`) collided with the canvas scene hint pill, overflowed the right margin, and had click capture issues.
+  - **Solution**: Remove the floating overlay and place a dedicated, sleek, perfectly aligned tactical controls bar beneath the globe stage, with clearly working buttons for zoom, reset, pause, and rotation.
+- **Image 2 Corrections**:
+  - **No Spain Default**: On page load and global overview (`🌍 All 34 Markets`), the globe must NOT focus on Spain or display a floating Spain tooltip. The globe represents all 34 countries equally.
+  - **Spark Blue Dots Like Stars**: Enhance all 34 country markers with bright, sparkling luminous star-like chakra nodes (`#00f0ff` / `#38bdf8`), twinkling across the dark void Earth like a constellation of stars.
+  - Tooltips and pin activation appear only when an explicit country is clicked or chosen from the quick rail / dropdown.
+
+---
+
+#### 2. Execution Roadmap
+- [x] **Milestone 1**: Update `_astro/atlas-globe.Deg8bG5e.js`:
+  - Default state: set `R = null` (`select('all')`) so no country pin is active and the tooltip is completely hidden on load.
+  - Spark dots like stars: enhanced pin geometry (`SphereGeometry(0.014, 14, 14)`) and luminous cyan material (`#00f0ff` / `#0284c7`) with phase-offset pulsating twinkle animation (`1 + 0.22 * sin(time * 0.0035 + idx * 0.7)`).
+  - Ensured `select('all')` clears active pins and hides the tooltip cleanly.
+- [x] **Milestone 2**: In `index.html`:
+  - Removed `[ ⛶ Enlarge View ]` and the cue bar.
+  - Removed `.osiris-floating-hud` and `.globe-scene-hint` from inside the canvas wrap.
+  - Added the clean, dedicated controls bar directly beneath the globe canvas (`.osiris-deck-controls` with `+`, `−`, `↺`, `←`, `⏸`, `→`).
+- [x] **Milestone 3**: In `css/shinobi-theme.css` and `css/site-overrides.css`:
+  - Added precision styles for `.osiris-deck-controls`, `.osiris-ctrl-btn`, and `.osiris-ctrl-divider`.
+  - Added mobile container width constraints (`.osiris-deck { width: 100%; max-width: 620px; min-width: 0; }`) to ensure flawless rendering across phones and tablets.
+  - Cleaned up obsolete floating HUD rules.
+- [x] **Milestone 4**: Multi-device verification (Desktop, Tablet, Mobile) and Netlify build check:
+  - Desktop 1440x900 verified via `screenshots/v4_clean_desktop_1440x900.png`.
+  - Mobile 375x812 verified via `screenshots/v4_mobile_deck_crop.png`.
+  - Production build (`npm run build`) exits with code 0.
+
+
+---
+
+### [v4.5.0] - 2026-11-04: First-Person Voice Harmonization & Holistic SEO Architecture Audit
+
+#### 1. Strategic Rationale & Forensic Need Analysis
+Following comprehensive audit of the portfolio copy:
+- **Core Directive**: The website represents Kumar Utkarsh speaking directly in the first person ("I am stating here so it should be 'contact me' or 'see my this, see my that'"). Third-person detachment like "Direct line to Kumar Utkarsh", "Direct communication with Kumar", "Connect With Kumar", or "dispatched directly to Kumar Utkarsh" feels impersonal and creates unnecessary distance between the practitioner and prospective clients.
+- **Tone & Voice Principles**:
+  - Direct, personal, authoritative first-person voice across all interactive prompts, form confirmation notices, and navigation teasers.
+  - Authentic ownership of deliverables ("my core engineering orchestration headquarters", "See My 8-Step Process", "Explore My Delivery History", "Connect With Me").
+  - Verbatim client quotes in testimonials remain unchanged to preserve social proof credibility and authenticity.
+- **Search Engine Optimization (SEO) Architecture Guardrails**:
+  - **Entity Schema (JSON-LD)**: Retain third-person schema structured data (`@type: Person`, `name: "Kumar Utkarsh"`, `jobTitle: "Senior Business Analyst & AI Product Strategist"`, `knowsAbout`, `sameAs`) so Google Knowledge Graph algorithms correctly attribute expertise, entity authority, and geographic presence to the indexed person.
+  - **Meta Titles & OpenGraph**: Maintain authoritative branding (`Kumar Utkarsh | Senior Business Analyst & AI Product Strategist`) to capture search queries for the person's name, primary role, and specialty.
+  - **Semantic Hierarchy & User Experience (UX) Signals**: Conversational, high-intent first-person CTAs ("Connect With Me", "Explore All 17 Prototypes", "See My 8-Step Process") dramatically reduce bounce rate, improve time-on-page, and increase organic conversion rates.
+
+---
+
+#### 2. Detailed Remediation Blueprint
+
+##### A. Contact Subtitles, Guarantees & Form Confirmation Engines
+- `index.html`:
+  - Line 657: `Direct line to Kumar. No intermediaries.` &rarr; `Direct line to me. No intermediaries.`
+  - Line 693: `Direct line to Kumar Utkarsh. Guaranteed response within 4 hours.` &rarr; `Direct line to me. Guaranteed response within 4 hours.`
+  - Line 767-768: `dispatched directly to Kumar Utkarsh at <strong>work.krutkarsh@gmail.com</strong>.` &rarr; `dispatched directly to my inbox at <strong>work.krutkarsh@gmail.com</strong>.`
+  - Line 783: `dispatched directly to Kumar Utkarsh.` &rarr; `dispatched directly to me.`
+- `contact/index.html`:
+  - Line 54: `Direct communication with Kumar. No account-manager delays.` &rarr; `Direct communication with me. No account-manager delays.`
+  - Line 89: `Direct line to Kumar Utkarsh. Guaranteed response within 4 hours.` &rarr; `Direct line to me. Guaranteed response within 4 hours.`
+  - Line 151: `dispatched directly to Kumar Utkarsh.` &rarr; `dispatched directly to me.`
+- `testimonials/index.html`:
+  - Line 177: `Connect With Kumar For Your Next Project ↗` &rarr; `Connect With Me For Your Next Project ↗`
+
+##### B. Interactive CTAs & Teaser Links ("See my this, see my that")
+- `index.html`:
+  - Line 627: `See 8-Step Process ↗` &rarr; `See My 8-Step Process ↗`
+  - Line 634: `About Delivery History ↗` &rarr; `Explore My Delivery History ↗`
+  - Line 402: `See all 17 projects →` &rarr; `Explore All 17 Prototypes →`
+- Global Prototype Lightbox Modals (across all 8 pages + 404):
+  - `See all 10 projects ↗` &rarr; `Explore All 17 Prototypes ↗`
+
+##### C. Atlas Hub Telemetry Descriptions
+- `index.html` (line 792):
+  - India hub: `and Kumar's core engineering orchestration headquarters.` &rarr; `and my core engineering orchestration headquarters.`
+  - UAE hub: `verified Trustpilot review naming Kumar as main lead.` &rarr; `verified Trustpilot review naming me as project lead.`
+  - Israel hub: `verified Trustpilot review crediting Kumar as project manager...` &rarr; `verified Trustpilot review crediting me as project manager...`
+  - Australia hub: `verified Trustpilot review naming Kumar as central point of contact.` &rarr; `verified Trustpilot review naming me as central point of contact.`
+
+---
+
+#### 3. Execution & Verification Roadmap
+- [x] **Milestone 1**: Updated `index.html` with first-person text corrections ("Direct line to me", "dispatched directly to my inbox", "Explore My Delivery History", "See My 8-Step Process", "Explore All 17 Prototypes", and refined India, UAE, Israel, Australia hub descriptions).
+- [x] **Milestone 2**: Updated `contact/index.html` with first-person guarantee ("Direct communication with me") and form feedback strings ("dispatched directly to me").
+- [x] **Milestone 3**: Updated `testimonials/index.html` with the "Connect With Me For Your Next Project ↗" CTA.
+- [x] **Milestone 4**: Updated global prototype lightbox modal across all HTML files (9 files) to state "Explore All 17 Prototypes ↗".
+- [x] **Milestone 5**: Full codebase scan verified 100% voice consistency, valid schema, clean SEO tags across all 8 pages, and successful Netlify build (`npm run build`).

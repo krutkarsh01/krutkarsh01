@@ -272,7 +272,7 @@ body {
 .kh-masthead > span:first-child { display: inline-flex; align-items: center; gap: 10px; color: var(--text-heading); }
 .kh-marker { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--kh-lime); box-shadow: 0 0 0 4px color-mix(in srgb, var(--kh-lime) 18%, transparent); flex-shrink: 0; }
 .kh-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: clamp(28px, 4.5vw, 64px); align-items: start; padding-top: clamp(24px, 3.5vw, 44px); }
-.kh-intro, .kh-atlas { min-width: 0; }
+.kh-intro, .kh-atlas, .osiris-deck { min-width: 0; }
 @media (min-width: 961px) {
   .kh-intro {
     position: sticky !important;
@@ -331,7 +331,7 @@ body {
 
 @media (max-width: 960px) {
   .kh-grid { grid-template-columns: 1fr; }
-  .kh-atlas { max-width: 620px; width: 100%; margin: 0 auto; }
+  .kh-atlas, .osiris-deck { max-width: 620px; width: 100%; margin: 0 auto; }
 }
 @media (max-width: 640px) {
   .kh-hero { padding-top: 16px !important; }

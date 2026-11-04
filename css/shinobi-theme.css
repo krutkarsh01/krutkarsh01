@@ -2139,3 +2139,460 @@ div.footer-cta-wrap,
     text-align: center;
   }
 }
+
+
+/* ==========================================================================
+   OSIRIS COMMAND DECK & INTERACTIVE WEBGL GLOBE ARCHITECTURE
+   ========================================================================== */
+
+.osiris-deck {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: rgba(8, 12, 22, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 98, 0, 0.22);
+  border-radius: var(--radius-lg, 16px);
+  padding: clamp(16px, 2.5vw, 24px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .osiris-deck {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+[data-theme="light"] .osiris-deck {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Enlarge / Fullscreen Theatre Mode */
+body.osiris-theatre-open {
+  overflow: hidden !important;
+}
+
+body.osiris-theatre-open nav,
+body.osiris-theatre-open .whatsapp-float,
+body.osiris-theatre-open #chat-widget-container {
+  display: none !important;
+}
+
+.osiris-deck.is-expanded {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  z-index: 999999 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: rgba(4, 6, 14, 0.98) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: clamp(16px, 3vw, 32px) !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+  animation: osirisTheatreIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.osiris-deck.is-expanded .osiris-btn-close {
+  display: inline-flex !important;
+  font-size: 0.88rem !important;
+  padding: 8px 16px !important;
+}
+
+[data-theme="light"] .osiris-deck.is-expanded {
+  background: rgba(248, 250, 252, 0.98) !important;
+}
+
+@keyframes osirisTheatreIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.osiris-deck.is-expanded #osiris-deck-enlarge {
+  display: none !important;
+}
+
+.osiris-deck.is-expanded #osiris-deck-close {
+  display: inline-flex !important;
+}
+
+.osiris-deck.is-expanded .osiris-globe-stage {
+  flex: 1 1 52vh;
+  min-height: 48vh;
+}
+
+.osiris-deck.is-expanded #globe-canvas-wrap.kh-scene {
+  aspect-ratio: auto !important;
+  height: 100% !important;
+  min-height: 48vh !important;
+}
+
+/* Top Masthead Ribbon */
+.osiris-masthead {
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--kh-line, var(--border));
+  padding-bottom: 12px;
+}
+
+.osiris-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.osiris-status-badge {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--kh-lime, #b5ff43);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+[data-theme="light"] .osiris-status-badge {
+  color: #15803d !important;
+}
+
+.osiris-beacon {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--kh-lime, #b5ff43);
+  box-shadow: 0 0 0 4px rgba(181, 255, 67, 0.25);
+  animation: osirisBeaconPulse 2s infinite ease-in-out;
+}
+
+[data-theme="light"] .osiris-beacon {
+  background: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.25);
+}
+
+@keyframes osirisBeaconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 0.65; }
+}
+
+.osiris-title {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem) !important;
+  font-weight: 700 !important;
+  color: var(--text-heading) !important;
+  margin: 0 0 6px !important;
+  line-height: 1.25 !important;
+}
+
+.osiris-subtitle {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Globe Stage & Clean Dedicated Controls */
+.osiris-globe-stage {
+  position: relative;
+  width: 100%;
+}
+
+.osiris-deck-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 8px);
+}
+
+[data-theme="light"] .osiris-deck-controls {
+  background: rgba(241, 245, 249, 0.6);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.osiris-controls-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.osiris-controls-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.osiris-ctrl-btn {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-heading);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+
+.osiris-ctrl-btn:hover {
+  border-color: var(--kurama-orange, #ff6200);
+  color: var(--kurama-orange, #ff6200);
+  background: rgba(255, 98, 0, 0.14);
+  transform: translateY(-1px);
+}
+
+.osiris-ctrl-divider {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 4px;
+}
+
+.osiris-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.osiris-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Bottom Action Deck */
+.osiris-action-deck {
+  margin-top: 14px;
+  border-top: 1px solid var(--kh-line, var(--border));
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.osiris-layer-rail {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.osiris-layer-tab {
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-pill, rgba(255, 255, 255, 0.04));
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.osiris-layer-tab:hover {
+  border-color: var(--kurama-orange, #ff6200);
+  color: var(--text-heading);
+}
+
+.osiris-layer-tab.active {
+  border-color: var(--kurama-orange, #ff6200);
+  background: rgba(255, 98, 0, 0.16);
+  color: var(--kurama-orange, #ff6200);
+  box-shadow: 0 0 12px rgba(255, 98, 0, 0.22);
+}
+
+.osiris-quick-rail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.osiris-rail-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.osiris-chips-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.osiris-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.osiris-chip {
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.osiris-chip:hover, .osiris-chip.active {
+  border-color: var(--kurama-orange, #ff6200);
+  color: var(--kurama-orange, #ff6200);
+  background: rgba(255, 98, 0, 0.12);
+}
+
+.osiris-market-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.osiris-select-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.osiris-dossier-card {
+  padding: 14px 16px;
+  border-radius: var(--radius-md, 10px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+[data-theme="light"] .osiris-dossier-card {
+  background: rgba(241, 245, 249, 0.7);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.osiris-dossier-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.osiris-dossier-flag {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-heading);
+}
+
+.osiris-source-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255, 98, 0, 0.12);
+  color: var(--kurama-orange, #ff6200);
+  border: 1px solid rgba(255, 98, 0, 0.3);
+  white-space: nowrap;
+}
+
+.osiris-dossier-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+
+.osiris-dossier-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.osiris-metrics-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.osiris-actions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 640px) {
+  .osiris-floating-hud {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+  .osiris-hud-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.82rem;
+  }
+  .osiris-actions-grid {
+    flex-direction: column;
+  }
+  .osiris-actions-grid .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

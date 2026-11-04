@@ -228,106 +228,166 @@
               </div>
             </dl>
           </div>
-          <figure class="kh-atlas" aria-label="Interactive global delivery map showing 30 client markets">
-            <div class="kh-atlas-header">
-              <div class="kh-atlas-badge"> <span class="kh-marker" aria-hidden="true"></span> <span>01 / GLOBAL CLIENT
-                  ATLAS</span> </div>
-              <h2 class="kh-atlas-title">Delivering in 30 Global Markets</h2>
-              <p class="kh-atlas-desc"> Explore client engagements, interactive multi-role prototypes, and verified
-                reviews across North America, Europe, Asia, Africa, and Oceania. </p>
-              <div class="kh-atlas-cue-bar"> <span>👆 <strong>Drag to explore:</strong> One-finger touch or mouse drag
-                  rotates the globe</span> <span class="cue-coords" id="globe-hud-coords">40.4168° N, 3.7038° W</span>
+          <div id="osiris-command-deck" class="osiris-deck" aria-label="Global Client Operations & Living Prototype Command Deck">
+            <!-- Top Tactical Masthead Ribbon -->
+            <div class="osiris-masthead">
+              <div class="osiris-badge-row">
+                <div class="osiris-status-badge">
+                  <span class="osiris-beacon" aria-hidden="true"></span>
+                  <span class="osiris-code">01 / GLOBAL CLIENT ATLAS</span>
+                </div>
+              </div>
+              <h2 class="osiris-title">Delivering in 34 Global Markets</h2>
+              <p class="osiris-subtitle">Explore client engagements, interactive multi-role prototypes, and verified reviews across North America, Europe, Asia, Africa, and Oceania.</p>
+            </div>
+
+            <!-- Globe Stage -->
+            <div class="osiris-globe-stage">
+              <div class="kh-scene" id="globe-canvas-wrap">
+                <div class="atlas-fallback">Interactive globe requires WebGL. Use the market selector below.</div>
+              </div>
+
+              <!-- Dedicated Tactical Navigation Controls Bar -->
+              <div class="osiris-deck-controls" aria-label="Globe navigation and zoom controls">
+                <div class="osiris-controls-status">
+                  <span class="osiris-beacon" aria-hidden="true"></span>
+                  <span id="globe-hud-status">34 markets · drag to explore · scroll to zoom</span>
+                </div>
+                <div class="osiris-controls-buttons">
+                  <button type="button" class="osiris-ctrl-btn" id="globe-zoom-in" aria-label="Zoom in globe" title="Zoom In (+)">+</button>
+                  <button type="button" class="osiris-ctrl-btn" id="globe-zoom-out" aria-label="Zoom out globe" title="Zoom Out (−)">−</button>
+                  <button type="button" class="osiris-ctrl-btn" id="globe-zoom-reset" aria-label="Reset zoom and center view" title="Reset Camera View (↺)">↺</button>
+                  <span class="osiris-ctrl-divider" aria-hidden="true"></span>
+                  <button type="button" class="osiris-ctrl-btn" id="globe-btn-west" aria-label="Previous client market" title="Previous Market">←</button>
+                  <button type="button" class="osiris-ctrl-btn" id="globe-btn-play" aria-label="Pause rotation" title="Pause / Play Rotation">⏸</button>
+                  <button type="button" class="osiris-ctrl-btn" id="globe-btn-east" aria-label="Next client market" title="Next Market">→</button>
+                </div>
+              </div>
+
+              <!-- Marker Legend -->
+              <div class="osiris-legend" aria-label="Globe marker categories">
+                <span class="osiris-legend-item"><span class="legend-dot dot-proto"></span> Live Prototypes (17)</span>
+                <span class="osiris-legend-item"><span class="legend-dot dot-review"></span> Verified Reviews (13)</span>
+                <span class="osiris-legend-item"><span class="legend-dot dot-delivery"></span> Client Markets (34)</span>
               </div>
             </div>
-            <div class="kh-scene" id="globe-canvas-wrap">
-              <div class="globe-scene-hint"> <span>🌐</span> <span>Drag to rotate · Click marker to inspect</span>
+
+            <!-- Bottom Tactical Action Deck ("Some good options about what I can do here") -->
+            <div class="osiris-action-deck">
+              <!-- 1. Perspective Layer Filter Switcher -->
+              <div class="osiris-layer-rail" role="tablist" aria-label="View perspective filters">
+                <button type="button" class="osiris-layer-tab active" data-perspective="all" role="tab" aria-selected="true" onclick="setDeckPerspective('all')">
+                  <span>🌍 All 34 Markets</span>
+                </button>
+                <button type="button" class="osiris-layer-tab" data-perspective="prototypes" role="tab" aria-selected="false" onclick="setDeckPerspective('prototypes')">
+                  <span>🚀 17 Prototypes</span>
+                </button>
+                <button type="button" class="osiris-layer-tab" data-perspective="reviews" role="tab" aria-selected="false" onclick="setDeckPerspective('reviews')">
+                  <span>⭐ 13 Reviews</span>
+                </button>
               </div>
-              <div class="atlas-fallback">Interactive globe needs WebGL. Use the market list below.</div>
+
+              <!-- 2. Fast Country Jump Chips Rail -->
+              <div class="osiris-quick-rail" aria-label="Quick jump to key client nations">
+                <span class="osiris-rail-label">QUICK JUMP:</span>
+                <div class="osiris-chips-scroll">
+                  <button type="button" class="osiris-chip active" data-hub="all" onclick="focusGlobeHub('all')">🌍 Global</button>
+                  <button type="button" class="osiris-chip" data-hub="spain" onclick="focusGlobeHub('spain')">🇪🇸 Spain</button>
+                  <button type="button" class="osiris-chip" data-hub="usa" onclick="focusGlobeHub('usa')">🇺🇸 USA</button>
+                  <button type="button" class="osiris-chip" data-hub="switzerland" onclick="focusGlobeHub('switzerland')">🇨🇭 Switzerland</button>
+                  <button type="button" class="osiris-chip" data-hub="lithuania" onclick="focusGlobeHub('lithuania')">🇱🇹 Lithuania</button>
+                  <button type="button" class="osiris-chip" data-hub="uk" onclick="focusGlobeHub('uk')">🇬🇧 UK</button>
+                  <button type="button" class="osiris-chip" data-hub="finland" onclick="focusGlobeHub('finland')">🇫🇮 Finland</button>
+                  <button type="button" class="osiris-chip" data-hub="rwanda" onclick="focusGlobeHub('rwanda')">🇷🇼 Rwanda</button>
+                  <button type="button" class="osiris-chip" data-hub="india" onclick="focusGlobeHub('india')">🇮🇳 India</button>
+                  <button type="button" class="osiris-chip" data-hub="germany" onclick="focusGlobeHub('germany')">🇩🇪 Germany</button>
+                  <button type="button" class="osiris-chip" data-hub="australia" onclick="focusGlobeHub('australia')">🇦🇺 Australia</button>
+                </div>
+              </div>
+
+              <!-- 3. Native Select Dropdown for All 34 Markets -->
+              <div class="osiris-market-select-wrap">
+                <label for="kh-market-select" class="osiris-select-label">SELECT A MARKET TO INSPECT</label>
+                <select id="kh-market-select" class="globe-hub-select" onchange="focusGlobeHub(this.value)">
+                  <option value="all">🌍 All 34+ Global Markets (Global Overview)</option>
+                  <optgroup label="Europe (16)">
+                    <option value="spain">🇪🇸 Spain (Portfolio Hub)</option>
+                    <option value="switzerland">🇨🇭 Switzerland (Portfolio Hub)</option>
+                    <option value="portugal">🇵🇹 Portugal (Portfolio Hub)</option>
+                    <option value="uk">🇬🇧 United Kingdom (Portfolio Hub)</option>
+                    <option value="finland">🇫🇮 Finland (Portfolio Hub)</option>
+                    <option value="lithuania">🇱🇹 Lithuania (Portfolio Hub)</option>
+                    <option value="germany">🇩🇪 Germany (Verified Review)</option>
+                    <option value="france">🇫🇷 France (Verified Review)</option>
+                    <option value="netherlands">🇳🇱 Netherlands (Verified Review)</option>
+                    <option value="italy">🇮🇹 Italy</option>
+                    <option value="belgium">🇧🇪 Belgium</option>
+                    <option value="sweden">🇸🇪 Sweden</option>
+                    <option value="slovakia">🇸🇰 Slovakia</option>
+                    <option value="romania">🇷🇴 Romania</option>
+                    <option value="bulgaria">🇧🇬 Bulgaria</option>
+                  </optgroup>
+                  <optgroup label="Americas (4)">
+                    <option value="usa">🇺🇸 USA (Portfolio Hub)</option>
+                    <option value="canada">🇨🇦 Canada</option>
+                    <option value="brazil">🇧🇷 Brazil</option>
+                    <option value="suriname">🇸🇷 Suriname</option>
+                  </optgroup>
+                  <optgroup label="Africa (4)">
+                    <option value="senegal">🇸🇳 Senegal (Portfolio Hub)</option>
+                    <option value="rwanda">🇷🇼 Rwanda (Portfolio Hub)</option>
+                    <option value="southafrica">🇿🇦 South Africa</option>
+                    <option value="malawi">🇲🇼 Malawi</option>
+                  </optgroup>
+                  <optgroup label="Asia (6)">
+                    <option value="hongkong">🇭🇰 Hong Kong (Portfolio Hub)</option>
+                    <option value="india">🇮🇳 India (Home Base & Portfolio Hub)</option>
+                    <option value="malaysia">🇲🇾 Malaysia</option>
+                    <option value="indonesia">🇮🇩 Indonesia</option>
+                    <option value="laos">🇱🇦 Laos</option>
+                    <option value="taiwan">🇹🇼 Taiwan</option>
+                  </optgroup>
+                  <optgroup label="Middle East (2)">
+                    <option value="uae">🇦🇪 UAE (Verified Review)</option>
+                    <option value="israel">🇮🇱 Israel (Verified Review)</option>
+                  </optgroup>
+                  <optgroup label="Oceania (2)">
+                    <option value="australia">🇦🇺 Australia (Verified Review)</option>
+                    <option value="newzealand">🇳🇿 New Zealand</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- 4. Interactive Country Operations Dossier Card -->
+              <div class="osiris-dossier-card" id="globe-active-hub-card" aria-live="polite">
+                <div class="osiris-dossier-top">
+                  <span id="hub-card-flag-name" class="osiris-dossier-flag">🌍 ALL 34+ CLIENT MARKETS</span>
+                  <span id="hub-card-source" class="osiris-source-tag">Worldwide Delivery</span>
+                </div>
+                <h3 id="hub-card-title" class="osiris-dossier-title">Cross-Border Digital Transformation Across 5 Continents</h3>
+                <p id="hub-card-desc" class="osiris-dossier-desc">Delivered 700+ enterprise systems, multi-sided platforms, and AI product architectures for clients in North America, Europe, Asia, Africa, and Oceania.</p>
+                
+                <div class="osiris-metrics-pills" id="hub-card-pills">
+                  <span class="pill-link">34 Countries</span>
+                  <span class="pill-link">700+ Projects</span>
+                  <span class="pill-link">17 Interactive Prototypes</span>
+                  <span class="pill-link">35% Rework Cut</span>
+                </div>
+
+                <div class="osiris-actions-grid" id="hub-card-actions">
+                  <a href="/prototypes/" class="btn btn-primary" id="hub-btn-action-primary">
+                    <span>Explore All 17 Prototypes ↗</span>
+                  </a>
+                  <a href="/testimonials/" class="btn btn-secondary" id="hub-btn-action-secondary">
+                    <span>Read Verified Client Reviews ↗</span>
+                  </a>
+                  <button type="button" class="btn btn-ghost" id="hub-btn-action-reset" onclick="focusGlobeHub('all')" style="display: none;">
+                    <span>Show All Markets ↺</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="globe-legend" aria-label="Globe marker categories"> <span class="legend-item"><span
-                  class="legend-dot dot-proto"></span> Live Prototypes</span> <span class="legend-item"><span
-                  class="legend-dot dot-review"></span> Verified Reviews</span> <span class="legend-item"><span
-                  class="legend-dot dot-delivery"></span> Client Markets</span> </div>
-            <div class="kh-atlas-controls"> <span class="kh-atlas-status"><span class="kh-marker"
-                  aria-hidden="true"></span><span id="globe-hud-status">30 markets · drag to explore</span></span> <span
-                class="kh-control-group"> <button type="button" class="kh-control" id="globe-btn-west"
-                  aria-label="Previous market">←</button> <button type="button" class="kh-control" id="globe-btn-play"
-                  aria-label="Pause rotation">⏸</button> <button type="button" class="kh-control" id="globe-btn-east"
-                  aria-label="Next market">→</button> </span> </div>
-            <div class="kh-destination"> <label for="kh-market-select">SELECT A MARKET TO INSPECT</label> <select
-                id="kh-market-select" class="globe-hub-select" onchange="focusGlobeHub(this.value)">
-                <option value="all">🌍 All 34+ Global Markets (Global Overview)</option>
-                <optgroup label="Europe (16)">
-                  <option value="spain">🇪🇸 Spain (Portfolio Hub)</option>
-                  <option value="switzerland">🇨🇭 Switzerland (Portfolio Hub)</option>
-                  <option value="portugal">🇵🇹 Portugal (Portfolio Hub)</option>
-                  <option value="uk">🇬🇧 United Kingdom (Portfolio Hub)</option>
-                  <option value="finland">🇫🇮 Finland (Portfolio Hub)</option>
-                  <option value="lithuania">🇱🇹 Lithuania (Portfolio Hub)</option>
-                  <option value="germany">🇩🇪 Germany (Verified Review)</option>
-                  <option value="france">🇫🇷 France (Verified Review)</option>
-                  <option value="netherlands">🇳🇱 Netherlands (Verified Review)</option>
-                  <option value="italy">🇮🇹 Italy</option>
-                  <option value="belgium">🇧🇪 Belgium</option>
-                  <option value="sweden">🇸🇪 Sweden</option>
-                  <option value="slovakia">🇸🇰 Slovakia</option>
-                  <option value="romania">🇷🇴 Romania</option>
-                  <option value="bulgaria">🇧🇬 Bulgaria</option>
-                </optgroup>
-                <optgroup label="Americas (4)">
-                  <option value="usa">🇺🇸 USA (Portfolio Hub)</option>
-                  <option value="canada">🇨🇦 Canada</option>
-                  <option value="brazil">🇧🇷 Brazil</option>
-                  <option value="suriname">🇸🇷 Suriname</option>
-                </optgroup>
-                <optgroup label="Africa (4)">
-                  <option value="senegal">🇸🇳 Senegal (Portfolio Hub)</option>
-                  <option value="rwanda">🇷🇼 Rwanda (Portfolio Hub)</option>
-                  <option value="southafrica">🇿🇦 South Africa</option>
-                  <option value="malawi">🇲🇼 Malawi</option>
-                </optgroup>
-                <optgroup label="Asia (6)">
-                  <option value="hongkong">🇭🇰 Hong Kong (Portfolio Hub)</option>
-                  <option value="india">🇮🇳 India (Home Base & Portfolio Hub)</option>
-                  <option value="malaysia">🇲🇾 Malaysia</option>
-                  <option value="indonesia">🇮🇩 Indonesia</option>
-                  <option value="laos">🇱🇦 Laos</option>
-                  <option value="taiwan">🇹🇼 Taiwan</option>
-                </optgroup>
-                <optgroup label="Middle East (2)">
-                  <option value="uae">🇦🇪 UAE (Verified Review)</option>
-                  <option value="israel">🇮🇱 Israel (Verified Review)</option>
-                </optgroup>
-                <optgroup label="Oceania (2)">
-                  <option value="australia">🇦🇺 Australia (Verified Review)</option>
-                  <option value="newzealand">🇳🇿 New Zealand</option>
-                </optgroup>
-              </select> </div>
-            <div class="kh-note" id="globe-active-hub-card" aria-live="polite">
-              <div class="kh-note-top">
-                <span id="hub-card-flag-name">🌍 ALL 34+ CLIENT MARKETS</span>
-                <span id="hub-card-source" class="hub-source-badge">Worldwide Delivery</span>
-              </div>
-              <h3 id="hub-card-title">Cross-Border Digital Transformation Across 5 Continents</h3>
-              <p id="hub-card-desc">Delivered 700+ enterprise systems, multi-sided platforms, and AI product
-                architectures for clients in North America, Europe, Asia, Africa, and Oceania.</p>
-              <div class="kh-pills" id="hub-card-pills" style="margin-bottom: 1rem;">
-                <span class="pill-link">34 Countries</span><span class="pill-link">700+ Projects</span><span
-                  class="pill-link">17 Interactive Prototypes</span><span class="pill-link">35% Rework Cut</span>
-              </div>
-              <div class="hub-card-actions-row" id="hub-card-actions"
-                style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
-                <a href="/prototypes/" class="btn btn-primary" id="hub-btn-action-primary"
-                  style="font-size: 0.85rem; padding: 0.5rem 1rem;"><span>Explore All 17 Prototypes ↗</span></a>
-                <a href="/testimonials/" class="btn btn-secondary" id="hub-btn-action-secondary"
-                  style="font-size: 0.85rem; padding: 0.5rem 1rem;"><span>Read Verified Client Reviews ↗</span></a>
-                <button type="button" class="btn btn-ghost" id="hub-btn-action-reset" onclick="focusGlobeHub('all')"
-                  style="font-size: 0.82rem; padding: 0.5rem 0.85rem; display: none;"><span>Show All Markets
-                    ↺</span></button>
-              </div>
-            </div>
-        </div>
-        </figure>
+          </div>
       </div>
       </div>
     </section>
@@ -534,8 +594,7 @@
           aria-label="Previous project">←</button> <span class="gallery-drag-hint">Swipe or use the arrows</span>
         <button class="gallery-nav-arrow" id="galleryNextBtn" aria-label="Next project">→</button>
       </div>
-      <div class="gallery-see-all-wrap"> <a href="/prototypes/" class="kh-btn kh-btn-ghost gallery-see-all-btn">See all
-          17 projects →</a> </div>
+      <div class="gallery-see-all-wrap"> <a href="/prototypes/" class="kh-btn kh-btn-ghost gallery-see-all-btn">Explore All 17 Prototypes →</a> </div>
     </section>
     <section class="home-section teaser-pillars" style="padding: 5rem 0;">
       <div class="con">
@@ -564,14 +623,14 @@
             <div class="teaser-pillar-icon">📐</div>
             <h3>Documentation-First Delivery</h3>
             <p>Replacing ambiguous 60-page Word documents with interactive HTML sandbox prototypes and Gherkin BDD user
-              stories, reducing rework by 35%.</p> <a href="/process/" class="teaser-pillar-link">See 8-Step Process
+              stories, reducing rework by 35%.</p> <a href="/process/" class="teaser-pillar-link">See My 8-Step Process
               ↗</a>
           </div>
           <div class="teaser-pillar-card">
             <div class="teaser-pillar-icon">⚖️</div>
             <h3>Global Compliance &amp; Scalability</h3>
             <p>Designing architectures that navigate EU GDPR privacy, GCC VAT multi-currency ledgers, and US interstate
-              freight compliance frameworks.</p> <a href="/about/" class="teaser-pillar-link">About Delivery History
+              freight compliance frameworks.</p> <a href="/about/" class="teaser-pillar-link">Explore My Delivery History
               ↗</a>
           </div>
         </div>
@@ -594,7 +653,7 @@
                 <span class="guarantee-icon">⚡</span>
                 <div>
                   <strong>4-Hour Direct Response</strong>
-                  <p>Direct line to Kumar. No intermediaries.</p>
+                  <p>Direct line to me. No intermediaries.</p>
                 </div>
               </div>
               <div class="guarantee-chip">
@@ -630,7 +689,7 @@
               <div class="shinobi-contact-header">
                 <div class="shinobi-contact-tag">⚡ Direct Dispatch Gateway</div>
                 <h3 class="shinobi-contact-title">Transmit Your Project Brief</h3>
-                <p class="shinobi-contact-subtitle">Direct line to Kumar Utkarsh. Guaranteed response within 4 hours.
+                <p class="shinobi-contact-subtitle">Direct line to me. Guaranteed response within 4 hours.
                 </p>
               </div>
               <form class="shinobi-contact-form" id="home-contact-form" action="https://api.web3forms.com/submit"
@@ -705,7 +764,7 @@
                 <h3 class="shinobi-thankyou-title">Mission Brief Transmitted! ⚡</h3>
                 <p class="shinobi-thankyou-text">
                   Thank you, <strong class="applicant-name">Partner</strong>! Your project brief has been dispatched
-                  directly to Kumar Utkarsh at <strong>work.krutkarsh@gmail.com</strong>.<br><br>
+                  directly to my inbox at <strong>work.krutkarsh@gmail.com</strong>.<br><br>
                   You will receive a tailored architectural response within <strong>4 hours</strong>.
                 </p>
                 <button type="button" class="shinobi-reset-btn">Send Another Message ↺</button>
@@ -713,23 +772,12 @@
 
               <div class="shinobi-form-feedback"></div>
             </div>
-            </form>
-
-            <div class="shinobi-thankyou-card">
-              <div class="shinobi-thankyou-icon">✓</div>
-              <h3 class="shinobi-thankyou-title">Mission Brief Transmitted! ⚡</h3>
-              <p class="shinobi-thankyou-text">
-                Thank you, <strong class="applicant-name">Partner</strong>! Your project brief has been dispatched
-                directly to Kumar Utkarsh.<br><br>
-                You will receive a tailored architectural response and next steps within <strong>4 hours</strong>.
-              </p>
-              <button type="button" class="shinobi-reset-btn">Send Another Message ↺</button>
-            </div>
           </div>
         </div>
+      </div>
     </section>
     <script>(function () {
-        const hubs = [{ "id": "spain", "name": "Spain", "flag": "🇪🇸", "lat": 40.4, "lng": -3.7, "role": "MEAX · 112 Veterinarios · El Manantial", "coords": "40.4168° N, 3.7038° W", "desc": "Flagship European delivery marketplace, multi-clinic veterinary emergency triage platform, and residential community ecosystem, each prototyped role-by-role.", "pills": ["Marketplace", "Healthcare SaaS", "PropTech"], "source": "Portfolio Hub", "region": "Europe", "protoId": "meax", "protoUrl": "https://meaxwebsiteprototype.oneapp.dev/" }, { "id": "usa", "name": "USA", "flag": "🇺🇸", "lat": 30.27, "lng": -97.74, "role": "QMA System · Industrial Cutting Tools · Stealth Manager · Harmony Kids", "coords": "30.2672° N, 97.7431° W", "desc": "Austin technology accounts and high-stakes deliverables: MedTech clinical dynamometry software (Aeverl Medical LLC), OSHA-compliant industrial safety equipment catalog, CPQ agency scoping builder, and COPPA sensory EdTech apps.", "pills": ["Clinical SaaS", "Industrial Safety", "CPQ Builder", "EdTech AI"], "source": "Portfolio Hub", "region": "Americas", "protoId": "qmasystem", "protoUrl": "https://qmasystem.netlify.app/" }, { "id": "switzerland", "name": "Switzerland", "flag": "🇨🇭", "lat": 47.38, "lng": 8.54, "role": "Latens & Forma Art & Spatial Design Studio", "coords": "47.3769° N, 8.5417° E", "desc": "Transdisciplinary art, material research, and spatial architecture studio based in Zurich. Features interactive digital curation for fiber sculptures, cyanotypes, and exhibition archives.", "pills": ["Spatial Design", "Material Research", "Studio Portfolio"], "source": "Portfolio Hub", "region": "Europe", "protoId": "latensandforma", "protoUrl": "https://latensandforma.netlify.app/#home" }, { "id": "senegal", "name": "Senegal", "flag": "🇸🇳", "lat": 14.72, "lng": -17.47, "role": "SMP Dakar Turnkey Energy & Industrial EPC", "coords": "14.7167° N, 17.4677° W", "desc": "Major West African EPCI-VF contractor portal for turnkey energy infrastructure, pipeline engineering, industrial steel manufacturing, and vendor project financing.", "pills": ["Energy Infrastructure", "EPCI-VF", "Turnkey Engineering"], "source": "Portfolio Hub", "region": "Africa", "protoId": "smpdakar", "protoUrl": "https://smpdakar.netlify.app/" }, { "id": "portugal", "name": "Portugal", "flag": "🇵🇹", "lat": 38.72, "lng": -9.14, "role": "Pola Vida Somatic Healing & Transformation", "coords": "38.7223° N, 9.1393° W", "desc": "Trauma-informed somatic healing and holistic retreat platform in Portugal. Features two complete client-facing UI design variations with session scheduling and retreat registration.", "pills": ["Somatic Coaching", "Retreats Booking", "Dual UI Designs"], "source": "Portfolio Hub", "region": "Europe", "protoId": "polavida", "protoUrl": "https://polavida.netlify.app/?v=a" }, { "id": "hongkong", "name": "Hong Kong", "flag": "🇭🇰", "lat": 22.32, "lng": 114.17, "role": "Time for Tea HK — Luxury Hospitality & Tableware", "coords": "22.3193° N, 114.1694° E", "desc": "Exclusive regional distributor of German Mono Filio teapots in Hong Kong, curated artisanal tableware, French flax linen catalogs, and bespoke afternoon tea event styling.", "pills": ["Luxury E-Commerce", "Mono Filio", "Event Styling"], "source": "Portfolio Hub", "region": "Asia", "protoId": "timeforteahk", "protoUrl": "https://timeforteahk.netlify.app/" }, { "id": "uk", "name": "United Kingdom", "flag": "🇬🇧", "lat": 51.51, "lng": -0.13, "role": "Tecnica FA Football Academy · Austin Berkley", "coords": "51.5074° N, 0.1278° W", "desc": "Premier youth football development academy platform across South London by UEFA B coach and ex-Crystal Palace manager Austin Berkley. Plus verified UK technology client endorsements.", "pills": ["Sports Academy", "Austin Berkley", "Trustpilot review"], "source": "Portfolio Hub", "region": "Europe", "protoId": "tecnicafa", "protoUrl": "https://tecnicafa.netlify.app/" }, { "id": "finland", "name": "Finland", "flag": "🇫🇮", "lat": 60.17, "lng": 24.94, "role": "Ovella Systems Bike Parking Calculator", "coords": "60.1699° N, 24.9384° E", "desc": "Architectural planning and calculation tool for Ovella Systems (Helsinki), estimating capacity and space-saving ROI.", "pills": ["Planning Tool", "Space Optimization", "Quotation Engine"], "source": "Portfolio Hub", "region": "Europe", "protoId": "ovella", "protoUrl": "https://ovella-v7.netlify.app" }, { "id": "lithuania", "name": "Lithuania", "flag": "🇱🇹", "lat": 54.69, "lng": 25.28, "role": "Team 1 Display ERP · Kelionių Kryptis", "coords": "54.6872° N, 25.2797° E", "desc": "Dual Baltic enterprise systems: Team 1 Display high-throughput prepress exhibit fabrication ERP, and Kelionių Kryptis tour dynamic package bundling engine.", "pills": ["Fabrication ERP", "Travel Booking", "Dynamic Packaging"], "source": "Portfolio Hub", "region": "Europe", "protoId": "team1display", "protoUrl": "https://team1displayservicesnet-customer.oneapp.dev/" }, { "id": "rwanda", "name": "Rwanda", "flag": "🇷🇼", "lat": -1.94, "lng": 30.06, "role": "MSV Technologies ICT & LG Brand Shop", "coords": "1.9441° S, 30.0619° E", "desc": "Corporate IT managed services platform and authorized consumer LG / AirLux showroom for a premier Kigali technology provider.", "pills": ["ICT Services", "Brand Shop", "Authorized Retail"], "source": "Portfolio Hub", "region": "Africa", "protoId": "msvtechnologies", "protoUrl": "https://msvtechnologiescom.oneapp.dev/" }, { "id": "india", "name": "India", "flag": "🇮🇳", "lat": 28.54, "lng": 77.39, "role": "Council for Leather Exports (CLE) · Noida Base", "coords": "28.5355° N, 77.3910° E", "desc": "Apex trade promotion portal for the Ministry of Commerce & Industry, and Kumar's core engineering orchestration headquarters.", "pills": ["Trade Portal", "Government Services", "Home Base"], "source": "Portfolio Hub", "region": "Asia", "protoId": "leatherindia", "protoUrl": "https://leatherindiaorg.netlify.app/" }, { "id": "germany", "name": "Germany", "flag": "🇩🇪", "lat": 52.52, "lng": 13.41, "role": "Enterprise Project · Verified Client Review", "coords": "52.5200° N, 13.4050° E", "desc": "End-to-end business analysis and project delivery for German corporate client; verified LinkedIn endorsement.", "pills": ["Enterprise Delivery", "LinkedIn review"], "source": "Verified Review", "region": "Europe" }, { "id": "france", "name": "France", "flag": "🇫🇷", "lat": 48.86, "lng": 2.35, "role": "Custom Enterprise Portal · Verified Review", "coords": "48.8566° N, 2.3522° E", "desc": "Pre-sales analysis, scoping documentation, and on-time sprint release; verified Trustpilot client feedback.", "pills": ["Web Portal", "Trustpilot review"], "source": "Verified Review", "region": "Europe" }, { "id": "netherlands", "name": "Netherlands", "flag": "🇳🇱", "lat": 52.37, "lng": 4.9, "role": "SaaS Workflow & Pre-Sales Scoping", "coords": "52.3676° N, 4.9041° E", "desc": "Complex SaaS application architecture and client delivery across Dutch technology hubs; verified Trustpilot review.", "pills": ["SaaS Delivery", "Trustpilot review"], "source": "Verified Review", "region": "Europe" }, { "id": "uae", "name": "UAE", "flag": "🇦🇪", "lat": 25.2, "lng": 55.27, "role": "Motor Impact FZE · Verified Review", "coords": "25.2048° N, 55.2708° E", "desc": "Enterprise client engagement completed within estimated timeframe; verified Trustpilot review naming Kumar as main lead.", "pills": ["Enterprise System", "Trustpilot review"], "source": "Verified Review", "region": "Middle East" }, { "id": "israel", "name": "Israel", "flag": "🇮🇱", "lat": 32.09, "lng": 34.78, "role": "High-Tech Client Project · Verified Review", "coords": "32.0853° N, 34.7818° E", "desc": "Multi-stakeholder delivery management with Kumar as project manager; verified Trustpilot review crediting on-time release.", "pills": ["Tech Delivery", "Trustpilot review"], "source": "Verified Review", "region": "Middle East" }, { "id": "australia", "name": "Australia", "flag": "🇦🇺", "lat": -33.87, "lng": 151.21, "role": "WordPress Rebuild & Redesign · Verified Review", "coords": "33.8688° S, 151.2093° E", "desc": "Full architectural rebuild and responsive redesign; verified Trustpilot review naming Kumar as central point of contact.", "pills": ["Web Rebuild", "Trustpilot review"], "source": "Verified Review", "region": "Oceania" }, { "id": "canada", "name": "Canada", "flag": "🇨🇦", "lat": 43.65, "lng": -79.38, "role": "North American Enterprise Delivery", "coords": "43.6532° N, 79.3832° W", "desc": "Cross-border agile sprint management and requirements documentation for Canadian technology startup accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Americas" }, { "id": "italy", "name": "Italy", "flag": "🇮🇹", "lat": 41.9, "lng": 12.5, "role": "European Client Delivery", "coords": "41.9028° N, 12.4964° E", "desc": "Client engagements delivered with the Mobrilz engineering team for Italian commercial partners.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "belgium", "name": "Belgium", "flag": "🇧🇪", "lat": 50.85, "lng": 4.35, "role": "European Client Delivery", "coords": "50.8503° N, 4.3517° E", "desc": "Client systems delivered with the Mobrilz team for Brussels-based enterprise customers.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "sweden", "name": "Sweden", "flag": "🇸🇪", "lat": 59.33, "lng": 18.07, "role": "Nordic Client Delivery", "coords": "59.3293° N, 18.0686° E", "desc": "Nordic customer delivery and technical documentation for Swedish corporate accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "slovakia", "name": "Slovakia", "flag": "🇸🇰", "lat": 48.15, "lng": 17.11, "role": "Central European Client Delivery", "coords": "48.1486° N, 17.1077° E", "desc": "Technical specification and client delivery for Slovakian software operations.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "romania", "name": "Romania", "flag": "🇷🇴", "lat": 44.43, "lng": 26.1, "role": "Eastern European Client Delivery", "coords": "44.4268° N, 26.1025° E", "desc": "Platform engineering specifications delivered for Bucharest-based client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "bulgaria", "name": "Bulgaria", "flag": "🇧🇬", "lat": 42.7, "lng": 23.32, "role": "Balkan Regional Client Delivery", "coords": "42.6977° N, 23.3219° E", "desc": "Custom web and mobile solutions delivered for Bulgarian corporate client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "brazil", "name": "Brazil", "flag": "🇧🇷", "lat": -23.56, "lng": -46.64, "role": "Latin American Client Delivery", "coords": "23.5558° S, 46.6396° W", "desc": "Bilingual platform delivery for Brazilian customer base with the Mobrilz engineering team.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Americas" }, { "id": "suriname", "name": "Suriname", "flag": "🇸🇷", "lat": 5.85, "lng": -55.2, "role": "Caribbean Basin Client Delivery", "coords": "5.8520° N, 55.2038° W", "desc": "E-commerce and web applications delivered for Paramaribo client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Americas" }, { "id": "southafrica", "name": "South Africa", "flag": "🇿🇦", "lat": -26.2, "lng": 28.05, "role": "African Enterprise Client Delivery", "coords": "26.2041° S, 28.0473° E", "desc": "Enterprise platform delivery for Johannesburg commercial customers.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Africa" }, { "id": "malawi", "name": "Malawi", "flag": "🇲🇼", "lat": -13.96, "lng": 33.77, "role": "East African Client Delivery", "coords": "13.9626° S, 33.7741° E", "desc": "NGO and organizational management systems delivered with the Mobrilz team.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Africa" }, { "id": "malaysia", "name": "Malaysia", "flag": "🇲🇾", "lat": 3.14, "lng": 101.69, "role": "Southeast Asian Client Delivery", "coords": "3.1390° N, 101.6869° E", "desc": "Client engagements delivered for Kuala Lumpur enterprise customers.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "indonesia", "name": "Indonesia", "flag": "🇮🇩", "lat": -6.21, "lng": 106.85, "role": "ASEAN Market Client Delivery", "coords": "6.2088° S, 106.8456° E", "desc": "Multi-tier web applications delivered for Jakarta corporate clients.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "laos", "name": "Laos", "flag": "🇱🇦", "lat": 17.98, "lng": 102.63, "role": "Indochina Regional Client Delivery", "coords": "17.9757° N, 102.6331° E", "desc": "Client software delivered with the Mobrilz team for Vientiane commercial client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "taiwan", "name": "Taiwan", "flag": "🇹🇼", "lat": 25.03, "lng": 121.57, "role": "East Asian Tech Client Delivery", "coords": "25.0330° N, 121.5654° E", "desc": "Digital solution scoping and sprint execution for Taipei business accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "newzealand", "name": "New Zealand", "flag": "🇳🇿", "lat": -36.85, "lng": 174.76, "role": "Oceanian Regional Client Delivery", "coords": "36.8485° S, 174.7633° E", "desc": "Client web applications delivered with the Mobrilz team for Auckland accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Oceania" }];
+        const hubs = [{ "id": "spain", "name": "Spain", "flag": "🇪🇸", "lat": 40.4, "lng": -3.7, "role": "MEAX · 112 Veterinarios · El Manantial", "coords": "40.4168° N, 3.7038° W", "desc": "Flagship European delivery marketplace, multi-clinic veterinary emergency triage platform, and residential community ecosystem, each prototyped role-by-role.", "pills": ["Marketplace", "Healthcare SaaS", "PropTech"], "source": "Portfolio Hub", "region": "Europe", "protoId": "meax", "protoUrl": "https://meaxwebsiteprototype.oneapp.dev/" }, { "id": "usa", "name": "USA", "flag": "🇺🇸", "lat": 30.27, "lng": -97.74, "role": "QMA System · Industrial Cutting Tools · Stealth Manager · Harmony Kids", "coords": "30.2672° N, 97.7431° W", "desc": "Austin technology accounts and high-stakes deliverables: MedTech clinical dynamometry software (Aeverl Medical LLC), OSHA-compliant industrial safety equipment catalog, CPQ agency scoping builder, and COPPA sensory EdTech apps.", "pills": ["Clinical SaaS", "Industrial Safety", "CPQ Builder", "EdTech AI"], "source": "Portfolio Hub", "region": "Americas", "protoId": "qmasystem", "protoUrl": "https://qmasystem.netlify.app/" }, { "id": "switzerland", "name": "Switzerland", "flag": "🇨🇭", "lat": 47.38, "lng": 8.54, "role": "Latens & Forma Art & Spatial Design Studio", "coords": "47.3769° N, 8.5417° E", "desc": "Transdisciplinary art, material research, and spatial architecture studio based in Zurich. Features interactive digital curation for fiber sculptures, cyanotypes, and exhibition archives.", "pills": ["Spatial Design", "Material Research", "Studio Portfolio"], "source": "Portfolio Hub", "region": "Europe", "protoId": "latensandforma", "protoUrl": "https://latensandforma.netlify.app/#home" }, { "id": "senegal", "name": "Senegal", "flag": "🇸🇳", "lat": 14.72, "lng": -17.47, "role": "SMP Dakar Turnkey Energy & Industrial EPC", "coords": "14.7167° N, 17.4677° W", "desc": "Major West African EPCI-VF contractor portal for turnkey energy infrastructure, pipeline engineering, industrial steel manufacturing, and vendor project financing.", "pills": ["Energy Infrastructure", "EPCI-VF", "Turnkey Engineering"], "source": "Portfolio Hub", "region": "Africa", "protoId": "smpdakar", "protoUrl": "https://smpdakar.netlify.app/" }, { "id": "portugal", "name": "Portugal", "flag": "🇵🇹", "lat": 38.72, "lng": -9.14, "role": "Pola Vida Somatic Healing & Transformation", "coords": "38.7223° N, 9.1393° W", "desc": "Trauma-informed somatic healing and holistic retreat platform in Portugal. Features two complete client-facing UI design variations with session scheduling and retreat registration.", "pills": ["Somatic Coaching", "Retreats Booking", "Dual UI Designs"], "source": "Portfolio Hub", "region": "Europe", "protoId": "polavida", "protoUrl": "https://polavida.netlify.app/?v=a" }, { "id": "hongkong", "name": "Hong Kong", "flag": "🇭🇰", "lat": 22.32, "lng": 114.17, "role": "Time for Tea HK — Luxury Hospitality & Tableware", "coords": "22.3193° N, 114.1694° E", "desc": "Exclusive regional distributor of German Mono Filio teapots in Hong Kong, curated artisanal tableware, French flax linen catalogs, and bespoke afternoon tea event styling.", "pills": ["Luxury E-Commerce", "Mono Filio", "Event Styling"], "source": "Portfolio Hub", "region": "Asia", "protoId": "timeforteahk", "protoUrl": "https://timeforteahk.netlify.app/" }, { "id": "uk", "name": "United Kingdom", "flag": "🇬🇧", "lat": 51.51, "lng": -0.13, "role": "Tecnica FA Football Academy · Austin Berkley", "coords": "51.5074° N, 0.1278° W", "desc": "Premier youth football development academy platform across South London by UEFA B coach and ex-Crystal Palace manager Austin Berkley. Plus verified UK technology client endorsements.", "pills": ["Sports Academy", "Austin Berkley", "Trustpilot review"], "source": "Portfolio Hub", "region": "Europe", "protoId": "tecnicafa", "protoUrl": "https://tecnicafa.netlify.app/" }, { "id": "finland", "name": "Finland", "flag": "🇫🇮", "lat": 60.17, "lng": 24.94, "role": "Ovella Systems Bike Parking Calculator", "coords": "60.1699° N, 24.9384° E", "desc": "Architectural planning and calculation tool for Ovella Systems (Helsinki), estimating capacity and space-saving ROI.", "pills": ["Planning Tool", "Space Optimization", "Quotation Engine"], "source": "Portfolio Hub", "region": "Europe", "protoId": "ovella", "protoUrl": "https://ovella-v7.netlify.app" }, { "id": "lithuania", "name": "Lithuania", "flag": "🇱🇹", "lat": 54.69, "lng": 25.28, "role": "Team 1 Display ERP · Kelionių Kryptis", "coords": "54.6872° N, 25.2797° E", "desc": "Dual Baltic enterprise systems: Team 1 Display high-throughput prepress exhibit fabrication ERP, and Kelionių Kryptis tour dynamic package bundling engine.", "pills": ["Fabrication ERP", "Travel Booking", "Dynamic Packaging"], "source": "Portfolio Hub", "region": "Europe", "protoId": "team1display", "protoUrl": "https://team1displayservicesnet-customer.oneapp.dev/" }, { "id": "rwanda", "name": "Rwanda", "flag": "🇷🇼", "lat": -1.94, "lng": 30.06, "role": "MSV Technologies ICT & LG Brand Shop", "coords": "1.9441° S, 30.0619° E", "desc": "Corporate IT managed services platform and authorized consumer LG / AirLux showroom for a premier Kigali technology provider.", "pills": ["ICT Services", "Brand Shop", "Authorized Retail"], "source": "Portfolio Hub", "region": "Africa", "protoId": "msvtechnologies", "protoUrl": "https://msvtechnologiescom.oneapp.dev/" }, { "id": "india", "name": "India", "flag": "🇮🇳", "lat": 28.54, "lng": 77.39, "role": "Council for Leather Exports (CLE) · Noida Base", "coords": "28.5355° N, 77.3910° E", "desc": "Apex trade promotion portal for the Ministry of Commerce & Industry, and my core engineering orchestration headquarters.", "pills": ["Trade Portal", "Government Services", "Home Base"], "source": "Portfolio Hub", "region": "Asia", "protoId": "leatherindia", "protoUrl": "https://leatherindiaorg.netlify.app/" }, { "id": "germany", "name": "Germany", "flag": "🇩🇪", "lat": 52.52, "lng": 13.41, "role": "Enterprise Project · Verified Client Review", "coords": "52.5200° N, 13.4050° E", "desc": "End-to-end business analysis and project delivery for German corporate client; verified LinkedIn endorsement.", "pills": ["Enterprise Delivery", "LinkedIn review"], "source": "Verified Review", "region": "Europe" }, { "id": "france", "name": "France", "flag": "🇫🇷", "lat": 48.86, "lng": 2.35, "role": "Custom Enterprise Portal · Verified Review", "coords": "48.8566° N, 2.3522° E", "desc": "Pre-sales analysis, scoping documentation, and on-time sprint release; verified Trustpilot client feedback.", "pills": ["Web Portal", "Trustpilot review"], "source": "Verified Review", "region": "Europe" }, { "id": "netherlands", "name": "Netherlands", "flag": "🇳🇱", "lat": 52.37, "lng": 4.9, "role": "SaaS Workflow & Pre-Sales Scoping", "coords": "52.3676° N, 4.9041° E", "desc": "Complex SaaS application architecture and client delivery across Dutch technology hubs; verified Trustpilot review.", "pills": ["SaaS Delivery", "Trustpilot review"], "source": "Verified Review", "region": "Europe" }, { "id": "uae", "name": "UAE", "flag": "🇦🇪", "lat": 25.2, "lng": 55.27, "role": "Motor Impact FZE · Verified Review", "coords": "25.2048° N, 55.2708° E", "desc": "Enterprise client engagement completed within estimated timeframe; verified Trustpilot review naming me as project lead.", "pills": ["Enterprise System", "Trustpilot review"], "source": "Verified Review", "region": "Middle East" }, { "id": "israel", "name": "Israel", "flag": "🇮🇱", "lat": 32.09, "lng": 34.78, "role": "High-Tech Client Project · Verified Review", "coords": "32.0853° N, 34.7818° E", "desc": "Multi-stakeholder delivery management with me as project manager; verified Trustpilot review crediting on-time release.", "pills": ["Tech Delivery", "Trustpilot review"], "source": "Verified Review", "region": "Middle East" }, { "id": "australia", "name": "Australia", "flag": "🇦🇺", "lat": -33.87, "lng": 151.21, "role": "WordPress Rebuild & Redesign · Verified Review", "coords": "33.8688° S, 151.2093° E", "desc": "Full architectural rebuild and responsive redesign; verified Trustpilot review naming me as central point of contact.", "pills": ["Web Rebuild", "Trustpilot review"], "source": "Verified Review", "region": "Oceania" }, { "id": "canada", "name": "Canada", "flag": "🇨🇦", "lat": 43.65, "lng": -79.38, "role": "North American Enterprise Delivery", "coords": "43.6532° N, 79.3832° W", "desc": "Cross-border agile sprint management and requirements documentation for Canadian technology startup accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Americas" }, { "id": "italy", "name": "Italy", "flag": "🇮🇹", "lat": 41.9, "lng": 12.5, "role": "European Client Delivery", "coords": "41.9028° N, 12.4964° E", "desc": "Client engagements delivered with the Mobrilz engineering team for Italian commercial partners.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "belgium", "name": "Belgium", "flag": "🇧🇪", "lat": 50.85, "lng": 4.35, "role": "European Client Delivery", "coords": "50.8503° N, 4.3517° E", "desc": "Client systems delivered with the Mobrilz team for Brussels-based enterprise customers.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "sweden", "name": "Sweden", "flag": "🇸🇪", "lat": 59.33, "lng": 18.07, "role": "Nordic Client Delivery", "coords": "59.3293° N, 18.0686° E", "desc": "Nordic customer delivery and technical documentation for Swedish corporate accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "slovakia", "name": "Slovakia", "flag": "🇸🇰", "lat": 48.15, "lng": 17.11, "role": "Central European Client Delivery", "coords": "48.1486° N, 17.1077° E", "desc": "Technical specification and client delivery for Slovakian software operations.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "romania", "name": "Romania", "flag": "🇷🇴", "lat": 44.43, "lng": 26.1, "role": "Eastern European Client Delivery", "coords": "44.4268° N, 26.1025° E", "desc": "Platform engineering specifications delivered for Bucharest-based client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "bulgaria", "name": "Bulgaria", "flag": "🇧🇬", "lat": 42.7, "lng": 23.32, "role": "Balkan Regional Client Delivery", "coords": "42.6977° N, 23.3219° E", "desc": "Custom web and mobile solutions delivered for Bulgarian corporate client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Europe" }, { "id": "brazil", "name": "Brazil", "flag": "🇧🇷", "lat": -23.56, "lng": -46.64, "role": "Latin American Client Delivery", "coords": "23.5558° S, 46.6396° W", "desc": "Bilingual platform delivery for Brazilian customer base with the Mobrilz engineering team.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Americas" }, { "id": "suriname", "name": "Suriname", "flag": "🇸🇷", "lat": 5.85, "lng": -55.2, "role": "Caribbean Basin Client Delivery", "coords": "5.8520° N, 55.2038° W", "desc": "E-commerce and web applications delivered for Paramaribo client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Americas" }, { "id": "southafrica", "name": "South Africa", "flag": "🇿🇦", "lat": -26.2, "lng": 28.05, "role": "African Enterprise Client Delivery", "coords": "26.2041° S, 28.0473° E", "desc": "Enterprise platform delivery for Johannesburg commercial customers.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Africa" }, { "id": "malawi", "name": "Malawi", "flag": "🇲🇼", "lat": -13.96, "lng": 33.77, "role": "East African Client Delivery", "coords": "13.9626° S, 33.7741° E", "desc": "NGO and organizational management systems delivered with the Mobrilz team.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Africa" }, { "id": "malaysia", "name": "Malaysia", "flag": "🇲🇾", "lat": 3.14, "lng": 101.69, "role": "Southeast Asian Client Delivery", "coords": "3.1390° N, 101.6869° E", "desc": "Client engagements delivered for Kuala Lumpur enterprise customers.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "indonesia", "name": "Indonesia", "flag": "🇮🇩", "lat": -6.21, "lng": 106.85, "role": "ASEAN Market Client Delivery", "coords": "6.2088° S, 106.8456° E", "desc": "Multi-tier web applications delivered for Jakarta corporate clients.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "laos", "name": "Laos", "flag": "🇱🇦", "lat": 17.98, "lng": 102.63, "role": "Indochina Regional Client Delivery", "coords": "17.9757° N, 102.6331° E", "desc": "Client software delivered with the Mobrilz team for Vientiane commercial client.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "taiwan", "name": "Taiwan", "flag": "🇹🇼", "lat": 25.03, "lng": 121.57, "role": "East Asian Tech Client Delivery", "coords": "25.0330° N, 121.5654° E", "desc": "Digital solution scoping and sprint execution for Taipei business accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Asia" }, { "id": "newzealand", "name": "New Zealand", "flag": "🇳🇿", "lat": -36.85, "lng": 174.76, "role": "Oceanian Regional Client Delivery", "coords": "36.8485° S, 174.7633° E", "desc": "Client web applications delivered with the Mobrilz team for Auckland accounts.", "pills": ["Client delivery", "Mobrilz"], "source": "Client Market", "region": "Oceania" }];
         window.__HUBS = hubs;
       })();</script>
     <script>
@@ -1162,8 +1210,67 @@
           });
         })();
 
-        // 3. Globe: rendered by src/scripts/atlas-globe.ts (three.js). This block only syncs the hub card.
+        // 3. Globe: rendered by src/scripts/atlas-globe.ts (three.js). This block syncs the hub card and controls.
         var HUBS_DATA = window.__HUBS || [];
+
+        // Osiris Theatre Mode Enlarge / Close
+        var deckEl = document.getElementById('osiris-command-deck');
+        var btnEnlarge = document.getElementById('osiris-deck-enlarge');
+        var btnClose = document.getElementById('osiris-deck-close');
+        if (btnEnlarge && deckEl) {
+          btnEnlarge.addEventListener('click', function() {
+            deckEl.classList.add('is-expanded');
+            document.body.classList.add('osiris-theatre-open');
+            setTimeout(function() {
+              if (window.__atlas && window.__atlas.resize) window.__atlas.resize();
+            }, 60);
+          });
+        }
+        if (btnClose && deckEl) {
+          btnClose.addEventListener('click', function() {
+            deckEl.classList.remove('is-expanded');
+            document.body.classList.remove('osiris-theatre-open');
+            setTimeout(function() {
+              if (window.__atlas && window.__atlas.resize) window.__atlas.resize();
+            }, 60);
+          });
+        }
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && deckEl && deckEl.classList.contains('is-expanded')) {
+            deckEl.classList.remove('is-expanded');
+            document.body.classList.remove('osiris-theatre-open');
+            setTimeout(function() {
+              if (window.__atlas && window.__atlas.resize) window.__atlas.resize();
+            }, 60);
+          }
+        });
+
+        // Perspective Layer Switcher
+        window.setDeckPerspective = function(mode) {
+          document.querySelectorAll('.osiris-layer-tab').forEach(function(t) {
+            var isActive = t.getAttribute('data-perspective') === mode;
+            t.classList.toggle('active', isActive);
+            t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+          if (mode === 'prototypes') {
+            window.focusGlobeHub('spain');
+          } else if (mode === 'reviews') {
+            window.focusGlobeHub('germany');
+          } else {
+            window.focusGlobeHub('all');
+          }
+        };
+
+        // Floating Zoom and Navigation Hooks
+        document.getElementById('globe-zoom-in')?.addEventListener('click', function() {
+          if (window.__atlas && window.__atlas.zoomIn) window.__atlas.zoomIn();
+        });
+        document.getElementById('globe-zoom-out')?.addEventListener('click', function() {
+          if (window.__atlas && window.__atlas.zoomOut) window.__atlas.zoomOut();
+        });
+        document.getElementById('globe-zoom-reset')?.addEventListener('click', function() {
+          if (window.__atlas && window.__atlas.resetView) window.__atlas.resetView();
+        });
 
         window.focusGlobeHub = function (id) {
           var hudStatus = document.getElementById('globe-hud-status');
@@ -1205,7 +1312,7 @@
             }
             if (btnReset) btnReset.style.display = 'none';
 
-            document.querySelectorAll('.globe-market-chip').forEach(function (c) {
+            document.querySelectorAll('.globe-market-chip, .osiris-chip').forEach(function (c) {
               var on = c.getAttribute('data-hub') === 'all';
               c.classList.toggle('active', on);
             });
@@ -1273,7 +1380,7 @@
             btnReset.style.display = 'inline-flex';
           }
 
-          document.querySelectorAll('.globe-market-chip').forEach(function (c) {
+          document.querySelectorAll('.globe-market-chip, .osiris-chip').forEach(function (c) {
             var on = c.getAttribute('data-hub') === id;
             c.classList.toggle('active', on);
             c.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -1747,8 +1854,7 @@
         <div
           style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1.2rem;">
           <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim);">Best experienced on
-            Desktop/Laptop display</span> <a href="/prototypes/" class="btn btn-primary btn-sm">See all 10 projects
-            ↗</a>
+            Desktop/Laptop display</span> <a href="/prototypes/" class="btn btn-primary btn-sm">Explore All 17 Prototypes ↗</a>
         </div>
       </div>
     </div>
