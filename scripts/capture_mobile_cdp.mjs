@@ -53,31 +53,31 @@ try {
   await new Promise(r => setTimeout(r, 1500));
 
   let res = await send('Page.captureScreenshot', {
-    clip: { x: 0, y: 0, width: 1440, height: 100, scale: 2 }
-  });
-  fs.writeFileSync('screenshots/v23_desktop_header_crop.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v23_desktop_header_crop.png');
+      clip: { x: 0, y: 0, width: 1440, height: 100, scale: 2 }
+    });
+    fs.writeFileSync('screenshots/v23_desktop_header_crop.png', Buffer.from(res.result.data, 'base64'));
+    console.log('Saved screenshots/v23_desktop_header_crop.png');
 
-  // 2. Mobile 375x812
-  await send('Emulation.setDeviceMetricsOverride', {
-    width: 375,
-    height: 812,
-    deviceScaleFactor: 2,
-    mobile: true,
-    fitWindow: false
+    // 2. Mobile 375x812
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: 375,
+      height: 812,
+      deviceScaleFactor: 2,
+      mobile: true,
+      fitWindow: false
   });
 
   await send('Page.navigate', { url: 'http://localhost:3000/' });
-  await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 1500));
 
-  res = await send('Page.captureScreenshot', {
-    clip: { x: 0, y: 0, width: 375, height: 90, scale: 2 }
-  });
-  fs.writeFileSync('screenshots/v23_mobile_header_crop.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v23_mobile_header_crop.png');
+    res = await send('Page.captureScreenshot', {
+      clip: { x: 0, y: 0, width: 375, height: 90, scale: 2 }
+    });
+    fs.writeFileSync('screenshots/v23_mobile_header_crop.png', Buffer.from(res.result.data, 'base64'));
+    console.log('Saved screenshots/v23_mobile_header_crop.png');
 
-  ws.close();
-} finally {
-  chrome.kill();
-  console.log('Done capturing v23 header crops!');
-}
+    ws.close();
+  } finally {
+    chrome.kill();
+    console.log('Done capturing v23 header crops!');
+  }
