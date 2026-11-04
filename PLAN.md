@@ -1828,3 +1828,142 @@ This release resolves the critical blocker where homepage prototype cards were u
 
 
 
+
+
+---
+
+### [v4.1.0] - 2026-11-04: Real Local Osiris Codebase Forensic Analysis & Master Replacement Architecture Plan
+
+#### 1. Implementation Milestone Completed: Country-Wise Review Intelligence Hub (`/testimonials/`)
+In strict adherence to instructions, the country-wise review transformation has been implemented and validated on `/testimonials/index.html`:
+
+1. **Global Country Telemetry Strip**:
+   - Deployed high-tech 4-metric telemetry strip beneath the header:
+     - `10 Nations`: Client markets represented (Spain, USA, Switzerland, Germany, UK, Netherlands, France, Israel, UAE, Australia).
+     - `13 Endorsements`: Verified client reviews and executive recommendations.
+     - `100% 5-Star / Rec`: Perfect client satisfaction rate across all verified submissions.
+     - `35% Rework Cut`: Proven impact of documentation-first delivery.
+
+2. **Interactive Two-Tier Tactical Filter Engine**:
+   - **Tier 1 (Country Filter)**: `All Nations (13)`, `🇺🇸 USA (4)`, `🇪🇸 Spain (1)`, `🇨🇭 Switzerland (1)`, `🇩🇪 Germany (1)`, `🇬🇧 UK (1)`, `🇳🇱 Netherlands (1)`, `🇫🇷 France (1)`, `🇮🇱 Israel (1)`, `🇦🇪 UAE (1)`, `🇦🇺 Australia (1)`.
+   - **Tier 2 (Verification Source)**: `All Sources (13)`, `LinkedIn Recommendations (4)`, `Trustpilot Verified 5/5 (9)`.
+   - Dynamic real-time client-side dual filtering with active pill states and zero latency.
+
+3. **Country-Enhanced Review Cards**:
+   - Every single review card now displays:
+     - `.review-geo-banner`: Country flag, nation name, and city/state (`🇪🇸 Spain · Valencia`, `🇺🇸 USA · Austin, Texas`, `🇨🇭 Switzerland · Zurich`, `🇩🇪 Germany · Frankfurt / Serbia`, etc.).
+     - `.review-domain-pill`: Industry sector tag (`🚚 Logistics & Marketplace SaaS`, `🚖 Fleet Dispatch & Mobility App`, `⚙️ Workflow Engine & Full-Stack`, `🏅 Sports Tech & Athlete Analytics`, etc.).
+     - Direct Living Prototype Cross-Link (`.review-proto-crosslink`): Instant jump button linking client reviews to the country's live interactive prototypes (e.g. Moises Saez Segarra &rarr; MEAX and 112 Veterinarios; Samuel Taylor &rarr; Stealth Manager and Team1 Display).
+   - Preserved 100% of all original reviewer names, designations, dates, quotes, and external links.
+
+4. **Verification & Quality Audit**:
+   - Local dev server verified HTTP 200 on `http://localhost:3000/testimonials/`.
+   - Headless Chrome test confirmed all 13 cards render and respond to country and source filtering.
+   - Screenshot captured: `screenshots/v4_testimonials_country_view.png`.
+   - `npm run build` exits with code 0.
+
+---
+
+#### 2. Deep Forensic Analysis of the Real Osiris Codebase (`/Users/kumarutkarsh/Documents/GitHub/osiris`)
+
+By analyzing the actual production implementation in `/Users/kumarutkarsh/Documents/GitHub/osiris`, we extract the exact structural and stylistic building blocks that make Osiris exceptional:
+
+##### A. Design System & CSS Architecture (`src/app/globals.css`)
+- **Tactical Dark Ops Palette**:
+  - Deep Obsidian Void: `#04040A` (`--bg-void`), `#06060C` (`--bg-primary`), `#0C0E1A` (`--bg-secondary`).
+  - Eye of Horus Amber Gold: `#D4AF37` (`--gold-primary`), `#F0D060` (`--gold-light`), `rgba(212, 175, 55, 0.3)` (`--gold-glow`).
+  - Tactical Cyan Stream: `#00E5FF` (`--cyan-primary`), `#006B7A` (`--cyan-dim`), `rgba(0, 229, 255, 0.15)` (`--cyan-glow`).
+- **Glassmorphic Paneling (`.glass-panel`)**:
+  - `background: rgba(8, 10, 20, 0.88); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);`.
+- **HUD Monospace Telemetry**:
+  - Font: `'JetBrains Mono', monospace`.
+  - Uppercase, tabular numbers, letter-spacing `0.1em`, status pulse micro-indicators (`@keyframes osiris-pulse`).
+
+##### B. Component Blueprint from Osiris
+1. **`GlobalStatusBar.tsx` (Top Telemetry Ribbon)**:
+   - High-density status bar: Real-time Zulu/UTC and IST clock, coordinates tracker (`40.4168° N, 3.7038° W`), network health status (`● SHINOBI NETWORK ACTIVE · 30 CLIENT NATIONS`), and high-level delivery counters.
+2. **`LayerPanel.tsx` (Tactical Layer Rail)**:
+   - Grouped selector allowing users to switch perspectives without reloading: `[⬡ All Intel]`, `[🚀 Live Prototypes]`, `[⭐ Country Reviews]`, `[🌐 30 Allied Markets]`.
+3. **`IntelFeed.tsx` & `places.tsx` (Contextual Dossier Panel)**:
+   - Right-side or integrated glass panel that dynamically updates whenever a geographic entity is selected.
+   - Features structured place rows with kind tiles, distance indicators, live system previews, and direct action triggers.
+
+---
+
+#### 3. Master Replacement Architecture for Homepage (`index.html`)
+
+##### A. Exact Scope of Replacement
+We are replacing:
+1. `<figure class="kh-atlas">` (the isolated globe figure in the hero section).
+2. `<section id="portfolio-curved-gallery">` (the detached cylindrical curved gallery beneath the hero).
+
+With a single, unified, flagship centerpiece:
+**`#osiris-command-deck` (The Shinobi × Osiris Global Operations & Country Showcase Command Deck)**.
+
+##### B. Structural Layout of `#osiris-command-deck`
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  [● SHINOBI OPS ACTIVE]  28.53° N, 77.39° E · IST (UTC+5:30)   700+ DEPLOYED   35% REWORK CUT     │  ← GlobalStatusBar
+├────────────────────────────────────────────────────────────────┬─────────────────────────────────┤
+│                                                                │  COUNTRY INTELLIGENCE DOSSIER   │
+│                   INTERACTIVE 3D WEBGL GLOBE                   │  🇪🇸 SPAIN · FLAGSHIP HUB        │
+│                                                                │  ────────────────────────────── │
+│   • GPU-rendered Shinobi Earth with glowing chakra nodes       │  [🚀 Systems (2)] [⭐ Reviews]  │
+│   • Minato Hiraishin lightning connection arcs (Noida -> World)│  ────────────────────────────── │
+│   • Live radar sweep & dynamic coordinate tracking             │  🚚 MEAX Logistics Marketplace  │
+│   • Click marker or rotate to fly to country                   │     Live Preview + Role Sandboxes│
+│                                                                │  🩺 112 Veterinarios Portal     │
+│   [← Rotate]  [Pause ⏸]  [Rotate →]  [Reset View ↺]             │  ⭐ Moises Saez Segarra (Review)│
+├────────────────────────────────────────────────────────────────┴─────────────────────────────────┤
+│  QUICK SECTOR RADAR: [🌍 ALL] [🇪🇸 SPAIN] [🇺🇸 USA] [🇨🇭 SWITZERLAND] [🇱🇹 LITHUANIA] [🇬🇧 UK] [🇮🇳 INDIA] │  ← Layer/Sector Rail
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+##### C. Feature Breakdown
+1. **The Tactical Status Ribbon (Top)**:
+   - Zulu / UTC & IST live clock.
+   - Dynamic cursor `Lat / Lng` telemetry.
+   - Metrics: `30+ Client Nations` | `700+ Delivered` | `14 Interactive Prototypes` | `35% Rework Cut`.
+2. **Left Stage (60%): The WebGL Shinobi Globe**:
+   - Re-architected Three.js WebGL canvas with Osiris-style dark void styling, golden chakra waypoints, glowing atmosphere, and arc connections between India and global client capitals.
+   - Smooth camera fly-to animation when selecting any country.
+3. **Right Stage (40%): The Country Operations Terminal**:
+   - Directly replaces the disconnected curved image gallery!
+   - When a country is active (e.g. Spain, USA, Lithuania, UK, Finland, Rwanda, India, Germany, etc.):
+     - **Country Header**: Flag, Nation Name, Strategic Classification, and Key Metrics (Rework reduction %, Systems active).
+     - **Interactive Living Prototypes Feed**: Rich cards with the live application screenshot, problem/solution breakdown, role sandbox badges, and a direct button to open the full Living Specification Modal (`openProtoQuickView`).
+     - **Verified Client Reviews Feed**: Verified endorsements from that country with star ratings, quotes, and LinkedIn/Trustpilot source links.
+4. **Bottom Sector Radar (Layer Rail)**:
+   - 1-click tactical country chips across Europe, North America, Asia, Africa, and Oceania.
+
+---
+
+#### 4. Execution Roadmap for Next Turn
+- [ ] **Milestone 1**: Build `js/country-intel-store.js` unifying all 30+ client markets, 14 live prototypes, and 13 reviews into a single high-performance data store.
+- [ ] **Milestone 2**: In `css/shinobi-theme.css`, add the Osiris tactical tokens, glass panels, HUD headers, and responsive grid rules.
+- [ ] **Milestone 3**: In `index.html`, replace `<figure class="kh-atlas">` and `<section id="portfolio-curved-gallery">` with the unified `#osiris-command-deck`.
+- [ ] **Milestone 4**: Connect Three.js globe camera fly-to, marker click events, and country terminal tab switching.
+- [ ] **Milestone 5**: Full validation across 8 viewports, WebGL fallback check, and Netlify build verification.
+
+
+---
+
+### [v4.2.0] - 2026-11-04: Mobile-First Review Dropdown Architecture Deployment
+
+#### 1. Strategic Rationale & User Direction
+- **Problem**: In small viewports (phones & tablets), the 14 pill buttons wrapped into 3-4 awkward staggered rows, consuming excessive vertical space and cluttering the review page.
+- **Solution**: Completely replaced the wrapping pill buttons with a clean, responsive, mobile-first **Dual-Dropdown Filter Bar**:
+  - `🌍 FILTER BY COUNTRY`: `<select id="review-country-select">` with all 10 client nations + review counts.
+  - `🔒 VERIFICATION SOURCE`: `<select id="review-source-select">` with LinkedIn and Trustpilot options.
+  - `Show All ↺`: Instant 1-click reset button restoring full view.
+
+#### 2. Verification Outcomes
+- **Mobile (< 640px)**: Stacks into two clean, full-width native touch selects opening iOS/Android native picker wheels with zero horizontal overflow or clutter.
+- **Desktop (>= 640px)**: Displays side-by-side with brushed titanium glassmorphic styling, chevron arrows, and hover highlights.
+- **Automated CDP Filter Verification**:
+  - `Initial count`: 13 reviews
+  - `Select USA`: 4 reviews
+  - `Select Spain`: 1 review
+  - `Select LinkedIn`: 4 reviews
+  - `Reset Click`: 13 reviews
+- **Production Build**: `npm run build` exits with code 0.

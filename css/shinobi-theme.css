@@ -1799,3 +1799,343 @@ div.footer-cta-wrap,
 
 
 
+
+
+/* ==========================================================================
+   13. Country-Wise Review Intelligence Hub & Filter System
+   ========================================================================== */
+.country-telemetry-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(14, 18, 27, 0.85) 0%, rgba(22, 29, 43, 0.85) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="light"] .country-telemetry-strip {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.country-telemetry-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.country-telemetry-val {
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-heading);
+}
+
+.country-telemetry-val .accent-orange {
+  color: var(--kurama-orange, #ff6200);
+}
+
+.country-telemetry-val .accent-cyan {
+  color: var(--rasengan-cyan, #00e5ff);
+}
+
+.country-telemetry-lbl {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.review-filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.review-country-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.review-source-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border);
+}
+
+.filter-group-label {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.country-filter-pill, .source-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.42rem 0.85rem;
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 5;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.country-filter-pill:hover, .source-filter-pill:hover {
+  border-color: rgba(255, 98, 0, 0.4);
+  color: var(--text-heading);
+  transform: translateY(-1px);
+}
+
+.country-filter-pill.active, .source-filter-pill.active {
+  background: rgba(255, 98, 0, 0.12);
+  border-color: var(--kurama-orange, #ff6200);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 98, 0, 0.25);
+}
+
+[data-theme="light"] .country-filter-pill.active,
+[data-theme="light"] .source-filter-pill.active {
+  background: rgba(255, 98, 0, 0.12);
+  border-color: var(--kurama-orange, #ff6200);
+  color: #c2410c;
+}
+
+.filter-count-badge {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+
+/* Card Header Elevation */
+.review-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.review-geo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] .review-geo-banner {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.review-nation-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.review-domain-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  color: #38bdf8;
+  letter-spacing: 0.03em;
+}
+
+[data-theme="light"] .review-domain-pill {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.25);
+  color: #0369a1;
+}
+
+.review-proto-crosslink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(255, 98, 0, 0.07);
+  border: 1px solid rgba(255, 98, 0, 0.25);
+  color: var(--kurama-orange, #ff6200);
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.review-proto-crosslink:hover {
+  background: rgba(255, 98, 0, 0.16);
+  border-color: var(--kurama-orange, #ff6200);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+   14. Review Dropdown Filter Bar (Mobile-First Dropdown Architecture)
+   ========================================================================== */
+.review-dropdown-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(14, 18, 27, 0.9) 0%, rgba(22, 29, 43, 0.9) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .review-dropdown-filter-bar {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.review-filter-col {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.review-filter-label {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.review-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.review-filter-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgba(8, 11, 18, 0.85);
+  border: 1px solid var(--border);
+  color: var(--text-heading);
+  padding: 0.7rem 2.5rem 0.7rem 1rem;
+  border-radius: var(--radius-md, 8px);
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .review-filter-select {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.review-filter-select:hover {
+  border-color: var(--kurama-orange, #ff6200);
+}
+
+.review-filter-select:focus {
+  border-color: var(--kurama-orange, #ff6200);
+  box-shadow: 0 0 0 3px rgba(255, 98, 0, 0.2);
+}
+
+.review-select-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.review-filter-reset-col {
+  flex: 0 0 auto;
+}
+
+.review-reset-btn {
+  padding: 0.7rem 1.15rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-md, 8px);
+  font-family: var(--font-heading), 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.review-reset-btn:hover {
+  background: rgba(255, 98, 0, 0.12);
+  border-color: var(--kurama-orange, #ff6200);
+  color: var(--kurama-orange, #ff6200);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .review-dropdown-filter-bar {
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+  .review-filter-col {
+    flex: 1 1 100%;
+  }
+  .review-filter-reset-col {
+    width: 100%;
+  }
+  .review-reset-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
