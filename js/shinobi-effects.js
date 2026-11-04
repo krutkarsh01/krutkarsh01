@@ -116,21 +116,19 @@
   };
 
   function enhanceShinobiHeader() {
-    // 0. Enhance Brand Logo with Authentic Konoha Shinobi Crest
+    // 0. Ensure Brand Logo retains signature KU mark and remove any sub-badge
     var brandSymbol = document.querySelector('.brand-symbol');
-    if (brandSymbol && !brandSymbol.querySelector('.konoha-crest-img')) {
-      brandSymbol.innerHTML = '<img src="/images/konoha-crest.svg" alt="Konoha Shinobi Crest" width="34" height="34" class="konoha-crest-img"/>';
-      brandSymbol.classList.add('shinobi-crest-badge');
+    if (brandSymbol) {
+      if (brandSymbol.querySelector('.konoha-crest-img') || brandSymbol.textContent.trim() !== 'KU') {
+        brandSymbol.textContent = 'KU';
+        brandSymbol.classList.remove('shinobi-crest-badge');
+      }
     }
 
-    var brandLogo = document.querySelector('.brand-logo');
-    if (brandLogo && !brandLogo.querySelector('.brand-sub-badge')) {
-      var sub = document.createElement('span');
-      sub.className = 'brand-sub-badge';
-      sub.textContent = '木ノ葉';
-      sub.title = 'Hidden Leaf Village (木ノ葉隠れの里)';
-      brandLogo.appendChild(sub);
-    }
+    var subBadges = document.querySelectorAll('.brand-sub-badge');
+    subBadges.forEach(function (b) {
+      if (b.parentNode) b.parentNode.removeChild(b);
+    });
 
     // 1. Enhance desktop nav links with standardized single-kanji square seals
     var desktopNavLinks = document.querySelectorAll('.nav-links .nav-link');

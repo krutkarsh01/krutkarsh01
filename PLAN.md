@@ -806,3 +806,51 @@ The user provided critical design guidance:
 3. **Desktop Viewport (1440x900)**: `screenshots/v22_verified_desktop_nohud.png`
    - Full desktop layout displays the Hitai-ate header, interactive 3D globe, and background Shinobi atmospheric animations with zero floating overlay clutter.
 4. **Netlify Build Check**: `npm run build` exits 0.
+
+
+---
+
+### [v2.3.0] - 2026-11-04: Restoring Signature "KU" Logo & Removing "木ノ葉" Header Badge
+
+#### 1. Scope & Design Direction
+- **User Request**: Reference uploaded screenshot `media_1793780759763_238a9944.jpg`:
+  1. **"Bring back old KU Logo"**: Restore the clean, iconic orange squircle with bold white "KU" lettering and soft corner spark highlight. Eliminate the injected SVG Konoha crest icon.
+  2. **"REMOVE"**: Completely remove the `[ 木ノ葉 ]` subtitle badge next to the brand name in the header navbar.
+- **Architectural Implementation**:
+  1. **`js/shinobi-effects.js`**:
+     - Remove the logic that replaces `.brand-symbol` with `<img src="/images/konoha-crest.svg">`. Ensure `.brand-symbol` remains/restores its native `KU` text content.
+     - Remove the logic that creates and appends `.brand-sub-badge` (`木ノ葉`) to `.brand-logo`.
+     - Add clean defensive cleanup to remove any `.brand-sub-badge` from DOM if present.
+  2. **`css/shinobi-theme.css`**:
+     - Style `.brand-symbol` with the vibrant Kurama orange-to-amber squircle gradient:
+       - `background: linear-gradient(135deg, #ff5e1a 0%, #ff8c42 50%, #ffa502 100%) !important;`
+       - `color: #ffffff !important;`
+       - `border-radius: 10px !important;`
+       - `font-size: 1.15rem !important;`
+       - `font-weight: 800 !important;`
+       - `box-shadow: 0 4px 16px rgba(255, 94, 26, 0.4), 0 0 12px rgba(255, 140, 66, 0.25) !important;`
+       - Sparkle pseudo-element `::after` on `.brand-symbol` for the signature corner shine.
+     - Remove `.konoha-crest-img` and `.brand-sub-badge` styling; set `.brand-sub-badge { display: none !important; }`.
+  3. **Verification**:
+     - Capture high-resolution desktop (1440x900) and mobile (375x812) header screenshots.
+     - Verify the signature "KU" orange squircle logo is active and that no "木ノ葉" badge appears anywhere in the navbar.
+     - Verify `npm run build` succeeds.
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.3.0]` specification before modifying code. (Completed)
+- [x] **Milestone 2**: Update `js/shinobi-effects.js` to restore "KU" text and eliminate "木ノ葉" injection. (Completed)
+- [x] **Milestone 3**: Update `css/shinobi-theme.css` to render the signature orange squircle "KU" logo and remove badge styling. (Completed)
+- [x] **Milestone 4**: Capture screenshots verifying "KU" logo and clean header without "木ノ葉" on desktop and mobile. (Completed)
+- [x] **Milestone 5**: Verify `npm run build` exits 0. (Completed)
+
+---
+
+#### 3. Verification Artifacts & Evidence
+1. **Desktop Header Navbar (1440x900)**: `screenshots/v23_desktop_header_crop.png`
+   - The original signature orange squircle **"KU" Logo** is fully restored with Kurama orange-to-amber gradient, crisp white lettering, and corner spark highlight.
+   - The `[ 木ノ葉 ]` subtitle badge has been completely removed from the navbar.
+   - Preserves all 8 kanji-stamped navigation links, Sharingan theme switch, and `Let's Talk` CTA with zero layout distortion.
+2. **Mobile Header Navbar (375x812)**: `screenshots/v23_mobile_header_crop.png`
+   - Clean, de-cluttered mobile headband displaying `[KU] KUMAR UTKARSH` alongside the Sharingan button and hamburger menu.
+   - Zero badge clipping, zero rivet collisions.
+3. **Netlify Build Check**: `npm run build` exits 0.

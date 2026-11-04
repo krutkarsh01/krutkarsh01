@@ -40,36 +40,7 @@ try {
     });
   }
 
-  // 1. Mobile iPhone emulation (375x812)
-  await send('Emulation.setDeviceMetricsOverride', {
-    width: 375,
-    height: 812,
-    deviceScaleFactor: 2,
-    mobile: true,
-    fitWindow: false
-  });
-
-  await send('Page.navigate', { url: 'http://localhost:3000/' });
-  await new Promise(r => setTimeout(r, 1800));
-
-  let res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v22_verified_mobile_nohud.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v22_verified_mobile_nohud.png');
-
-  // Scroll down to portfolio
-  await send('Runtime.evaluate', {
-    expression: `
-      var port = document.getElementById('portfolio-section') || document.querySelector('.curved-gallery-section');
-      if (port) port.scrollIntoView({ behavior: 'instant', block: 'center' });
-    `
-  });
-  await new Promise(r => setTimeout(r, 800));
-
-  res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v22_verified_mobile_portfolio_nohud.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v22_verified_mobile_portfolio_nohud.png');
-
-  // 2. Desktop emulation (1440x900)
+  // 1. Desktop 1440x900
   await send('Emulation.setDeviceMetricsOverride', {
     width: 1440,
     height: 900,
@@ -79,14 +50,34 @@ try {
   });
 
   await send('Page.navigate', { url: 'http://localhost:3000/' });
-  await new Promise(r => setTimeout(r, 1800));
+  await new Promise(r => setTimeout(r, 1500));
 
-  res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v22_verified_desktop_nohud.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v22_verified_desktop_nohud.png');
+  let res = await send('Page.captureScreenshot', {
+    clip: { x: 0, y: 0, width: 1440, height: 100, scale: 2 }
+  });
+  fs.writeFileSync('screenshots/v23_desktop_header_crop.png', Buffer.from(res.result.data, 'base64'));
+  console.log('Saved screenshots/v23_desktop_header_crop.png');
+
+  // 2. Mobile 375x812
+  await send('Emulation.setDeviceMetricsOverride', {
+    width: 375,
+    height: 812,
+    deviceScaleFactor: 2,
+    mobile: true,
+    fitWindow: false
+  });
+
+  await send('Page.navigate', { url: 'http://localhost:3000/' });
+  await new Promise(r => setTimeout(r, 1500));
+
+  res = await send('Page.captureScreenshot', {
+    clip: { x: 0, y: 0, width: 375, height: 90, scale: 2 }
+  });
+  fs.writeFileSync('screenshots/v23_mobile_header_crop.png', Buffer.from(res.result.data, 'base64'));
+  console.log('Saved screenshots/v23_mobile_header_crop.png');
 
   ws.close();
 } finally {
   chrome.kill();
-  console.log('Done capturing verification screenshots!');
+  console.log('Done capturing v23 header crops!');
 }
