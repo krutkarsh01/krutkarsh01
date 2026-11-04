@@ -827,7 +827,7 @@ These 17 interactive prototypes simulate full-scale enterprise software architec
             a.rel = 'noopener noreferrer';
             a.className = 'pill-link' + (l.featured ? ' active' : '');
             a.style.cssText = 'padding: 6px 14px; font-size: 0.82rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 9999px; color: var(--text-heading); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;';
-            a.innerHTML = l.name + ' ↗';
+            a.textContent = l.name + ' ↗';
             linksWrap.appendChild(a);
           });
         }

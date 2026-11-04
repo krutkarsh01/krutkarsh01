@@ -429,6 +429,30 @@
           feedback.className = 'shinobi-form-feedback';
         }
 
+        // Anti-spam client throttle (15s cooldown)
+        var lastSubmit = sessionStorage.getItem('last_brief_submit');
+        if (lastSubmit && (Date.now() - parseInt(lastSubmit, 10)) < 15000) {
+          if (feedback) {
+            feedback.innerHTML = '⚠️ Please wait a few moments before sending another project brief.';
+            feedback.className = 'shinobi-form-feedback error';
+            feedback.style.display = 'block';
+          }
+          return;
+        }
+
+        // Validate email format
+        var emailEl = form.querySelector('input[name="email"]');
+        var emailVal = (emailEl ? emailEl.value : '').trim();
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailVal)) {
+          if (feedback) {
+            feedback.innerHTML = '⚠️ Please provide a valid email address.';
+            feedback.className = 'shinobi-form-feedback error';
+            feedback.style.display = 'block';
+          }
+          return;
+        }
+
         var btnOriginalHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>⚡ Transmitting Brief...</span>';
@@ -444,11 +468,12 @@
         })
         .then(function(data) {
           if (data.success) {
+            sessionStorage.setItem('last_brief_submit', Date.now().toString());
             form.reset();
             form.style.display = 'none';
             if (thankyouCard) {
               thankyouCard.classList.add('active');
-              var nameInput = formData.get('name') || 'Friend';
+              var nameInput = (formData.get('name') || 'Friend').toString().trim();
               var nameEl = thankyouCard.querySelector('.applicant-name');
               if (nameEl) nameEl.textContent = nameInput;
             }
@@ -458,7 +483,7 @@
         })
         .catch(function(err) {
           if (feedback) {
-            feedback.innerHTML = '⚠️ <strong>Transmission Note:</strong> ' + (err.message || 'Could not complete network submission.') + '<br>You can connect directly via WhatsApp: <a href="https://wa.me/918447143995" target="_blank" style="color: #ff8c42; text-decoration: underline;">+91 84471 43995</a> or email <a href="mailto:work.krutkarsh@gmail.com" style="color: #ff8c42; text-decoration: underline;">work.krutkarsh@gmail.com</a>.';
+            feedback.innerHTML = '⚠️ <strong>Transmission Note:</strong> ' + (err.message || 'Could not complete network submission.') + '<br>You can connect directly via WhatsApp: <a href="https://wa.me/918447143995" target="_blank" rel="noopener noreferrer" style="color: #ff8c42; text-decoration: underline;">+91 84471 43995</a> or email <a href="mailto:work.krutkarsh@gmail.com" style="color: #ff8c42; text-decoration: underline;">work.krutkarsh@gmail.com</a>.';
             feedback.className = 'shinobi-form-feedback error';
             feedback.style.display = 'block';
           }
