@@ -1,0 +1,1085 @@
+/* ==========================================================================
+   SHINOBI DESIGN SYSTEM — THE WAY OF THE HOKAGE ARCHITECT (v1.8.0)
+   Theme: Naruto Universe Aesthetics applied to Enterprise System Architecture
+   Author: Antigravity / Kumar Utkarsh Portfolio Redesign
+   ========================================================================== */
+
+/* ---------- 1. Shinobi Design Tokens & Color Matrix ---------- */
+:root, [data-theme="dark"] {
+  /* Core Backgrounds */
+  --shinobi-bg: #07090e;
+  --shinobi-surface: #0e121a;
+  --shinobi-card: #141923;
+  --shinobi-card-hover: #192130;
+  --shinobi-border: rgba(255, 107, 43, 0.28);
+  --shinobi-border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* Chakra Color Energies */
+  --kurama-orange: #ff5e1a;
+  --kurama-orange-glow: rgba(255, 94, 26, 0.5);
+  --kurama-gradient: linear-gradient(135deg, #ff5e1a 0%, #ff8c42 50%, #ffa502 100%);
+  --rasengan-cyan: #00e5ff;
+  --rasengan-cyan-glow: rgba(0, 229, 255, 0.4);
+  --rasengan-gradient: linear-gradient(135deg, #00e5ff 0%, #38bdf8 60%, #818cf8 100%);
+  --konoha-leaf: #10b981;
+  --konoha-leaf-glow: rgba(16, 185, 129, 0.4);
+  --uzumaki-seal: #f43f5e;
+  --uzumaki-seal-glow: rgba(244, 63, 94, 0.4);
+  --shinobi-gold: #fbbf24;
+  --shinobi-gold-glow: rgba(251, 191, 36, 0.5);
+  --sharingan-red: #ef4444;
+  --sharingan-glow: rgba(239, 68, 68, 0.6);
+
+  /* Typography Colors */
+  --text-main: #f1f5f9;
+  --text-heading: #ffffff;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  /* Metallic Hitai-ate Headband Tokens */
+  --headband-metal: linear-gradient(180deg, #1f2735 0%, #111620 50%, #1a222e 100%);
+  --headband-border: #3b4759;
+  --headband-rivet: #94a3b8;
+  --headband-shine: rgba(255, 255, 255, 0.16);
+  --hokage-stone: #2d3748;
+}
+
+[data-theme="light"] {
+  /* Scroll Parchment Palette */
+  --shinobi-bg: #f8f6f0;
+  --shinobi-surface: #f1ede2;
+  --shinobi-card: #ffffff;
+  --shinobi-card-hover: #fcfbf9;
+  --shinobi-border: rgba(194, 65, 12, 0.32);
+  --shinobi-border-subtle: rgba(0, 0, 0, 0.09);
+
+  --kurama-orange: #c2410c;
+  --kurama-orange-glow: rgba(194, 65, 12, 0.28);
+  --kurama-gradient: linear-gradient(135deg, #c2410c 0%, #ea580c 50%, #d97706 100%);
+  --rasengan-cyan: #0284c7;
+  --rasengan-cyan-glow: rgba(2, 132, 199, 0.25);
+  --rasengan-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 60%, #4338ca 100%);
+  --konoha-leaf: #059669;
+  --konoha-leaf-glow: rgba(5, 150, 105, 0.3);
+  --uzumaki-seal: #be123c;
+  --uzumaki-seal-glow: rgba(190, 18, 60, 0.25);
+  --shinobi-gold: #b45309;
+  --shinobi-gold-glow: rgba(180, 83, 9, 0.35);
+  --sharingan-red: #dc2626;
+  --sharingan-glow: rgba(220, 38, 38, 0.4);
+
+  --text-main: #1c1917;
+  --text-heading: #0c0a09;
+  --text-muted: #44403c;
+  --text-dim: #78716c;
+
+  --headband-metal: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  --headband-border: #94a3b8;
+  --headband-rivet: #475569;
+  --headband-shine: rgba(255, 255, 255, 0.7);
+  --hokage-stone: #cbd5e1;
+}
+
+/* ---------- 2. Global Document & Reset Overrides ---------- */
+html, body {
+  background-color: var(--shinobi-bg) !important;
+  color: var(--text-main) !important;
+  overflow-x: clip !important;
+  scroll-behavior: smooth;
+}
+
+/* Ambient Canvas Container */
+#chakra-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+/* Content Stacking */
+nav, main, footer, .lightbox-modal, .floating-whatsapp-btn {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 3. Hitai-ate (額当て - Shinobi Headband) Navigation Bar ---------- */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+  background: rgba(7, 9, 14, 0.94) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 2px solid rgba(255, 94, 26, 0.28) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+  padding: 8px 0 !important;
+}
+
+[data-theme="light"] nav {
+  background: rgba(248, 246, 240, 0.96) !important;
+  border-bottom: 2px solid rgba(194, 65, 12, 0.28) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+nav .con {
+  max-width: 1380px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+}
+
+/* Headband Metallic Bar across nav inner */
+.nav-wrap {
+  position: relative !important;
+  padding: 0.4rem 1.4rem !important;
+  background: var(--headband-metal) !important;
+  border: 1px solid var(--headband-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 
+    inset 0 1px 0 var(--headband-shine),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 4px 18px rgba(0, 0, 0, 0.35) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  height: 58px !important;
+}
+
+/* Engraved Headband Rivets — cleanly positioned at outer edges */
+.nav-wrap::before,
+.nav-wrap::after {
+  content: "•";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--headband-rivet);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 4px rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+.nav-wrap::before {
+  left: 8px;
+}
+.nav-wrap::after {
+  right: 8px;
+}
+
+/* Brand Logo & Konoha Crest */
+.brand-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+  margin-left: 6px;
+}
+
+.brand-symbol {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+  position: relative;
+  overflow: visible;
+  padding: 0 !important;
+  width: 38px !important;
+  height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.brand-symbol::after {
+  display: none !important;
+}
+
+.brand-symbol.shinobi-crest-badge {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.konoha-crest-img {
+  width: 38px !important;
+  height: 38px !important;
+  display: block !important;
+  filter: drop-shadow(0 0 10px rgba(255, 94, 26, 0.6));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+}
+
+.brand-logo:hover .konoha-crest-img {
+  transform: scale(1.12) rotate(-6deg);
+  filter: drop-shadow(0 0 20px rgba(255, 94, 26, 0.9)) drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+}
+
+.brand-sub-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: 6px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.brand-text {
+  font-family: var(--font-heading), sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 0.04em !important;
+  color: var(--text-heading) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  white-space: nowrap !important;
+}
+
+.brand-text span {
+  color: var(--kurama-orange) !important;
+}
+
+/* Shinobi Kanji Nav Links */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none !important;
+  }
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-radius: 7px !important;
+  padding: 5px 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  text-decoration: none !important;
+  position: relative;
+  white-space: nowrap !important;
+  border: 1px solid transparent !important;
+}
+
+/* Suppress all rogue underlines */
+.nav-link::after,
+.nav-link.active::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Standardized 1-Kanji Square Badge (18x18px) */
+.shinobi-kanji-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: var(--shinobi-gold) !important;
+  font-family: "Noto Serif JP", serif, sans-serif !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+[data-theme="light"] .shinobi-kanji-badge {
+  background: rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: var(--shinobi-gold) !important;
+}
+
+.nav-link:hover {
+  color: var(--text-heading) !important;
+  background: rgba(255, 94, 26, 0.1) !important;
+  transform: translateY(-1px);
+}
+
+.nav-link:hover .shinobi-kanji-badge {
+  background: var(--kurama-orange) !important;
+  color: #ffffff !important;
+  border-color: var(--kurama-orange) !important;
+  box-shadow: 0 0 8px var(--kurama-orange-glow) !important;
+}
+
+.nav-link.active {
+  color: #ffffff !important;
+  background: rgba(255, 94, 26, 0.16) !important;
+  border: 1px solid rgba(255, 94, 26, 0.4) !important;
+  box-shadow: inset 0 0 10px rgba(255, 94, 26, 0.18) !important;
+}
+
+.nav-link.active .shinobi-kanji-badge {
+  background: var(--kurama-gradient) !important;
+  color: #ffffff !important;
+  border-color: var(--kurama-orange) !important;
+  box-shadow: 0 0 8px var(--kurama-orange-glow) !important;
+}
+
+/* Nav Actions Cluster */
+.nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+  margin-right: 6px;
+}
+
+/* Embedded Viewport Mode Switcher — Removed from primary menu per design critique */
+.shinobi-view-toggle {
+  display: none !important;
+}
+
+/* Sharingan / Sage Eye Theme Switcher */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid var(--headband-border) !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 0 !important;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0 !important;
+}
+
+.theme-toggle:hover {
+  transform: rotate(360deg) scale(1.08) !important;
+  box-shadow: 0 0 16px var(--sharingan-glow) !important;
+  border-color: var(--sharingan-red) !important;
+}
+
+.eye-mode-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Minato Hiraishin Kunai CTA — cleanly nested inside headband */
+.btn-nav-cta {
+  background: var(--kurama-gradient) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px var(--kurama-orange-glow) !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  border-radius: 8px !important;
+  padding: 7px 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+  position: relative;
+  overflow: hidden;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-nav-cta::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: rotate(25deg);
+  transition: left 0.6s ease;
+}
+
+.btn-nav-cta:hover::after {
+  left: 130%;
+}
+
+.btn-nav-cta:hover {
+  box-shadow: 0 0 22px var(--shinobi-gold-glow), 0 0 14px var(--kurama-orange-glow) !important;
+  transform: translateY(-2px) scale(1.02);
+}
+
+.hiraishin-kunai-icon {
+  width: 13px;
+  height: 13px;
+  fill: #ffffff;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+@media (max-width: 900px) {
+  .btn-nav-cta {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-sub-badge {
+    display: none !important;
+  }
+  .nav-wrap {
+    padding: 0.35rem 0.85rem !important;
+  }
+  .nav-wrap::before {
+    left: 6px !important;
+  }
+  .nav-wrap::after {
+    right: 6px !important;
+  }
+  .brand-text {
+    font-size: 0.84rem !important;
+  }
+  .brand-symbol {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .konoha-crest-img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .nav-actions {
+    gap: 6px !important;
+    margin-right: 4px !important;
+  }
+}
+
+/* Mobile Nav Drawer — Positioned Cleanly Below Hitai-ate Headband */
+.mobile-nav {
+  position: fixed !important;
+  top: 74px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: calc(100vh - 74px) !important;
+  max-height: calc(100dvh - 74px) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  z-index: 9998 !important;
+  background: rgba(7, 9, 14, 0.98) !important;
+  border-top: 1px solid var(--kurama-orange) !important;
+  border-bottom: 2px solid var(--kurama-orange) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  padding: 14px 18px 48px !important;
+  display: none !important;
+  flex-direction: column !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
+}
+
+.mobile-nav.open,
+.mobile-nav.active {
+  display: flex !important;
+}
+
+[data-theme="light"] .mobile-nav {
+  background: rgba(248, 246, 240, 0.98) !important;
+  border-top: 1px solid var(--kurama-orange) !important;
+  border-bottom: 2px solid var(--kurama-orange) !important;
+}
+
+.mobile-nav-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 12px !important;
+  min-height: 50px !important;
+  padding: 10px 14px !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+  border-bottom: 1px solid var(--shinobi-border-subtle) !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.mobile-nav-link::after {
+  content: "→" !important;
+  margin-left: auto !important;
+  font-size: 0.95rem !important;
+  color: var(--text-muted) !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--kurama-orange) !important;
+  background: rgba(255, 94, 26, 0.08) !important;
+}
+
+.mobile-nav-link:hover::after,
+.mobile-nav-link.active::after {
+  color: var(--kurama-orange) !important;
+  transform: translateX(4px) !important;
+}
+
+/* Prototypes Page Mobile Responsiveness: Zero Overlap */
+@media (max-width: 768px) {
+  .projects-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+    width: 100% !important;
+  }
+  .proto-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .role-buttons-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* ---------- 4. Cards, Buttons & Interactive Elements ---------- */
+.card, .pcard, .kh-card, .exp-item, .proc-card, .spec-card, .tech-category {
+  background: var(--shinobi-card) !important;
+  border: 1px solid var(--shinobi-border) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 14px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+}
+
+.card:hover, .pcard:hover, .kh-card:hover, .exp-item:hover, .proc-card:hover, .spec-card:hover {
+  background: var(--shinobi-card-hover) !important;
+  border-color: var(--kurama-orange) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 20px var(--kurama-orange-glow) !important;
+  transform: translateY(-4px) !important;
+}
+
+.btn-primary, .kh-cta-btn, .footer-book-btn {
+  background: var(--kurama-gradient) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 20px var(--kurama-orange-glow) !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  transition: all 0.25s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover, .kh-cta-btn:hover, .footer-book-btn:hover {
+  box-shadow: 0 8px 30px var(--kurama-orange-glow), 0 0 18px var(--shinobi-gold-glow) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--shinobi-border) !important;
+  color: var(--text-main) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 229, 255, 0.08) !important;
+  border-color: var(--rasengan-cyan) !important;
+  color: var(--rasengan-cyan) !important;
+  box-shadow: 0 0 16px var(--rasengan-cyan-glow) !important;
+}
+
+.kh-marker {
+  background-color: var(--konoha-leaf) !important;
+  box-shadow: 0 0 12px var(--konoha-leaf-glow) !important;
+}
+
+.kh-eyebrow, .sec-tag, .footer-eyebrow, .journey-tagline-mono {
+  color: var(--shinobi-gold) !important;
+  font-family: var(--font-mono), monospace !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+.gradient-text, .kh-headline span {
+  background: var(--kurama-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* ---------- 5. Hokage Rock Monument (火影岩) Footer ---------- */
+.ku-site-footer {
+  background: #040508 !important;
+  border-top: 2px solid var(--headband-border) !important;
+  position: relative;
+  overflow: hidden;
+  padding-top: 3.5rem !important;
+  padding-bottom: 2.5rem !important;
+}
+
+[data-theme="light"] .ku-site-footer {
+  background: #f1ede2 !important;
+  border-top: 2px solid var(--headband-border) !important;
+}
+
+.ku-site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--kurama-orange), var(--shinobi-gold), var(--rasengan-cyan), transparent);
+  box-shadow: 0 0 16px var(--kurama-orange-glow);
+}
+
+/* Jiraiya Sacred Summoning Scroll Callout (口寄せの巻物) */
+.closing-callout-col {
+  background: var(--headband-metal) !important;
+  border: 1px solid var(--shinobi-border) !important;
+  border-left: 4px solid var(--kurama-orange) !important;
+  border-radius: 14px !important;
+  padding: 2rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--headband-shine) !important;
+}
+
+.closing-callout-col::after {
+  content: "油";
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: var(--kurama-orange);
+  opacity: 0.08;
+  font-family: "Noto Serif JP", serif;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.footer-statement {
+  color: var(--text-heading) !important;
+  font-size: 1.85rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.footer-nindo-sub {
+  font-size: 0.88rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1.4rem !important;
+  display: block;
+}
+
+/* Hokage Rock Monument Chiseled Wordmark (火影岩) */
+.footer-wordmark {
+  clip-path: none !important;
+  font-family: var(--font-heading), "Impact", sans-serif !important;
+  font-size: clamp(2.2rem, 7vw, 5.4rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  color: #1a202c !important;
+  text-transform: uppercase !important;
+  position: relative !important;
+  display: block !important;
+  text-align: left !important;
+  margin: 1.5rem 0 0.5rem !important;
+  transition: all 0.3s ease !important;
+  user-select: none !important;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  text-shadow: 
+    0 1px 0 #2d3748,
+    0 2px 0 #283141,
+    0 3px 0 #202734,
+    0 4px 0 #181e28,
+    0 5px 0 #10141c,
+    0 8px 16px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(255, 94, 26, 0.15) !important;
+}
+
+[data-theme="light"] .footer-wordmark {
+  color: #e2e8f0 !important;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+  text-shadow: 
+    0 1px 0 #cbd5e1,
+    0 2px 0 #94a3b8,
+    0 4px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.footer-wordmark:hover {
+  color: #242c3d !important;
+  text-shadow: 
+    0 1px 0 #3b475b,
+    0 2px 0 #323d4e,
+    0 3px 0 #283242,
+    0 4px 0 #1f2734,
+    0 0 40px var(--kurama-orange-glow),
+    0 0 20px var(--shinobi-gold-glow) !important;
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+.meta-mono-coord {
+  font-family: var(--font-mono), monospace !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  color: var(--shinobi-gold) !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* ---------- 6. Animated 6-Stage Master Journey (Dynamic SVG) ---------- */
+.journey-strip-wrap {
+  position: relative;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+.journey-route-path {
+  stroke: url(#sharedRouteGradient) !important;
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 0 8px rgba(255, 94, 26, 0.6)) !important;
+}
+
+.journey-stage-label {
+  font-family: var(--font-mono), monospace !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  fill: var(--text-main) !important;
+  letter-spacing: 0.06em !important;
+}
+
+.journey-stage-sublabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 8.5px;
+  fill: var(--shinobi-gold);
+  letter-spacing: 0.04em;
+}
+
+.journey-marker-plane,
+.journey-marker-plane-mobile {
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8)) !important;
+}
+
+.replay-journey-btn {
+  background: var(--headband-metal) !important;
+  border: 1px solid var(--headband-border) !important;
+  color: var(--shinobi-gold) !important;
+  font-family: var(--font-mono), monospace !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.replay-journey-btn:hover {
+  background: var(--kurama-orange) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px var(--kurama-orange-glow) !important;
+}
+
+/* Completely suppress bottom-right intrusive floating pill */
+.wireframe-toggle-pill {
+  display: none !important;
+}
+
+/* ---------- 7. Mobile Wireframe Mode applied to document ---------- */
+html.mobile-wireframe-mode {
+  background: #020305 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  min-height: 100vh !important;
+  padding: 30px 0 !important;
+}
+
+html.mobile-wireframe-mode body {
+  width: 414px !important;
+  max-width: 414px !important;
+  min-height: 844px !important;
+  border: 14px solid #1e2532 !important;
+  border-radius: 44px !important;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 94, 26, 0.3) !important;
+  position: relative !important;
+  overflow-x: hidden !important;
+  background: var(--shinobi-bg) !important;
+  margin: 0 auto !important;
+}
+
+html.mobile-wireframe-mode nav {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  transform: none !important;
+  border-radius: 30px 30px 0 0 !important;
+}
+
+html.mobile-wireframe-mode .nav-links {
+  display: none !important;
+}
+
+html.mobile-wireframe-mode .btn-nav-cta {
+  display: none !important;
+}
+
+html.mobile-wireframe-mode .hamburger {
+  display: flex !important;
+}
+
+html.mobile-wireframe-mode .kh-grid,
+html.mobile-wireframe-mode .proto-grid,
+html.mobile-wireframe-mode .globe-showcase-grid,
+html.mobile-wireframe-mode .footer-closing-row,
+html.mobile-wireframe-mode .footer-meta-row {
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+}
+
+html.mobile-wireframe-mode body::before {
+  content: "" !important;
+  position: fixed !important;
+  top: 42px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 126px !important;
+  height: 26px !important;
+  background: #000000 !important;
+  border-radius: 20px !important;
+  z-index: 10001 !important;
+  pointer-events: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ==========================================================================
+   Shinobi Legends HUD Controller & Character Aura Layer
+   ========================================================================== */
+#shinobi-character-stage {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shinobi-legends-hud {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 999;
+  background: rgba(13, 17, 23, 0.92);
+  border: 1px solid rgba(255, 94, 26, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 94, 26, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
+  padding: 10px 14px;
+  max-width: 440px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shinobi-legends-hud.collapsed {
+  padding: 6px 12px;
+  max-width: 220px;
+  cursor: pointer;
+  border-color: rgba(255, 94, 26, 0.3);
+}
+
+.shinobi-legends-hud.collapsed:hover {
+  border-color: var(--kurama-orange);
+  box-shadow: 0 4px 20px var(--kurama-orange-glow);
+  transform: translateY(-2px);
+}
+
+.shinobi-legends-hud.collapsed .hud-body-content {
+  display: none;
+}
+
+.shinobi-legends-hud.collapsed .hud-title-bar {
+  margin-bottom: 0;
+}
+
+[data-theme="light"] .shinobi-legends-hud {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(234, 88, 12, 0.35);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 20px rgba(234, 88, 12, 0.1);
+}
+
+.hud-title-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.hud-arrow-indicator {
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+  margin-left: 4px;
+}
+
+.shinobi-legends-hud:not(.collapsed) .hud-arrow-indicator {
+  transform: rotate(180deg);
+}
+
+.hud-crest-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--kurama-gradient);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.hud-title-text {
+  flex: 1;
+  color: var(--text-heading);
+}
+
+.hud-status-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: shinobiPulse 2s infinite ease-in-out;
+}
+
+.hud-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.hud-legend-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--headband-border);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+}
+
+.hud-legend-chip:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-heading);
+  transform: translateY(-1px);
+}
+
+.hud-legend-chip.active {
+  background: rgba(255, 94, 26, 0.2);
+  border-color: var(--kurama-orange);
+  color: #ffffff;
+  box-shadow: 0 0 12px var(--kurama-orange-glow);
+}
+
+.hud-legend-chip[data-legend="minato"].active {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: #fbbf24;
+  color: #fef08a;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+}
+
+.hud-legend-chip[data-legend="kakashi"].active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #e0f2fe;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.hud-legend-chip[data-legend="obito"].active {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: #f43f5e;
+  color: #ffe4e6;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.4);
+}
+
+.hud-legend-chip[data-legend="jiraiya"].active {
+  background: rgba(234, 88, 12, 0.2);
+  border-color: #ea580c;
+  color: #ffedd5;
+  box-shadow: 0 0 12px rgba(234, 88, 12, 0.4);
+}
+
+.hud-legend-quote {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  border-top: 1px solid var(--shinobi-border-subtle);
+  padding-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .shinobi-legends-hud {
+    bottom: 80px;
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    padding: 8px 12px;
+  }
+}
