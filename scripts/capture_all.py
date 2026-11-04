@@ -28,7 +28,7 @@ PROTOTYPES = [
     ("meax_driver", "https://meaxdriverappprototype.oneapp.dev/"),
     ("veterinarios_guest", "https://112veterinarios-guestvisitor.oneapp.dev/"),
     ("veterinarios_clinic", "https://112veterinarios-clinicowner.oneapp.dev/"),
-    ("elmanantial_admin", "https://tsrs_admin_may2026.oneapp.dev/"),
+    ("elmanantial_admin", "https://tsrs_superadmin_may2026.oneapp.dev/"),
     ("elmanantial_resident", "https://elmantial_resident_may.oneapp.dev/"),
     ("team1display_customer", "https://team1displayservicesnet-customer.oneapp.dev/"),
     ("team1display_admin", "https://team1displayservicesnet-admin.oneapp.dev/"),
@@ -41,6 +41,14 @@ PROTOTYPES = [
     ("msvtechnologies_services", "https://msvtechnologiescom.oneapp.dev/"),
     ("msvtechnologies_brandshop", "https://msvtechnologiescom.netlify.app/"),
     ("leatherindia_portal", "https://leatherindiaorg.netlify.app/"),
+    ("latensandforma_studio", "https://latensandforma.netlify.app/#home"),
+    ("smpdakar_epc", "https://smpdakar.netlify.app/"),
+    ("polavida_design1", "https://polavida.netlify.app/?v=a"),
+    ("polavida_design2", "https://polavida.netlify.app/?v=b"),
+    ("qmasystem_clinical", "https://qmasystem.netlify.app/"),
+    ("tecnicafa_academy", "https://tecnicafa.netlify.app/"),
+    ("timeforteahk_luxury", "https://timeforteahk.netlify.app/"),
+    ("industrialcuttingtools_safety", "https://industrialcuttingtools-usa.netlify.app/"),
 ]
 
 def capture(url, out_path, width=1440, height=900, delay=2):

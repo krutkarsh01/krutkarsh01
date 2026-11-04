@@ -73,10 +73,30 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log('\n  ▲ Shinobi Development Server');
-  console.log(`  - Local:        http://localhost:${PORT}/`);
-  console.log('  - Environment:  development');
-  console.log('  ✓ All 8 production pages, 3D WebGL globe & prototypes active\n');
+let currentPort = Number(PORT);
+
+function startServer(port) {
+  server.listen(port, () => {
+    console.log('\n  ▲ Shinobi Development Server');
+    console.log(`  - Local:        http://localhost:${port}/`);
+    console.log('  - Environment:  development');
+    console.log('  ✓ All 8 production pages, 3D WebGL globe & prototypes active\n');
+  });
+}
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.warn(`  ⚠ Port ${currentPort} is already in use. Retrying on port ${currentPort + 1}...`);
+    currentPort += 1;
+    setTimeout(() => {
+      startServer(currentPort);
+    }, 200);
+  } else {
+    console.error('Server error:', err);
+    process.exit(1);
+  }
 });
+
+startServer(currentPort);
+
 

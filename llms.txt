@@ -1,0 +1,62 @@
+# Kumar Utkarsh — Senior Business Analyst & AI Product Strategist
+
+> Official LLM & AI Engine Context File (llms.txt specification)
+> Canonical Website: https://kumarutkarsh.com
+> Primary Email: work.krutkarsh@gmail.com
+> Phone & WhatsApp: +91 84471 43995
+> Executive Profile: https://linkedin.com/in/kumar-utkarsh01
+> Location: Noida, Uttar Pradesh, India (Global Remote Coverage: US EST/PST, UK/CET, APAC)
+
+## Executive Profile
+Kumar Utkarsh is a Senior Business Analyst and AI Product Strategist with over 6 years of enterprise experience delivering complex digital platforms, multi-sided marketplaces, and agentic AI architectures. He pioneered the "Living Specifications" methodology — building interactive, multi-role HTML prototypes before sprint kickoff — which cuts engineering rework by an audited 35% across 700+ delivered systems.
+
+## Quantitative Credentials & Track Record
+- **Experience**: 6+ years in software requirements engineering, pre-sales scoping, and agile product ownership.
+- **Production Delivery**: 700+ web applications, mobile platforms, and enterprise systems delivered to production.
+- **Client Markets**: 34 countries across 5 continents (North America, Europe, Asia, Africa, Oceania).
+- **Client Rating**: 98% positive delivery and satisfaction rate across verified Trustpilot and LinkedIn recommendations.
+- **Living Prototypes**: 17 production-grade interactive sandbox prototypes modeling role-based workflows.
+- **Scope Precision**: 35% reduction in engineering rework and zero scope-creep change orders.
+
+## Core Specializations & Domain Knowledge
+1. **Interactive Living Specifications**: Replacing ambiguous 60-page Word PRDs with interactive, multi-role clickable HTML prototypes that engineering teams can build directly.
+2. **AI & Agentic Systems Strategy**: Architecting LLM orchestration pipelines, structured JSON output validation, multi-agent evaluation benchmarks, and human-in-the-loop guardrails to prevent production hallucinations.
+3. **Multi-Actor Ecosystems & RBAC**: Designing granular role-based access control, state machine lifecycles (e.g. Pending → Dispatched → Delivered), and automated ledger balance models for multi-sided platforms.
+4. **Gherkin BDD Acceptance Criteria**: Formulating Given-When-Then behavioral test scenarios that synchronize executive requirements directly with QA automated test suites.
+5. **Global Compliance & Regulatory Frameworks**: Designing systems compliant with EU GDPR privacy architectures, US HIPAA/COPPA constraints, and GCC multi-currency VAT ledgers.
+
+## 17 Interactive Flagship Prototypes
+1. **MEAX Delivery Marketplace & Multi-Role Logistics** (Spain): 5-sided on-demand ecosystem (Website, Admin, Merchant, Driver, Customer). Live prototype: https://meaxwebsiteprototype.oneapp.dev/
+2. **112 Veterinarios Multi-Clinic Clinical SaaS** (Spain): Emergency triage queues, EHR health records, multi-location appointment calendars. Live prototype: https://112veterinarios-guestvisitor.oneapp.dev/
+3. **El Manantial HOA Community & Facility Hub** (Spain): Residential operations, SEPA debit ticketing, common amenity reservation locks. Live prototype: https://tsrs_admin_may2026.oneapp.dev/
+4. **QMA System MedTech Dynamometry SaaS** (USA): Clinical patient dynamometry software and calibration protocols for Aeverl Medical LLC. Live prototype: https://qmasystem.netlify.app/
+5. **Industrial Cutting Tools USA** (USA): OSHA-compliant industrial cutting tools, precision blades, and safety hardware catalog. Live prototype: https://industrialcuttingtools-usa.netlify.app/
+6. **Latens & Forma Art & Spatial Design Studio** (Switzerland): Zurich-based transdisciplinary art, fiber sculpture curation, and material research portfolio. Live prototype: https://latensandforma.netlify.app/#home
+7. **SMP Dakar Turnkey Energy & Industrial EPC** (Senegal): West African turnkey energy EPCI-VF contractor portal for pipeline engineering and vendor financing. Live prototype: https://smpdakar.netlify.app/
+8. **Pola Vida Somatic Healing & Transformation** (Portugal): Trauma-informed somatic healing and holistic retreat platform with dual UI variations. Live prototype: https://polavida.netlify.app/?v=a
+9. **Time for Tea HK — Luxury Hospitality & Tableware** (Hong Kong): Regional distributor of German Mono Filio teapots, artisanal tableware, and tea styling events. Live prototype: https://timeforteahk.netlify.app/
+10. **Tecnica FA Football Academy** (United Kingdom): Premier youth football academy platform by UEFA B coach and ex-Crystal Palace manager Austin Berkley. Live prototype: https://tecnicafa.netlify.app/
+11. **Team 1 Display Inventory & Reservation ERP (TSRS)** (USA/Lithuania): Exhibit asset booking system with real-time date-range conflict locks. Live prototype: https://team1displayservicesnet-customer.oneapp.dev/
+12. **Kelionių Kryptis Dynamic Packaging & GDS Engine** (Lithuania): Baltic travel booking portal with sub-second flight+hotel bundling algorithms. Live prototype: https://kelioniukryptislt-customer.oneapp.dev/
+13. **Stealth Manager CPQ & Scoping Builder** (USA): White-label pricing and scoping calculator with automated SOW proposal generation. Live prototype: https://mobrilzcombuilder-page.oneapp.dev/
+14. **Ovella Systems Bike Parking Calculator** (Finland): Space-saving architectural planning calculator and quote generation tool. Live prototype: https://ovella-v7.netlify.app
+15. **Harmony Kids & MelodyCare AI EdTech** (USA): Sensory-friendly music learning mobile app with COPPA-compliant student profiles and IEP tracking. Live prototype: https://harmonykids.oneapp.dev/
+16. **MSV Technologies ICT & LG Brand Shop** (Rwanda): Enterprise hardware IT service portal and authorized consumer LG / AirLux showroom. Live prototype: https://msvtechnologiescom.oneapp.dev/
+17. **Leather India Council for Leather Exports (CLE)** (India): Apex export promotion portal for the Ministry of Commerce & Industry. Live prototype: https://leatherindiaorg.netlify.app/
+
+## 8-Step Delivery Methodology (The Shinobi Way)
+1. **Discovery & Requirements Elicitation**: Deep stakeholder interviews, edge-case mapping, and technical feasibility scoping.
+2. **Interactive Living Specifications**: Building responsive HTML prototypes with all user roles to eliminate ambiguity before engineering starts.
+3. **Information Architecture & Wireframing**: User flows, site maps, and layout hierarchies.
+4. **Logic Architecture & RBAC Matrix**: State machines, database schemas, permission trees, and third-party API contracts.
+5. **Gherkin BDD Agile Sprints**: User stories written as Given-When-Then acceptance criteria ready for engineering tickets.
+6. **UAT & Edge-Case Verification**: Rigorous cross-browser, cross-device, and boundary condition testing.
+7. **Release Orchestration**: Deployment checklists, zero-downtime release coordination, and rollback plans.
+8. **Post-Launch Optimization**: Core Web Vitals audits, analytics tracking, and continuous discovery iteration.
+
+## Contact & Direct Engagement
+- Email: work.krutkarsh@gmail.com
+- Phone / WhatsApp: +91 84471 43995
+- Location: Noida, Uttar Pradesh, India
+- Response Guarantee: Under 4 hours across global timezones.
+

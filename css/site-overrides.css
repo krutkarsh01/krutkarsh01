@@ -499,12 +499,12 @@ body {
 /* Breakpoint 1: Desktop (>= 1024px) */
 @media (min-width: 1024px) {
   #portfolio-curved-gallery .curved-gallery-viewport {
-    height: 490px !important;
-    perspective: 1600px !important;
+    height: 520px !important;
+    perspective: 1200px !important;
   }
   .curved-card {
-    width: 280px !important;
-    height: 380px !important;
+    width: 310px !important;
+    height: 410px !important;
   }
 }
 
@@ -646,9 +646,10 @@ main section#book { padding: 0 !important; margin: 0 0 clamp(20px, 3vw, 32px) !i
 .proto-domain, .proto-domain a { overflow-wrap: anywhere; word-break: break-word; }
 nav .hamburger { justify-content: center !important; align-items: center !important; width: 44px; height: 44px; padding: 0 !important; }
 .mobile-nav a.mobile-nav-link.active::after { color: currentColor !important; }
-/* Full-bleed thumbnails: the image spans the whole tile width at every size */
-.proto-card { --pc-pad: clamp(1.1rem, 2.4vw, 1.9rem); padding: 0 var(--pc-pad) var(--pc-pad) !important; }
-.proto-card .proto-thumb { margin: 0 calc(-1 * var(--pc-pad)) 1.25rem !important; border-radius: 0 !important; }
+/* Full-bleed thumbnails: clean zero-padding card with edge-to-edge media */
+.proto-card { padding: 0 0 1.5rem 0 !important; }
+.proto-card .proto-thumb { margin: 0 0 1.25rem 0 !important; width: 100% !important; border-radius: 0 !important; }
+.proto-card > *:not(.proto-thumb) { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
 @media (max-width: 640px) {
   .proto-device-notice { padding: 14px 16px !important; gap: 0 !important; }
   .proto-device-notice .notice-icon { display: none !important; }
@@ -934,5 +935,23 @@ nav .hamburger { justify-content: center !important; align-items: center !import
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+/* Footer CTA Spacing */
+.footer-cta-wrap,
+div.footer-cta-wrap,
+.footer-cta-wrap[data-astro-cid-sz7xmlte] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-wrap: wrap !important;
+  margin-top: 1.25rem !important;
+}
+.footer-cta-wrap > a,
+.footer-cta-wrap > .btn,
+.footer-cta-wrap .footer-book-btn,
+.footer-cta-wrap .footer-contact-btn {
+  margin: 0 !important;
+}
+
 
 

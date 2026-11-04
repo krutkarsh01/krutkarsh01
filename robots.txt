@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
+Allow: /llms.txt
 
+# AI Search & Generative Crawlers (AEO, GEO, LLMO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://kumarutkarsh.com/sitemap.xml
 Sitemap: https://kumarutkarsh.com/sitemap-index.xml

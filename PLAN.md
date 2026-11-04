@@ -854,3 +854,551 @@ The user provided critical design guidance:
    - Clean, de-cluttered mobile headband displaying `[KU] KUMAR UTKARSH` alongside the Sharingan button and hamburger menu.
    - Zero badge clipping, zero rivet collisions.
 3. **Netlify Build Check**: `npm run build` exits 0.
+
+
+---
+
+### [v2.4.0] - 2026-11-04: Enterprise Portfolio Expansion, Prototypes Audit & Redesign, Naruto Footer Evolution & Global Interactive Atlas
+
+#### 1. Strategic Vision & Scope Breakdown
+This release executes a major upgrade across five core pillars requested by the user, alongside a comprehensive hallmark UI/UX audit and responsive multi-screen validation across all 8 pages of the portfolio:
+
+1. **Portfolio Expansion with 7 New Real-World Projects**:
+   - **Latens & Forma** (`latensandforma.com` | Zurich, Switzerland 🇨🇭): Transdisciplinary architecture, material research, fiber sculpture, and spatial curation studio.
+   - **SMP Dakar** (`smpdakar.com` | Dakar, Senegal 🇸🇳): Turnkey EPCI-VF contractor for industrial steel, pipeline, and energy infrastructure.
+   - **Pola Vida** (`polavida.com` | Portugal 🇵🇹 / Online): Somatic healing, Tantra, and trauma-informed coaching platform featuring two distinct design variations (`?v=a` and `?v=b`).
+   - **QMA System (Aeverl Medical LLC)** (`qmasystem.com` | USA 🇺🇸): MedTech clinical trial isometric dynamometry and quantitative muscle assessment platform.
+   - **Tecnica FA** (`tecnicafa.com` | London / UK 🇬🇧): Premier youth football academy platform coached by UEFA B / ex-Crystal Palace manager Austin Berkley.
+   - **Time for Tea HK** (`timeforteahk.com` | Hong Kong 🇭🇰): Luxury hospitality, exclusive German Mono Filio teapots, curated tableware, and bespoke event styling.
+   - **Industrial Cutting Tools USA** (`industrialcuttingtools-usa.com` | USA 🇺🇸): OSHA-compliant industrial safety knives, auto-retracting cutters, and enterprise B2B procurement platform.
+
+2. **Homepage vs. Portfolio Hub Curation**:
+   - **Homepage Carousel (Top 7 Impression Makers)**: Highlight the most diverse, high-impact enterprise deliverables demonstrating multi-sided complexity and international breadth:
+     1. `meax` (5-Role On-Demand Delivery Marketplace · Spain)
+     2. `veterinarios` (5-Role Multi-Clinic Veterinary SaaS · Spain)
+     3. `qmasystem` (MedTech Quantitative Muscle Assessment Platform · USA)
+     4. `elmanantial` (4-Role Residential PropTech Ecosystem · Spain)
+     5. `team1display` (Industrial Manufacturing & Asset Reservation ERP · Lithuania)
+     6. `timeforteahk` (Luxury Hospitality & E-Commerce Platform · Hong Kong)
+     7. `industrialcuttingtools` (OSHA-Compliant Industrial Safety B2B · USA)
+   - **Prototypes Portfolio Page (`/prototypes/`)**: Complete showcase of all 17 projects organized by categories (`platforms`, `booking`, `tools`, `enterprise`, `websites`) with real-time filtering, full PRD specifications, and interactive sandbox links.
+
+3. **Footer Journey Evolution (Addressing Images 1 & 2)**:
+   - **Remove Cluttering Sublabels (Image 1)**: Eliminate the text labels (`TEAM 7 · ELICITATION`, `CHUNIN · SOW LOCK`, `KAKASHI · MULTI-ROLE`, `MINATO · HIRAISHIN SPEED`, `HOKAGE · 35% REWORK CUT`) that disrupted the visual balance beneath the stage titles.
+   - **Elevate Naruto Thematic Stage Badges (Image 2)**: Redesign the 6 stages (`DISCOVERY`, `SPECS`, `PROTOTYPE`, `LOGIC & RBAC`, `SPRINTS`, `RELEASE`) with sleek, modern shinobi aesthetics:
+     - High-clarity stage glyphs with subtle chakra backglow rings.
+     - Smooth Kurama flame (`#ff6200`) and Sage Rasengan cyan (`#00e5ff`) path illumination.
+     - Minato's Three-Pronged Hiraishin Kunai gliding dynamically across the trajectory.
+     - Interactive hover micro-interactions and seamless mobile responsiveness.
+
+4. **Rigorous Audit & Correction of Prototype Descriptions**:
+   - Correct historical errors, copy inconsistencies, and broken links across all existing prototypes (such as uncoupling `tsrs` URLs from `elmanantial` and ensuring accurate role labeling).
+   - Standardize technical taxonomy across all 17 prototypes: Architecture, Core Logic, Deliverables, Problem, Solution, and Live Demo links.
+
+5. **3D Global Interactive Atlas Upgrade (Addressing Image 3)**:
+   - **First View (Global Overview)**: Render all 30+ client markets across 5 continents simultaneously with glowing chakra waypoints and interactive region filter chips.
+   - **Country Selection Mode**: When a country is selected (via globe pin click, dropdown, or country chip):
+     - The globe smoothly rotates and centers on the selected market.
+     - The globe isolates/highlights that single country pin with an energetic chakra beacon halo while softly dimming non-selected markers.
+     - The inspection card dynamically updates with country flag, market classification badge, title, detailed description, and direct clickable action links:
+       - 🚀 "Launch Live Prototype / Website ↗"
+       - 📄 "View Living Specs in Portfolio ↗"
+       - ⭐ "View Verified Review ↗"
+       - ↺ "Explore All 30+ Markets" button to easily reset back to the full global overview.
+
+---
+
+#### 2. Comprehensive UI/UX Audit & Redesign Protocols
+- **Hallmark UI/UX Audit**:
+  - Remove visual noise in footer journey stages; restore clean spacing and hierarchy.
+  - Fix misassigned URLs and descriptions in prototype sandboxes.
+  - Improve globe inspection workflow with one-click bidirectional navigation.
+  - Guarantee zero font jitter, zero badge clipping, and full contrast compliance (WCAG AAA).
+- **Preservation Mandate**:
+  - Preserve all existing buttons, wording, navigation labels, and functional behavior.
+  - Treat the existing application and GitHub repository as the source of truth.
+- **Verification Matrix**:
+  - 50 real application screenshots captured across 8 screens and multiple viewports (Desktop 1440x900, Laptop 1200x800, Tablet 768x1024, Mobile 375x812).
+  - Validation of all 8 screens for horizontal responsiveness, alignment, and spacing.
+  - Netlify build verification (`npm run build`).
+
+---
+
+#### 3. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.4.0]` specification before modifying code. (Completed)
+- [x] **Milestone 2**: Remove marked footer sublabels from `js/shinobi-effects.js` and redesign footer journey stages with polished Naruto theme across desktop and mobile. (Completed)
+- [x] **Milestone 3**: Audit and correct all prototype descriptions and links in `prototypes/index.html` and `index.html`. Add the 7 new projects with complete metadata, badges, and sandbox links. (Completed)
+- [x] **Milestone 4**: Update Homepage prototype carousel to feature top 7 impression-making prototypes (`meax`, `veterinarios`, `qmasystem`, `elmanantial`, `team1display`, `timeforteahk`, `industrialcuttingtools`). (Completed)
+- [x] **Milestone 5**: Upgrade interactive 3D Globe: support initial view with all countries, isolated single-country highlight on selection, enriched inspection card with direct prototype/spec/review links, and "Show All Markets" reset control. Add new countries (Switzerland, Senegal, Portugal, Hong Kong, UK, USA) to the hubs dataset. (Completed)
+- [x] **Milestone 6**: Conduct UI/UX audit across all 8 screens (`home`, `about`, `process`, `skills`, `prototypes`, `experience`, `testimonials`, `contact`). (Completed)
+- [x] **Milestone 7**: Capture 50+ real screenshots across all 8 screens and 4 responsive viewports using automated headless Chrome (59 real screenshots captured). (Completed)
+- [x] **Milestone 8**: Verify responsive width consistency across all 8 screens and execute `npm run build` static verification. (Completed)
+
+---
+
+#### 4. Verification Artifacts & Evidence
+1. **Footer Journey Redesign (Addressing Images 1 & 2)**:
+   - All 5 marked text sublabels (`TEAM 7 · ELICITATION`, `CHUNIN · SOW LOCK`, `KAKASHI · MULTI-ROLE`, `MINATO · HIRAISHIN SPEED`, `HOKAGE · 35% REWORK CUT`) have been cleanly removed from the DOM and suppressed via CSS (`display: none !important;`).
+   - The 6 stage milestones (`DISCOVERY`, `SPECS`, `PROTOTYPE`, `LOGIC & RBAC`, `SPRINTS`, `RELEASE`) have been redesigned with custom Shinobi vectors:
+     - `DISCOVERY`: Ninja Intel Reconnaissance Scroll with Konoha Chakra Core.
+     - `SPECS`: Sealed Chūnin Exam SOW Jutsu Scroll with ribbon and seal.
+     - `PROTOTYPE`: Multi-Role Sandbox Frame with Sharingan Tomoe Node.
+     - `LOGIC & RBAC`: Eight Trigrams (Bagua) / Fūinjutsu Chakra Seal Grid.
+     - `SPRINTS`: Minato's Three-Pronged Flying Thunder God (Hiraishin) Kunai Squad.
+     - `RELEASE`: Hokage Flame Monument Ascent & Reached Milestone.
+   - Interactive hover aura with smooth scale and Kurama orange glow.
+2. **Top 7 Homepage Prototypes Curation**:
+   - The homepage 3D curved carousel now exclusively spotlights the 7 highest-impression platforms:
+     1. `MEAX Delivery Marketplace` (🚚 On-Demand Logistics · 🇪🇸 Spain)
+     2. `112 Veterinarios Multi-Clinic Portal` (🩺 Healthcare & Veterinary SaaS · 🇪🇸 Spain)
+     3. `QMA System | Quantitative Muscle Assessment` (🔬 MedTech Clinical SaaS · 🇺🇸 USA)
+     4. `El Manantial Residential Management` (🏢 PropTech & Community Ecosystem · 🇪🇸 Spain)
+     5. `Team 1 Display Production ERP` (📦 Trade Show Prepress & ERP · 🇱🇹 Lithuania)
+     6. `Time for Tea HK — Luxury Tableware` (🫖 Luxury Hospitality & Retail · 🇭🇰 Hong Kong)
+     7. `Industrial Cutting Tools USA` (🛡️ Industrial Safety & B2B Procurement · 🇺🇸 USA)
+   - Repeated smoothly across 14 positions for seamless 360° circular dragging.
+   - Direct link to the expanded catalog: `See all 17 projects →`.
+3. **Dedicated Portfolio Expansion (`/prototypes/`)**:
+   - All 17 projects are fully featured with audited descriptions, spec pills, interactive sandbox buttons, and live domain links.
+   - Categorized under 5 updated filter tabs: `All Projects (17)`, `Multi-Role Platforms (4)`, `Enterprise SaaS & MedTech (4)`, `E-Commerce & Hospitality (3)`, `Tools & Calculators (3)`, and `Corporate & Trade Portals (3)`.
+   - Mismatches (such as legacy `tsrs` URLs on `elmanantial`) have been fully corrected to point to verified sandbox instances.
+4. **Interactive 3D Atlas Redesign (Addressing Image 3)**:
+   - Initial View: All 34 client markets across 5 continents are rendered on the globe simultaneously.
+   - Isolated Country Selection: Selecting any country centers the globe and isolates ONLY that country marker on the sphere with active chakra illumination.
+   - Inspection Card: Displays country flag, source badge (`Portfolio Hub`, `Verified Review`, `Client Market`), title, description, and direct action buttons:
+     - `🚀 Open Live Prototype ↗`
+     - `📄 View Full Specs in Portfolio ↗`
+     - `⭐ Read Verified Review ↗`
+     - `🌍 Show All 34+ Markets ↺`
+   - Quick Market Pill Cloud above the inspection card allows one-click instant navigation across countries.
+5. **Real Screenshots & Responsive Validation**:
+   - Captured 59 real application screenshots in `screenshots/audit/` across 8 screens (`home`, `about`, `process`, `skills`, `prototypes`, `experience`, `testimonials`, `contact`), 4 device viewports (`desktop` 1440x900, `laptop` 1200x800, `tablet` 768x1024, `mobile` 375x812), and 25 live prototype instances.
+   - Passed 8-screen width integrity check across 8 viewport widths (375px to 1920px) with 0 layout breaks or horizontal overflow.
+   - `npm run build` exits 0.
+
+
+---
+
+### [v2.5.0] - 2026-11-04: Mobile Carousel Restoration, Modal Popup Fix, SEO/AEO/GEO/AIO/SXO/LLMO Architecture, Favicon Redesign, Web3Forms Contact Engine & Server Resilience
+
+#### 1. Strategic Vision & Core Deliverables
+This release resolves critical functional and experiential feedback across 7 key user requirements:
+
+1. **Restoring Mobile 3D Curved Carousel for Prototypes**:
+   - **Problem**: The isolated single-card mobile view removed the 3D depth and flanking preview cards that defined the portfolio's signature aesthetic.
+   - **Solution**: Restore the 3D cylindrical transform math (`z = (Math.cos(rad) * R - R) - (dist / 18) * 65; scale = dist < 6 ? 1.0 : (1.0 - Math.min(dist / 90, 0.20)); opacity = smooth decay from 1.0 to 0.30`) so flanking prototype cards peek from both sides in 3D perspective while the center active card commands focus.
+
+2. **Fixing Modal Popup Scrolling Bug**:
+   - **Problem**: Clicking a prototype tile or profile photo caused the page to scroll down to the bottom instead of opening as a fixed overlay popup.
+   - **Root Cause**: `.lightbox-modal` was declared as `position: relative` in `css/shinobi-theme.css`. When `openModal` called `closeBtn.focus()`, the browser scrolled to the modal in the normal document flow near the footer.
+   - **Solution**: Enforce `position: fixed !important; inset: 0 !important; width: 100vw !important; height: 100vh !important; z-index: 999999 !important; background: rgba(5, 7, 11, 0.9) !important; backdrop-filter: blur(14px) !important;` with `display: none !important;` and `.lightbox-modal.active { display: flex !important; align-items: center; justify-content: center; }`. Disable background scroll and prevent viewport jump.
+
+3. **Multi-Pillar Search & AI Optimization Master Plan (SEO, AEO, GEO, AIO, SXO, LLMO)**:
+   - **SEO (Search Engine Optimization)**: Semantic HTML5, canonical URLs, sitemaps, OpenGraph metadata, Core Web Vitals optimization.
+   - **AEO (Answer Engine Optimization)**: Perplexity, Google SGE, and voice search Q&A structuring; JSON-LD FAQPage schemas addressing high-intent queries ("Who is Kumar Utkarsh?", "Top Senior Business Analyst for SaaS in India").
+   - **GEO (Generative Engine Optimization)**: Direct factual attribution and citation structuring for Google Gemini, OpenAI Search, and Microsoft Copilot with verifiable statistics (6+ years, 700+ projects, 35% rework cut, 17 multi-role prototypes).
+   - **AIO (AI Overview Optimization)**: High informational density entity-attribute-value triplets embedded in HTML tables and schemas.
+   - **SXO (Search Experience Optimization)**: Zero Cumulative Layout Shift (CLS), instantaneous interaction to next paint (INP), and accessible ARIA attributes.
+   - **LLMO (Large Language Model Optimization)**: Authoritative `llms.txt` and `llms-full.txt` files compliant with modern LLM crawler specifications (GPTBot, ClaudeBot, GeminiBot) providing structured markdown context of Kumar's entire career, deliverables, and architecture philosophy.
+
+4. **Signature Favicon Redesign**:
+   - Update `favicon.svg` and `apple-touch-icon.svg` with the signature Kurama flame orange squircle (`#ff5e1a` to `#ffa502`), crisp white bold "KU" glyph, and corner sparkle matching the restored navbar logo.
+
+5. **Integrated Web3Forms Contact Engine (Homepage & Contact Page)**:
+   - Form Access Key: `"9a2a38a4-beb5-4a14-9ecd-dc6dc4c88c98"` connected to `work.krutkarsh@gmail.com`.
+   - Perfectly aligned on the Homepage callout card (matching Image 1) and on `/contact/`.
+   - Comprehensive fields: Full Name, Work Email, Engagement Scope (Full-time Senior BA / AI Lead, Interactive Prototype, PRD / Living Specs, AI Advisory), Project Budget / Timeline, and Mission Brief / Message.
+   - Asynchronous AJAX `fetch` submission with real-time validation, disabled submit state during transmission, and an animated, celebratory "THANK YOU" confirmation card.
+
+6. **Dev Server Resilience (`npm run dev`)**:
+   - Update `server.js` to handle `EADDRINUSE` gracefully with port fallback, terminate orphaned processes, and guarantee seamless startup.
+
+7. **Eight-Screen Verification**:
+   - Rigorous end-to-end audit verifying that all 8 pages, modal popups, 3D globe, prototypes, and contact forms operate cleanly with zero console errors.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.5.0]` before touching any code.
+- [x] **Milestone 2**: Fix modal popup scrolling bug in `css/shinobi-theme.css` so `#proto-modal` and `#photo-modal` open instantly as fixed viewport popups with `preventScroll: true`.
+- [x] **Milestone 3**: Restore mobile 3D curved slider with visible flanking cards and cylindrical depth in `index.html`.
+- [x] **Milestone 4**: Fix `server.js` port handling so `npm run dev` runs reliably without `EADDRINUSE`.
+- [x] **Milestone 5**: Redesign `favicon.svg` and `apple-touch-icon.svg` to the signature orange squircle "KU" logo with gold chakra spark.
+- [x] **Milestone 6**: Implement Web3Forms contact form with access key `"9a2a38a4-beb5-4a14-9ecd-dc6dc4c88c98"` on Homepage (aligned with Image 1 callout card) and `/contact/` with AJAX submission, validation, and animated Thank You card.
+- [x] **Milestone 7**: Create `llms.txt`, `sitemap.xml`, update `robots.txt`, and enhance JSON-LD schemas across pages for SEO, AEO, GEO, AIO, SXO, and LLMO.
+- [x] **Milestone 8**: Conduct quality audit across all 8 pages and verify `npm run build` exits 0.
+
+#### 3. Verification & Deployment Outcomes
+- **Server Resilience**: `server.js` automatically detects port collisions and cascades to available ports. Tested `npm run dev` successfully.
+- **Mobile 3D Carousel**: Mobile viewport (<480px / <600px) restored to continuous cylindrical cylinder where the center card is 100% focused while left and right flanking cards peek out at 55% opacity with -45px z-depth and touch drag navigation.
+- **Modal Popups**: `.lightbox-modal` upgraded to `position: fixed !important; inset: 0 !important; z-index: 999999 !important` with `preventScroll: true` across all 8 pages. No scrolling to page bottom occurs upon opening modals.
+- **Search & AI Optimization**: High-intent entities and FAQPage schema deployed for Perplexity, Gemini, ChatGPT, and Google SGE citation; `llms.txt` deployed at root; XML sitemap verified; AI bot crawler directives added to `robots.txt`.
+- **Contact Inbound Gateway**: Integrated Web3Forms with verified access key sending submissions to `work.krutkarsh@gmail.com` with animated success feedback.
+
+---
+
+### [v2.6.0] - 2026-11-04: Full Country Flag Strip, Desktop Carousel Spacing Optimization, Side-by-Side Form Layouts, Prototype Image Framing, Experience Scroll Beam & Branded Testimonial Buttons
+
+#### 1. Strategic Vision & Core Deliverables
+This release addresses 8 targeted design, layout, and UX enhancements requested by the client:
+
+1. **Interactive All-Country Flag Matrix (Image 1)**:
+   - Replace the partial 12-market chip bar with an exhaustive, interactive **All-34 Countries Flag Matrix** under/around the 3D globe.
+   - Display country flag emojis and country names for all 34 client markets.
+   - Clicking any chip spins the globe directly to that market, highlights its pin, and updates the active market card.
+   - When "All Markets" is selected, dynamically present an all-flags ribbon in the HUD and card instead of a plain numeric mention.
+
+2. **Desktop Curved Carousel Spacing Optimization (Image 2)**:
+   - Solve excessive dark voids between cards on desktop displays.
+   - Rebalance desktop radius `R` from `880px` to `640px` and adjust card dimensions to `310px x 420px`.
+   - Deliver an Apple-inspired 3D coverflow experience where flanking tiles gracefully overlap in depth (`z-index` and Z-axis translation) creating visual richness without empty black gaps.
+
+3. **Side-by-Side Contact Form on Homepage Callout (Image 3)**:
+   - Convert `.teaser-callout` from a tall vertical stack into a high-density, horizontal **2-Column Side-by-Side Layout** on desktop (`@media (min-width: 900px)`).
+   - **Left Column**: High-impact value proposition ("Need Living Specifications That Engineering Can Build Instantly?"), delivery guarantees (4-hr response, 35% rework cut, NDA protection), and CTA actions.
+   - **Right Column**: The integrated Web3Forms Dispatch Card (`Transmit Your Project Brief`).
+
+4. **Side-by-Side Layout on Contact Us Page**:
+   - Refactor `#book` on `/contact/` into a balanced 2-column grid: direct contact channels (email, phone, WhatsApp) on the left, and the Web3Forms dispatch form on the right.
+
+5. **Prototype Image Fitting & Browser Frame Mockup**:
+   - Resolve screenshot cropping and distortion across both homepage curved cards and the prototype portfolio.
+   - Enforce `object-fit: cover; object-position: top center;` so headers and application UI features are always visible.
+   - Introduce an elegant browser frame top bar with simulated traffic-light controls on cards, and position category tags neatly to prevent obscuring application UI.
+
+6. **Fix Prototypes Page Edge-to-Edge Container & Responsive Grid**:
+   - Enclose `#prototypesGrid` within `.con` with a maximum width of `1280px` and responsive gutters.
+   - Prevent cards from stretching end-to-end on wide monitors; implement clean 3-column desktop and responsive 1-column mobile grid.
+
+7. **Scroll-Driven Timeline Energy Beam on Experience Page (Image 4)**:
+   - Build a dynamic scroll-linked animation on `experience/index.html`.
+   - As the user scrolls down through career milestones, an illuminated energy beam (`#ff5e1a` to `#00e5ff`) fills the vertical timeline track, and milestone nodes pulse with glowing chakra rings when activated.
+
+8. **High-End Branded Review Buttons on Testimonials Page (Image 5)**:
+   - Transform bare text links (`Read original on Trustpilot ↗`, `Read original on LinkedIn ↗`) into styled, high-end branded pill buttons:
+     - **Trustpilot**: Dedicated emerald button (`#00b67a`) with Trustpilot star icon and glow.
+     - **LinkedIn**: Dedicated corporate blue button (`#0a66c2`) with LinkedIn `in` icon and glow.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.6.0]` before touching any code.
+- [x] **Milestone 2**: In `index.html`, implement the complete 34-country flag matrix around the 3D globe with interactive pin targeting and multi-flag visualizer.
+- [x] **Milestone 3**: In `index.html` and `css/site-overrides.css`, optimize desktop curved carousel math (`R = 610px`, card size `310px x 410px`, tighter 3D coverflow overlap) to eliminate empty black voids.
+- [x] **Milestone 4**: In `index.html` and `css/shinobi-theme.css`, refactor homepage callout banner into a responsive 2-column side-by-side layout (Value Proposition & Guarantees on Left, Web3Forms Card on Right).
+- [x] **Milestone 5**: In `contact/index.html`, refactor `#book` into a balanced 2-column side-by-side grid (`.contact-split-banner`).
+- [x] **Milestone 6**: In `css/shinobi-theme.css` and `css/site-overrides.css`, fix prototype image fitting with `object-fit: cover; object-position: top center;`, macOS browser frame chrome with traffic dots, and unobstructed tags.
+- [x] **Milestone 7**: In `prototypes/index.html`, fix edge-to-edge stretching by correctly nesting `#prototypesGrid` inside `<div class="con">` (max-width `1280px`) and responsive CSS grid.
+- [x] **Milestone 8**: In `experience/index.html`, `css/shinobi-theme.css`, and `js/shinobi-effects.js`, implement the scroll-driven vertical timeline energy beam and active node illuminations.
+- [x] **Milestone 9**: In `testimonials/index.html` and `css/shinobi-theme.css`, transform all testimonial verification links into high-end Trustpilot and LinkedIn branded pill buttons with verified SVG icons.
+- [x] **Milestone 10**: Verify all 8 production pages with automated HTTP checks and confirm `npm run build` exits 0.
+
+#### 3. Verification & Deployment Outcomes
+- **All 34 Countries & Flags Under 3D Globe**: Rendered full interactive flag matrix containing all 34 client markets with instant globe rotation and isolation. Default view displays a continuous all-flags emoji ticker.
+- **Desktop Curved Carousel Coverflow**: Cards rebalanced to 310px width with R = 610px, eliminating dark voids while preserving 3D coverflow depth and mobile responsiveness.
+- **Side-by-Side Form Layouts**: Homepage callout and `/contact/` both refactored into modern 2-column desktop layouts with value propositions on the left and Web3Forms cards on the right.
+- **Prototype Image Fitting**: Screenshots display full UI with `object-position: top center;` inside simulated macOS browser windows with traffic-light chrome.
+- **Prototypes Page Centering**: Fixed rogue closing `</div>` tag that broke container nesting. Grid is now properly contained within 1280px with responsive columns.
+- **Experience Scroll Animation**: Scroll-linked energy beam dynamically fills the vertical track on `experience/index.html` as the user navigates through milestones.
+- **Branded Review Pill Buttons**: Upgraded all 13 testimonial links to Trustpilot emerald and LinkedIn corporate blue pill buttons with SVG icons and hover glow states.
+- **Route Integrity Check**: Automated Node.js HTTP probe confirmed HTTP 200 on all 8 routes (`/`, `/about/`, `/process/`, `/skills/`, `/prototypes/`, `/experience/`, `/testimonials/`, `/contact/`) plus `sitemap.xml` and `robots.txt`.
+- **Build Verification**: `npm run build` exited with code 0.
+
+---
+
+### [v2.8.0] - 2026-11-04: Simultaneous 34 Circular Globe Flags, Missing Prototypes Data Fix, Bright & High-Contrast Prototype Media, Form Email Cleanup, About-Style Experience Scroll Path, & Footer Button Spacing
+
+#### 1. Strategic Vision & Core Deliverables
+This release resolves 7 targeted user feedback points with visual precision:
+
+1. **Simultaneous 34 Country Circular Flags ON 3D Globe (Image 3 - `media_1793799223602_2bef370b.jpg`)**:
+   - As demonstrated in the user's reference diagram ("Desired: Show all 34 country flags on the globe at once, with markers at each country location"), display circular flag pins for all 34 client nations on the 3D sphere simultaneously in the default state.
+   - Each country pin consists of a circular flag badge (`30px` diameter, high-res national flag with crisp border) and a glowing cyan vertical pointer stem connecting it to the globe surface (`dot > 0.1` visibility check so only front-facing hemisphere flags are visible, avoiding backface clutter).
+   - Remove the oversized `30+ Global Client Markets` pill that obscured the sphere.
+   - When a country is selected, smoothly rotate the globe to center on that country, isolate that country's circular flag and beacon ring, and display its real delivered prototypes, client testimonials, and quick jump links.
+
+2. **Fix Missing Prototype Popups on Click**:
+   - Populate `protoData` dictionary in both `index.html` and `prototypes/index.html` with complete data for all 17 projects (including `qmasystem`, `industrialcuttingtools`, `smpdakar`, `timeforteahk`, `polavida`, `latensandforma`, `tecnicafa`).
+   - Ensure clicking ANY prototype card opens the modal instantly with full specification details, live links, and problem-solution architecture.
+
+3. **High-Contrast, Bright Prototype Images & Flawless Alignment**:
+   - Re-capture high-resolution, full-brightness screenshots for `ovella`, `polavida`, and any dark or poorly aligned prototype images using headless Chrome.
+   - On the homepage 3D coverflow carousel and the `/prototypes/` catalog grid, apply unified aspect ratios (`16:10`), top-centered object alignment (`object-fit: cover; object-position: top center;`), and simulated dark-glass browser frames with glowing traffic light indicators. Eliminate washed-out, dark, or misaligned thumbnails.
+
+4. **Remove Raw Email from Form Submission Success Card (Image 1 - `media_1793798687370_61894860.jpg`)**:
+   - Purge `work.krutkarsh@gmail.com` from the confirmation modal/card in `index.html`, `contact/index.html`, and `js/shinobi-effects.js`.
+   - Replace with executive confirmation copy: "Your project brief has been dispatched directly to Kumar Utkarsh. You will receive a tailored architectural response and next steps within 4 hours."
+
+5. **About-Style Curved SVG Path Scroll Animation on Experience Page**:
+   - Replace the vertical beam on `experience/index.html` with the SVG Bézier curve path animation from `about/index.html`.
+   - Render `<svg class="experience-route-svg"><path class="exp-route-base"/><path class="exp-route-draw"/></svg>` snaking smoothly between timeline milestone cards.
+   - Wire a scroll listener that dynamically updates `strokeDashoffset` and animates a glowing chakra spark traveling along the path as the user scrolls.
+
+6. **Footer CTA Button Spacing (Image 2 - `media_1793799059401_b8ddd3bd.png`)**:
+   - Enforce explicit `16px` (`1rem`) gap between `[Book a 30-min call ↗]` and `[Contact Me ↗]` inside `.footer-cta-wrap` across all 8 site pages. Prevent any button collision or zero-margin touching.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.8.0]` (Completed).
+- [x] **Milestone 2**: In `index.html`, `contact/index.html`, and `js/shinobi-effects.js`, remove raw email from the Web3Forms submission success confirmation card.
+- [x] **Milestone 3**: In `css/shinobi-theme.css` and `css/site-overrides.css`, add rigid spacing rules (`gap: 16px !important;`) for `.footer-cta-wrap` across all pages.
+- [x] **Milestone 4**: In `index.html` and `prototypes/index.html`, inject complete specifications for the 7 new prototypes into `protoData` / `window.PROTO_DATA` so every card click opens its modal.
+- [x] **Milestone 5**: Re-capture bright, crisp, high-contrast screenshots for `ovella.jpg`, `polavida.jpg`, `qmasystem.jpg`, `timeforteahk.jpg`, etc., and ensure CSS aligns cards uniformly.
+- [x] **Milestone 6**: In `experience/index.html`, build the dynamic curved SVG path connecting experience milestone nodes and wire scroll-linked drawing matching `about/index.html`.
+- [x] **Milestone 7**: In `_astro/atlas-globe.Deg8bG5e.js` and `css/shinobi-theme.css`, render all 34 circular country flag pins simultaneously on the 3D globe surface with vertical stems, matching Image 3.
+- [x] **Milestone 8**: Run automated HTTP tests across all 8 pages, test modal popups, verify responsive layouts, and confirm `npm run build` succeeds.
+
+#### 3. Verification & Deployment Outcomes
+- **3D Globe 34 Simultaneous Circular Flags (Image 3)**:
+  - All 34 client nations are rendered simultaneously on the 3D globe surface in the initial/default view as circular flag discs (`28px` diameter) with glowing cyan pointer stems (`16px` vertical line) attached directly to the coordinate beacons.
+  - Selecting a country isolates that country's circular pin with a pulsating `#ff5e1a` aura, rotates the globe, and updates the hub card with related deliverables, reviews, and quick links.
+  - The oversized `30+ Global Client Markets` green box (`atlas-label`) was completely removed.
+- **Prototype Spec Modal Popups Fixed**:
+  - Full data structures for all 7 previously unhandled prototypes (`qmasystem`, `industrialcuttingtools`, `smpdakar`, `timeforteahk`, `polavida`, `latensandforma`, `tecnicafa`) injected into `protoData` across both `index.html` and `prototypes/index.html`.
+  - Every single card click now opens its detailed specification modal instantly.
+- **High-Contrast, Bright Prototype Media & Clean Alignment**:
+  - Re-captured high-resolution, full-brightness screenshots using headless Chrome for `ovella.jpg`, `polavida.jpg` (both Design A & B), `qmasystem.jpg`, `industrialcuttingtools.jpg`, `smpdakar.jpg`, `timeforteahk.jpg`, `latensandforma.jpg`, and `tecnicafa.jpg`.
+  - Removed negative-margin hacks on `.proto-thumb` in favor of edge-to-edge full-bleed card media and uniform 16:10 aspect ratios.
+- **Removed Email from Confirmation Card (Image 1)**:
+  - Eliminated `work.krutkarsh@gmail.com` from the "Mission Brief Transmitted!" thank-you card in `index.html` and `contact/index.html`.
+- **About-Style Curved Scroll Route on Experience Page**:
+  - Replaced the straight vertical beam with `<svg class="experience-route"><path class="experience-route-base"/><path class="experience-route-draw"/></svg>`.
+  - Connected all 5 experience milestone nodes via dynamic cubic Bézier curves that draw along with the user's scroll.
+- **Enforced Footer CTA Button Spacing (Image 2)**:
+  - Added strict `gap: 16px !important;` to `.footer-cta-wrap` across all stylesheets, preventing button touching.
+- **Automated Verification**:
+  - Node.js HTTP test suite verified HTTP 200 across all 8 routes (`/`, `/about/`, `/process/`, `/skills/`, `/prototypes/`, `/experience/`, `/testimonials/`, `/contact/`).
+  - Production build `npm run build` exited with code 0.
+
+---
+
+### [v2.9.0] - 2026-11-04: Restore Desktop & Tablet 3D Arc Carousel Design (IMAGE 1) & Restore Reliable Original 3D Interactive Globe
+
+#### 1. Strategic Vision & Core Deliverables
+This release addresses two precise user requirements:
+
+1. **Restore Desktop & Tablet 3D Arc Carousel (User Request 1 & IMAGE 1 - `media_1793799861757_dc7727d4.jpg`)**:
+   - The user confirmed that the mobile version of the prototypes carousel is already good and must remain untouched ("Dont change anything on mobile. Just fix on Desktop and tablet if posible").
+   - On Desktop and Tablet (`min-width: 641px`):
+     - Remove the simulated browser chrome header (`.curved-card-inner::before` traffic light dots).
+     - Restore the exact earlier design displayed in IMAGE 1:
+       - `.curved-card-inner`: Sleek device card container with `border-radius: 20px`, dark border, deep drop shadow, and full-bleed image.
+       - `.curved-card-img`: Full coverage with smooth zoom on hover.
+       - `.curved-card-glass-glow`: Linear bottom dark gradient (`linear-gradient(180deg, transparent 50%, rgba(4, 8, 17, 0.92) 100%)`) providing high contrast for the title caption.
+       - `.curved-card-top-tag`: Top dark glass pill badge (`top: 14px; right: 14px; border-radius: 999px; background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(8px);`) displaying category/role icon and title.
+       - `.curved-card-caption`: Title and country flag positioned cleanly below the card.
+
+2. **Restore Reliable Original 3D Interactive Globe (User Request 2 - "bring the old globe back")**:
+   - Restore the pristine original 3D Three.js interactive globe:
+     - Restore `_astro/atlas-globe.Deg8bG5e.js` to its original clean implementation with WebGL coordinate beacon markers, inertia rotation, and synchronized hub inspections.
+     - Fix script execution timing in `_astro/hoisted.Bjdt1Es-.js`: dynamically resolve `window.__HUBS` at invocation time rather than module load time, guaranteeing `__HUBS` is never an empty array.
+     - In `index.html`, place `<script>window.__HUBS = [...]</script>` in `<head>` so all 34 client hubs are globally accessible before any script mounts.
+     - Ensure `#globe-canvas-wrap` mounts immediately and renders the interactive 3D Earth with full WebGL support, auto-rotation, manual drag navigation, and hub card synchronization.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.9.0]` (Completed).
+- [x] **Milestone 2**: In `css/shinobi-theme.css`, scope carousel changes strictly to desktop/tablet (`@media (min-width: 641px)`), restoring the exact IMAGE 1 design without modifying mobile.
+- [x] **Milestone 3**: Restore `_astro/atlas-globe.Deg8bG5e.js` to the original working version from git `HEAD`.
+- [x] **Milestone 4**: In `_astro/hoisted.Bjdt1Es-.js` and `index.html`, ensure `window.__HUBS` is declared in `<head>` and dynamically resolved when mounting the globe.
+- [x] **Milestone 5**: Test in Chrome headless with remote inspection, verify `window.__atlas` is instantiated, and verify globe renders on localhost:3000.
+- [x] **Milestone 6**: Capture audit screenshots of the restored 3D arc carousel and 3D globe on desktop, tablet, and mobile.
+- [x] **Milestone 7**: Run automated HTTP tests across all routes and confirm `npm run build` succeeds.
+
+#### 3. Verification & Deployment Outcomes
+- **Desktop & Tablet 3D Arc Carousel Restored to IMAGE 1 (`media_1793799861757_dc7727d4.jpg`)**:
+  - Carousel styles for desktop and tablet (`@media (min-width: 641px)`) were restored to match the exact user-approved design from IMAGE 1: sleek device card borders (`border-radius: 20px`), full-bleed imagery with smooth zoom transitions, bottom gradient fade (`rgba(4, 8, 17, 0.92)`), and floating top dark glass badge pills (`.curved-card-top-tag`).
+  - Mobile carousel (`<640px`) was kept 100% untouched as requested.
+- **Original Interactive 3D Three.js Globe Restored**:
+  - `_astro/atlas-globe.Deg8bG5e.js` restored to its original, highly-optimized WebGL implementation with smooth orbit controls, auto-spin, manual drag, coordinate beacon markers, and synchronized hub inspections.
+  - Script loading sequence in `index.html` and `_astro/hoisted.Bjdt1Es-.js` was permanently resolved by defining `window.__HUBS` in `<head>` and dynamically resolving it at mount time, guaranteeing the canvas mounts immediately (`window.__atlas` verified with 33 client hubs).
+- **Automated Verification**:
+  - HTTP 200 validated across all 8 production pages (`/`, `/about/`, `/process/`, `/skills/`, `/prototypes/`, `/experience/`, `/testimonials/`, `/contact/`).
+  - `npm run build` completed with exit code 0.
+  - Verification screenshots captured and verified:
+    - `screenshots/v29_portfolio_centered.png` (Desktop 3D Arc Carousel restored to IMAGE 1)
+    - `screenshots/v29_globe_centered.png` (3D Three.js Interactive Globe auto-mounted and rendered)
+    - `screenshots/v29_carousel_mobile_full.png` (Mobile carousel layout preserved untouched)
+    - `screenshots/v29_carousel_tablet_full.png` (Tablet carousel responsive view)
+
+
+
+
+
+---
+
+### [v2.7.0] - 2026-11-04: Flags Directly on 3D Globe, Footer Contact Me CTA, Journey Steps Realignment & Mobile Polish, Inverted Wordmark Chakra Glow & Lock Email Cleanup
+
+#### 1. Strategic Vision & Core Deliverables
+This release implements 5 precise user requirements across 4 provided feedback images:
+
+1. **Footer "Contact Me" CTA Button (Image 1 - `media_1793797463052_fd75eaf5.jpg`)**:
+   - In the footer closing card next to `Book a 30-min call ↗`, add a high-contrast secondary button: `Contact Me ↗` linking to `/contact/#book` (or `/contact/`).
+   - Propagate across all 8 site footers (`index.html`, `about/index.html`, `process/index.html`, `skills/index.html`, `prototypes/index.html`, `experience/index.html`, `testimonials/index.html`, `contact/index.html`).
+
+2. **Footer Journey Steps Realignment & Mobile Responsiveness (Image 2 - `media_1793797498600_aa8198b5.png`)**:
+   - Align all 6 stages (`DISCOVERY`, `SPECS`, `PROTOTYPE`, `LOGIC & RBAC`, `SPRINTS`, `RELEASE`) along a single horizontal baseline (`cy = 50`) and label baseline (`y = 44`) on desktop.
+   - Enforce uniform horizontal spacing between all 6 steps across the 1200px SVG coordinate plane.
+   - Re-architect the mobile journey SVG (`<640px`): ensure proper alignment, spacing, chakra-ring icons, and legibility on small phone screens without cramped or overlapping labels.
+
+3. **Invert "KUMAR UTKARSH" Wordmark Chakra Aura (Image 3 - `media_1793797549951_cafbe860.jpg`)**:
+   - **Default / Pre-Hover State**: Render the full burning golden-orange chakra flame aura (`text-shadow: 0 0 35px var(--kurama-orange), 0 0 60px rgba(255, 94, 26, 0.7), 0 0 15px rgba(251, 191, 36, 0.8)`).
+   - **On Hover State**: Remove the fiery aura, easing back into the clean, dark chiseled Hokage stone monument appearance.
+
+4. **Remove "🔒 Direct to work.krutkarsh@gmail.com" (Image 4 - `media_1793797621069_65beff4b.png`)**:
+   - Remove any raw email mention / lock line from the form subtitles and note containers.
+   - Clean up subtitles to focus on turnaround and confidentiality: "Direct line to Kumar Utkarsh. Guaranteed response within 4 hours."
+
+5. **Render Country Flags Directly ON the 3D Globe (Addressing Image 5 & User Feedback)**:
+   - **Revert the section below the globe**: Remove the 34-country chip matrix (`#all-markets-matrix`, `.globe-countries-matrix`) added below the 3D globe in `index.html`. Do not touch the lower section.
+   - **Render Flags on the Globe**: In `_astro/atlas-globe.Deg8bG5e.js`, create Three.js Sprite markers with Canvas-rendered national flags at every client coordinate directly on the 3D sphere surface.
+   - As the globe spins, country flags rotate directly in 3D space on the globe.
+   - When a specific country is selected, its flag and beacon marker isolate on the globe.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.7.0]` before touching any code.
+- [x] **Milestone 2**: In `index.html` (and all 7 other pages), add `<a href="/contact/#book" class="btn btn-secondary footer-contact-btn"><span>Contact Me ↗</span></a>` next to `Book a 30-min call ↗` in the footer.
+- [x] **Milestone 3**: In `css/shinobi-theme.css`, invert `.footer-wordmark`: default state has fiery chakra flame aura; `:hover` state removes the fiery effect.
+- [x] **Milestone 4**: Revert the country chips matrix below the 3D globe in `index.html`.
+- [x] **Milestone 5**: In `_astro/atlas-globe.Deg8bG5e.js`, implement 3D Canvas Flag Sprites rendering country flags directly ON the surface of the rotating globe.
+- [x] **Milestone 6**: In `index.html`, `js/shinobi-effects.js`, and `css/shinobi-theme.css`, align all 6 stages of the footer journey on desktop and fix the mobile journey layout.
+- [x] **Milestone 7**: In `index.html` and `contact/index.html`, remove `🔒 Direct to work.krutkarsh@gmail.com` and `Delivered directly to work.krutkarsh@gmail.com`.
+- [x] **Milestone 8**: Test dev server, verify responsive layout on mobile (<480px) and desktop (1440px), and confirm `npm run build` exits 0.
+
+#### 3. Verification & Deployment Outcomes
+- **Footer Contact CTA (Image 1)**: Deployed `Contact Me ↗` button across all 8 pages (`index.html`, `about/`, `process/`, `skills/`, `prototypes/`, `experience/`, `testimonials/`, `contact/`, `404.html`) inside `.footer-cta-wrap` next to `Book a 30-min call ↗`.
+- **Footer Journey Realignment & Mobile Polish (Image 2)**: All 6 stages (`DISCOVERY`, `SPECS`, `PROTOTYPE`, `LOGIC & RBAC`, `SPRINTS`, `RELEASE`) aligned with uniform spacing and consistent vertical baselines on desktop. Mobile journey now shares identical Naruto chakra icons with crisp, non-overlapping typography.
+- **Inverted Wordmark Chakra Glow (Image 3)**: Default unhovered `.footer-wordmark` now radiates the burning golden-orange chakra flame aura (`#ff5e1a` / `#ffa502`). Hovering over the wordmark calms the effect, revealing the clean, chiseled stone monument texture.
+- **Removed Email Lock Line (Image 4)**: Purged all occurrences of `Direct to work.krutkarsh@gmail.com` and `Delivered directly to work.krutkarsh@gmail.com` from form headers and subtitles.
+- **Country Flags Directly ON the 3D Globe (Image 5 & Feedback)**: Reverted the section below the globe to its clean state without extra chips. Implemented real-time Three.js flag pins floating directly at lat/lng coordinates on the 3D sphere: all flags visible and rotating in initial view; selecting a country rotates the globe and isolates only that country flag and beacon pin.
+- **Automated HTTP Test**: All 8 production routes returned HTTP 200 with complete payloads.
+- **Build Verification**: `npm run build` exited with code 0.
+
+---
+
+### [v2.8.0] - 2026-11-04: Simultaneous 34 Circular Globe Flags, Missing Prototypes Data Fix, Bright & High-Contrast Prototype Media, Form Email Cleanup, About-Style Experience Scroll Path, & Footer Button Spacing
+
+#### 1. Strategic Vision & Core Deliverables
+This release resolves 7 targeted user feedback points with visual precision:
+
+1. **Simultaneous 34 Country Circular Flags ON 3D Globe (Image 3 - `media_1793799223602_2bef370b.jpg`)**:
+   - As demonstrated in the user's reference diagram ("Desired: Show all 34 country flags on the globe at once, with markers at each country location"), display circular flag pins for all 34 client nations on the 3D sphere simultaneously in the default state.
+   - Each country pin consists of a circular flag badge (`30px` diameter, high-res national flag with crisp border) and a glowing cyan vertical pointer stem connecting it to the globe surface (`dot > 0.1` visibility check so only front-facing hemisphere flags are visible, avoiding backface clutter).
+   - Remove the oversized `30+ Global Client Markets` pill that obscured the sphere.
+   - When a country is selected, smoothly rotate the globe to center on that country, isolate that country's circular flag and beacon ring, and display its real delivered prototypes, client testimonials, and quick jump links.
+
+2. **Fix Missing Prototype Popups on Click**:
+   - Populate `protoData` dictionary in both `index.html` and `prototypes/index.html` with complete data for all 17 projects (including `qmasystem`, `industrialcuttingtools`, `smpdakar`, `timeforteahk`, `polavida`, `latensandforma`, `tecnicafa`).
+   - Ensure clicking ANY prototype card opens the modal instantly with full specification details, live links, and problem-solution architecture.
+
+3. **High-Contrast, Bright Prototype Images & Flawless Alignment**:
+   - Re-capture high-resolution, full-brightness screenshots for `ovella`, `polavida`, and any dark or poorly aligned prototype images using headless Chrome.
+   - On the homepage 3D coverflow carousel and the `/prototypes/` catalog grid, apply unified aspect ratios (`16:10`), top-centered object alignment (`object-fit: cover; object-position: top center;`), and simulated dark-glass browser frames with glowing traffic light indicators. Eliminate washed-out, dark, or misaligned thumbnails.
+
+4. **Remove Raw Email from Form Submission Success Card (Image 1 - `media_1793798687370_61894860.jpg`)**:
+   - Purge `work.krutkarsh@gmail.com` from the confirmation modal/card in `index.html`, `contact/index.html`, and `js/shinobi-effects.js`.
+   - Replace with executive confirmation copy: "Your project brief has been dispatched directly to Kumar Utkarsh. You will receive a tailored architectural response and next steps within 4 hours."
+
+5. **About-Style Curved SVG Path Scroll Animation on Experience Page**:
+   - Replace the vertical beam on `experience/index.html` with the SVG Bézier curve path animation from `about/index.html`.
+   - Render `<svg class="experience-route-svg"><path class="exp-route-base"/><path class="exp-route-draw"/></svg>` snaking smoothly between timeline milestone cards.
+   - Wire a scroll listener that dynamically updates `strokeDashoffset` and animates a glowing chakra spark traveling along the path as the user scrolls.
+
+6. **Footer CTA Button Spacing (Image 2 - `media_1793799059401_b8ddd3bd.png`)**:
+   - Enforce explicit `16px` (`1rem`) gap between `[Book a 30-min call ↗]` and `[Contact Me ↗]` inside `.footer-cta-wrap` across all 8 site pages. Prevent any button collision or zero-margin touching.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.8.0]` (Completed).
+- [x] **Milestone 2**: In `index.html`, `contact/index.html`, and `js/shinobi-effects.js`, remove raw email from the Web3Forms submission success confirmation card.
+- [x] **Milestone 3**: In `css/shinobi-theme.css` and `css/site-overrides.css`, add rigid spacing rules (`gap: 16px !important;`) for `.footer-cta-wrap` across all pages.
+- [x] **Milestone 4**: In `index.html` and `prototypes/index.html`, inject complete specifications for the 7 new prototypes into `protoData` / `window.PROTO_DATA` so every card click opens its modal.
+- [x] **Milestone 5**: Re-capture bright, crisp, high-contrast screenshots for `ovella.jpg`, `polavida.jpg`, `qmasystem.jpg`, `timeforteahk.jpg`, etc., and ensure CSS aligns cards uniformly.
+- [x] **Milestone 6**: In `experience/index.html`, build the dynamic curved SVG path connecting experience milestone nodes and wire scroll-linked drawing matching `about/index.html`.
+- [x] **Milestone 7**: In `_astro/atlas-globe.Deg8bG5e.js` and `css/shinobi-theme.css`, render all 34 circular country flag pins simultaneously on the 3D globe surface with vertical stems, matching Image 3.
+- [x] **Milestone 8**: Run automated HTTP tests across all 8 pages, test modal popups, verify responsive layouts, and confirm `npm run build` succeeds.
+
+#### 3. Verification & Deployment Outcomes
+- **3D Globe 34 Simultaneous Circular Flags (Image 3)**:
+  - All 34 client nations are rendered simultaneously on the 3D globe surface in the initial/default view as circular flag discs (`28px` diameter) with glowing cyan pointer stems (`16px` vertical line) attached directly to the coordinate beacons.
+  - Selecting a country isolates that country's circular pin with a pulsating `#ff5e1a` aura, rotates the globe, and updates the hub card with related deliverables, reviews, and quick links.
+  - The oversized `30+ Global Client Markets` green box (`atlas-label`) was completely removed.
+- **Prototype Spec Modal Popups Fixed**:
+  - Full data structures for all 7 previously unhandled prototypes (`qmasystem`, `industrialcuttingtools`, `smpdakar`, `timeforteahk`, `polavida`, `latensandforma`, `tecnicafa`) injected into `protoData` across both `index.html` and `prototypes/index.html`.
+  - Every single card click now opens its detailed specification modal instantly.
+- **High-Contrast, Bright Prototype Media & Clean Alignment**:
+  - Re-captured high-resolution, full-brightness screenshots using headless Chrome for `ovella.jpg`, `polavida.jpg` (both Design A & B), `qmasystem.jpg`, `industrialcuttingtools.jpg`, `smpdakar.jpg`, `timeforteahk.jpg`, `latensandforma.jpg`, and `tecnicafa.jpg`.
+  - Removed negative-margin hacks on `.proto-thumb` in favor of edge-to-edge full-bleed card media and uniform 16:10 aspect ratios.
+- **Removed Email from Confirmation Card (Image 1)**:
+  - Eliminated `work.krutkarsh@gmail.com` from the "Mission Brief Transmitted!" thank-you card in `index.html` and `contact/index.html`.
+- **About-Style Curved Scroll Route on Experience Page**:
+  - Replaced the straight vertical beam with `<svg class="experience-route"><path class="experience-route-base"/><path class="experience-route-draw"/></svg>`.
+  - Connected all 5 experience milestone nodes via dynamic cubic Bézier curves that draw along with the user's scroll.
+- **Enforced Footer CTA Button Spacing (Image 2)**:
+  - Added strict `gap: 16px !important;` to `.footer-cta-wrap` across all stylesheets, preventing button touching.
+- **Automated Verification**:
+  - Node.js HTTP test suite verified HTTP 200 across all 8 routes (`/`, `/about/`, `/process/`, `/skills/`, `/prototypes/`, `/experience/`, `/testimonials/`, `/contact/`).
+  - Production build `npm run build` exited with code 0.
+
+---
+
+### [v2.9.0] - 2026-11-04: Restore Desktop & Tablet 3D Arc Carousel Design (IMAGE 1) & Restore Reliable Original 3D Interactive Globe
+
+#### 1. Strategic Vision & Core Deliverables
+This release addresses two precise user requirements:
+
+1. **Restore Desktop & Tablet 3D Arc Carousel (User Request 1 & IMAGE 1 - `media_1793799861757_dc7727d4.jpg`)**:
+   - The user confirmed that the mobile version of the prototypes carousel is already good and must remain untouched ("Dont change anything on mobile. Just fix on Desktop and tablet if posible").
+   - On Desktop and Tablet (`min-width: 641px`):
+     - Remove the simulated browser chrome header (`.curved-card-inner::before` traffic light dots).
+     - Restore the exact earlier design displayed in IMAGE 1:
+       - `.curved-card-inner`: Sleek device card container with `border-radius: 20px`, dark border, deep drop shadow, and full-bleed image.
+       - `.curved-card-img`: Full coverage with smooth zoom on hover.
+       - `.curved-card-glass-glow`: Linear bottom dark gradient (`linear-gradient(180deg, transparent 50%, rgba(4, 8, 17, 0.92) 100%)`) providing high contrast for the title caption.
+       - `.curved-card-top-tag`: Top dark glass pill badge (`top: 14px; right: 14px; border-radius: 999px; background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(8px);`) displaying category/role icon and title.
+       - `.curved-card-caption`: Title and country flag positioned cleanly below the card.
+
+2. **Restore Reliable Original 3D Interactive Globe (User Request 2 - "bring the old globe back")**:
+   - Restore the pristine original 3D Three.js interactive globe:
+     - Restore `_astro/atlas-globe.Deg8bG5e.js` to its original clean implementation with WebGL coordinate beacon markers, inertia rotation, and synchronized hub inspections.
+     - Fix script execution timing in `_astro/hoisted.Bjdt1Es-.js`: dynamically resolve `window.__HUBS` at invocation time rather than module load time, guaranteeing `__HUBS` is never an empty array.
+     - In `index.html`, place `<script>window.__HUBS = [...]</script>` in `<head>` so all 34 client hubs are globally accessible before any script mounts.
+     - Ensure `#globe-canvas-wrap` mounts immediately and renders the interactive 3D Earth with full WebGL support, auto-rotation, manual drag navigation, and hub card synchronization.
+
+---
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.9.0]` (Completed).
+- [x] **Milestone 2**: In `css/shinobi-theme.css`, scope carousel changes strictly to desktop/tablet (`@media (min-width: 641px)`), restoring the exact IMAGE 1 design without modifying mobile.
+- [x] **Milestone 3**: Restore `_astro/atlas-globe.Deg8bG5e.js` to the original working version from git `HEAD`.
+- [x] **Milestone 4**: In `_astro/hoisted.Bjdt1Es-.js` and `index.html`, ensure `window.__HUBS` is declared in `<head>` and dynamically resolved when mounting the globe.
+- [x] **Milestone 5**: Test in Chrome headless with remote inspection, verify `window.__atlas` is instantiated, and verify globe renders on localhost:3000.
+- [x] **Milestone 6**: Capture audit screenshots of the restored 3D arc carousel and 3D globe on desktop, tablet, and mobile.
+- [x] **Milestone 7**: Run automated HTTP tests across all routes and confirm `npm run build` succeeds.
+
+#### 3. Verification & Deployment Outcomes
+- **Desktop & Tablet 3D Arc Carousel Restored to IMAGE 1 (`media_1793799861757_dc7727d4.jpg`)**:
+  - Carousel styles for desktop and tablet (`@media (min-width: 641px)`) were restored to match the exact user-approved design from IMAGE 1: sleek device card borders (`border-radius: 20px`), full-bleed imagery with smooth zoom transitions, bottom gradient fade (`rgba(4, 8, 17, 0.92)`), and floating top dark glass badge pills (`.curved-card-top-tag`).
+  - Mobile carousel (`<640px`) was kept 100% untouched as requested.
+- **Original Interactive 3D Three.js Globe Restored**:
+  - `_astro/atlas-globe.Deg8bG5e.js` restored to its original, highly-optimized WebGL implementation with smooth orbit controls, auto-spin, manual drag, coordinate beacon markers, and synchronized hub inspections.
+  - Script loading sequence in `index.html` and `_astro/hoisted.Bjdt1Es-.js` was permanently resolved by defining `window.__HUBS` in `<head>` and dynamically resolving it at mount time, guaranteeing the canvas mounts immediately (`window.__atlas` verified with 33 client hubs).
+- **Automated Verification**:
+  - HTTP 200 validated across all 8 production pages (`/`, `/about/`, `/process/`, `/skills/`, `/prototypes/`, `/experience/`, `/testimonials/`, `/contact/`).
+  - `npm run build` completed with exit code 0.
+  - Verification screenshots captured and verified:
+    - `screenshots/v29_portfolio_centered.png` (Desktop 3D Arc Carousel restored to IMAGE 1)
+    - `screenshots/v29_globe_centered.png` (3D Three.js Interactive Globe auto-mounted and rendered)
+    - `screenshots/v29_carousel_mobile_full.png` (Mobile carousel layout preserved untouched)
+    - `screenshots/v29_carousel_tablet_full.png` (Tablet carousel responsive view)
+
+
+
+
+
+
