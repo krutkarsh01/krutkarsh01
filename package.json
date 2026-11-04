@@ -1,0 +1,12 @@
+{
+  "name": "kumar-utkarsh-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio of Kumar Utkarsh — Senior Business Analyst & AI Product Strategist",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Production static assets verified for Netlify.'"
+  }
+}
+

@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.onload = function() {
+    var iframe = document.getElementById('f');
+    iframe.onload = function() {
+        var doc = iframe.contentDocument || iframe.contentWindow.document;
+        var btn = doc.getElementById('hamburger-btn');
+        if (btn) btn.click();
+        setTimeout(function() {
+            window.status = 'ready';
+        }, 300);
+    };
+};
+</script>
+</head>
+<body style='margin:0'>
+<iframe id='f' src='http://localhost:3000/' style='width:375px;height:812px;border:none'></iframe>
+</body>
+</html>
