@@ -762,3 +762,47 @@ The user provided critical design guidance:
 
 
 
+
+
+---
+
+### [v2.2.0] - 2026-11-04: Complete Removal of Floating "Shinobi Legends Aura" HUD Widget
+
+#### 1. Scope & Design Rationalization
+- **User Request**: "remove this" referencing the uploaded screenshot of the floating `[ 火 ] SHINOBI LEGENDS AURA ● ▾` HUD pill widget located at the bottom-left of the viewport.
+- **Root Cause & User Insight**:
+  - The floating HUD pill was initially introduced as an interactive jutsu switcher for the 5 Naruto legends (Minato, Kakashi, Naruto, Obito, Jiraiya).
+  - In actual user experience, persistent floating widgets on mobile and desktop obscure page content, create unnecessary visual distraction, and distract from the executive portfolio narrative.
+  - The Naruto character animations (Minato Yellow Flash teleportation, Kakashi Chidori arcs, Naruto Kurama flames, Obito Kamui distortions, Jiraiya summon ink motes) will run smoothly and harmoniously across the background canvas (`#shinobi-character-stage`) automatically without requiring a floating HUD controller.
+- **Architectural Changes**:
+  1. **`js/shinobi-character-engine.js`**:
+     - Remove `createShinobiLegendsHUD()` initialization from the startup cycle.
+     - Remove the HUD DOM creation, buttons, and event listeners.
+     - Ensure the background character animation stage (`#shinobi-character-stage`) continues to run seamlessly in the ambient mode (`'all'`), providing the Shinobi atmospheric aesthetic without any floating UI clutter.
+     - Add defensive checks so if `#shinobi-legends-hud` exists anywhere in the DOM, it is cleanly removed.
+  2. **`css/shinobi-theme.css`**:
+     - Remove obsolete CSS rules for `.shinobi-legends-hud`, `.hud-inner`, `.hud-title-bar`, `.hud-legend-chip`, `.hud-chips-wrap`, etc., keeping the stylesheet lean and clean.
+     - Preserve `#shinobi-character-stage` full-bleed background styling (`pointer-events: none; z-index: 0;`).
+  3. **Verification**:
+     - Run headless Chrome CDP capture on 375x812 mobile viewport and 1440x900 desktop viewport to verify zero floating HUD presence.
+     - Ensure WhatsApp floating button remains intact and unoccluded on the bottom-right.
+     - Verify `npm run build` exits with code 0.
+
+#### 2. Execution Checklist & Verification Protocol
+- [x] **Milestone 1**: Update `PLAN.md` with `[v2.2.0]` specification before modifying code. (Completed)
+- [x] **Milestone 2**: Remove HUD logic and DOM generation from `js/shinobi-character-engine.js`. (Completed)
+- [x] **Milestone 3**: Clean up unused HUD styles from `css/shinobi-theme.css`. (Completed)
+- [x] **Milestone 4**: Capture screenshots verifying complete removal of the HUD pill on mobile and desktop. (Completed)
+- [x] **Milestone 5**: Verify `npm run build` succeeds and dev server is running. (Completed)
+
+---
+
+#### 3. Verification Artifacts & Evidence
+1. **Mobile Home Viewport (375x812)**: `screenshots/v22_verified_mobile_nohud.png`
+   - The floating HUD pill `[ 火 ] SHINOBI LEGENDS AURA` is completely removed.
+   - Profile avatar, Mobrilz title, and hero CTAs are clear and unoccluded.
+2. **Mobile Portfolio Viewport (375x812)**: `screenshots/v22_verified_mobile_portfolio_nohud.png`
+   - Single-card portfolio carousel renders isolated and clean with zero HUD obstruction at the bottom.
+3. **Desktop Viewport (1440x900)**: `screenshots/v22_verified_desktop_nohud.png`
+   - Full desktop layout displays the Hitai-ate header, interactive 3D globe, and background Shinobi atmospheric animations with zero floating overlay clutter.
+4. **Netlify Build Check**: `npm run build` exits 0.

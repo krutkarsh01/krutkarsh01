@@ -1,11 +1,11 @@
 import { spawn } from 'child_process';
 import fs from 'fs';
 
-// Launch headless Chrome with mobile viewport emulation
+// Launch headless Chrome
 const chrome = spawn('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', [
   '--headless=new',
   '--remote-debugging-port=9222',
-  '--window-size=375,812',
+  '--window-size=1440,900',
   '--hide-scrollbars',
   'about:blank'
 ]);
@@ -40,7 +40,7 @@ try {
     });
   }
 
-  // 1. Enable emulation for iPhone dimensions
+  // 1. Mobile iPhone emulation (375x812)
   await send('Emulation.setDeviceMetricsOverride', {
     width: 375,
     height: 812,
@@ -49,57 +49,44 @@ try {
     fitWindow: false
   });
 
-  // 2. Navigate to localhost:3000
   await send('Page.navigate', { url: 'http://localhost:3000/' });
-  await new Promise(r => setTimeout(r, 2000));
+  await new Promise(r => setTimeout(r, 1800));
 
-  // 3. Take screenshot of closed mobile home
   let res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v21_verified_mobile_closed.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v21_verified_mobile_closed.png');
+  fs.writeFileSync('screenshots/v22_verified_mobile_nohud.png', Buffer.from(res.result.data, 'base64'));
+  console.log('Saved screenshots/v22_verified_mobile_nohud.png');
 
-  // 4. Click hamburger button to open mobile menu
+  // Scroll down to portfolio
   await send('Runtime.evaluate', {
     expression: `
-      var btn = document.getElementById('hamburger-btn');
-      if (btn) btn.click();
-    `
-  });
-  await new Promise(r => setTimeout(r, 600));
-
-  // 5. Take screenshot of open mobile menu drawer
-  res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v21_verified_mobile_menu_open.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v21_verified_mobile_menu_open.png');
-
-  // 6. Close menu and scroll to portfolio
-  await send('Runtime.evaluate', {
-    expression: `
-      var btn = document.getElementById('hamburger-btn');
-      if (btn && btn.classList.contains('active')) btn.click();
       var port = document.getElementById('portfolio-section') || document.querySelector('.curved-gallery-section');
       if (port) port.scrollIntoView({ behavior: 'instant', block: 'center' });
     `
   });
-  await new Promise(r => setTimeout(r, 1000));
+  await new Promise(r => setTimeout(r, 800));
 
-  // 7. Take screenshot of portfolio section
   res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v21_verified_mobile_portfolio.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v21_verified_mobile_portfolio.png');
+  fs.writeFileSync('screenshots/v22_verified_mobile_portfolio_nohud.png', Buffer.from(res.result.data, 'base64'));
+  console.log('Saved screenshots/v22_verified_mobile_portfolio_nohud.png');
 
-  // 8. Navigate to /prototypes/
-  await send('Page.navigate', { url: 'http://localhost:3000/prototypes/' });
-  await new Promise(r => setTimeout(r, 2000));
+  // 2. Desktop emulation (1440x900)
+  await send('Emulation.setDeviceMetricsOverride', {
+    width: 1440,
+    height: 900,
+    deviceScaleFactor: 2,
+    mobile: false,
+    fitWindow: false
+  });
 
-  // 9. Take screenshot of prototypes page on mobile
+  await send('Page.navigate', { url: 'http://localhost:3000/' });
+  await new Promise(r => setTimeout(r, 1800));
+
   res = await send('Page.captureScreenshot');
-  fs.writeFileSync('screenshots/v21_verified_mobile_prototypes.png', Buffer.from(res.result.data, 'base64'));
-  console.log('Saved screenshots/v21_verified_mobile_prototypes.png');
+  fs.writeFileSync('screenshots/v22_verified_desktop_nohud.png', Buffer.from(res.result.data, 'base64'));
+  console.log('Saved screenshots/v22_verified_desktop_nohud.png');
 
   ws.close();
 } finally {
   chrome.kill();
-  console.log('Done!');
+  console.log('Done capturing verification screenshots!');
 }
-

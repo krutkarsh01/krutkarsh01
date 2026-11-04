@@ -395,112 +395,14 @@
   }
 
   /* ==========================================================================
-     Interactive Shinobi Legends HUD Controller (Collapsible & Non-Intrusive)
-     ========================================================================== */
-  function createShinobiLegendsHUD() {
-    if (document.getElementById('shinobi-legends-hud')) return;
-
-    var hud = document.createElement('div');
-    hud.id = 'shinobi-legends-hud';
-    hud.className = 'shinobi-legends-hud collapsed';
-    hud.setAttribute('role', 'region');
-    hud.setAttribute('aria-label', 'Shinobi Legends Aura Controller');
-
-    var hudInner = document.createElement('div');
-    hudInner.className = 'hud-inner';
-
-    // Clickable Title Bar that toggles collapsed/expanded state
-    var hudLabel = document.createElement('button');
-    hudLabel.type = 'button';
-    hudLabel.className = 'hud-title-bar';
-    hudLabel.setAttribute('aria-expanded', 'false');
-    hudLabel.innerHTML = '<span class="hud-crest-icon">火</span>' +
-      '<span class="hud-title-text">SHINOBI LEGENDS AURA</span>' +
-      '<span class="hud-status-pulse"></span>' +
-      '<span class="hud-arrow-indicator">▾</span>';
-    hudInner.appendChild(hudLabel);
-
-    var hudBody = document.createElement('div');
-    hudBody.className = 'hud-body-content';
-
-    var chipsWrap = document.createElement('div');
-    chipsWrap.className = 'hud-chips-wrap';
-
-    var keys = ['all', 'minato', 'kakashi', 'naruto', 'obito', 'jiraiya'];
-    var buttons = {};
-
-    keys.forEach(function (key) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'hud-legend-chip' + (key === activeLegend ? ' active' : '');
-      btn.setAttribute('data-legend', key);
-
-      var iconMap = {
-        all: '✨ All',
-        minato: '⚡ Minato',
-        kakashi: '⚡ Kakashi',
-        naruto: '🔥 Naruto',
-        obito: '🌀 Obito',
-        jiraiya: '🐸 Jiraiya'
-      };
-
-      btn.innerHTML = iconMap[key];
-      btn.title = LEGENDS[key].title + ' — ' + LEGENDS[key].role;
-
-      btn.onclick = function (e) {
-        e.stopPropagation();
-        selectLegend(key);
-      };
-
-      buttons[key] = btn;
-      chipsWrap.appendChild(btn);
-    });
-
-    hudBody.appendChild(chipsWrap);
-
-    // Toast Quote Banner inside HUD
-    var quoteBox = document.createElement('div');
-    quoteBox.id = 'hud-legend-quote';
-    quoteBox.className = 'hud-legend-quote';
-    hudBody.appendChild(quoteBox);
-
-    hudInner.appendChild(hudBody);
-    hud.appendChild(hudInner);
-    document.body.appendChild(hud);
-
-    function updateQuote(key) {
-      var leg = LEGENDS[key];
-      quoteBox.innerHTML = '<strong style="color:' + leg.accentColor + ';">[' + leg.kanji + ' ' + leg.name + ']:</strong> ' +
-        '<span>' + leg.quote + '</span>';
-    }
-
-    function selectLegend(key) {
-      activeLegend = key;
-      Object.keys(buttons).forEach(function (k) {
-        buttons[k].classList.toggle('active', k === key);
-      });
-      updateQuote(key);
-      // Auto open if closed
-      hud.classList.remove('collapsed');
-      hudLabel.setAttribute('aria-expanded', 'true');
-    }
-
-    // Toggle collapse on click
-    hudLabel.onclick = function () {
-      var isCollapsed = hud.classList.toggle('collapsed');
-      hudLabel.setAttribute('aria-expanded', (!isCollapsed).toString());
-    };
-
-    // Default quote
-    updateQuote(activeLegend);
-  }
-
-  /* ==========================================================================
-     Bootstrap Shinobi Character Engine
+     Bootstrap Shinobi Character Engine (Ambient 5-Legend Atmospheric Canvas)
      ========================================================================== */
   function init() {
     initCharacterCanvas();
-    createShinobiLegendsHUD();
+    var existingHud = document.getElementById('shinobi-legends-hud');
+    if (existingHud && existingHud.parentNode) {
+      existingHud.parentNode.removeChild(existingHud);
+    }
   }
 
   if (document.readyState === 'loading') {
