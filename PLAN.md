@@ -2172,3 +2172,75 @@ Following comprehensive audit of the portfolio copy:
 - [x] **Milestone 3**: Updated `testimonials/index.html` with the "Connect With Me For Your Next Project ↗" CTA.
 - [x] **Milestone 4**: Updated global prototype lightbox modal across all HTML files (9 files) to state "Explore All 17 Prototypes ↗".
 - [x] **Milestone 5**: Full codebase scan verified 100% voice consistency, valid schema, clean SEO tags across all 8 pages, and successful Netlify build (`npm run build`).
+
+---
+
+### [v4.6.0] - 2026-11-05: Mobile Homepage UX Overhaul, 6-Year-Old Usability Architecture & Universal Section Balancing
+
+#### 1. Rationale & 6-Year-Old UX Usability Doctrine
+A design passes the "6-Year-Old Usability Standard" when an interface requires zero explanation, provides unmistakable visual affordances, avoids cognitive disorientation, and never leaves the user lost or confused:
+- **Rule 1: If It's Clickable, It Must Scream "Click Me!"**: Interactive buttons must have crisp, contrasting boundaries, tactile feedback, and high visual hierarchy against dark surfaces rather than blending in as invisible wireframes.
+- **Rule 2: Never Disorient the User (Anchor Integrity)**: If a user taps an element to explore prototypes or hits "Back", the browser must never snap them to a random location or force them to restart their journey from the top of the page.
+- **Rule 3: Tame the Long Mobile Scroll**: On vertical mobile viewports, scrolling through multiple screens of telemetry and cards causes fatigue. Users need instant visual shortcut chips to teleport between key milestones and a frictionless "Back to Top" ascent mechanism.
+- **Rule 4: Universal Section Weight & Rhythm**: Heavy interactive animations (such as the WebGL Three.js Globe and the 3D Cylindrical Curved Carousel) must never be stacked back-to-back. The clean, static Core Value Proposition acts as a visual palette cleanser between them across Desktop, Tablet, and Mobile.
+
+---
+
+#### 2. Detailed Technical Remediation Blueprint
+
+##### A. Problem 1: Dim & Inconspicuous Mobile Menu Hamburger (Image 1 UX)
+- **Defect**: On mobile viewports, the hamburger menu button `#hamburger-btn` appears as faint white lines with negligible background contrast, making it easy to miss and difficult to target on touch screens.
+- **Solution**:
+  - Re-engineer `#hamburger-btn` in `css/site-overrides.css` with an unmistakable, tactile pill/button enclosure.
+  - Border: vivid accent outline `1.5px solid rgba(255, 98, 0, 0.45)` with subtle Kurama orange glow (`box-shadow: 0 0 14px rgba(255, 98, 0, 0.22)`).
+  - Background: elevated translucent surface (`rgba(255, 98, 0, 0.1)` on dark, `rgba(2, 132, 199, 0.1)` on light).
+  - Icon Bars: 3 distinct, crisp, 2.5px thick bars with rounded caps that morph cleanly into an active state when open.
+  - Touch Target: Strict 46x46px accessible tap target with interactive scale and active press response.
+
+##### B. Problem 2: Prototype Navigation & Scroll Reset (Back Button Disorientation)
+- **Defect**: When clicking "Explore Portfolio Prototypes" on the homepage hero, users were redirected to `/prototypes/`. Hitting "Back" in the browser or clicking return brought them back to the top of the homepage rather than the "PORTFOLIO IN FRAMES" section.
+- **Solution**:
+  - **Homepage Hero Action**: Convert `<a href="/prototypes/" class="kh-btn kh-btn-primary">` on `index.html` to target `#portfolio-curved-gallery` with smooth scroll behavior, keeping users engaged on the homepage while directing them straight to the interactive showcase.
+  - **Anchor Restoration Script**: Introduce a scroll listener in `index.html` and `js/shinobi-effects.js` that inspects `window.location.hash`, `history.state`, and `sessionStorage`. When navigating back to `#portfolio-curved-gallery`, the engine waits for layout stability (post-Three.js initialization) and smoothly glides to `#portfolio-curved-gallery`.
+  - **Prototypes Page Return Flow**: Ensure the return link in `prototypes/index.html` (`/#portfolio-curved-gallery`) executes smooth scroll on landing.
+
+##### C. Problem 3: Taming the Long Mobile Scroll
+- **Defect**: The mobile homepage stacks the Hero intro, 5 stat cards, the 3D Globe command deck with 34 market selectors, 4 value proposition cards, the 3D curved gallery, contact callouts, and multi-stage SVG footer animations—creating a daunting scroll distance.
+- **Solution**:
+  - **Mobile Quick-Jump Chips Rail (`.mobile-quick-jump`)**: Render a streamlined, swipeable horizontal chip rail directly below the hero intro:
+    `[⚡ Overview] [🌍 30+ Markets] [💎 Value Prop] [🚀 Portfolio] [💬 Let's Talk]`
+    allowing 1-tap smooth scrolling to any landmark.
+  - **Floating Back-to-Top Button (`.back-to-top-btn`)**: Activate the floating circular upward arrow button (`↑`) that fades in once scrolled past 350px.
+  - **Mobile Padding & Whitespace Tightening**: Adjust section padding on mobile from `5rem` (80px) down to `2.25rem - 2.5rem`, cutting out wasted empty space while maintaining breathing room.
+
+##### D. Problem 4: Universal Section Sequencing (Pillars #2, Portfolio #3)
+- **Defect**: Heavy WebGL and 3D CSS transforms running consecutively can create visual overload and performance friction on mobile devices.
+- **Solution**:
+  - Enforce the universal landmark hierarchy across all breakpoints (Desktop, Tablet, Mobile):
+    1. **Section 1**: `kh-hero` (Hero Intro + 3D Global Client Atlas)
+    2. **Section 2**: `teaser-pillars` (Core Value Proposition: AI & Agentic, Multi-Sided Platforms, Living Specs, Global Compliance)
+    3. **Section 3**: `portfolio-curved-gallery` (PORTFOLIO IN FRAMES: 3D Cylindrical Arc Carousel)
+    4. **Section 4**: `teaser-callout` (Ready to Ship / Contact Channels & Living Spec Intake)
+  - Verify zero CSS `order` or flex direction anomalies disrupt this sequence on mobile or tablet.
+
+##### E. Content Harmonization & Audit ("30+ Countries")
+- **Audit Findings**: Ensure all country metrics are uniformly updated to **"30+ countries"** (or **"34+ global markets"** within the telemetry deck).
+- Update schema JSON-LD description (`across 34 countries` &rarr; `across 30+ countries`).
+- Refine eyebrow copy and meta descriptions for maximum polish and credibility.
+
+---
+
+#### 3. Execution & Verification Roadmap
+- [ ] **Milestone 1**: Update `css/site-overrides.css` and `css/shinobi-theme.css`:
+  - Enhance `#hamburger-btn` with high-contrast tactile border, Kurama glow, and prominent 46px touch target.
+  - Add active styling for `.mobile-quick-jump` and `.back-to-top-btn`.
+  - Refine mobile section spacing and compact pillar layouts.
+- [ ] **Milestone 2**: Update `index.html`:
+  - Update hero prototype CTA to anchor smoothly to `#portfolio-curved-gallery`.
+  - Inject `.mobile-quick-jump` chips bar beneath the hero intro.
+  - Add `.back-to-top-btn` before the closing body tag.
+  - Add robust anchor restoration JS (`scrollRestoration` and hash stabilization).
+  - Update all "34 countries" references in schema and descriptions to "30+ countries".
+- [ ] **Milestone 3**: Update `prototypes/index.html` and inner pages to ensure seamless navigation back to `#portfolio-curved-gallery`.
+- [ ] **Milestone 4**: Multi-device audit and visual screenshot verification across Mobile (iPhone 14 Pro 393x852), Tablet (768x1024), and Desktop (1440x900).
+- [ ] **Milestone 5**: Full Netlify build verification (`npm run build`).

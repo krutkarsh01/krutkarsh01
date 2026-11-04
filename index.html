@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kumar Utkarsh | Senior Business Analyst &amp; AI Product Strategist</title>
   <meta name="description"
-    content="Portfolio of Kumar Utkarsh, Senior Business Analyst &#38; AI Product Strategist. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 30 countries.">
+    content="Portfolio of Kumar Utkarsh, Senior Business Analyst &#38; AI Product Strategist. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 30+ countries.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -24,6 +24,24 @@
         document.documentElement.setAttribute('data-theme', theme);
       } catch (_) { }
     })();
+
+    // 6-Year-Old Child Usability: Flawless smooth scroll with header offset
+    window.smoothScrollToSection = function (e, id) {
+      if (e && e.preventDefault) e.preventDefault();
+      var target = document.getElementById(id);
+      if (target) {
+        var headerOffset = 70;
+        var elPos = target.getBoundingClientRect().top;
+        var offsetPos = elPos + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPos,
+          behavior: 'smooth'
+        });
+        try {
+          history.pushState(null, '', '#' + id);
+        } catch (_) {}
+      }
+    };
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -31,7 +49,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kumar Utkarsh | Senior Business Analyst &#38; AI Product Strategist">
   <meta property="og:description"
-    content="Portfolio of Kumar Utkarsh, Senior Business Analyst &#38; AI Product Strategist. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 30 countries.">
+    content="Portfolio of Kumar Utkarsh, Senior Business Analyst &#38; AI Product Strategist. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 30+ countries.">
   <meta property="og:url" content="https://kumarutkarsh.com/">
   <meta property="og:image" content="https://kumarutkarsh.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -39,7 +57,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kumar Utkarsh | Senior Business Analyst &#38; AI Product Strategist">
   <meta name="twitter:description"
-    content="Portfolio of Kumar Utkarsh, Senior Business Analyst &#38; AI Product Strategist. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 30 countries.">
+    content="Portfolio of Kumar Utkarsh, Senior Business Analyst &#38; AI Product Strategist. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 30+ countries.">
   <meta name="twitter:image" content="https://kumarutkarsh.com/og-image.png">
   <script type="application/ld+json">
 {
@@ -75,7 +93,7 @@
         "Role-Based Access Control (RBAC)",
         "Pre-Sales Scoping & SOW Lock"
       ],
-      "description": "Senior Business Analyst & AI Product Strategist with 6+ years experience, 700+ delivered systems across 34 countries, cutting engineering rework by 35% through living specifications."
+      "description": "Senior Business Analyst & AI Product Strategist with 6+ years experience, 700+ delivered systems across 30+ countries, cutting engineering rework by 35% through living specifications."
     },
     {
       "@type": "ProfessionalService",
@@ -111,7 +129,7 @@
           "name": "Who is Kumar Utkarsh?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kumar Utkarsh is an elite Senior Business Analyst and AI Product Strategist based in Noida, India, delivering globally across 34 countries. With over 6 years of experience, he has architected 700+ web applications and enterprise systems, achieving a 98% client approval rating and reducing engineering rework by 35%."
+            "text": "Kumar Utkarsh is an elite Senior Business Analyst and AI Product Strategist based in Noida, India, delivering globally across 30+ countries. With over 6 years of experience, he has architected 700+ web applications and enterprise systems, achieving a 98% client approval rating and reducing engineering rework by 35%."
           }
         },
         {
@@ -160,7 +178,7 @@
           <li> <a class="nav-link" href="/about/"> About </a> </li>
           <li> <a class="nav-link" href="/process/"> Process </a> </li>
           <li> <a class="nav-link" href="/skills/"> Skills </a> </li>
-          <li> <a class="nav-link" href="/prototypes/"> Portfolio </a> </li>
+          <li> <a class="nav-link" href="#portfolio-curved-gallery"> Portfolio </a> </li>
           <li> <a class="nav-link" href="/experience/"> Experience </a> </li>
           <li> <a class="nav-link" href="/testimonials/"> Reviews </a> </li>
           <li> <a class="nav-link" href="/contact/"> Contact </a> </li>
@@ -175,7 +193,7 @@
   </nav> <!-- Mobile Navigation Drawer -->
   <div id="mobile-menu" class="mobile-nav" aria-label="Mobile Navigation"> <a href="/" class="mobile-nav-link active"
       aria-current="page"> Home </a><a href="/about/" class="mobile-nav-link"> About </a><a href="/process/"
-      class="mobile-nav-link"> Process </a><a href="/skills/" class="mobile-nav-link"> Skills </a><a href="/prototypes/"
+      class="mobile-nav-link"> Process </a><a href="/skills/" class="mobile-nav-link"> Skills </a><a href="#portfolio-curved-gallery"
       class="mobile-nav-link"> Portfolio </a><a href="/experience/" class="mobile-nav-link"> Experience </a><a
       href="/testimonials/" class="mobile-nav-link"> Reviews </a><a href="/contact/" class="mobile-nav-link"> Contact
     </a>
@@ -196,9 +214,9 @@
               I am <span id="typed-text">an AI Product Strategist</span><span class="typed-cursor">|</span> </div>
             <p class="kh-desc">
               Senior Business Analyst &amp; AI Product Strategist with <strong>6+ years</strong> orchestrating digital
-              transformation, multi-sided platforms, and AI applications for clients in <strong>30 countries</strong>.
+              transformation, multi-sided platforms, and AI applications for clients in <strong>30+ countries</strong>.
               Specializing in documentation-first delivery that slashes engineering rework by <strong>35%</strong>.</p>
-            <div class="kh-actions"> <a href="/prototypes/" class="kh-btn kh-btn-primary">Explore Portfolio Prototypes
+            <div class="kh-actions"> <a href="#portfolio-curved-gallery" class="kh-btn kh-btn-primary" onclick="smoothScrollToSection(event, 'portfolio-curved-gallery')">Explore Portfolio Prototypes
                 <span aria-hidden="true">→</span></a> <a href="/about/" class="kh-btn kh-btn-ghost">About My Strategy
                 <span aria-hidden="true">↗</span></a> </div> <button type="button" class="kh-signature"
               onclick="openPhotoModal()" aria-label="View Kumar Utkarsh photo"> <img src="/kumar-utkarsh.jpg" alt=""
@@ -227,6 +245,16 @@
                 <dd>98%</dd>
               </div>
             </dl>
+            <!-- Mobile Quick-Jump Section Navigator (Image 2 UX: Eliminates long scroll fatigue) -->
+            <div class="mobile-quick-jump" role="navigation" aria-label="Page section shortcuts">
+              <div class="mobile-jump-track">
+                <a href="#kh-title" class="mobile-jump-chip" onclick="smoothScrollToSection(event, 'kh-title')">⚡ Overview</a>
+                <a href="#osiris-command-deck" class="mobile-jump-chip" onclick="smoothScrollToSection(event, 'osiris-command-deck')">🌍 30+ Markets</a>
+                <a href="#core-value-proposition" class="mobile-jump-chip" onclick="smoothScrollToSection(event, 'core-value-proposition')">💎 Value Prop</a>
+                <a href="#portfolio-curved-gallery" class="mobile-jump-chip" onclick="smoothScrollToSection(event, 'portfolio-curved-gallery')">🚀 Prototypes</a>
+                <a href="#contact" class="mobile-jump-chip" onclick="smoothScrollToSection(event, 'contact')">💬 Let's Talk</a>
+              </div>
+            </div>
           </div>
           <div id="osiris-command-deck" class="osiris-deck" aria-label="Global Client Operations & Living Prototype Command Deck">
             <!-- Top Tactical Masthead Ribbon -->
@@ -368,14 +396,14 @@
                 <p id="hub-card-desc" class="osiris-dossier-desc">Delivered 700+ enterprise systems, multi-sided platforms, and AI product architectures for clients in North America, Europe, Asia, Africa, and Oceania.</p>
                 
                 <div class="osiris-metrics-pills" id="hub-card-pills">
-                  <span class="pill-link">34 Countries</span>
+                  <span class="pill-link">30+ Countries</span>
                   <span class="pill-link">700+ Projects</span>
                   <span class="pill-link">17 Interactive Prototypes</span>
                   <span class="pill-link">35% Rework Cut</span>
                 </div>
 
                 <div class="osiris-actions-grid" id="hub-card-actions">
-                  <a href="/prototypes/" class="btn btn-primary" id="hub-btn-action-primary">
+                  <a href="/prototypes/" class="btn btn-primary" id="hub-btn-action-primary" onclick="sessionStorage.setItem('returnSection', 'portfolio-curved-gallery')">
                     <span>Explore All 17 Prototypes ↗</span>
                   </a>
                   <a href="/testimonials/" class="btn btn-secondary" id="hub-btn-action-secondary">
@@ -389,6 +417,46 @@
             </div>
           </div>
       </div>
+      </div>
+    </section>
+    <section id="core-value-proposition" class="home-section teaser-pillars" style="padding: 5rem 0;">
+      <div class="con">
+        <div class="sec-header text-center">
+          <div class="sec-tag">Core Value Proposition</div>
+          <h2 class="sec-title">Architecting Products for <span class="gradient-text">Enterprise Scale</span></h2>
+          <p class="sec-desc">Four foundational pillars that bridge executive vision, client investment, and engineering
+            velocity.</p>
+        </div>
+        <div class="teaser-pillars-grid">
+          <div class="teaser-pillar-card">
+            <div class="teaser-pillar-icon">🤖</div>
+            <h3>AI &amp; Agentic Systems</h3>
+            <p>Architecting LLM orchestration, structured output evaluation, and human-in-the-loop fallback loops that
+              eliminate hallucinations in production.</p> <a href="/skills/" class="teaser-pillar-link">Explore AI
+              Skills ↗</a>
+          </div>
+          <div class="teaser-pillar-card">
+            <div class="teaser-pillar-icon">🌐</div>
+            <h3>Multi-Actor Ecosystems</h3>
+            <p>Modeling complex multi-sided platforms (marketplaces, logistics fleets, medical practices) with granular
+              role-based access control and state machines.</p> <a href="/prototypes/" class="teaser-pillar-link">View
+              Multi-Actor Specs ↗</a>
+          </div>
+          <div class="teaser-pillar-card">
+            <div class="teaser-pillar-icon">📐</div>
+            <h3>Documentation-First Delivery</h3>
+            <p>Replacing ambiguous 60-page Word documents with interactive HTML sandbox prototypes and Gherkin BDD user
+              stories, reducing rework by 35%.</p> <a href="/process/" class="teaser-pillar-link">See My 8-Step Process
+              ↗</a>
+          </div>
+          <div class="teaser-pillar-card">
+            <div class="teaser-pillar-icon">⚖️</div>
+            <h3>Global Compliance &amp; Scalability</h3>
+            <p>Designing architectures that navigate EU GDPR privacy, GCC VAT multi-currency ledgers, and US interstate
+              freight compliance frameworks.</p> <a href="/about/" class="teaser-pillar-link">Explore My Delivery History
+              ↗</a>
+          </div>
+        </div>
       </div>
     </section>
     <section id="portfolio-curved-gallery" class="curved-gallery-section" aria-labelledby="portfolio-heading">
@@ -594,47 +662,7 @@
           aria-label="Previous project">←</button> <span class="gallery-drag-hint">Swipe or use the arrows</span>
         <button class="gallery-nav-arrow" id="galleryNextBtn" aria-label="Next project">→</button>
       </div>
-      <div class="gallery-see-all-wrap"> <a href="/prototypes/" class="kh-btn kh-btn-ghost gallery-see-all-btn">Explore All 17 Prototypes →</a> </div>
-    </section>
-    <section class="home-section teaser-pillars" style="padding: 5rem 0;">
-      <div class="con">
-        <div class="sec-header text-center">
-          <div class="sec-tag">Core Value Proposition</div>
-          <h2 class="sec-title">Architecting Products for <span class="gradient-text">Enterprise Scale</span></h2>
-          <p class="sec-desc">Four foundational pillars that bridge executive vision, client investment, and engineering
-            velocity.</p>
-        </div>
-        <div class="teaser-pillars-grid">
-          <div class="teaser-pillar-card">
-            <div class="teaser-pillar-icon">🤖</div>
-            <h3>AI &amp; Agentic Systems</h3>
-            <p>Architecting LLM orchestration, structured output evaluation, and human-in-the-loop fallback loops that
-              eliminate hallucinations in production.</p> <a href="/skills/" class="teaser-pillar-link">Explore AI
-              Skills ↗</a>
-          </div>
-          <div class="teaser-pillar-card">
-            <div class="teaser-pillar-icon">🌐</div>
-            <h3>Multi-Actor Ecosystems</h3>
-            <p>Modeling complex multi-sided platforms (marketplaces, logistics fleets, medical practices) with granular
-              role-based access control and state machines.</p> <a href="/prototypes/" class="teaser-pillar-link">View
-              Multi-Actor Specs ↗</a>
-          </div>
-          <div class="teaser-pillar-card">
-            <div class="teaser-pillar-icon">📐</div>
-            <h3>Documentation-First Delivery</h3>
-            <p>Replacing ambiguous 60-page Word documents with interactive HTML sandbox prototypes and Gherkin BDD user
-              stories, reducing rework by 35%.</p> <a href="/process/" class="teaser-pillar-link">See My 8-Step Process
-              ↗</a>
-          </div>
-          <div class="teaser-pillar-card">
-            <div class="teaser-pillar-icon">⚖️</div>
-            <h3>Global Compliance &amp; Scalability</h3>
-            <p>Designing architectures that navigate EU GDPR privacy, GCC VAT multi-currency ledgers, and US interstate
-              freight compliance frameworks.</p> <a href="/about/" class="teaser-pillar-link">Explore My Delivery History
-              ↗</a>
-          </div>
-        </div>
-      </div>
+      <div class="gallery-see-all-wrap"> <a href="/prototypes/" class="kh-btn kh-btn-ghost gallery-see-all-btn" onclick="sessionStorage.setItem('returnSection', 'portfolio-curved-gallery')">Explore All 17 Prototypes →</a> </div>
     </section>
     <section class="home-section teaser-callout" id="contact">
       <div class="con">
@@ -1296,7 +1324,7 @@
             if (elTitle) elTitle.textContent = 'Cross-Border Digital Transformation Across 5 Continents';
             if (elDesc) elDesc.textContent = 'Delivered 700+ enterprise systems, multi-sided platforms, and AI product architectures for clients in North America, Europe, Asia, Africa, and Oceania.';
             if (elPills) {
-              elPills.innerHTML = '<div style="display:flex; flex-wrap:wrap; gap:5px; font-size:1.15rem; margin-bottom:8px; line-height:1.4;" title="All 34 Global Client Markets Across 5 Continents">🇪🇸 🇺🇸 🇨🇭 🇸🇳 🇵🇹 🇭🇰 🇬🇧 🇫🇮 🇱🇹 🇷🇼 🇮🇳 🇩🇪 🇫🇷 🇳🇱 🇦🇪 🇮🇱 🇦🇺 🇨🇦 🇮🇹 🇧🇪 🇸🇪 🇸🇰 🇷🇴 🇧🇬 🇧🇷 🇸🇷 🇿🇦 🇲🇼 🇲🇾 🇮🇩 🇱🇦 🇹🇼 🇳🇿</div><span class="pill-link">34 Countries</span><span class="pill-link">700+ Projects</span><span class="pill-link">17 Interactive Prototypes</span><span class="pill-link">35% Rework Cut</span>';
+              elPills.innerHTML = '<div style="display:flex; flex-wrap:wrap; gap:5px; font-size:1.15rem; margin-bottom:8px; line-height:1.4;" title="All 34 Global Client Markets Across 5 Continents">🇪🇸 🇺🇸 🇨🇭 🇸🇳 🇵🇹 🇭🇰 🇬🇧 🇫🇮 🇱🇹 🇷🇼 🇮🇳 🇩🇪 🇫🇷 🇳🇱 🇦🇪 🇮🇱 🇦🇺 🇨🇦 🇮🇹 🇧🇪 🇸🇪 🇸🇰 🇷🇴 🇧🇬 🇧🇷 🇸🇷 🇿🇦 🇲🇼 🇲🇾 🇮🇩 🇱🇦 🇹🇼 🇳🇿</div><span class="pill-link">30+ Countries</span><span class="pill-link">700+ Projects</span><span class="pill-link">17 Interactive Prototypes</span><span class="pill-link">35% Rework Cut</span>';
             }
             if (btnPrimary) {
               btnPrimary.href = '/prototypes/';
@@ -1806,7 +1834,7 @@
       <div class="lightbox-caption">
         <h3>Kumar Utkarsh</h3>
         <p>Senior Business Analyst &amp; AI Product Strategist</p>
-        <div class="lightbox-tags"> <span>6+ Experience</span> <span>Clients in 30 countries</span> <span>17 Interactive
+        <div class="lightbox-tags"> <span>6+ Experience</span> <span>Clients in 30+ countries</span> <span>17 Interactive
             Prototypes</span> </div>
       </div>
     </div>
@@ -2011,6 +2039,46 @@
         });
       })();
     })();</script>
+  <!-- Floating Back to Top Ascent Button (Image 2 UX: Instant ascension) -->
+  <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top" title="Back to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+  <script>
+    (function () {
+      // Back to Top Button Visibility
+      var btt = document.getElementById('backToTopBtn');
+      if (btt) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 350) {
+            btt.classList.add('visible');
+          } else {
+            btt.classList.remove('visible');
+          }
+        }, { passive: true });
+      }
+
+      // Anchor & Section Return Flow (Item 2: Never disorient user on back)
+      function checkAndRestorePortfolioAnchor() {
+        var hash = window.location.hash;
+        var stored = sessionStorage.getItem('returnSection');
+        if (hash === '#portfolio-curved-gallery' || stored === 'portfolio-curved-gallery') {
+          sessionStorage.removeItem('returnSection');
+          setTimeout(function () {
+            if (window.smoothScrollToSection) window.smoothScrollToSection(null, 'portfolio-curved-gallery');
+          }, 120);
+          window.addEventListener('load', function () {
+            setTimeout(function () {
+              if (window.smoothScrollToSection) window.smoothScrollToSection(null, 'portfolio-curved-gallery');
+            }, 180);
+          }, { once: true });
+        }
+      }
+      window.addEventListener('DOMContentLoaded', checkAndRestorePortfolioAnchor);
+      window.addEventListener('pageshow', checkAndRestorePortfolioAnchor);
+    })();
+  </script>
 </body>
 
 </html>

@@ -13,7 +13,7 @@ Kumar Utkarsh is a Senior Business Analyst and AI Product Strategist with over 6
 ## Quantitative Credentials & Track Record
 - **Experience**: 6+ years in software requirements engineering, pre-sales scoping, and agile product ownership.
 - **Production Delivery**: 700+ web applications, mobile platforms, and enterprise systems delivered to production.
-- **Client Markets**: 34 countries across 5 continents (North America, Europe, Asia, Africa, Oceania).
+- **Client Markets**: 30+ countries across 5 continents (34 global client markets: North America, Europe, Asia, Africa, Oceania).
 - **Client Rating**: 98% positive delivery and satisfaction rate across verified Trustpilot and LinkedIn recommendations.
 - **Living Prototypes**: 17 production-grade interactive sandbox prototypes modeling role-based workflows.
 - **Scope Precision**: 35% reduction in engineering rework and zero scope-creep change orders.

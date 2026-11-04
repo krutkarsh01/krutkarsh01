@@ -71,13 +71,93 @@ body {
 .floating-whatsapp-btn .whatsapp-label, .floating-whatsapp-btn svg { color: #062a17 !important; fill: currentColor; }
 .floating-whatsapp-btn.wa-hidden { opacity: 0 !important; transform: translateY(16px) !important; pointer-events: none !important; }
 
-/* ---------- 4. Header controls ---------- */
+/* ---------- 4. Header controls: Tactile, Prominent Menu Toggle (Image 1 UX) ---------- */
 .theme-toggle { width: 44px !important; height: 44px !important; }
-.hamburger { min-width: 44px !important; min-height: 44px !important; }
-.hamburger span { transition: transform .25s ease, opacity .2s ease !important; transform-origin: center; }
-.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg) !important; }
-.hamburger.active span:nth-child(2) { opacity: 0 !important; }
-.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) !important; }
+.hamburger, nav .hamburger {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  padding: 0 !important;
+  background: rgba(255, 98, 0, 0.12) !important;
+  border: 1.5px solid rgba(255, 98, 0, 0.45) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 16px rgba(255, 98, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  cursor: pointer !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  gap: 5px !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[data-theme="light"] .hamburger,
+[data-theme="light"] nav .hamburger {
+  background: rgba(2, 132, 199, 0.1) !important;
+  border: 1.5px solid rgba(2, 132, 199, 0.45) !important;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.2), 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+}
+
+.hamburger:hover, 
+.hamburger:focus-visible,
+nav .hamburger:hover,
+nav .hamburger:focus-visible {
+  background: rgba(255, 98, 0, 0.22) !important;
+  border-color: var(--kurama-orange, #ff6200) !important;
+  box-shadow: 0 0 20px rgba(255, 98, 0, 0.45) !important;
+  transform: scale(1.06) !important;
+}
+
+[data-theme="light"] .hamburger:hover,
+[data-theme="light"] .hamburger:focus-visible,
+[data-theme="light"] nav .hamburger:hover,
+[data-theme="light"] nav .hamburger:focus-visible {
+  background: rgba(2, 132, 199, 0.18) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 16px rgba(2, 132, 199, 0.35) !important;
+  transform: scale(1.06) !important;
+}
+
+.hamburger span {
+  display: block !important;
+  width: 24px !important;
+  height: 2.5px !important;
+  background: #ffffff !important;
+  border-radius: 999px !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, background-color 0.2s ease !important;
+  transform-origin: center !important;
+}
+
+[data-theme="light"] .hamburger span {
+  background: #0f172a !important;
+}
+
+.hamburger.active,
+nav .hamburger.active {
+  background: rgba(255, 98, 0, 0.18) !important;
+  border-color: var(--kurama-orange, #ff6200) !important;
+  box-shadow: 0 0 16px rgba(255, 98, 0, 0.4) !important;
+}
+
+.hamburger.active span {
+  background: var(--kurama-orange, #ff6200) !important;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg) !important;
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0 !important;
+  transform: scaleX(0) !important;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg) !important;
+}
 
 /* ---------- 5. Spacing: remove the large empty bands ---------- */
 .home-section, .globe-section, .home-section.teaser-pillars { padding-top: clamp(48px, 6vw, 88px) !important; padding-bottom: clamp(48px, 6vw, 88px) !important; }
@@ -644,7 +724,6 @@ main section#book { padding: 0 !important; margin: 0 0 clamp(20px, 3vw, 32px) !i
   html.menu-open .floating-whatsapp-btn { opacity: 0 !important; pointer-events: none !important; }
 }
 .proto-domain, .proto-domain a { overflow-wrap: anywhere; word-break: break-word; }
-nav .hamburger { justify-content: center !important; align-items: center !important; width: 44px; height: 44px; padding: 0 !important; }
 .mobile-nav a.mobile-nav-link.active::after { color: currentColor !important; }
 /* Full-bleed thumbnails: clean zero-padding card with edge-to-edge media */
 .proto-card { padding: 0 0 1.5rem 0 !important; }
@@ -952,6 +1031,256 @@ div.footer-cta-wrap,
 .footer-cta-wrap .footer-contact-btn {
   margin: 0 !important;
 }
+
+/* ==========================================================================
+   MOBILE SCROLL COMPACTION & USER EXPERIENCE OPTIMIZATIONS
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Tighten excessive vertical whitespace between sections */
+  .home-section, .globe-section, .home-section.teaser-pillars {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .home-section.teaser-callout {
+    padding-top: 2rem !important;
+    padding-bottom: 2.25rem !important;
+  }
+  .curved-gallery-section {
+    padding-top: 2rem !important;
+    padding-bottom: 1.75rem !important;
+  }
+  .sec-header {
+    margin-bottom: 1.25rem !important;
+  }
+  .sec-title {
+    font-size: clamp(1.6rem, 5.2vw, 2.1rem) !important;
+    margin-bottom: 0.4rem !important;
+  }
+  .sec-desc {
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Compact Hero Stats Grid */
+  .kh-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    margin-top: 1rem !important;
+    padding: 10px 8px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+  }
+  [data-theme="light"] .kh-stats {
+    background: rgba(15, 23, 42, 0.03) !important;
+  }
+  .kh-stats div {
+    padding: 6px 4px !important;
+    text-align: center !important;
+  }
+  .kh-stats div:nth-child(4),
+  .kh-stats div:nth-child(5) {
+    grid-column: span 1;
+  }
+  .kh-stats dd {
+    font-size: 1.25rem !important;
+    margin-bottom: 2px !important;
+    font-weight: 800 !important;
+  }
+  .kh-stats dt {
+    font-size: 0.65rem !important;
+    line-height: 1.2 !important;
+    color: var(--text-muted) !important;
+  }
+
+  /* Streamline Osiris Command Deck on Mobile */
+  .osiris-deck {
+    padding: 12px 10px !important;
+    margin-top: 1.25rem !important;
+  }
+  #globe-canvas-wrap.kh-scene {
+    height: 250px !important;
+    min-height: 250px !important;
+  }
+  .osiris-masthead {
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+  .osiris-title {
+    font-size: 1.15rem !important;
+    margin-bottom: 4px !important;
+  }
+  .osiris-subtitle {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 6px !important;
+  }
+  .osiris-layer-rail {
+    gap: 4px !important;
+  }
+  .osiris-layer-tab {
+    font-size: 0.76rem !important;
+    padding: 6px 10px !important;
+  }
+  .osiris-quick-rail {
+    margin: 8px 0 !important;
+  }
+  .osiris-dossier-card {
+    padding: 12px !important;
+  }
+  .osiris-dossier-title {
+    font-size: 0.98rem !important;
+    margin-bottom: 4px !important;
+  }
+  .osiris-dossier-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Compact Pillar Cards (Core Value Proposition) */
+  .teaser-pillars-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .teaser-pillar-card {
+    padding: 14px 16px !important;
+    border-radius: 12px !important;
+  }
+  .teaser-pillar-card h3 {
+    font-size: 1.02rem !important;
+    margin-bottom: 4px !important;
+  }
+  .teaser-pillar-card p {
+    font-size: 0.83rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 8px !important;
+  }
+  .teaser-pillar-link {
+    font-size: 0.82rem !important;
+  }
+
+  /* Compact Curved Carousel on Mobile */
+  .curved-gallery-viewport {
+    height: 380px !important;
+  }
+  .curved-card {
+    width: 250px !important;
+    height: 320px !important;
+  }
+}
+
+/* Floating Back to Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  z-index: 999;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(12, 18, 29, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-heading, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+.back-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top-btn:hover {
+  background: var(--primary, #00e5ff);
+  color: #040811;
+  border-color: var(--primary, #00e5ff);
+}
+[data-theme="light"] .back-to-top-btn {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(15, 23, 42, 0.16);
+  color: #0f172a;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+}
+[data-theme="light"] .back-to-top-btn:hover {
+  background: #0284c7;
+  color: #fff;
+  border-color: #0284c7;
+}
+
+/* Mobile Quick-Jump Nav Bar (Instant Teleport Navigation for Mobile UX) */
+.mobile-quick-jump {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-quick-jump {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    overflow-x: auto !important;
+    padding: 10px 0 !important;
+    margin: 1rem 0 1.25rem 0 !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .mobile-jump-track {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .mobile-quick-jump::-webkit-scrollbar {
+    display: none;
+  }
+  .mobile-jump-chip {
+    flex-shrink: 0 !important;
+    padding: 8px 14px !important;
+    border-radius: 9999px !important;
+    background: rgba(255, 98, 0, 0.1) !important;
+    border: 1.5px solid rgba(255, 98, 0, 0.4) !important;
+    color: #ffffff !important;
+    font-size: 0.8rem !important;
+    font-family: var(--font-mono) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+  }
+  .mobile-jump-chip:hover,
+  .mobile-jump-chip:active {
+    background: rgba(255, 98, 0, 0.28) !important;
+    border-color: var(--kurama-orange, #ff6200) !important;
+    color: #fff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 0 14px rgba(255, 98, 0, 0.45) !important;
+  }
+  [data-theme="light"] .mobile-jump-chip {
+    background: rgba(2, 132, 199, 0.08) !important;
+    border-color: rgba(2, 132, 199, 0.4) !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+  }
+  [data-theme="light"] .mobile-jump-chip:hover,
+  [data-theme="light"] .mobile-jump-chip:active {
+    background: rgba(2, 132, 199, 0.18) !important;
+    border-color: #0284c7 !important;
+    color: #0284c7 !important;
+  }
+}
+
 
 
 
