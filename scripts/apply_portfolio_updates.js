@@ -107,7 +107,7 @@ if (cardIdx !== -1) {
       <h3 id="hub-card-title">Cross-Border Digital Transformation Across 5 Continents</h3>
       <p id="hub-card-desc">Delivered 700+ enterprise systems, multi-sided platforms, and AI product architectures for clients in North America, Europe, Asia, Africa, and Oceania.</p>
       <div class="kh-pills" id="hub-card-pills" style="margin-bottom: 1rem;">
-        <span class="pill-link">34 Countries</span><span class="pill-link">700+ Projects</span><span class="pill-link">17 Interactive Prototypes</span><span class="pill-link">35% Rework Cut</span>
+        <span class="pill-link">34 Countries</span><span class="pill-link">700+ Projects</span><span class="pill-link">17 Interactive Prototypes</span><span class="pill-link">>35% Rework Cut</span>
       </div>
       <div class="hub-card-actions-row" id="hub-card-actions" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
         <a href="/prototypes/" class="btn btn-primary" id="hub-btn-action-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;"><span>Explore All 17 Prototypes ↗</span></a>
@@ -148,7 +148,7 @@ if (focusStart !== -1 && focusEnd !== -1) {
         if (elTitle) elTitle.textContent = 'Cross-Border Digital Transformation Across 5 Continents';
         if (elDesc) elDesc.textContent = 'Delivered 700+ enterprise systems, multi-sided platforms, and AI product architectures for clients in North America, Europe, Asia, Africa, and Oceania.';
         if (elPills) {
-          elPills.innerHTML = '<span class="pill-link">34 Countries</span><span class="pill-link">700+ Projects</span><span class="pill-link">17 Interactive Prototypes</span><span class="pill-link">35% Rework Cut</span>';
+          elPills.innerHTML = '<span class="pill-link">34 Countries</span><span class="pill-link">700+ Projects</span><span class="pill-link">17 Interactive Prototypes</span><span class="pill-link">>35% Rework Cut</span>';
         }
         if (btnPrimary) {
           btnPrimary.href = '/prototypes/';

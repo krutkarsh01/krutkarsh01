@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" width="240" height="280" fill="none">
+  <!-- Anime Strategist - Sitting & Typing on Laptop (Code of Sagar Style) -->
+  <defs>
+    <filter id="screen-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="aurora-screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00ff87"/>
+      <stop offset="50%" stop-color="#00d2ff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="hoodie-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    @keyframes typingLeft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    @keyframes typingRight {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes screenFlicker {
+      0%, 100% { opacity: 0.85; }
+      50% { opacity: 1; }
+    }
+    @keyframes headBob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(1.5px) rotate(1deg); }
+    }
+    .anim-typing-left { animation: typingLeft 0.18s ease-in-out infinite; }
+    .anim-typing-right { animation: typingRight 0.22s ease-in-out infinite; }
+    .anim-screen { animation: screenFlicker 1.8s ease-in-out infinite; }
+    .anim-head { animation: headBob 2.5s ease-in-out infinite; transform-origin: 90px 75px; }
+  </style>
+
+  <!-- Ground Drop Shadow -->
+  <ellipse cx="110" cy="265" rx="50" ry="8" fill="#000000" fill-opacity="0.35"/>
+
+  <!-- Dangling Legs & Shoes -->
+  <!-- Left Leg (Background) -->
+  <path d="M102 155 L108 215 L102 245 L116 248 L124 218 L122 155 Z" fill="#0F172A"/>
+  <!-- Right Leg (Foreground) -->
+  <path d="M120 155 L132 215 L130 248 L148 250 L146 215 L138 155 Z" fill="#1E293B"/>
+
+  <!-- Left Sneaker -->
+  <path d="M100 242 C100 238 104 235 112 235 L124 235 C128 240 130 248 130 248 L98 248 Z" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+  <path d="M102 247 L126 247" stroke="#00ff87" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Right Sneaker -->
+  <path d="M128 246 C128 240 134 238 142 238 L158 240 C162 246 164 252 164 252 L126 252 Z" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.5"/>
+  <path d="M130 251 L160 251" stroke="#00ff87" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Torso: Grey Hoodie -->
+  <!-- Back Body -->
+  <path d="M68 95 C62 120 66 150 72 165 L135 165 C138 152 135 125 125 95 Z" fill="url(#hoodie-grad)" stroke="#94A3B8" stroke-width="1.5"/>
+  
+  <!-- Hoodie Pocket & Fold Lines -->
+  <path d="M78 135 C88 142 112 142 122 135" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Hoodie Drawstrings -->
+  <path d="M92 90 L90 115" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M98 90 L100 118" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Laptop (Apple Style Thin Wedge) -->
+  <!-- Laptop Base on Lap -->
+  <path d="M115 148 L175 146 L178 152 L112 154 Z" fill="#CBD5E1" stroke="#475569" stroke-width="1.5"/>
+  <rect x="120" y="147" width="45" height="4" rx="1" fill="#1E293B"/>
+
+  <!-- Laptop Screen Lid (Tilted 115deg) -->
+  <path d="M175 146 L178 82 L132 85 L128 148 Z" fill="#E2E8F0" stroke="#475569" stroke-width="1.5"/>
+  <!-- Screen Inner Display -->
+  <path d="M174 143 L176 86 L134 89 L131 145 Z" fill="#0B131E"/>
+  <!-- Glowing Code Terminal Screen -->
+  <path class="anim-screen" d="M172 140 L174 88 L136 91 L133 142 Z" fill="url(#aurora-screen)" opacity="0.9" filter="url(#screen-glow)"/>
+  
+  <!-- Code lines on screen -->
+  <line x1="140" y1="98" x2="168" y2="96" stroke="#03100E" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="140" y1="106" x2="160" y2="104" stroke="#03100E" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="140" y1="114" x2="166" y2="112" stroke="#03100E" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Screen Aurora Ambient Beam on Face -->
+  <polygon points="130,85 85,65 95,85 130,145" fill="#00ff87" fill-opacity="0.12"/>
+
+  <!-- Arms & Animated Typing Hands -->
+  <!-- Left Arm -->
+  <path d="M72 102 C68 122 85 142 120 144" stroke="url(#hoodie-grad)" stroke-width="14" stroke-linecap="round"/>
+  <!-- Left Hand (Typing) -->
+  <g class="anim-typing-left">
+    <ellipse cx="128" cy="143" rx="7" ry="5" fill="#FED7AA" stroke="#1E293B" stroke-width="1.2"/>
+  </g>
+
+  <!-- Right Arm (Foreground) -->
+  <path d="M88 104 C94 126 112 142 138 142" stroke="url(#hoodie-grad)" stroke-width="14" stroke-linecap="round"/>
+  <!-- Right Hand (Typing) -->
+  <g class="anim-typing-right">
+    <ellipse cx="144" cy="141" rx="7" ry="5" fill="#FED7AA" stroke="#1E293B" stroke-width="1.2"/>
+  </g>
+
+  <!-- Head Group with Idle Bob -->
+  <g class="anim-head">
+    <!-- Neck -->
+    <rect x="86" y="68" width="16" height="18" fill="#FED7AA"/>
+
+    <!-- Head & Face Profile / 3/4 View -->
+    <path d="M78 45 C78 68 88 78 98 78 C108 78 116 68 116 45 C116 32 108 28 98 28 C86 28 78 32 78 45 Z" fill="#FED7AA" stroke="#1E293B" stroke-width="2"/>
+    <ellipse cx="76" cy="50" rx="3.5" ry="6" fill="#FED7AA" stroke="#1E293B" stroke-width="1.5"/>
+
+    <!-- Modern Dark Glasses -->
+    <rect x="90" y="44" width="12" height="10" rx="2" fill="none" stroke="#0F172A" stroke-width="2.5"/>
+    <rect x="106" y="44" width="10" height="10" rx="2" fill="none" stroke="#0F172A" stroke-width="2.5"/>
+    <line x1="102" y1="48" x2="106" y2="48" stroke="#0F172A" stroke-width="2"/>
+    <line x1="84" y1="47" x2="90" y2="47" stroke="#0F172A" stroke-width="2"/>
+
+    <!-- Focused Eyes behind glasses -->
+    <ellipse cx="96" cy="49" rx="2.5" ry="3.5" fill="#0F172A"/>
+    <circle cx="97" cy="47.5" r="1" fill="#FFFFFF"/>
+    <ellipse cx="111" cy="49" rx="2.5" ry="3.5" fill="#0F172A"/>
+    <circle cx="112" cy="47.5" r="1" fill="#FFFFFF"/>
+
+    <!-- Subtle Smile & Chin Beard / Stubble -->
+    <path d="M96 64 Q102 67 108 64" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+    <path d="M92 70 C94 74 104 74 106 70" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 2"/>
+
+    <!-- Hair (Stylish Dark Grotesk Anime Quiff) -->
+    <path d="M74 42 C70 28 76 14 94 12 C108 10 120 18 124 30 C120 25 112 22 102 24 C92 26 86 32 82 40 Z" fill="#0F172A"/>
+    <path d="M80 28 L86 40 L90 28 L96 42 L102 28 L108 40 L114 28" stroke="#0F172A" stroke-width="3" fill="#0F172A" stroke-linejoin="round"/>
+    <!-- Soft Northern Lights Green Hair Sheen -->
+    <path d="M88 16 Q98 14 108 18" stroke="#00ff87" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  </g>
+</svg>

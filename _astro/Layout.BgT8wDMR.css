@@ -62,7 +62,7 @@
   font-weight: 800 !important;
   letter-spacing: 0.15em !important;
   text-transform: uppercase !important;
-  color: #fbbf24 !important;
+  color: #00FF87 !important;
   margin-bottom: 0.5rem !important;
 }
 
@@ -712,17 +712,17 @@
 }
 
 .sec-tag, .status-chip, .gallery-tag, .atlas-meta {
-  color: #b5ff43 !important;
-  border-color: rgba(181, 255, 67, 0.35) !important;
+  color: #00FF87 !important;
+  border-color: rgba(0, 255, 135, 0.35) !important;
 }
 
 .pulse-dot {
-  background: #b5ff43 !important;
-  box-shadow: 0 0 10px #b5ff43 !important;
+  background: #00FF87 !important;
+  box-shadow: 0 0 10px #00FF87 !important;
 }
 
 .nav-link.active, .mobile-nav-link.active {
-  color: #b5ff43 !important;
+  color: #00FF87 !important;
 }
 
 .avatar-orbit {

@@ -12,93 +12,14 @@
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ==========================================================================
-     1. Ambient Chakra Motes (60fps Lightweight Canvas)
+     1. Ambient Chakra Motes Disabled (Replaced by Universal Aurora Engine)
      ========================================================================== */
   function initChakraCanvas() {
-    if (prefersReduced) return;
-    var canvas = document.getElementById('chakra-canvas');
-    if (!canvas) {
-      canvas = document.createElement('canvas');
-      canvas.id = 'chakra-canvas';
-      canvas.setAttribute('aria-hidden', 'true');
-      document.body.prepend(canvas);
+    // Chakra particles permanently decommissioned for Code of Sagar Aurora System
+    var oldCanvas = document.getElementById('chakra-canvas');
+    if (oldCanvas && oldCanvas.parentNode) {
+      oldCanvas.parentNode.removeChild(oldCanvas);
     }
-
-    var ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    var width = (canvas.width = window.innerWidth);
-    var height = (canvas.height = window.innerHeight);
-
-    window.addEventListener('resize', function () {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }, { passive: true });
-
-    var particles = [];
-    var count = Math.min(36, Math.floor(width / 40));
-
-    var colors = [
-      'rgba(255, 94, 26, ',   // Kurama Orange
-      'rgba(255, 140, 66, ',  // Flame Amber
-      'rgba(0, 229, 255, ',   // Rasengan Cyan
-      'rgba(251, 191, 36, '   // Minato Lightning Gold
-    ];
-
-    for (var i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 2.2 + 0.8,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: -Math.random() * 0.5 - 0.25,
-        alpha: Math.random() * 0.5 + 0.2,
-        colorBase: colors[Math.floor(Math.random() * colors.length)],
-        pulse: Math.random() * Math.PI
-      });
-    }
-
-    var isTabVisible = true;
-    document.addEventListener('visibilitychange', function () {
-      isTabVisible = !document.hidden;
-    });
-
-    function render() {
-      if (!isTabVisible) {
-        requestAnimationFrame(render);
-        return;
-      }
-
-      ctx.clearRect(0, 0, width, height);
-
-      for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.pulse += 0.02;
-
-        if (p.y < -10) {
-          p.y = height + 10;
-          p.x = Math.random() * width;
-        }
-        if (p.x < -10) p.x = width + 10;
-        if (p.x > width + 10) p.x = -10;
-
-        var currentAlpha = p.alpha + Math.sin(p.pulse) * 0.15;
-        if (currentAlpha < 0.05) currentAlpha = 0.05;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.colorBase + currentAlpha + ')';
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = p.colorBase + '0.8)';
-        ctx.fill();
-      }
-
-      requestAnimationFrame(render);
-    }
-
-    requestAnimationFrame(render);
   }
 
   /* ==========================================================================
@@ -178,11 +99,11 @@
         '<circle cx="16" cy="16" r="9" stroke="#000000" stroke-width="1.2" stroke-dasharray="2 1"/>' +
         '<circle cx="16" cy="16" r="3.5" fill="#000000"/>' +
         '<g fill="#000000">' +
-          '<path d="M 16 7 C 18 7, 18.5 9, 16.5 10 C 15 10.5, 14 9, 14 8 C 14 7, 15.2 7, 16 7 Z"/>' +
-          '<path d="M 23 20 C 24 21, 23 23, 21.5 22 C 20 21, 20.5 19.5, 21.5 19 C 22.5 18.5, 23.5 19.2, 23 20 Z"/>' +
-          '<path d="M 9 20 C 8 21, 9 23, 10.5 22 C 12 21, 11.5 19.5, 10.5 19 C 9.5 18.5, 8.5 19.2, 9 20 Z"/>' +
+        '<path d="M 16 7 C 18 7, 18.5 9, 16.5 10 C 15 10.5, 14 9, 14 8 C 14 7, 15.2 7, 16 7 Z"/>' +
+        '<path d="M 23 20 C 24 21, 23 23, 21.5 22 C 20 21, 20.5 19.5, 21.5 19 C 22.5 18.5, 23.5 19.2, 23 20 Z"/>' +
+        '<path d="M 9 20 C 8 21, 9 23, 10.5 22 C 12 21, 11.5 19.5, 10.5 19 C 9.5 18.5, 8.5 19.2, 9 20 Z"/>' +
         '</g>' +
-      '</svg>';
+        '</svg>';
     } else {
       // Naruto / Jiraiya Sage Mode Toad Eye (Golden Iris + Horizontal Bar Pupil + Orange Flare)
       return '<svg class="eye-mode-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">' +
@@ -190,7 +111,7 @@
         '<circle cx="16" cy="16" r="13" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>' +
         '<rect x="7" y="14" width="18" height="4" rx="2" fill="#1c1917"/>' +
         '<circle cx="16" cy="16" r="2" fill="#fef3c7"/>' +
-      '</svg>';
+        '</svg>';
     }
   }
 
@@ -201,8 +122,8 @@
     function renderCurrentEye() {
       var currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
       toggleBtn.innerHTML = getEyeSvg(currentTheme);
-      toggleBtn.title = currentTheme === 'dark' 
-        ? 'Current: Sharingan (Dark). Click for Sage Mode (Light)' 
+      toggleBtn.title = currentTheme === 'dark'
+        ? 'Current: Sharingan (Dark). Click for Sage Mode (Light)'
         : 'Current: Sage Mode (Light). Click for Sharingan (Dark)';
     }
 
@@ -219,157 +140,150 @@
   }
 
   /* ==========================================================================
-     4. Hokage Monument Footer & Jiraiya Scroll Enhancements
+     4. Professional Delivery Footer & Journey Visuals
      ========================================================================== */
   function enhanceShinobiFooter() {
-    // 1. Add Nindo Subtitle to Jiraiya Scroll Callout
+    // 1. Add Professional Delivery Subtitle to Callout
     var calloutCol = document.querySelector('.closing-callout-col');
-    if (calloutCol && !calloutCol.querySelector('.footer-nindo-sub')) {
-      var statement = calloutCol.querySelector('.footer-statement');
-      if (statement) {
-        var nindoSub = document.createElement('span');
-        nindoSub.className = 'footer-nindo-sub';
-        nindoSub.textContent = 'The Shinobi Nindō: Eliminating developer guesswork and rework across 30 Allied Nations through living specifications.';
-        statement.insertAdjacentElement('afterend', nindoSub);
+    if (calloutCol) {
+      var existingSub = calloutCol.querySelector('.footer-nindo-sub');
+      if (existingSub) {
+        existingSub.textContent = 'Documentation-First Delivery: Eliminating developer guesswork and code rework across 34 global markets through airtight living specifications.';
+      } else {
+        var statement = calloutCol.querySelector('.footer-statement');
+        if (statement) {
+          var nindoSub = document.createElement('span');
+          nindoSub.className = 'footer-nindo-sub';
+          nindoSub.textContent = 'Documentation-First Delivery: Eliminating developer guesswork and code rework across 34 global markets through airtight living specifications.';
+          statement.insertAdjacentElement('afterend', nindoSub);
+        }
       }
     }
 
-    // 2. Enhance Geo Coordinates with Leaf Village
+    // 2. Enhance Geo Coordinates with Professional Global Delivery Context
     var geoCoord = document.querySelector('.meta-mono-coord');
-    if (geoCoord && !geoCoord.getAttribute('data-shinobi-updated')) {
+    if (geoCoord) {
       geoCoord.setAttribute('data-shinobi-updated', 'true');
-      geoCoord.textContent = '28.53° N / NOIDA · HIDDEN LEAF VILLAGE (木ノ葉隠れの里) · 30 ALLIED NATIONS DELIVERED';
+      geoCoord.innerHTML = '<span>28.53° N / NOIDA · GLOBAL REMOTE</span><br><span class="meta-coord-sub">34 CLIENT MARKETS DELIVERED</span>';
     }
 
-    // 3. Transform Journey SVG Marker into Minato's Three-Pronged Kunai
+    // 3. Transform Journey SVG Marker into Sleek Supersonic Delta Craft
     enhanceJourneyMarker();
 
-    // 4. Enhance 6-Stage Journey Labels with Shinobi Arc Milestones
+    // 4. Enhance 6-Stage Journey Labels with High-Tech Aurora Engineering Icons
     enhanceJourneyStages();
 
-    // 5. Hook Wordmark Earth-Tremor Animation
+    // 5. Clean Professional Tooltip on Wordmark
     var wordmark = document.querySelector('.footer-wordmark');
     if (wordmark) {
-      wordmark.title = 'Hokage Rock Monument (火影岩) — Click to Trigger Flying Thunder God Flight';
+      wordmark.title = 'Kumar Utkarsh — Senior Business Analyst & AI Product Strategist';
     }
   }
 
   /* ==========================================================================
-     5. Minato Hiraishin Kunai SVG Marker & 6-Stage Shinobi Mastery Route
+     5. High-Tech Supersonic Delta SVG Marker & 6-Stage Engineering Route
      ========================================================================== */
   function enhanceJourneyMarker() {
-    var kunaiPath = '<path d="M 0 -14 L 4 -4 L 9 -1 L 4 2 L 2 12 L 0 16 L -2 12 L -4 2 L -9 -1 L -4 -4 Z" fill="#fbbf24" stroke="#ffffff" stroke-width="1.2"/>' +
-      '<circle cx="0" cy="18" r="2.5" fill="none" stroke="#fbbf24" stroke-width="1.5"/>' +
-      '<line x1="-6" y1="-2" x2="6" y2="-2" stroke="#d97706" stroke-width="1"/>';
+    var deltaCraftPath = '<path d="M 0 -15 L 7 5 L 0 2 L -7 5 Z" fill="#00E5FF" stroke="#FFFFFF" stroke-width="1.2"/>' +
+      '<circle cx="0" cy="0" r="1.8" fill="#FFFFFF"/>' +
+      '<line x1="-3" y1="6" x2="-5" y2="10" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>' +
+      '<line x1="3" y1="6" x2="5" y2="10" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>';
 
     var dPlane = document.getElementById('journeyMarkerPlane');
     if (dPlane) {
-      dPlane.innerHTML = kunaiPath;
+      dPlane.innerHTML = deltaCraftPath;
       dPlane.setAttribute('transform', 'scale(1.2)');
     }
 
     var mPlane = document.getElementById('journeyMarkerPlaneMobile');
     if (mPlane) {
-      mPlane.innerHTML = kunaiPath;
+      mPlane.innerHTML = deltaCraftPath;
       mPlane.setAttribute('transform', 'scale(0.9)');
     }
   }
 
   function enhanceJourneyStages() {
-    // 1. Remove all cluttering sublabels marked in Image 1
+    // 1. Remove all cluttering sublabels
     document.querySelectorAll('.journey-stage-sublabel').forEach(function (el) {
       el.remove();
     });
 
-    // 2. Naruto Themed Shinobi Stage Icons (Addressing Image 2)
-    var SHINOBI_STAGE_ICONS = {
+    // 2. Modern High-Tech Aurora Product Delivery Icons (Zero Orange, Pure Cyan / Mint / Indigo)
+    var TECH_STAGE_ICONS = {
       'DISCOVERY': {
-        // Ninja Intel Reconnaissance Scroll with Konoha Chakra Core
-        svg: '<circle cx="0" cy="0" r="24" fill="rgba(255, 98, 0, 0.08)" stroke="#ff6200" stroke-width="1.2" stroke-dasharray="3 2" class="stage-chakra-ring"/>' +
-             '<rect x="-18" y="-14" width="36" height="28" rx="4" fill="#131824" stroke="#ff6200" stroke-width="1.5"/>' +
-             '<path d="M -12 -8 L 12 -8 M -12 -2 L 8 -2 M -12 4 L 4 4" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>' +
-             '<circle cx="8" cy="4" r="5" fill="#ff6200" opacity="0.3"/>' +
-             '<circle cx="8" cy="4" r="2.5" fill="#ff6200"/>'
+        // High-Tech Radar & Requirements Exploration Lens
+        svg: '<circle cx="0" cy="0" r="24" fill="rgba(0, 229, 255, 0.08)" stroke="#00E5FF" stroke-width="1.2" stroke-dasharray="3 3" class="stage-chakra-ring"/>' +
+          '<rect x="-16" y="-14" width="32" height="28" rx="5" fill="#030C14" stroke="#00E5FF" stroke-width="1.5"/>' +
+          '<circle cx="-2" cy="-2" r="6" fill="none" stroke="#00E5FF" stroke-width="1.5"/>' +
+          '<line x1="3" y1="3" x2="9" y2="9" stroke="#00E5FF" stroke-width="2" stroke-linecap="round"/>' +
+          '<circle cx="-2" cy="-2" r="2" fill="#10B981"/>'
       },
       'SPECS': {
-        // Sealed Chunin Exam SOW Jutsu Scroll with Ribbon
-        svg: '<circle cx="0" cy="0" r="24" fill="rgba(0, 229, 255, 0.08)" stroke="#00e5ff" stroke-width="1.2" stroke-dasharray="3 2" class="stage-chakra-ring"/>' +
-             '<rect x="-16" y="-18" width="32" height="36" rx="3" fill="#131824" stroke="#00e5ff" stroke-width="1.5"/>' +
-             '<path d="M -16 -10 L 16 -10" stroke="#00e5ff" stroke-width="1.2"/>' +
-             '<circle cx="0" cy="-2" r="6" fill="#e11d48" opacity="0.25"/>' +
-             '<path d="M -4 -2 L 4 -2 M 0 -6 L 0 2" stroke="#e11d48" stroke-width="1.5"/>' +
-             '<path d="M -10 8 L 10 8" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>'
+        // Airtight Architecture Blueprint & Technical SOW
+        svg: '<circle cx="0" cy="0" r="24" fill="rgba(16, 185, 129, 0.08)" stroke="#10B981" stroke-width="1.2" stroke-dasharray="3 3" class="stage-chakra-ring"/>' +
+          '<rect x="-15" y="-18" width="30" height="36" rx="4" fill="#030C14" stroke="#10B981" stroke-width="1.5"/>' +
+          '<path d="M -7 -18 v -3 a 2 2 0 0 1 2 -2 h 10 a 2 2 0 0 1 2 2 v 3 z" fill="#10B981"/>' +
+          '<line x1="-9" y1="-8" x2="9" y2="-8" stroke="#00E5FF" stroke-width="1.4" stroke-linecap="round"/>' +
+          '<line x1="-9" y1="-1" x2="5" y2="-1" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round"/>' +
+          '<line x1="-9" y1="6" x2="9" y2="6" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round"/>' +
+          '<circle cx="5" cy="11" r="3" fill="#10B981"/>'
       },
       'PROTOTYPE': {
-        // Multi-Role Sandbox Frame with Sharingan Tomoe Node
-        svg: '<circle cx="0" cy="0" r="24" fill="rgba(255, 98, 0, 0.1)" stroke="#ff6200" stroke-width="1.2" stroke-dasharray="3 2" class="stage-chakra-ring"/>' +
-             '<rect x="-20" y="-15" width="40" height="30" rx="3" fill="#131824" stroke="#ff6200" stroke-width="1.5"/>' +
-             '<line x1="-20" y1="-7" x2="20" y2="-7" stroke="#ff6200" stroke-width="1"/>' +
-             '<circle cx="-14" cy="-11" r="1.5" fill="#ff6200"/>' +
-             '<circle cx="-9" cy="-11" r="1.5" fill="#ff7a29"/>' +
-             '<rect x="-15" y="-1" width="12" height="11" rx="1.5" fill="#ff6200" opacity="0.25" stroke="#ff6200" stroke-width="1"/>' +
-             '<circle cx="11" cy="4" r="5" fill="#e11d48" opacity="0.3"/>' +
-             '<circle cx="11" cy="4" r="2.5" fill="#e11d48"/>'
+        // Interactive Multi-Role Sandbox Wireframe
+        svg: '<circle cx="0" cy="0" r="24" fill="rgba(0, 229, 255, 0.08)" stroke="#00E5FF" stroke-width="1.2" stroke-dasharray="3 3" class="stage-chakra-ring"/>' +
+          '<rect x="-19" y="-14" width="38" height="28" rx="4" fill="#030C14" stroke="#00E5FF" stroke-width="1.5"/>' +
+          '<line x1="-19" y1="-7" x2="19" y2="-7" stroke="#00E5FF" stroke-width="1"/>' +
+          '<circle cx="-13" cy="-10.5" r="1.5" fill="#00E5FF"/>' +
+          '<circle cx="-8" cy="-10.5" r="1.5" fill="#38BDF8"/>' +
+          '<rect x="-13" y="-1" width="12" height="10" rx="1.5" fill="rgba(0, 229, 255, 0.25)" stroke="#00E5FF" stroke-width="1"/>' +
+          '<line x1="3" y1="1" x2="13" y2="1" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round"/>' +
+          '<line x1="3" y1="6" x2="10" y2="6" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round"/>'
       },
       'LOGIC & RBAC': {
-        // Eight Trigrams / Fūinjutsu Chakra Seal Grid
-        svg: '<circle cx="0" cy="0" r="24" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 2" class="stage-chakra-ring"/>' +
-             '<polygon points="0,-16 16,0 0,16 -16,0" fill="#131824" stroke="#10b981" stroke-width="1.5"/>' +
-             '<circle cx="0" cy="0" r="4" fill="#10b981"/>' +
-             '<line x1="-16" y1="0" x2="-22" y2="0" stroke="#10b981" stroke-width="1.5"/>' +
-             '<circle cx="-23" cy="0" r="2.5" fill="#10b981"/>' +
-             '<line x1="16" y1="0" x2="22" y2="0" stroke="#10b981" stroke-width="1.5"/>' +
-             '<circle cx="23" cy="0" r="2.5" fill="#10b981"/>'
+        // Modular Microservice Architecture & Security Shield
+        svg: '<circle cx="0" cy="0" r="24" fill="rgba(99, 102, 241, 0.08)" stroke="#6366F1" stroke-width="1.2" stroke-dasharray="3 3" class="stage-chakra-ring"/>' +
+          '<path d="M 0 -16 L 14 -7 L 14 5 C 14 12, 0 17, 0 17 C 0 17, -14 12, -14 5 L -14 -7 Z" fill="#030C14" stroke="#6366F1" stroke-width="1.5"/>' +
+          '<circle cx="0" cy="-2" r="3.5" fill="none" stroke="#00E5FF" stroke-width="1.4"/>' +
+          '<path d="M -2 1.5 h 4 v 4 h -4 z" fill="#00E5FF"/>'
       },
       'SPRINTS': {
-        // Minato Hiraishin Speed Kunai & Squad Agility
-        svg: '<circle cx="0" cy="0" r="24" fill="rgba(251, 191, 36, 0.08)" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3 2" class="stage-chakra-ring"/>' +
-             '<path d="M 0 -16 L 4 -6 L 9 -3 L 4 0 L 2 10 L 0 14 L -2 10 L -4 0 L -9 -3 L -4 -6 Z" fill="#fbbf24" stroke="#ffffff" stroke-width="1"/>' +
-             '<circle cx="0" cy="15" r="2" fill="none" stroke="#fbbf24" stroke-width="1.2"/>' +
-             '<path d="M -14 -6 L -7 -6 M 7 -6 L 14 -6 M -12 2 L -5 2 M 5 2 L 12 2" stroke="#fbbf24" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>'
+        // Continuous Delivery & Agile Sprint Velocity
+        svg: '<circle cx="0" cy="0" r="24" fill="rgba(52, 211, 153, 0.08)" stroke="#34D399" stroke-width="1.2" stroke-dasharray="3 3" class="stage-chakra-ring"/>' +
+          '<rect x="-18" y="-14" width="36" height="28" rx="4" fill="#030C14" stroke="#34D399" stroke-width="1.5"/>' +
+          '<line x1="-6" y1="-14" x2="-6" y2="14" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>' +
+          '<line x1="6" y1="-14" x2="6" y2="14" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>' +
+          '<rect x="-14" y="-9" width="5" height="14" rx="1.5" fill="#34D399"/>' +
+          '<rect x="-2" y="-4" width="5" height="14" rx="1.5" fill="#10B981"/>' +
+          '<rect x="10" y="-11" width="5" height="12" rx="1.5" fill="#00E5FF"/>'
       },
       'RELEASE': {
-        // Hokage Flame Monument Ascent & Reached Milestone
-        svg: '<circle cx="0" cy="0" r="24" fill="rgba(255, 98, 0, 0.12)" stroke="#ff6200" stroke-width="1.4" class="stage-chakra-ring"/>' +
-             '<path d="M 0 -18 C -6 -8 -7 6 -7 16 L 7 16 C 7 6 6 -8 0 -18 Z" fill="#131824" stroke="#ff6200" stroke-width="1.5"/>' +
-             '<path d="M -7 12 L -13 18 L -7 16 Z" fill="#ff6200"/>' +
-             '<path d="M 7 12 L 13 18 L 7 16 Z" fill="#ff6200"/>' +
-             '<circle cx="0" cy="1" r="3" fill="#ff7a29"/>' +
-             '<path d="M -3 18 L -5 25 M 0 18 L 0 28 M 3 18 L 5 25" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round"/>'
+        // Production netlify/Cloud Deploy & Orbital Launch
+        svg: '<circle cx="0" cy="0" r="24" fill="rgba(0, 229, 255, 0.12)" stroke="#00E5FF" stroke-width="1.4" class="stage-chakra-ring"/>' +
+          '<path d="M 0 -18 C -6 -8 -7 6 -7 16 L 7 16 C 7 6 6 -8 0 -18 Z" fill="#030C14" stroke="#00E5FF" stroke-width="1.5"/>' +
+          '<path d="M -7 12 L -13 18 L -7 16 Z" fill="#00E5FF"/>' +
+          '<path d="M 7 12 L 13 18 L 7 16 Z" fill="#00E5FF"/>' +
+          '<circle cx="0" cy="1" r="3" fill="#FFFFFF"/>' +
+          '<path d="M -3 18 L -5 25 M 0 18 L 0 28 M 3 18 L 5 25" stroke="#10B981" stroke-width="1.8" stroke-linecap="round"/>'
       }
     };
 
-    // 3. Align and Enhance ALL stages (Desktop & Mobile) with Naruto Shinobi Chakra Icons
+    // 3. Align and Enhance ALL stages (Desktop & Mobile) with Clean Aurora Tech Icons
     var allStages = document.querySelectorAll('.journey-stage');
     allStages.forEach(function (stage) {
       var label = stage.querySelector('.journey-stage-label');
       if (label) {
         var key = label.textContent.trim().replace('&amp;', '&');
-        var config = SHINOBI_STAGE_ICONS[key];
-        if (config && !stage.classList.contains('shinobi-enhanced')) {
-          stage.classList.add('shinobi-enhanced');
+        var config = TECH_STAGE_ICONS[key];
+        if (config) {
           var isMobile = !!stage.closest('.journey-mobile-svg');
-
-          // Clear old placeholder shapes, keep label
-          var oldShapes = Array.from(stage.children).filter(function (child) {
-            return !child.classList.contains('journey-stage-label');
-          });
-          oldShapes.forEach(function (el) { el.remove(); });
-
-          // Insert Naruto themed icon SVG
-          var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-          g.setAttribute('class', 'stage-shinobi-icon-wrap');
+          var labelClone = label.cloneNode(true);
+          labelClone.setAttribute('y', isMobile ? '40' : '42');
           if (isMobile) {
-            g.setAttribute('transform', 'scale(0.85)');
+            labelClone.setAttribute('font-size', '10px');
           }
-          g.innerHTML = config.svg;
-          stage.insertBefore(g, label);
-
-          // Position label neatly below on the exact same baseline
-          label.setAttribute('y', isMobile ? '40' : '42');
-          if (isMobile) {
-            label.setAttribute('font-size', '10px');
-          }
+          stage.innerHTML = config.svg;
+          stage.appendChild(labelClone);
+          stage.classList.add('aurora-stage-enhanced');
         }
       }
     });
@@ -405,7 +319,7 @@
 
     // Also remove any stray sublabels defensively
     var subs = document.querySelectorAll('.journey-stage-sublabel');
-    subs.forEach(function(s) { s.remove(); });
+    subs.forEach(function (s) { s.remove(); });
   }
 
   /* ==========================================================================
@@ -413,7 +327,7 @@
      ========================================================================== */
   function initShinobiForms() {
     var forms = document.querySelectorAll('.shinobi-contact-form');
-    forms.forEach(function(form) {
+    forms.forEach(function (form) {
       if (form.__initialized) return;
       form.__initialized = true;
 
@@ -422,11 +336,23 @@
       var feedback = wrap ? wrap.querySelector('.shinobi-form-feedback') : null;
       var submitBtn = form.querySelector('.shinobi-form-submit-btn');
 
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (feedback) {
           feedback.style.display = 'none';
           feedback.className = 'shinobi-form-feedback';
+        }
+
+        // Honeypot bot protection (VULN-04)
+        var honeypot = form.querySelector('input[name="_gotcha"]');
+        if (honeypot && honeypot.value.trim() !== '') {
+          console.warn('Bot detected via honeypot.');
+          if (feedback) {
+            feedback.innerHTML = '⚠️ Automated transmission rejected.';
+            feedback.className = 'shinobi-form-feedback error';
+            feedback.style.display = 'block';
+          }
+          return;
         }
 
         // Anti-spam client throttle (15s cooldown)
@@ -463,41 +389,41 @@
           method: 'POST',
           body: formData
         })
-        .then(function(res) {
-          return res.json();
-        })
-        .then(function(data) {
-          if (data.success) {
-            sessionStorage.setItem('last_brief_submit', Date.now().toString());
-            form.reset();
-            form.style.display = 'none';
-            if (thankyouCard) {
-              thankyouCard.classList.add('active');
-              var nameInput = (formData.get('name') || 'Friend').toString().trim();
-              var nameEl = thankyouCard.querySelector('.applicant-name');
-              if (nameEl) nameEl.textContent = nameInput;
+          .then(function (res) {
+            return res.json();
+          })
+          .then(function (data) {
+            if (data.success) {
+              sessionStorage.setItem('last_brief_submit', Date.now().toString());
+              form.reset();
+              form.style.display = 'none';
+              if (thankyouCard) {
+                thankyouCard.classList.add('active');
+                var nameInput = (formData.get('name') || 'Friend').toString().trim();
+                var nameEl = thankyouCard.querySelector('.applicant-name');
+                if (nameEl) nameEl.textContent = nameInput;
+              }
+            } else {
+              throw new Error(data.message || 'Submission was not accepted by the gateway.');
             }
-          } else {
-            throw new Error(data.message || 'Submission was not accepted by the gateway.');
-          }
-        })
-        .catch(function(err) {
-          if (feedback) {
-            feedback.innerHTML = '⚠️ <strong>Transmission Note:</strong> ' + (err.message || 'Could not complete network submission.') + '<br>You can connect directly via WhatsApp: <a href="https://wa.me/918447143995" target="_blank" rel="noopener noreferrer" style="color: #ff8c42; text-decoration: underline;">+91 84471 43995</a> or email <a href="mailto:work.krutkarsh@gmail.com" style="color: #ff8c42; text-decoration: underline;">work.krutkarsh@gmail.com</a>.';
-            feedback.className = 'shinobi-form-feedback error';
-            feedback.style.display = 'block';
-          }
-        })
-        .finally(function() {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = btnOriginalHTML;
-        });
+          })
+          .catch(function (err) {
+            if (feedback) {
+              feedback.innerHTML = '⚠️ <strong>Transmission Note:</strong> ' + (err.message || 'Could not complete network submission.') + '<br>You can connect directly via WhatsApp: <a href="https://wa.me/918447143995" target="_blank" rel="noopener noreferrer" style="color: #ff8c42; text-decoration: underline;">+91 84471 43995</a> or email <a href="mailto:work.krutkarsh@gmail.com" style="color: #ff8c42; text-decoration: underline;">work.krutkarsh@gmail.com</a>.';
+              feedback.className = 'shinobi-form-feedback error';
+              feedback.style.display = 'block';
+            }
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = btnOriginalHTML;
+          });
       });
 
       if (thankyouCard) {
         var resetBtn = thankyouCard.querySelector('.shinobi-reset-btn');
         if (resetBtn) {
-          resetBtn.addEventListener('click', function() {
+          resetBtn.addEventListener('click', function () {
             thankyouCard.classList.remove('active');
             form.style.display = 'flex';
           });
@@ -527,7 +453,7 @@
     function onScroll() {
       if (isTicking) return;
       isTicking = true;
-      requestAnimationFrame(function() {
+      requestAnimationFrame(function () {
         var rect = wrap.getBoundingClientRect();
         var winH = window.innerHeight;
         var triggerY = winH * 0.65;
@@ -537,7 +463,7 @@
 
         beam.style.height = (progress * 100).toFixed(2) + '%';
 
-        entries.forEach(function(entry) {
+        entries.forEach(function (entry) {
           var entryRect = entry.getBoundingClientRect();
           var node = entry.querySelector('.timeline-node');
           if (entryRect.top <= triggerY + 30) {
@@ -559,21 +485,244 @@
   }
 
   /* ==========================================================================
+     Universal Minimalist Menu Controller (Code of Sagar Theme)
+     ========================================================================== */
+  function markActiveMenuPage() {
+    var overlay = document.getElementById('nlMenuOverlay');
+    if (!overlay) return;
+    var rawPath = window.location.pathname || '/';
+    var cleanPath = rawPath.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+    var links = overlay.querySelectorAll('.nl-menu-link');
+    links.forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      var cleanHref = href.replace(/\/index\.html$/, '').replace(/\/$/, '') || '/';
+      if (cleanHref === cleanPath) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function initMinimalistMenu() {
+    var menuBtn = document.getElementById('nlMenuBtn');
+    var closeBtn = document.getElementById('nlMenuCloseBtn');
+    var overlay = document.getElementById('nlMenuOverlay');
+
+    markActiveMenuPage();
+
+    if (window.location.hash === '#menu' || window.location.search.indexOf('menu=open') !== -1) {
+      if (overlay) {
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    if (menuBtn && overlay) {
+      menuBtn.addEventListener('click', function () {
+        markActiveMenuPage();
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+
+    function closeMenu() {
+      if (!overlay) return;
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMenu);
+    }
+
+    // Close on Escape key
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+
+    // Close when clicking any menu link
+    if (overlay) {
+      overlay.querySelectorAll('.nl-menu-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          closeMenu();
+        });
+      });
+    }
+  }
+
+  /* ==========================================================================
+     Typewriter Stream Controller (Typing from Kumar's Laptop — Images 3 & 4)
+     ========================================================================== */
+  function initLaptopTypewriter() {
+    var textEl = document.getElementById('nlStreamTypewriter');
+    if (!textEl) return;
+
+    var phrases = [
+      "I am a Senior Business Analyst",
+      "I am an AI Product Strategist",
+      "I am an Agile Project Manager",
+      "I architect intelligent AI systems",
+      "I translate vision into scalable products",
+      "I lead enterprise delivery end-to-end",
+      "I slash engineering rework by 35%"
+    ];
+
+    var phraseIdx = 0;
+    var charIdx = 0;
+    var isDeleting = false;
+    var typingSpeed = 65;
+    var deletingSpeed = 32;
+    var pauseEnd = 2200;
+
+    function tick() {
+      var fullText = phrases[phraseIdx];
+
+      if (isDeleting) {
+        charIdx--;
+        textEl.textContent = fullText.substring(0, charIdx);
+        if (charIdx <= 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(tick, 400);
+          return;
+        }
+        setTimeout(tick, deletingSpeed);
+      } else {
+        charIdx++;
+        textEl.textContent = fullText.substring(0, charIdx);
+        if (charIdx >= fullText.length) {
+          isDeleting = true;
+          setTimeout(tick, pauseEnd);
+          return;
+        }
+        setTimeout(tick, typingSpeed);
+      }
+    }
+
+    tick();
+  }
+
+  /* ==========================================================================
+     Code of Sagar Signature Custom Difference Cursor (Inverts on All Hover)
+     ========================================================================== */
+  function initSagarCursor() {
+    // Only enable on desktop with fine mouse pointer
+    if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return;
+    }
+
+    // Check if reduced motion is requested
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    // Clean up old cursor elements if present
+    var oldDot = document.querySelector('.sagar-cursor-dot');
+    if (oldDot && oldDot.parentNode) oldDot.parentNode.removeChild(oldDot);
+    var oldRing = document.querySelector('.sagar-cursor-ring');
+    if (oldRing && oldRing.parentNode) oldRing.parentNode.removeChild(oldRing);
+
+    var ball = document.querySelector('.sagar-cursor-ball');
+    if (!ball) {
+      ball = document.createElement('div');
+      ball.className = 'sagar-cursor-ball';
+      ball.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ball);
+    }
+
+    document.body.classList.add('has-sagar-cursor');
+
+    var mouseX = window.innerWidth / 2;
+    var mouseY = window.innerHeight / 2;
+    var ballX = mouseX;
+    var ballY = mouseY;
+    var isClicking = false;
+    var isVisible = false;
+
+    window.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (!isVisible) {
+        isVisible = true;
+        ball.style.opacity = '1';
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () {
+      isVisible = false;
+      ball.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', function () {
+      isVisible = true;
+      ball.style.opacity = '1';
+    });
+
+    window.addEventListener('mousedown', function () {
+      isClicking = true;
+      ball.classList.add('is-clicking');
+    });
+
+    window.addEventListener('mouseup', function () {
+      isClicking = false;
+      ball.classList.remove('is-clicking');
+    });
+
+    // Smooth lerp loop for the trailing difference ball
+    function renderCursor() {
+      ballX += (mouseX - ballX) * 0.22;
+      ballY += (mouseY - ballY) * 0.22;
+
+      ball.style.transform = 'translate(' + ballX + 'px, ' + ballY + 'px) translate(-50%, -50%)' + (isClicking ? ' scale(0.85)' : '');
+
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+
+    // Hover detection over ANY static text, dynamic text, images, or anime character!
+    var hoverSelector = 'h1, h2, h3, h4, p, a, button, .btn, .nl-menu-btn, .nl-menu-close-btn, .nl-menu-link, .nl-hero-line, .nl-hero-title, .nl-hero-bio, .nl-brand-center, .nl-anime-kumar, .nl-hero-hand-left, .nl-hero-hand-right, img, .osiris-card, .cos-button, input, textarea, select, [role="button"], .interactive-target, .nl-laptop-stream-bubble, .nl-stream-text';
+
+    document.addEventListener('mouseover', function (e) {
+      var target = e.target.closest(hoverSelector);
+      if (target) {
+        ball.classList.add('is-hovering');
+      }
+    });
+
+    document.addEventListener('mouseout', function (e) {
+      var target = e.target.closest(hoverSelector);
+      if (target) {
+        ball.classList.remove('is-hovering');
+      }
+    });
+  }
+
+  /* ==========================================================================
      Bootstrap Shinobi Engine on DOM Ready
      ========================================================================== */
   function init() {
+    initMinimalistMenu();
+    initLaptopTypewriter();
+    initSagarCursor();
     initChakraCanvas();
     enhanceShinobiHeader();
     enhanceShinobiFooter();
     initShinobiForms();
     initExperienceTimelineScroll();
 
-    // Dynamically load Five Shinobi Legends Character Engine
-    if (!document.querySelector('script[src*="shinobi-character-engine.js"]')) {
-      var s = document.createElement('script');
-      s.src = '/js/shinobi-character-engine.js';
-      s.defer = true;
-      document.head.appendChild(s);
+    // Clean up any old shinobi character canvas stage if present
+    var oldStage = document.getElementById('shinobi-character-stage');
+    if (oldStage && oldStage.parentNode) {
+      oldStage.parentNode.removeChild(oldStage);
     }
   }
 

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 220" width="160" height="220" fill="none">
+  <!-- Anime Strategist - Idle Standing Pose -->
+  <defs>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#111111" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="sage-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EBF1D9"/>
+      <stop offset="100%" stop-color="#DDE4C3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ground Shadow Ripple -->
+  <ellipse cx="80" cy="210" rx="36" ry="6" fill="#111111" fill-opacity="0.08"/>
+
+  <!-- Body Group with Filter -->
+  <g filter="url(#soft-shadow)">
+    <!-- Legs & Shoes -->
+    <!-- Left Leg -->
+    <path d="M68 136 L65 190 L60 192 L58 206 L74 206 L73 190 L76 136 Z" fill="#111111"/>
+    <!-- Right Leg -->
+    <path d="M84 136 L87 190 L85 192 L84 206 L100 206 L98 190 L92 136 Z" fill="#18181B"/>
+    <!-- Sneakers -->
+    <path d="M56 202 C56 200 60 198 66 198 L75 198 C77 202 78 206 78 206 L55 206 C55 204 55 203 56 202 Z" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <path d="M82 202 C82 200 86 198 92 198 L101 198 C103 202 104 206 104 206 L81 206 C81 204 81 203 82 202 Z" fill="#FFFFFF" stroke="#111111" stroke-width="2"/>
+    <path d="M58 205 L76 205" stroke="#DDE4C3" stroke-width="3" stroke-linecap="round"/>
+    <path d="M84 205 L102 205" stroke="#DDE4C3" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Torso: Modern Tech Jacket & Inner Shirt -->
+    <!-- Inner Shirt -->
+    <path d="M72 82 L88 82 L86 138 L74 138 Z" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+    <!-- Tech Jacket Body -->
+    <path d="M52 86 C50 110 52 132 54 138 L74 138 L72 84 C62 82 56 84 52 86 Z" fill="#111111"/>
+    <path d="M108 86 C110 110 108 132 106 138 L86 138 L88 84 C98 82 104 84 108 86 Z" fill="#18181B"/>
+    
+    <!-- Signature Soft Sage Scarf / Collar Accent -->
+    <path d="M62 76 C70 82 90 82 98 76 C102 84 96 92 88 94 C80 96 68 94 62 76 Z" fill="url(#sage-grad)" stroke="#111111" stroke-width="2"/>
+    <path d="M82 88 L86 118 L74 116 L76 89 Z" fill="#DDE4C3" stroke="#111111" stroke-width="1.5"/>
+
+    <!-- Left Arm (Hand in pocket) -->
+    <path d="M52 88 C44 98 42 114 44 126 C45 130 50 134 54 134 L56 126 C54 116 56 102 60 92 Z" fill="#111111"/>
+    
+    <!-- Right Arm (Holding Tablet / Spec Holo) -->
+    <path d="M108 88 C116 98 118 112 115 124 L104 122 C106 114 106 102 102 92 Z" fill="#18181B"/>
+    <!-- Hand -->
+    <circle cx="114" cy="126" r="6" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+    <!-- Mini Specification Holo Device -->
+    <rect x="110" y="112" width="22" height="15" rx="3" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+    <rect x="113" y="115" width="16" height="3" rx="1" fill="#DDE4C3"/>
+    <rect x="113" y="120" width="10" height="2" rx="1" fill="#111111"/>
+
+    <!-- Neck & Head -->
+    <rect x="74" y="68" width="12" height="14" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+    <!-- Face / Jaw -->
+    <path d="M66 50 C66 68 74 76 80 76 C86 76 94 68 94 50 C94 40 88 38 80 38 C72 38 66 40 66 50 Z" fill="#FED7AA" stroke="#111111" stroke-width="2"/>
+    <!-- Ears -->
+    <ellipse cx="65" cy="54" rx="3" ry="5" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+    <ellipse cx="95" cy="54" rx="3" ry="5" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+    
+    <!-- Expressive Anime Eyes -->
+    <ellipse cx="73" cy="53" rx="3.5" ry="4.5" fill="#111111"/>
+    <circle cx="74" cy="51.5" r="1.5" fill="#FFFFFF"/>
+    <ellipse cx="87" cy="53" rx="3.5" ry="4.5" fill="#111111"/>
+    <circle cx="88" cy="51.5" r="1.5" fill="#FFFFFF"/>
+    <!-- Eyebrows -->
+    <path d="M69 46 Q73 44 77 46" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M83 46 Q87 44 91 46" stroke="#111111" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Nose & Smile -->
+    <path d="M80 56 L79 59 L81 59" stroke="#E09F7D" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M76 64 Q80 67 84 64" stroke="#111111" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- Subtle Blush -->
+    <ellipse cx="70" cy="58" rx="3" ry="1.5" fill="#FCA5A5" fill-opacity="0.6"/>
+    <ellipse cx="90" cy="58" rx="3" ry="1.5" fill="#FCA5A5" fill-opacity="0.6"/>
+
+    <!-- Anime Hair (Dynamic Wisps & Shading) -->
+    <path d="M64 48 C60 38 64 24 76 20 C86 16 98 22 100 32 C104 40 102 48 98 52 C96 42 92 34 86 32 C82 30 76 32 74 36 C70 42 68 46 64 48 Z" fill="#111111"/>
+    <!-- Front Hair Bangs -->
+    <path d="M68 36 L72 48 L76 38 L80 50 L84 38 L88 48 L92 38" stroke="#111111" stroke-width="2.5" fill="#111111" stroke-linejoin="round"/>
+    <!-- Soft Sage Hair Highlight -->
+    <path d="M74 24 Q82 22 90 26" stroke="#DDE4C3" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

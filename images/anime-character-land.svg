@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 220" width="160" height="220" fill="none">
+  <!-- Anime Strategist - Landing Crouch Pose -->
+  <defs>
+    <filter id="land-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#111111" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Impact Rings & Ground Shockwave -->
+  <ellipse cx="80" cy="208" rx="60" ry="8" stroke="#DDE4C3" stroke-width="2.5" fill="none" stroke-dasharray="8 6"/>
+  <ellipse cx="80" cy="208" rx="35" ry="5" stroke="#111111" stroke-width="1.5" stroke-opacity="0.3" fill="none"/>
+  <!-- Mini Dust Puffs -->
+  <circle cx="28" cy="204" r="5" fill="#DDE4C3" fill-opacity="0.7"/>
+  <circle cx="36" cy="200" r="3" fill="#DDE4C3" fill-opacity="0.5"/>
+  <circle cx="132" cy="204" r="5" fill="#DDE4C3" fill-opacity="0.7"/>
+  <circle cx="124" cy="200" r="3" fill="#DDE4C3" fill-opacity="0.5"/>
+
+  <!-- Low Center of Gravity Landing Body -->
+  <g filter="url(#land-shadow)">
+    <!-- Deeply Bent Legs -->
+    <!-- Left Leg (crouched under) -->
+    <path d="M60 145 L40 185 L35 186 L32 206 L56 206 L58 190 L68 155 Z" fill="#111111"/>
+    <!-- Right Leg (extended for balance) -->
+    <path d="M92 145 L116 182 L120 184 L126 206 L102 206 L100 190 L85 155 Z" fill="#18181B"/>
+    <!-- Sneakers planted -->
+    <path d="M30 202 C30 198 34 196 42 196 L56 196 L56 206 L30 206 Z" fill="#FFFFFF" stroke="#111111" stroke-width="1.8"/>
+    <path d="M102 202 C102 198 108 196 116 196 L128 196 L128 206 L102 206 Z" fill="#FFFFFF" stroke="#111111" stroke-width="1.8"/>
+    <path d="M32 205 L54 205" stroke="#DDE4C3" stroke-width="3" stroke-linecap="round"/>
+    <path d="M104 205 L126 205" stroke="#DDE4C3" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Compressed Torso / Tech Jacket -->
+    <path d="M56 100 L96 100 L92 152 L58 152 Z" fill="#FFFFFF" stroke="#111111" stroke-width="1.5"/>
+    <path d="M46 102 C42 124 46 145 54 150 L72 150 L68 102 Z" fill="#111111"/>
+    <path d="M106 102 C110 124 106 145 98 150 L80 150 L84 102 Z" fill="#18181B"/>
+
+    <!-- Sage Scarf Floating after Stop -->
+    <path d="M58 92 C68 98 86 98 96 92 C106 100 94 110 84 112 C72 114 62 108 58 92 Z" fill="#DDE4C3" stroke="#111111" stroke-width="2"/>
+    <path d="M78 106 L74 135 L86 132 L84 107 Z" fill="#EBF1D9" stroke="#111111" stroke-width="1.5"/>
+
+    <!-- Left Arm: Hand Touchdown on Ground -->
+    <path d="M48 106 C36 122 30 148 26 175 L34 178 C38 152 44 130 56 112 Z" fill="#111111"/>
+    <ellipse cx="26" cy="182" rx="7" ry="5" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+
+    <!-- Right Arm: Balances Outward -->
+    <path d="M104 106 C116 118 126 136 134 154 L126 158 C120 142 112 126 98 114 Z" fill="#18181B"/>
+    <circle cx="132" cy="158" r="6" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+
+    <!-- Head / Looking Up Forward -->
+    <rect x="72" y="85" width="14" height="15" fill="#FED7AA" stroke="#111111" stroke-width="1.5"/>
+    <path d="M64 68 C64 86 72 94 80 94 C88 94 96 86 96 68 C96 58 90 56 80 56 C70 56 64 58 64 68 Z" fill="#FED7AA" stroke="#111111" stroke-width="2"/>
+    
+    <!-- Intense Anime Eyes Focused Forward -->
+    <ellipse cx="72" cy="72" rx="3.5" ry="3.5" fill="#111111"/>
+    <circle cx="73" cy="71" r="1.5" fill="#FFFFFF"/>
+    <ellipse cx="88" cy="72" rx="3.5" ry="3.5" fill="#111111"/>
+    <circle cx="89" cy="71" r="1.5" fill="#FFFFFF"/>
+    <path d="M68 66 L76 68" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+    <path d="M92 66 L84 68" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+    <path d="M77 82 Q80 85 83 82" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Hair (Spike Crest) -->
+    <path d="M62 64 C56 50 62 36 74 34 C88 32 102 38 106 50 C100 46 92 44 86 46 C76 48 70 54 66 64 Z" fill="#111111"/>
+    <path d="M68 50 L74 64 L78 52 L82 66 L86 52 L90 64 L94 50" stroke="#111111" stroke-width="2.5" fill="#111111" stroke-linejoin="round"/>
+    <path d="M74 38 Q82 36 90 40" stroke="#DDE4C3" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

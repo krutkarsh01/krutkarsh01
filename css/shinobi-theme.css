@@ -702,34 +702,25 @@ nav .con {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--kurama-orange), var(--shinobi-gold), var(--rasengan-cyan), transparent);
-  box-shadow: 0 0 16px var(--kurama-orange-glow);
+  background: linear-gradient(90deg, transparent, #00E5FF, #10B981, #6366F1, transparent);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
 }
 
 /* Jiraiya Sacred Summoning Scroll Callout (口寄せの巻物) */
 .closing-callout-col {
-  background: var(--headband-metal) !important;
-  border: 1px solid var(--shinobi-border) !important;
-  border-left: 4px solid var(--kurama-orange) !important;
-  border-radius: 14px !important;
+  background: rgba(3, 12, 20, 0.78) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-left: 3px solid #00E5FF !important;
+  border-radius: 16px !important;
   padding: 2rem !important;
   position: relative !important;
   overflow: hidden !important;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--headband-shine) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
 .closing-callout-col::after {
-  content: "油";
-  position: absolute;
-  top: -10px;
-  right: 15px;
-  font-size: 5.5rem;
-  font-weight: 900;
-  color: var(--kurama-orange);
-  opacity: 0.08;
-  font-family: "Noto Serif JP", serif;
-  pointer-events: none;
-  line-height: 1;
+  display: none !important;
+  content: none !important;
 }
 
 .footer-statement {
@@ -769,10 +760,10 @@ nav .con {
     0 2px 0 #323d4e,
     0 3px 0 #283242,
     0 4px 0 #1f2734,
-    0 0 15px rgba(255, 165, 2, 0.9),
-    0 0 35px var(--kurama-orange, #ff5e1a),
-    0 0 60px rgba(255, 94, 26, 0.8),
-    0 0 85px rgba(255, 94, 26, 0.5) !important;
+    0 0 15px rgba(0, 229, 255, 0.8),
+    0 0 35px rgba(0, 229, 255, 0.5),
+    0 0 60px rgba(16, 185, 129, 0.4),
+    0 0 85px rgba(99, 102, 241, 0.3) !important;
   cursor: pointer !important;
 }
 
@@ -852,12 +843,12 @@ nav .con {
 
 .journey-stage:hover {
   transform: translateY(-4px) scale(1.05);
-  filter: drop-shadow(0 0 12px rgba(255, 98, 0, 0.7));
+  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.7));
 }
 
 .journey-stage:hover .journey-stage-label {
-  fill: var(--kurama-orange) !important;
-  filter: drop-shadow(0 0 8px var(--kurama-orange-glow));
+  fill: #00E5FF !important;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
 }
 
 .stage-chakra-ring {
@@ -873,13 +864,13 @@ nav .con {
 
 .journey-marker-plane,
 .journey-marker-plane-mobile {
-  filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.9)) !important;
+  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.8)) !important;
 }
 
 .replay-journey-btn {
-  background: var(--headband-metal) !important;
-  border: 1px solid var(--headband-border) !important;
-  color: var(--shinobi-gold) !important;
+  background: rgba(0, 229, 255, 0.08) !important;
+  border: 1px solid rgba(0, 229, 255, 0.35) !important;
+  color: #00E5FF !important;
   font-family: var(--font-mono), monospace !important;
   font-size: 0.8rem !important;
   font-weight: 700 !important;
@@ -893,9 +884,10 @@ nav .con {
 }
 
 .replay-journey-btn:hover {
-  background: var(--kurama-orange) !important;
+  background: rgba(0, 229, 255, 0.22) !important;
+  border-color: #00E5FF !important;
   color: #ffffff !important;
-  box-shadow: 0 0 16px var(--kurama-orange-glow) !important;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.45) !important;
 }
 
 /* Completely suppress bottom-right intrusive floating pill */
@@ -2269,7 +2261,7 @@ body.osiris-theatre-open #chat-widget-container {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--kh-lime, #b5ff43);
+  color: var(--kh-lime, #00E5FF);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -2284,8 +2276,8 @@ body.osiris-theatre-open #chat-widget-container {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--kh-lime, #b5ff43);
-  box-shadow: 0 0 0 4px rgba(181, 255, 67, 0.25);
+  background: var(--kh-lime, #10B981);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
   animation: osirisBeaconPulse 2s infinite ease-in-out;
 }
 
