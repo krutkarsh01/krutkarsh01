@@ -2491,7 +2491,8 @@ Section-by-section precision refactoring:
    - **Aurora-Reactive Font Idea:** Implement font styles and ambient gradients that interact harmoniously with the moving aurora while maintaining maximum legibility across all 8 pages.
 
 #### M — MISSION
-1. **Task 1: Elevate "Engineering Stack & Platform Exposure" (IMAGE 1 $ightarrow$ IMAGE 4 Match):**
+1. **Task 1: Elevate "Engineering Stack & Platform Exposure" (IMAGE 1 $
+ightarrow$ IMAGE 4 Match):**
    - Wrap `.tech-cloud` inside a dedicated `.skill-category-card` container in `skills/index.html`.
    - Upgrade `.tech-item` pills with dark frosted backing (`rgba(6, 20, 32, 0.8)`), `backdrop-filter: blur(12px)`, crisp border (`1px solid rgba(255, 255, 255, 0.16)`), pure white text (`#FFFFFF`), and cyan hover glow.
 2. **Task 2: High-Contrast Frosted Glass for Callout Banners & Subpage Headers (IMAGE 2 & 3):**
@@ -2501,7 +2502,11 @@ Section-by-section precision refactoring:
      - Upgrade all `.sec-desc` across all 8 pages with high-contrast text: `color: #E2E8F0 !important;` and protective text drop-shadows (`0 2px 10px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9) !important;`).
      - Upgrade `.sec-tag`: `background: rgba(4, 16, 26, 0.85) !important; backdrop-filter: blur(14px) !important; border: 1px solid rgba(0, 229, 255, 0.4) !important; color: #00E5FF !important;`.
 3. **Task 3: Aurora-Reactive Font Gradient & Ambient Glow Across All Pages:**
-   - Enhance `.gradient-text` with an aurora-shifting animated gradient that flows harmoniously between White $ightarrow$ Cyan (`#00E5FF`) $ightarrow$ Sky (`#38BDF8`) $ightarrow$ Emerald (`#10B981`) $ightarrow$ White.
+   - Enhance `.gradient-text` with an aurora-shifting animated gradient that flows harmoniously between White $
+ightarrow$ Cyan (`#00E5FF`) $
+ightarrow$ Sky (`#38BDF8`) $
+ightarrow$ Emerald (`#10B981`) $
+ightarrow$ White.
    - Add ambient aurora glow (`drop-shadow(0 0 14px rgba(0, 229, 255, 0.35))`) and deep backing shadow (`drop-shadow(0 2px 10px rgba(0, 0, 0, 0.85))`) to guarantee readability regardless of background brightness.
 4. **Task 4: Chrome CDP Verification & Screenshot Proof:**
    - Test each page and verify visual output with Chrome CDP screenshot captures.
