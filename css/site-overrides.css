@@ -4,6 +4,41 @@
    removed on its own. Grouped by purpose.
    ========================================================================== */
 
+/* ---------- Remove extra layer of glass from Core Value Proposition header ---------- */
+#core-value-proposition .sec-header,
+.pillars-grand-deck .sec-header,
+html body #core-value-proposition .sec-header {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 auto 1.5rem auto !important;
+}
+
+/* ---------- Natural left positioning for mobile/tablet cradle hand (hides cut wrist off-screen) ---------- */
+.nl-hero-hand-mobile-cradle {
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+@media (max-width: 768px) {
+  .nl-hero-hand-mobile-cradle {
+    width: clamp(340px, 90vw, 480px) !important;
+    left: 50% !important;
+    transform: translateX(-81%) !important;
+    top: 36px !important;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nl-hero-hand-mobile-cradle {
+    width: clamp(480px, 66vw, 560px) !important;
+    left: 50% !important;
+    transform: translateX(-82%) !important;
+    top: 44px !important;
+  }
+}
+
 /* ---------- 1. Sticky header: overflow-x:hidden breaks position:sticky ---------- */
 html, body {
   overflow-x: clip !important;
@@ -42,6 +77,27 @@ main section.nl-hero {
   .osiris-legend-item,
   .osiris-col-left .osiris-legend-item {
     font-size: 11px !important;
+  }
+  /* Consistent PlanWithKumar natural mixed-case typography */
+  a.nl-brand-center,
+  .nl-brand-center {
+    display: inline-flex !important;
+    font-size: clamp(14px, 3.8vw, 17px) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+  }
+}
+@media (min-width: 769px) {
+  a.nl-brand-center,
+  .nl-brand-center {
+    font-size: clamp(17px, 1.5vw, 22px) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em !important;
+    text-transform: none !important;
   }
 }
 body { padding-bottom: 0 !important; }
