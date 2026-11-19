@@ -241,7 +241,7 @@
   var CONFIG = {
     amplitude: 1.0,
     height: 0.42,
-    intensity: 1.0,
+    intensity: 0.62,
     layers: 2.0,
     placement: 'top', // 'top' = uFlip 0.0, 'bottom' = uFlip 1.0
     rays: 0.7,

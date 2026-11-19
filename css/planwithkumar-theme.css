@@ -580,12 +580,12 @@ nav .btn-nav-cta:hover {
 
 /* Global Atlas & Osiris Deck Frosted Dark Glass Styling (Matches Cosmic Northern Lights) */
 .osiris-deck {
-  background: rgba(4, 20, 18, 0.72) !important;
-  backdrop-filter: blur(28px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: var(--cos-radius-lg) !important;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(0, 229, 255, 0.08) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 40px rgba(0, 229, 255, 0.08) !important;
   overflow: hidden !important;
   color: #FFFFFF !important;
 }
@@ -602,8 +602,8 @@ nav .btn-nav-cta:hover {
 .osiris-col-left {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
-  gap: 12px !important;
+  justify-content: flex-start !important;
+  gap: 16px !important;
   min-width: 0 !important;
   position: relative !important;
   height: 100% !important;
@@ -614,6 +614,8 @@ nav .btn-nav-cta:hover {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .osiris-col-left #globe-canvas-wrap.kh-scene {
@@ -627,10 +629,13 @@ nav .btn-nav-cta:hover {
 }
 
 .osiris-col-left .osiris-deck-controls {
-  background: rgba(2, 13, 11, 0.55) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 12px !important;
+  background: rgba(2, 10, 8, 0.96) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 14px !important;
   padding: 10px 16px !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
   margin-top: 0 !important;
 }
 
@@ -734,13 +739,15 @@ nav .btn-nav-cta:hover {
   font-family: 'Outfit', var(--font-heading), -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 700 !important;
   font-size: 26px !important;
-  letter-spacing: -0.035em !important;
+  letter-spacing: -0.012em !important;
 }
 
 .osiris-subtitle {
-  color: #94A3B8 !important;
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
   font-size: 15px !important;
-  line-height: 1.6 !important;
+  line-height: 1.65 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95) !important;
 }
 
 .osiris-deck-controls {
@@ -870,12 +877,12 @@ nav .btn-nav-cta:hover {
 }
 
 .osiris-dossier-card {
-  background: rgba(2, 18, 15, 0.58) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  background: rgba(2, 10, 8, 0.96) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 24px !important;
-  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
   padding: 28px !important;
   color: #FFFFFF !important;
 }
@@ -926,7 +933,7 @@ nav .btn-nav-cta:hover {
   font-family: 'Outfit', var(--font-heading), -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: clamp(32px, 4.5vw, 64px) !important;
   font-weight: 700 !important;
-  letter-spacing: -0.035em !important;
+  letter-spacing: -0.015em !important;
   color: #FFFFFF !important;
 }
 
@@ -940,32 +947,49 @@ nav .btn-nav-cta:hover {
 
 .teaser-pillars-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-  gap: 20px !important;
-  margin-top: 48px !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px !important;
+  margin-top: 28px !important;
+}
+
+@media (max-width: 1023px) {
+  .teaser-pillars-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .teaser-pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .teaser-pillar-card {
-  background: rgba(2, 20, 16, 0.52) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: 26px !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
-  padding: 34px 28px !important;
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 32px rgba(0, 229, 255, 0.08) !important;
+  padding: 24px 20px !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  min-height: 220px !important;
+  min-height: 200px !important;
   color: #FFFFFF !important;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .teaser-pillar-card:hover {
   transform: translateY(-6px) !important;
-  background: rgba(3, 26, 21, 0.65) !important;
-  border-color: rgba(0, 229, 255, 0.5) !important;
-  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.55), 0 0 28px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  background: rgba(4, 24, 21, 0.98) !important;
+  border-color: rgba(0, 229, 255, 0.8) !important;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.92), 0 0 36px rgba(0, 229, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.teaser-pillar-card:hover .teaser-pillar-link {
+  color: #00E5FF !important;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.6) !important;
 }
 
 .teaser-pillar-card h3 {
@@ -978,8 +1002,11 @@ nav .btn-nav-cta:hover {
 
 .teaser-pillar-card p {
   font-size: 15px !important;
-  line-height: 22px !important;
-  color: #94A3B8 !important;
+  line-height: 24px !important;
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95), 0 0 1px rgba(0, 0, 0, 0.95) !important;
   margin: 0 0 20px !important;
 }
 
@@ -1013,29 +1040,55 @@ nav .btn-nav-cta:hover {
 }
 
 .curved-card-inner {
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 24px !important;
-  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
-  background: rgba(2, 18, 15, 0.6) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+  background: rgba(4, 18, 16, 0.94) !important;
+  backdrop-filter: blur(36px) saturate(210%) contrast(105%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(210%) contrast(105%) !important;
   color: #FFFFFF !important;
+  overflow: hidden !important;
 }
 
 .curved-card-caption {
   font-family: var(--cos-font-family) !important;
   color: #FFFFFF !important;
-  background: rgba(2, 16, 14, 0.72) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 16px !important;
-  padding: 10px 16px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  background: rgba(2, 10, 8, 0.94) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 14px !important;
+  padding: 10px 18px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
 }
 
-.curved-card-top-tag {
-  display: none !important;
+/* Category Pill Tag Docked at Bottom of Card — Zero Logo Obstruction (Image 3 Fix) */
+.curved-card-top-tag,
+.curved-card-inner .curved-card-top-tag {
+  position: absolute !important;
+  bottom: 14px !important;
+  top: auto !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  font-family: var(--cos-font-mono, monospace) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  background: rgba(2, 10, 8, 0.92) !important;
+  color: #00E5FF !important;
+  -webkit-text-fill-color: #00E5FF !important;
+  border: 1px solid rgba(0, 229, 255, 0.35) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  padding: 5px 14px !important;
+  border-radius: 9999px !important;
+  z-index: 5 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  pointer-events: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
 }
 
 /* IMAGE 2 Template Hover Effect: View Case Study Pill Button */
@@ -1165,36 +1218,41 @@ nav .btn-nav-cta:hover {
 }
 
 .callout-banner-split {
-  background: rgba(2, 18, 15, 0.52) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
   border-radius: 32px !important;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
-  padding: clamp(28px, 4vw, 52px) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 0 32px rgba(0, 229, 255, 0.08) !important;
+  padding: clamp(28px, 3.5vw, 44px) !important;
+  align-items: flex-start !important;
 }
 
 .callout-title {
   font-family: 'Outfit', var(--font-heading), -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: clamp(30px, 3.8vw, 48px) !important;
   font-weight: 700 !important;
-  letter-spacing: -0.035em !important;
+  letter-spacing: -0.015em !important;
   color: #FFFFFF !important;
 }
 
 .callout-desc {
   font-size: 17px !important;
-  color: #94A3B8 !important;
+  line-height: 26px !important;
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95), 0 0 1px rgba(0, 0, 0, 0.95) !important;
 }
 
 .guarantee-chip {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(2, 10, 8, 0.96) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 18px !important;
   padding: 18px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
   color: #FFFFFF !important;
 }
 
@@ -1203,16 +1261,19 @@ nav .btn-nav-cta:hover {
 }
 
 .guarantee-chip p {
-  color: #94A3B8 !important;
+  color: #F1F5F9 !important;
+  -webkit-text-fill-color: #F1F5F9 !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 .shinobi-contact-wrap {
-  background: rgba(3, 24, 20, 0.62) !important;
-  backdrop-filter: blur(28px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(2, 10, 8, 0.96) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-radius: 28px !important;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
   padding: clamp(24px, 3.5vw, 36px) !important;
   color: #FFFFFF !important;
 }
@@ -1225,13 +1286,23 @@ nav .btn-nav-cta:hover {
 }
 
 .shinobi-contact-subtitle {
-  color: #94A3B8 !important;
+  color: #F1F5F9 !important;
+  -webkit-text-fill-color: #F1F5F9 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
 }
 
 .shinobi-form-label {
   font-size: 13px !important;
   font-weight: 600 !important;
   color: #E2E8F0 !important;
+}
+
+.shinobi-form-input,
+.shinobi-form-select,
+.shinobi-form-textarea {
+  background: rgba(1, 6, 5, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #FFFFFF !important;
 }
 
 .shinobi-form-submit-btn {
@@ -1716,7 +1787,7 @@ a.nl-brand-center:hover,
     radial-gradient(ellipse 85% 45% at 30% 20%, rgba(0, 230, 255, 0.65) 0%, rgba(138, 43, 226, 0.25) 50%, transparent 80%) !important;
   filter: blur(65px) !important;
   -webkit-filter: blur(65px) !important;
-  opacity: 0.88 !important;
+  opacity: 0.58 !important;
   mix-blend-mode: screen !important;
   pointer-events: none !important;
   animation: auroraBreatheSlow 9.5s ease-in-out infinite alternate !important;
@@ -1731,7 +1802,7 @@ a.nl-brand-center:hover,
   height: 70% !important;
   filter: blur(38px) !important;
   -webkit-filter: blur(38px) !important;
-  opacity: 0.85 !important;
+  opacity: 0.55 !important;
   mix-blend-mode: screen !important;
   pointer-events: none !important;
 }
@@ -1994,13 +2065,13 @@ main section.nl-hero,
   width: 100% !important;
   height: 100% !important;
   background:
-    radial-gradient(ellipse 85% 55% at 50% 18%, rgba(0, 255, 140, 0.26) 0%, rgba(0, 230, 255, 0.15) 40%, transparent 75%),
-    radial-gradient(ellipse 95% 45% at 30% 10%, rgba(0, 230, 255, 0.18) 0%, rgba(130, 50, 220, 0.10) 45%, transparent 75%) !important;
+    radial-gradient(ellipse 85% 55% at 50% 18%, rgba(0, 255, 140, 0.16) 0%, rgba(0, 230, 255, 0.09) 40%, transparent 75%),
+    radial-gradient(ellipse 95% 45% at 30% 10%, rgba(0, 230, 255, 0.11) 0%, rgba(130, 50, 220, 0.06) 45%, transparent 75%) !important;
   pointer-events: none !important;
   z-index: 1 !important;
   mix-blend-mode: screen !important;
   display: block !important;
-  opacity: 1 !important;
+  opacity: 0.8 !important;
   visibility: visible !important;
 }
 
@@ -2313,49 +2384,267 @@ html body .nl-hero-bio p,
   }
 }
 
+/* Default desktop: mobile cradle hand is hidden */
+.nl-hero-hand-mobile-cradle {
+  display: none !important;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nl-nav,
+  html body nav.nl-nav,
+  html body .nl-nav {
+    padding: 14px 28px !important;
+  }
+  .nl-monogram-img {
+    width: 60px !important;
+  }
+  a.nl-brand-center,
+  .nl-brand-center {
+    display: inline-flex !important;
+    font-size: 16px !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+  }
+  .nl-hero-hand-right {
+    width: clamp(320px, 38vw, 420px) !important;
+    max-height: 50vh !important;
+    top: -30px !important;
+    right: 0 !important;
+    opacity: 0.9 !important;
+    z-index: 2 !important;
+  }
+  .nl-hero-hand-left {
+    display: none !important;
+  }
+  .nl-hero-hand-mobile-cradle {
+    display: block !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-66%) !important;
+    top: 48px !important;
+    width: clamp(340px, 48vw, 440px) !important;
+    height: auto !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.9)) !important;
+  }
+  .nl-character-hand-anchor {
+    position: relative !important;
+    margin: 28px auto 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 15 !important;
+  }
+  .nl-anime-character-wrap {
+    position: relative !important;
+    z-index: 3 !important;
+  }
+  .nl-hero-line-1 {
+    font-size: clamp(34px, 4.4vw, 46px) !important;
+  }
+  .nl-hero-line-2 {
+    font-size: clamp(30px, 4.0vw, 42px) !important;
+  }
+}
+
 @media (max-width: 768px) {
+  /* 1. Header Navbar: Clean Dual-Anchor Spacing (Zero Overlap) with Full Brand Presence */
+  .nl-nav,
+  html body nav.nl-nav,
+  html body .nl-nav {
+    padding: 12px 18px !important;
+  }
+
+  .nl-monogram-img {
+    width: 48px !important;
+    height: auto !important;
+  }
+
+  /* Restore PLAN WITH KUMAR center wordmark on mobile with proportional typography */
+  a.nl-brand-center,
+  .nl-brand-center {
+    display: inline-flex !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: clamp(11px, 3.2vw, 14px) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    white-space: nowrap !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95) !important;
+    z-index: 10 !important;
+  }
+
+  .nl-menu-btn {
+    padding: 6px 14px !important;
+    font-size: 12px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* 2. Hero Section Container: Natural Responsive Flow */
+  html body .nl-hero,
+  main section.nl-hero,
+  .nl-hero {
+    height: auto !important;
+    min-height: 100svh !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding-bottom: 28px !important;
+  }
+
   .nl-hero-content {
-    justify-content: flex-start;
-    gap: 36px;
-    padding: 90px 20px 28px;
+    padding: 76px 16px 20px !important;
+    gap: 0 !important;
+    justify-content: flex-start !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* 3. Stone Hands Scale & Positioning: Mobile Cradle Hand Seamlessly Cradling Seated 3D Avatar */
+  .nl-hero-hand-right {
+    position: absolute !important;
+    top: -15px !important;
+    right: 0 !important;
+    width: clamp(140px, 36vw, 220px) !important;
+    max-height: 28vh !important;
+    opacity: 0.85 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9)) !important;
+  }
+
+  .nl-hero-hand-left {
+    display: none !important;
+  }
+
+  .nl-hero-hand-mobile-cradle {
+    display: block !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-66%) !important;
+    top: 36px !important;
+    width: clamp(280px, 75vw, 360px) !important;
+    height: auto !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9)) !important;
   }
 
   .nl-character-hand-anchor {
-    position: relative;
-    left: 0;
-    bottom: 0;
-    margin: 20px auto 0;
-    text-align: center;
+    position: relative !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    margin: 20px auto 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 10 !important;
   }
 
   .nl-anime-character-wrap {
-    margin: 0 auto;
-    width: 180px;
-    height: 210px;
+    position: relative !important;
+    z-index: 3 !important;
   }
 
-  .nl-hand-drawn-callout {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    justify-content: center;
-    margin-top: 10px;
+  /* 4. Hero Headline Typography: Balanced 2-Line Hierarchy & Legibility */
+  .nl-hero-titles-wrap {
+    margin: 20px auto 0 !important;
+    max-width: 100% !important;
+    padding: 0 4px !important;
+    z-index: 10 !important;
   }
 
+  .nl-hero-title {
+    gap: 8px !important;
+  }
+
+  .nl-hero-line {
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+
+  .nl-hero-line-1 {
+    font-size: clamp(24px, 6.8vw, 32px) !important;
+    line-height: 1.18 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .nl-hero-line-2 {
+    font-size: clamp(21px, 6.0vw, 28px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.015em !important;
+  }
+
+  .gradient-text {
+    display: inline !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  /* 5. 3D Character & Typewriter Console Stack */
+  .nl-character-hand-anchor {
+    position: relative !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    margin: 24px auto 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 15 !important;
+  }
+
+  .nl-anime-character-wrap {
+    width: clamp(150px, 40vw, 180px) !important;
+    height: clamp(170px, 46vw, 210px) !important;
+    margin: 0 auto !important;
+  }
+
+  .nl-laptop-stream-bubble {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 12px auto 0 !important;
+    max-width: min(90vw, 360px) !important;
+    padding: 7px 16px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 6. Bio Card: Centered Clean Frosted Glass Panel */
   .nl-hero-bio {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    max-width: 100%;
-    text-align: center;
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 24px auto 8px !important;
+    width: min(92vw, 440px) !important;
+    max-width: 100% !important;
+    padding: 16px 20px !important;
+    border-radius: 18px !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    z-index: 10 !important;
   }
 
+  .nl-hero-bio p {
+    font-size: 13.5px !important;
+    line-height: 21px !important;
+    text-align: left !important;
+  }
+
+  .nl-hand-drawn-callout,
   .nl-time-slider-widget {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    margin: 10px auto;
+    display: none !important;
   }
 }
 
@@ -2795,7 +3084,6 @@ html body .ku-site-footer .footer-contact-btn {
 .growth-event-item,
 .contact-card,
 .contact-split-banner,
-.shinobi-contact-wrap,
 .experience-card,
 .role-card,
 .process-step,
@@ -2806,13 +3094,36 @@ html body .ku-site-footer .footer-contact-btn {
 .review-card,
 .teaser-pillar-card,
 .curved-card-inner,
-.sec-header {
-  background: rgba(4, 20, 18, 0.72) !important;
-  backdrop-filter: blur(24px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 24px rgba(0, 229, 255, 0.06) !important;
+.sec-header,
+.skill-category-card,
+.about-quote,
+.dossier-card,
+.callout-card,
+.proto-device-notice {
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 28px rgba(0, 229, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+/* Tier 2 Nested Sub-Glasses: Darker Depth & Zero Aurora Bleed */
+.guarantee-chip,
+.shinobi-contact-wrap,
+.osiris-dossier-card,
+.osiris-telemetry-box,
+.osiris-deck-controls,
+.osiris-status-badge,
+.timeline-step-inner,
+.experience-pill,
+.skill-tag-pill {
+  background: rgba(2, 10, 8, 0.96) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
   color: #FFFFFF !important;
 }
 
@@ -3058,13 +3369,96 @@ h6,
   line-height: 1.25 !important;
 }
 
-/* 3. Primary Body Text & Descriptions (Slate-300 / High-Contrast #CBD5E1 - 11:1+ ratio) */
+/* ==========================================================================
+   GRAND GLASS DECKS (Image 1 & Image 2 Unified Enclosures)
+   ========================================================================== */
+.pillars-grand-deck,
+.prototypes-grand-deck {
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 32px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 32px rgba(0, 229, 255, 0.08) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  color: #FFFFFF !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.pillars-grand-deck:hover {
+  border-color: rgba(0, 229, 255, 0.4) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 0 36px rgba(0, 229, 255, 0.14) !important;
+}
+
+.pillars-grand-deck {
+  padding: 28px 24px 24px !important;
+  margin: 0 auto !important;
+}
+
+.pillars-grand-deck .sec-header {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 auto 1.25rem auto !important;
+}
+
+@media (min-width: 1024px) {
+  .pillars-grand-deck .teaser-pillars-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 14px !important;
+    margin-top: 0 !important;
+  }
+
+  .pillars-grand-deck .teaser-pillar-card {
+    padding: 22px 18px !important;
+    min-height: 190px !important;
+  }
+}
+
+.prototypes-grand-deck {
+  padding: 20px 0 14px !important;
+  margin: 0 auto !important;
+}
+
+.prototypes-grand-deck .section-meta {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 24px !important;
+  margin: 0 auto 0.25rem auto !important;
+}
+
+#prototypesGrandDeck .sec-title {
+  font-size: clamp(1.75rem, 2.6vw, 2.3rem) !important;
+  margin-bottom: 4px !important;
+}
+
+#prototypesGrandDeck .sec-desc {
+  margin-top: 4px !important;
+  font-size: 14px !important;
+  max-width: 680px !important;
+}
+
+.prototypes-grand-deck .gallery-nav-bar {
+  margin-top: 8px !important;
+}
+
+.prototypes-grand-deck .gallery-see-all-wrap {
+  margin-top: 8px !important;
+}
+
+/* 3. Primary Body Text & Descriptions (High-Contrast Radiant White #F8FAFC - Maximum Legibility Shield) */
 p,
 .sec-desc,
 .kh-desc,
+.osiris-subtitle,
 .osiris-dossier-desc,
 #hub-card-desc,
 .teaser-pillar-card p,
+.callout-desc,
 .shinobi-contact-subtitle,
 .shinobi-thankyou-text,
 .footer-nindo-sub,
@@ -3078,11 +3472,14 @@ p,
 .skill-desc,
 .deliverable-card p,
 .process-step p {
-  color: #CBD5E1 !important;
-  line-height: 1.6 !important;
+  color: #F8FAFC !important;
+  -webkit-text-fill-color: #F8FAFC !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95), 0 0 1px rgba(0, 0, 0, 0.95) !important;
 }
 
-/* 4. Muted Labels, Captions, Flags & Secondary Metadata (Slate-400 / #94A3B8) */
+/* 4. Muted Labels, Captions, Flags & Secondary Metadata (Elevated to High-Contrast Silver #CBD5E1) */
 .caption-flag,
 .gallery-drag-hint,
 .osiris-select-label,
@@ -3090,6 +3487,15 @@ p,
 .osiris-legend-item,
 .shinobi-form-label,
 .kh-stats dt,
+.footer-nav-grid a,
+.meta-mono-coord,
+.meta-role-desc,
+.meta-copyright,
+.current-year-val {
+  color: #CBD5E1 !important;
+  -webkit-text-fill-color: #CBD5E1 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+}
 .footer-nav-grid a,
 .meta-mono-coord,
 .meta-role-desc,
@@ -3287,12 +3693,10 @@ button.btn-secondary:hover {
   transform: translateX(4px) !important;
 }
 
-/* Universal Crisp Text Outlines (Image 2: Thin Black Border for Colored & White Texts) */
-.gradient-text,
+/* Universal Crisp Text Outlines (Excluding gradient-text so transparent fills do not bleed black stroke) */
 .hero-title,
 .hero-title-main,
 .sec-title,
-.sec-title *,
 h1,
 h2,
 h3,
@@ -3304,18 +3708,30 @@ h3,
 }
 
 .gradient-text,
+.sec-title .gradient-text,
+.osiris-title .gradient-text,
 .nl-hero-line .gradient-text,
 .footer-statement .gradient-text {
   font-family: 'Outfit', var(--font-heading), -apple-system, BlinkMacSystemFont, sans-serif !important;
-  letter-spacing: -0.035em !important;
+  letter-spacing: -0.012em !important;
   font-weight: 700 !important;
   background: linear-gradient(135deg, #FFFFFF 0%, #38BDF8 50%, #00E5FF 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.85) !important;
-  paint-order: stroke fill !important;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 14px rgba(0, 229, 255, 0.35)) !important;
+  -webkit-text-stroke: 0px transparent !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 16px rgba(0, 229, 255, 0.45)) !important;
+}
+
+.title-line-block {
+  display: inline-block !important;
+}
+
+@media (max-width: 768px) {
+  .title-line-block {
+    display: block !important;
+    margin: 2px 0 !important;
+  }
 }
 
 /* ==========================================================================
@@ -3325,21 +3741,22 @@ h3,
 /* Breakpoint 1: Desktop (>= 1024px) */
 @media (min-width: 1024px) {
   #portfolio-curved-gallery .curved-gallery-viewport {
-    height: 640px !important;
-    perspective: 1400px !important;
+    height: 440px !important;
+    perspective: 1300px !important;
+    margin: 0.25rem auto 0.5rem auto !important;
   }
 
   .curved-card {
-    width: 370px !important;
-    height: 500px !important;
+    width: 290px !important;
+    height: 380px !important;
   }
 
   .curved-card-caption {
-    bottom: -52px !important;
+    bottom: -44px !important;
   }
 
   .caption-title {
-    font-size: 1.05rem !important;
+    font-size: 0.95rem !important;
   }
 }
 
@@ -3524,10 +3941,12 @@ h3,
 }
 
 .gradient-text,
+.sec-title .gradient-text,
+.osiris-title .gradient-text,
 .nl-hero-line .gradient-text,
 .footer-statement .gradient-text {
   font-family: 'Outfit', var(--font-heading), -apple-system, BlinkMacSystemFont, sans-serif !important;
-  letter-spacing: -0.035em !important;
+  letter-spacing: -0.012em !important;
   font-weight: 700 !important;
   background: linear-gradient(135deg, #FFFFFF 0%, #38BDF8 25%, #00E5FF 50%, #10B981 75%, #FFFFFF 100%) !important;
   background-size: 250% 250% !important;
@@ -3535,8 +3954,8 @@ h3,
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.85) !important;
-  paint-order: stroke fill !important;
+  -webkit-text-stroke: 0px transparent !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 16px rgba(0, 229, 255, 0.4)) !important;
 }
 
 /* 2. Frosted Glass Benchmark (Image 4 Standard for All Cards) */
@@ -4035,4 +4454,150 @@ h3,
   color: #00E5FF !important;
   letter-spacing: 0.08em !important;
   font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   UNIVERSAL SUBPAGE SPLIT HERO & 3D ANIME CHARACTER SHOWCASE (v4.24.0)
+   ========================================================================== */
+.subpage-hero {
+  padding: clamp(36px, 5.5vw, 68px) 0 clamp(32px, 4.5vw, 52px);
+  position: relative;
+  z-index: 10;
+}
+
+.subpage-hero-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.subpage-hero-card {
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) contrast(108%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 28px !important;
+  padding: clamp(28px, 4vw, 44px) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 32px rgba(0, 229, 255, 0.08) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+.subpage-hero-card:hover {
+  border-color: rgba(0, 229, 255, 0.4) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 0 40px rgba(0, 229, 255, 0.16) !important;
+}
+
+.subpage-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 12px var(--font-mono), monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #00E5FF !important;
+  margin-bottom: 1rem;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.subpage-hero-title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #FFFFFF !important;
+  margin: 0 0 1.25rem;
+}
+
+.subpage-hero-sub {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.65;
+  color: #F8FAFC !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+  max-width: 580px;
+  margin: 0 0 1.75rem;
+}
+
+.subpage-hero-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.subpage-character-col {
+  justify-self: end;
+  width: min(100%, 340px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subpage-character-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  padding: 18px;
+  border-radius: 999px 999px 24px 24px;
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  background: radial-gradient(circle at 50% 35%, rgba(0, 229, 255, 0.16) 0%, rgba(3, 16, 14, 0.94) 80%);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 0 36px rgba(0, 229, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.subpage-character-frame:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 229, 255, 0.7);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.95), 0 0 44px rgba(0, 229, 255, 0.3);
+}
+
+.subpage-character-img {
+  width: 90%;
+  height: auto;
+  max-height: 85%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.8));
+  animation: subpageCharFloat 5s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes subpageCharFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+.subpage-character-caption {
+  margin-top: 0.85rem;
+  font: 600 12px var(--font-mono), monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #00E5FF;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .subpage-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .subpage-character-col {
+    justify-self: center;
+    width: min(100%, 300px);
+  }
+  .subpage-character-frame {
+    aspect-ratio: 16 / 11;
+    border-radius: 24px;
+  }
 }

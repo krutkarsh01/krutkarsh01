@@ -1461,10 +1461,11 @@ html.mobile-wireframe-mode body::before {
     z-index: 2 !important;
   }
 
-  /* Top tag badge floating at top center as in IMAGE 1 */
+  /* Category badge docked at bottom center — zero logo obstruction */
   .curved-card-top-tag {
     position: absolute !important;
-    top: 14px !important;
+    bottom: 14px !important;
+    top: auto !important;
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) !important;
