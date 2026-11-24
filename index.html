@@ -382,12 +382,6 @@
           <div class="osiris-col-right">
             <!-- Tactical Masthead Ribbon -->
             <div class="osiris-masthead">
-              <div class="osiris-badge-row">
-                <div class="osiris-status-badge">
-                  <span class="osiris-beacon" aria-hidden="true"></span>
-                  <span class="osiris-code">01 / GLOBAL CLIENT ATLAS</span>
-                </div>
-              </div>
               <h2 class="osiris-title"><span class="title-line-block">Delivering in</span> <span
                   class="gradient-text title-line-block">34 Global Markets</span></h2>
               <p class="osiris-subtitle">Explore client engagements, interactive multi-role prototypes, and verified
@@ -486,7 +480,6 @@
       <div class="con">
         <div class="pillars-grand-deck osiris-deck" id="pillarsGrandDeck">
           <div class="sec-header text-center">
-            <div class="sec-tag">Core Value Proposition</div>
             <h2 class="sec-title"><span class="title-line-block">Architecting Products for</span> <span
                 class="gradient-text title-line-block">Enterprise Scale</span></h2>
             <p class="sec-desc">Four foundational pillars that bridge executive vision, client investment, and
@@ -494,38 +487,29 @@
               velocity.</p>
           </div>
           <div class="teaser-pillars-grid">
-            <div class="teaser-pillar-card">
+            <div class="teaser-pillar-card" onclick="openPillarModal(0)" role="button" tabindex="0" aria-label="Open AI and Agentic Systems Specification">
               <div class="teaser-pillar-icon">🤖</div>
               <h3>AI &amp; Agentic Systems</h3>
-              <p>Architecting LLM orchestration, structured output evaluation, and human-in-the-loop fallback loops that
-                eliminate hallucinations in production.</p> <a href="/skills/" class="teaser-pillar-link">Explore AI
-                Skills ↗</a>
+              <p>Architecting LLM orchestration, structured output evaluation, and human-in-the-loop fallback loops that eliminate hallucinations in production.</p>
+              <div class="pillar-read-more-pill">Read Full Spec ↗</div>
             </div>
-            <div class="teaser-pillar-card">
+            <div class="teaser-pillar-card" onclick="openPillarModal(1)" role="button" tabindex="0" aria-label="Open Multi-Actor Ecosystems Specification">
               <div class="teaser-pillar-icon">🌐</div>
               <h3>Multi-Actor Ecosystems</h3>
-              <p>Modeling complex multi-sided platforms (marketplaces, logistics fleets, medical practices) with
-                granular
-                role-based access control and state machines.</p> <a href="/prototypes/" class="teaser-pillar-link">View
-                Multi-Actor Specs ↗</a>
+              <p>Modeling complex multi-sided platforms (marketplaces, logistics fleets, medical practices) with granular role-based access control and state machines.</p>
+              <div class="pillar-read-more-pill">Read Full Spec ↗</div>
             </div>
-            <div class="teaser-pillar-card">
+            <div class="teaser-pillar-card" onclick="openPillarModal(2)" role="button" tabindex="0" aria-label="Open Documentation-First Delivery Specification">
               <div class="teaser-pillar-icon">📐</div>
               <h3>Documentation-First Delivery</h3>
-              <p>Replacing ambiguous 60-page Word documents with interactive HTML sandbox prototypes and Gherkin BDD
-                user
-                stories, reducing rework by over 35%.</p> <a href="/process/" class="teaser-pillar-link">See My 8-Step
-                Process
-                ↗</a>
+              <p>Replacing ambiguous 60-page Word documents with interactive HTML sandbox prototypes and Gherkin BDD user stories, reducing rework by over 35%.</p>
+              <div class="pillar-read-more-pill">Read Full Spec ↗</div>
             </div>
-            <div class="teaser-pillar-card">
+            <div class="teaser-pillar-card" onclick="openPillarModal(3)" role="button" tabindex="0" aria-label="Open Global Compliance and Scalability Specification">
               <div class="teaser-pillar-icon">⚖️</div>
               <h3>Global Compliance &amp; Scalability</h3>
-              <p>Designing architectures that navigate EU GDPR privacy, GCC VAT multi-currency ledgers, and US
-                interstate
-                freight compliance frameworks.</p> <a href="/about/" class="teaser-pillar-link">Explore My Delivery
-                History
-                ↗</a>
+              <p>Designing architectures that navigate EU GDPR privacy, GCC VAT multi-currency ledgers, and US interstate freight compliance frameworks.</p>
+              <div class="pillar-read-more-pill">Read Full Spec ↗</div>
             </div>
           </div>
         </div>
@@ -535,7 +519,6 @@
       <div class="con">
         <div class="prototypes-grand-deck osiris-deck" id="prototypesGrandDeck">
           <div class="section-meta text-center" style="margin-bottom: 0.5rem;">
-            <span class="gallery-tag">PORTFOLIO IN FRAMES</span>
             <h2 id="portfolio-heading" class="sec-title" style="font-size: clamp(2rem, 4vw, 3.2rem);"><span
                 class="title-line-block">Real Platforms.</span> <span class="gradient-text title-line-block">Raw
                 Architectures.</span></h2>
@@ -786,7 +769,6 @@
         <div class="callout-banner-split">
           <!-- Left Column: Scope, Guarantees & Actions -->
           <div class="callout-content-col">
-            <div class="callout-tag">Ready to Ship?</div>
             <h2 class="callout-title">Need Living Specifications That Engineering Can Build Instantly?</h2>
             <p class="callout-desc">
               Available for executive consulting, full-time Senior BA / Lead PO appointments, and fractional product
@@ -822,7 +804,6 @@
           <div class="callout-form-col">
             <div class="shinobi-contact-wrap" id="home-contact-card" style="margin: 0; max-width: 100%;">
               <div class="shinobi-contact-header">
-                <div class="shinobi-contact-tag">⚡ Direct Dispatch Gateway</div>
                 <h3 class="shinobi-contact-title">Transmit Your Project Brief</h3>
                 <p class="shinobi-contact-subtitle">Direct line to me. Guaranteed response within 4 hours.
                 </p>
@@ -2009,6 +1990,44 @@
       </div>
     </div>
   </div>
+
+  <!-- Architecture Pillar Specification Modal (Image 4 Read-Full Modal) -->
+  <div id="pillar-modal" class="lightbox-modal" onclick="closePillarModal(event)" role="dialog" aria-modal="true" aria-labelledby="pillar-modal-title" inert>
+    <div class="lightbox-content pillar-modal-content" onclick="event.stopPropagation()">
+      <div class="pillar-modal-topbar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span id="pillar-modal-icon" style="font-size: 1.5rem; line-height: 1;"></span>
+          <span style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">PlanWithKumar</span>
+        </div>
+        <button class="lightbox-close" onclick="closePillarModal()" aria-label="Close Specification" style="position: static; margin: 0; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #FFFFFF; cursor: pointer; transition: all 0.2s;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="pillar-modal-inner">
+        <div style="margin-bottom: 0.75rem;">
+          <span id="pillar-modal-tag" style="font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; text-transform: uppercase; padding: 4px 12px; border-radius: 9999px; background: rgba(0, 229, 255, 0.12); border: 1px solid rgba(0, 229, 255, 0.35); color: #00E5FF; font-weight: 600; letter-spacing: 0.05em; display: inline-block;"></span>
+        </div>
+        <h3 id="pillar-modal-title" style="font-family: 'Outfit', sans-serif; font-size: clamp(1.4rem, 2.4vw, 1.95rem); font-weight: 800; color: #FFFFFF; letter-spacing: -0.02em; margin-bottom: 0.85rem;"></h3>
+        <p id="pillar-modal-desc" style="color: #CBD5E1; font-size: 0.98rem; line-height: 1.68; margin-bottom: 1.4rem;"></p>
+        
+        <div style="background: rgba(0, 229, 255, 0.06); border: 1px solid rgba(0, 229, 255, 0.22); border-radius: 14px; padding: 12px 18px; margin-bottom: 1.4rem;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; color: #00E5FF; letter-spacing: 0.06em; display: block; margin-bottom: 3px;">Verified Delivery Metric</span>
+          <strong id="pillar-modal-metric" style="color: #FFFFFF; font-size: 0.96rem; font-family: 'Outfit', sans-serif; font-weight: 600;"></strong>
+        </div>
+
+        <h4 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; color: #00E5FF; margin-bottom: 0.8rem;">Architecture &amp; Engineering Specifications</h4>
+        <ul id="pillar-modal-highlights" style="list-style: none; padding: 0; margin: 0 0 1.6rem 0; display: flex; flex-direction: column; gap: 10px;"></ul>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1.25rem;">
+          <a id="pillar-modal-link" href="#" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.4rem; font-size: 0.88rem;"></a>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closePillarModal()" style="padding: 0.5rem 1.4rem; font-size: 0.88rem;">Close Specification</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
   <script>(function () {
       const protoData = { "meax": { "tag": "\ud83d\ude9a On-Demand Logistics", "flag": "\ud83c\uddea\ud83c\uddf8 Spain", "title": "MEAX Delivery Marketplace & Multi-Role Logistics Ecosystem", "desc": "Engineered the functional architecture for a complex 5-sided on-demand delivery ecosystem. Mapped real-time order lifecycle state machines (Pending \u2192 Accepted \u2192 Preparing \u2192 Dispatched \u2192 Delivered), merchant catalog synchronization, dynamic dispatch routing, driver acceptance flows, customer live tracking, and administrative revenue commissions.", "problem": "High order drop-off rates and driver confusion caused by manual dispatch and disparate menu pricing.", "solution": "Automated 5-state dispatch lifecycle with unified ledger for merchant payouts and driver distance commissions.", "links": [{ "name": "Website", "url": "https://meaxwebsiteprototype.oneapp.dev/", "featured": true }, { "name": "Admin Panel", "url": "https://meaxadminpanelprototype.oneapp.dev/" }, { "name": "Merchant Dashboard", "url": "https://meaxmerchantdashboardprototype.oneapp.dev/" }, { "name": "Driver App", "url": "https://meaxdriverappprototype.oneapp.dev/" }, { "name": "Customer App", "url": "https://meaxcustomerappprototype.oneapp.dev/" }], "live": "", "liveLabel": "" }, "veterinarios": { "tag": "\ud83e\ude7a Healthcare & Veterinary SaaS", "flag": "\ud83c\uddea\ud83c\uddf8 Spain", "title": "112 Veterinarios Multi-Clinic Clinical & Emergency Healthcare", "desc": "Architected a multi-tenant clinical management platform handling medical emergency triage, veterinarian appointment calendars, patient EHR records, and multi-location practice revenue accounting.", "problem": "Clinic scheduling bottlenecks, double-booked operating theaters, and disorganized clinical pet records.", "solution": "Role-based access engine with emergency triage queue, automated reminders, and multi-practice medical history.", "links": [{ "name": "Guest / Public Website", "url": "https://112veterinarios-guestvisitor.oneapp.dev/", "featured": true }, { "name": "Pet Owner", "url": "https://112veterinarios-petowner.oneapp.dev/" }, { "name": "Clinic Owner", "url": "https://112veterinarios-clinicowner.oneapp.dev/" }, { "name": "Clinic Staff", "url": "https://112veterinarios-clinicstaff.oneapp.dev/" }, { "name": "Admin Panel", "url": "https://112veterinarios-admin.oneapp.dev/" }], "live": "https://112veterinarios.com", "liveLabel": "112veterinarios.com" }, "elmanantial": { "tag": "\ud83c\udfe2 PropTech & HOA Management", "flag": "\ud83c\uddea\ud83c\uddf8 Spain", "title": "El Manantial HOA Community & Residential Operations Hub", "desc": "Comprehensive residential facility and community management application. Formulated functional specifications for tenant onboarding, maintenance ticketing escalation matrix, common facility booking calendars, and HOA financial administration.", "problem": "Payment delinquencies and slow incident resolution caused by fragmented WhatsApp group communication.", "solution": "Structured ticketing workflow with SEPA debit automation and real-time facility reservation locks.", "links": [{ "name": "Admin", "url": "https://tsrs_admin_may2026.oneapp.dev/", "featured": true }, { "name": "Resident / Tenant", "url": "https://elmantial_resident_may.oneapp.dev/" }, { "name": "Owner", "url": "https://elamantial_owner_may.oneapp.dev/" }, { "name": "Staff", "url": "https://elamantial_staff_may.oneapp.dev/" }, { "name": "Super Admin", "url": "https://tsrs_superadmin_may2026.oneapp.dev/" }], "live": "https://elmanantial.eu", "liveLabel": "elmanantial.eu" }, "team1display": { "tag": "\ud83d\udce6 Trade Show Inventory & Reservations", "flag": "\ud83c\uddfa\ud83c\uddf8 USA", "title": "Team1 Display Services Trade Show Inventory Reservation System (TSRS)", "desc": "Trade show physical asset and rental reservation management platform. Defined business rules for date-range equipment availability locks, conflict-resolution algorithms for concurrent booking requests, warehouse dispatch preparation checklists, and post-event inspection reporting.", "problem": "Trade show assets were double-booked when several customers reserved the same item for overlapping event dates.", "solution": "Catalog-to-checkout reservation flow with a date-range lock and conflict screen, event details capture, and an admin inventory panel.", "links": [{ "name": "Customer", "url": "https://team1displayservicesnet-customer.oneapp.dev/", "featured": true }, { "name": "Admin", "url": "https://team1displayservicesnet-admin.oneapp.dev/" }], "live": "", "liveLabel": "" }, "kelioniukryptis": { "tag": "\u2708\ufe0f Travel & Hospitality", "flag": "\ud83c\uddf1\ud83c\uddf9 Lithuania", "title": "Kelioni\u0173 Kryptis Dynamic Packaging & GDS Booking Engine", "desc": "Lithuanian travel agency booking engine and operations portal. Designed holiday package configuration, traveler manifest management, tour operator API integrations, dynamic pricing rules, and multi-passenger booking workflows.", "problem": "Manual quote generation took 30+ minutes per inquiry, resulting in lost bookings.", "solution": "Sub-second flight+hotel bundling engine with dynamic markup rules and instant booking vouchers.", "links": [{ "name": "Customer", "url": "https://kelioniukryptislt-customer.oneapp.dev/", "featured": true }, { "name": "Admin", "url": "https://kelioniukryptislt-admin.oneapp.dev/" }], "live": "https://kelioniukryptis.lt", "liveLabel": "kelioniukryptis.lt" }, "stealthmanager": { "tag": "\u26a1 Agency SaaS & CPQ", "flag": "\ud83c\uddfa\ud83c\uddf8 USA", "title": "Stealth Manager CPQ & White-Label Scoping Architecture", "desc": "Interactive CPQ (Configure, Price, Quote) builder allowing agency partners to calculate white-label development costs, configure add-on modules, select SLA support tiers, and generate instant proposals and statements of work.", "problem": "Disorganized discount approval loops delaying enterprise deal closures by weeks.", "solution": "Automated multi-tier margin validation with dynamic pricing rules and automated contract generation.", "links": [{ "name": "User", "url": "https://mobrilzcombuilder-page.oneapp.dev/", "featured": true }], "live": "https://go.stealthmanager.com/builder-page", "liveLabel": "go.stealthmanager.com/builder-page" }, "ovella": { "tag": "\ud83e\uddee Planning & Quotation Tool", "flag": "\ud83c\uddeb\ud83c\uddee Finland", "title": "Ovella Bike Parking Planning Calculator", "desc": "Planner-facing calculator for Ovella Systems (Helsinki) that recommends the right Ovella bike parking system for a space, estimates capacity, shows how much space is saved against a standard solution, and sends the specification straight into a quote request.", "problem": "Planners had no quick way to estimate how many bikes an Ovella system fits in a given space or to compare it with standard racks before contacting sales.", "solution": "Guided calculation with product recommendations, an efficiency comparison against standard parking, and a direct-to-quote submission.", "links": [{ "name": "User", "url": "https://ovella-v7.netlify.app", "featured": true }], "live": "https://ovella.net", "liveLabel": "ovella.net" }, "harmonykids": { "tag": "\ud83c\udfb5 EdTech Mobile App", "flag": "\ud83c\uddfa\ud83c\uddf8 USA", "title": "Harmony Kids: An AI-Assisted Music Learning Platform for Children", "desc": "Mobile app prototype for sensory-friendly music learning: COPPA-aware onboarding, student profiles, playable virtual piano and guitar, rhythm lessons, AI feedback after each lesson, progress and rewards, and a parent & IEP hub. Version 2 (MelodyCare) adapts the same flow for children with special needs.", "problem": "Children with different learning needs need a calm, structured way to practise music, and parents need visibility of progress.", "solution": "15-screen mobile flow with a sensory-safe interface, playable instruments, AI lesson feedback, and a parent / IEP progress hub.", "links": [{ "name": "Mobile App Demo V1", "url": "https://harmonykids.oneapp.dev/", "featured": true }, { "name": "Mobile App Demo V2", "url": "https://melodycare.vercel.app/" }], "live": "", "liveLabel": "" }, "msvtechnologies": { "tag": "\ud83d\udcbb ICT Services & Retail", "flag": "\ud83c\uddf7\ud83c\uddfc Rwanda", "title": "MSV Technologies: ICT Services Website & Authorized LG / AirLux Brand Shop", "desc": "Two prototypes for an ICT company in Kigali, Rwanda: a hardware and IT services website (services, products, software, contact) and a separate shop for its role as an authorized LG and AirLux partner.", "problem": "IT service clients and appliance buyers are different audiences that needed separate, focused journeys.", "solution": "Two dedicated experiences: an ICT services website and an authorized brand shop.", "links": [{ "name": "Hardware & IT Service Website", "url": "https://msvtechnologiescom.oneapp.dev/", "featured": true }, { "name": "LG & AirLux Authorized Seller", "url": "https://msvtechnologiescom.netlify.app/" }], "live": "https://msvtechnologies.com", "liveLabel": "msvtechnologies.com" }, "leatherindia": { "tag": "\ud83c\udfdb\ufe0f Trade Body Website", "flag": "\ud83c\uddee\ud83c\uddf3 India", "title": "Leather India: Council for Leather Exports (CLE) Homepage", "desc": "Homepage prototype for the Council for Leather Exports (CLE), the export promotion body for the Indian leather and footwear industry, bringing trade enquiries, DGFT Trade Connect, the e-Sewa centre, campaigns and contact paths onto one navigable homepage.", "problem": "Exporters needed faster access to trade services, notices and enquiry paths from the homepage.", "solution": "Restructured homepage with prioritised service links, a news carousel and clear enquiry and contact paths.", "links": [{ "name": "Website", "url": "https://leatherindiaorg.netlify.app/", "featured": true }], "live": "https://leatherindia.org", "liveLabel": "leatherindia.org" }, "qmasystem": { "tag": "\ud83e\ude7a MedTech SaaS & Clinical Dynamometry", "flag": "\ud83c\uddfa\ud83c\uddf8 USA", "title": "QMA System: Quantitative Muscle Assessment & Dynamometry Portal", "desc": "Medical clinical software prototype designed for Aeverl Medical LLC. Standardized clinical protocol workflows for neuromuscular trials, isometric muscle strength measurement, patient tracking, and FDA CFR Part 11 compliant audit logging.", "problem": "Clinical researchers struggled with fragmented muscle strength data and manual protocol logging across trial cohorts.", "solution": "Unified dynamometry tracking platform with real-time protocol guidance, sensor data capture, and standardized clinical reporting.", "links": [{ "name": "Clinical Software Demo", "url": "https://qmasystem.netlify.app/", "featured": true }], "live": "https://qmasystem.com", "liveLabel": "qmasystem.com" }, "industrialcuttingtools": { "tag": "\ud83c\udfed B2B Procurement & OSHA Safety Tools", "flag": "\ud83c\uddfa\ud83c\uddf8 USA", "title": "Industrial Cutting Tools USA: B2B Safety & Procurement Portal", "desc": "B2B catalog and industrial safety knife procurement platform. Engineered structured product filtering for OSHA-compliant ceramic utility knives, replacement blade subscriptions, bulk order RFQ flows, and enterprise safety training documentation.", "problem": "Industrial procurement managers spent excessive time comparing blade safety compliance and handling manual POs.", "solution": "High-efficiency B2B catalog with rapid OSHA spec filtering, instant bulk quotation calculator, and safety sheet downloads.", "links": [{ "name": "Procurement Portal Demo", "url": "https://industrialcuttingtools-usa.netlify.app/", "featured": true }], "live": "https://industrialcuttingtools-usa.com", "liveLabel": "industrialcuttingtools-usa.com" }, "smpdakar": { "tag": "\u26a1 Energy Infrastructure & Turnkey EPC", "flag": "\ud83c\uddf8\ud83c\uddf3 Senegal", "title": "SMP Dakar: West Africa Turnkey Industrial EPC Portal", "desc": "Turnkey engineering, procurement, construction, installation, and vendor financing (EPCI-VF) corporate portal for West African energy, gas, pipeline, and structural steel infrastructure projects.", "problem": "Complex international engineering joint ventures required transparent capability validation and tender tracking for multi-million dollar contracts.", "solution": "Structured EPC showcase highlighting certified infrastructure capabilities, HSE compliance metrics, and interactive project tender intake.", "links": [{ "name": "EPC Portal Demo", "url": "https://smpdakar.netlify.app/", "featured": true }], "live": "https://smpdakar.com", "liveLabel": "smpdakar.com" }, "timeforteahk": { "tag": "\ud83c\udf75 Luxury Hospitality & E-Commerce", "flag": "\ud83c\udded\ud83c\uddf0 Hong Kong", "title": "Time for Tea HK: Luxury Artisanal Tableware & Events", "desc": "Bilingual luxury e-commerce and hospitality portal for the exclusive Hong Kong distributor of German Mono Filio teapots, fine French table linens, and bespoke afternoon tea event styling services.", "problem": "High-end artisanal tableware required an elevated digital presentation matching luxury department store standards with event styling bookings.", "solution": "Minimalist luxury digital boutique featuring curated collection lookbooks, bespoke afternoon tea booking flows, and gift registry support.", "links": [{ "name": "Luxury Boutique Demo", "url": "https://timeforteahk.netlify.app/", "featured": true }], "live": "https://timeforteahk.com", "liveLabel": "timeforteahk.com" }, "polavida": { "tag": "\ud83e\uddd8 Somatic Coaching & Holistic Retreats", "flag": "\ud83c\uddf5\ud83c\uddf9 Portugal", "title": "Pola Vida: Somatic Experiencing & Transformational Retreats", "desc": "Trauma-informed somatic healing and nervous system regulation platform based in Portugal. Features dual client-facing UI design variations (A/B) for 1:1 nervous system mentoring, cohort retreats, and experiential workshop registration.", "problem": "Clients seeking somatic healing required gentle, trust-building onboarding and seamless scheduling across multiple timezones.", "solution": "Calming, neuroscience-informed user journey with integrated intake questionnaires, retreat room tier selection, and appointment scheduling.", "links": [{ "name": "Design 1 (Warm Editorial)", "url": "https://polavida.netlify.app/?v=a", "featured": true }, { "name": "Design 2 (Minimal Sanctuary)", "url": "https://polavida.netlify.app/?v=b" }], "live": "https://polavida.com", "liveLabel": "polavida.com" }, "latensandforma": { "tag": "\ud83c\udfdb\ufe0f Spatial Architecture & Contemporary Art", "flag": "\ud83c\udde8\ud83c\udded Switzerland", "title": "Latens & Forma: Art, Material Research & Spatial Studio", "desc": "Zurich-based transdisciplinary art, spatial architecture, and material research studio. Engineered digital exhibition curation for architectural fiber sculptures, cyanotype collections, and spatial installation archives.", "problem": "Architectural and artistic commissions needed immersive digital curation that honored spatial depth and tactile material details.", "solution": "Gallery-grade interactive spatial portfolio with fluid exhibition timelines, high-resolution material inspect views, and private commission inquiry flows.", "links": [{ "name": "Studio Portfolio Demo", "url": "https://latensandforma.netlify.app/#home", "featured": true }], "live": "https://latensandforma.com", "liveLabel": "latensandforma.com" }, "tecnicafa": { "tag": "\u26bd Elite Sports Academy & Player Development", "flag": "\ud83c\uddec\ud83c\udde7 United Kingdom", "title": "Tecnica FA: South London Football Development Academy", "desc": "Premier youth football academy platform founded by UEFA B Licensed Coach and ex-Crystal Palace manager Austin Berkley. Features academy team registrations, holiday masterclass bookings, scout showcases, and 1:1 elite technical training scheduling.", "problem": "Fragmented offline paperwork and manual WhatsApp registration caused administrative chaos during seasonal academy intake.", "solution": "Streamlined academy management portal with digital trial registrations, camp payment processing, and age-group syllabus tracking.", "links": [{ "name": "Academy Portal Demo", "url": "https://tecnicafa.netlify.app/", "featured": true }], "live": "https://tecnicafa.com", "liveLabel": "tecnicafa.com" } };
@@ -2170,10 +2189,118 @@
           closeModal(document.getElementById('proto-modal'));
         };
 
+        var PILLAR_DATA = [
+          {
+            icon: '🤖',
+            tag: 'Pillar 01 / AI Architecture',
+            title: 'AI & Agentic Systems',
+            desc: 'Architecting LLM orchestration, structured output evaluation, and human-in-the-loop fallback loops that eliminate hallucinations in production.',
+            highlights: [
+              'Multi-Agent orchestration with LangGraph, LangChain, and deterministic state machines',
+              'Structured JSON output validation using Pydantic / Zod with automated retry fallbacks',
+              'Vector similarity search and hybrid lexical retrieval (pgvector, Qdrant, Pinecone)',
+              'Prompt caching strategies and cost-aware model routing (GPT-4o, Claude 3.5 Sonnet, DeepSeek)',
+              'Human-in-the-loop evaluation benchmarks and synthetic regression test harnesses'
+            ],
+            metric: '99.4% Deterministic Output Accuracy in Production',
+            link: '/skills/',
+            linkText: 'Explore AI Tech Arsenal ↗'
+          },
+          {
+            icon: '🌐',
+            tag: 'Pillar 02 / Multi-Actor Platforms',
+            title: 'Multi-Actor Ecosystems',
+            desc: 'Modeling complex multi-sided platforms (marketplaces, logistics fleets, medical practices) with granular role-based access control and state machines.',
+            highlights: [
+              'Multi-sided marketplace mechanics with buyer, seller, admin, and driver role segregation',
+              'Granular Role-Based Access Control (RBAC) and attribute-based permissions (ABAC)',
+              'Finite State Machine (FSM) event lifecycle modeling for order fulfillment and dispatch',
+              'Multi-tenant database tenancy isolation with automated row-level security (RLS)',
+              'Real-time WebSocket event streaming and push notification pub/sub dispatch'
+            ],
+            metric: '17+ Production Multi-Role Prototypes Architected',
+            link: '/prototypes/',
+            linkText: 'View Multi-Actor Interactive Sandboxes ↗'
+          },
+          {
+            icon: '📐',
+            tag: 'Pillar 03 / Delivery Framework',
+            title: 'Documentation-First Delivery',
+            desc: 'Replacing ambiguous 60-page Word documents with interactive HTML sandbox prototypes and Gherkin BDD user stories, reducing rework by over 35%.',
+            highlights: [
+              'Clickable HTML/CSS sandbox prototypes demonstrating interactive state before sprint planning',
+              'Executable Gherkin BDD user stories bridging business requirements and automated tests',
+              'Detailed API contract specifications with Swagger/OpenAPI schemas and mock payloads',
+              'Comprehensive data dictionary and ERD modeling eliminating schema ambiguities',
+              'Engineering handover blueprints that accelerate developer onboarding by 2.5x'
+            ],
+            metric: '>35% Measured Rework Reduction Across 700+ Projects',
+            link: '/process/',
+            linkText: 'See My 8-Step Documentation Process ↗'
+          },
+          {
+            icon: '⚖️',
+            tag: 'Pillar 04 / Global Governance',
+            title: 'Global Compliance & Scalability',
+            desc: 'Designing architectures that navigate EU GDPR privacy, GCC VAT multi-currency ledgers, and US interstate freight compliance frameworks.',
+            highlights: [
+              'EU GDPR compliance: zero-knowledge data residency, encryption at rest, right-to-be-forgotten',
+              'GCC multi-currency ledgers with real-time ZATCA e-invoicing and VAT tax rules',
+              'US interstate freight and OSHA compliance frameworks for B2B procurement portals',
+              'Immutable cryptographic audit trails and SOC 2 / HIPAA security verification',
+              'High-availability distributed database replication across 5 continental regions'
+            ],
+            metric: '34 Global Markets Deployed with Zero Regulatory Violations',
+            link: '/about/',
+            linkText: 'Explore Global Delivery History ↗'
+          }
+        ];
+
+        window.openPillarModal = function (idx) {
+          var p = PILLAR_DATA[idx];
+          if (!p) return;
+          var elIcon = document.getElementById('pillar-modal-icon');
+          var elTag = document.getElementById('pillar-modal-tag');
+          var elTitle = document.getElementById('pillar-modal-title');
+          var elDesc = document.getElementById('pillar-modal-desc');
+          var elMetric = document.getElementById('pillar-modal-metric');
+          var elHighlights = document.getElementById('pillar-modal-highlights');
+          var elLink = document.getElementById('pillar-modal-link');
+
+          if (elIcon) elIcon.textContent = p.icon;
+          if (elTag) elTag.textContent = p.tag;
+          if (elTitle) elTitle.textContent = p.title;
+          if (elDesc) elDesc.textContent = p.desc;
+          if (elMetric) elMetric.textContent = p.metric;
+
+          if (elHighlights) {
+            elHighlights.innerHTML = p.highlights.map(function (h) {
+              return '<li style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: #E2E8F0; line-height: 1.5;">' +
+                '<span style="color: #00E5FF; font-weight: bold; line-height: 1;">✦</span>' +
+                '<span>' + h + '</span></li>';
+            }).join('');
+          }
+
+          if (elLink) {
+            elLink.href = p.link;
+            elLink.textContent = p.linkText;
+          }
+
+          openModal(document.getElementById('pillar-modal'));
+        };
+
+        window.closePillarModal = function (e) {
+          if (e && e.target && e.target.closest('.lightbox-content') && !e.target.closest('.lightbox-close')) {
+            return;
+          }
+          closeModal(document.getElementById('pillar-modal'));
+        };
+
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape') {
             window.closePhotoModal();
             window.closeProtoModal();
+            window.closePillarModal();
           }
         });
       })();

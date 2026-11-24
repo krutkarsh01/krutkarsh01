@@ -32,7 +32,7 @@
   var isTicking = false;
 
   function initStickyTurnStages() {
-    if (window.innerWidth <= 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
@@ -80,32 +80,17 @@
     if (stages.length >= 2) {
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onResize, { passive: true });
+      window.updatePeelProgress = updatePeelProgress;
       updatePeelProgress();
     }
   }
 
   function onScroll() {
-    if (!isTicking) {
-      window.requestAnimationFrame(function () {
-        updatePeelProgress();
-        isTicking = false;
-      });
-      isTicking = true;
-    }
+    updatePeelProgress();
   }
 
   function onResize() {
-    if (window.innerWidth <= 768) {
-      for (var i = 0; i < stages.length; i++) {
-        if (stages[i].panel) {
-          stages[i].panel.style.clipPath = 'none';
-          stages[i].panel.style.webkitClipPath = 'none';
-          stages[i].panel.classList.remove('is-fixed-reveal');
-        }
-      }
-    } else {
-      updatePeelProgress();
-    }
+    updatePeelProgress();
   }
 
   function computeTurnGeometry(progress) {
@@ -147,8 +132,6 @@
   }
 
   function updatePeelProgress() {
-    if (window.innerWidth <= 768) return;
-
     var vh = window.innerHeight || 800;
 
     var activePeelIndex = -1;
@@ -161,9 +144,10 @@
       var rect = stage.wrapper.getBoundingClientRect();
       var turnDist = stage.wrapper.offsetHeight - vh;
 
-      if (rect.top <= 0 && rect.top > -turnDist) {
+      // Only enter active peel when scrolling has actually commenced (> 2px)
+      if (rect.top < -2 && rect.top > -turnDist) {
         activePeelIndex = i;
-        activeProgress = Math.max(0, Math.min(1, -rect.top / turnDist));
+        activeProgress = Math.max(0, Math.min(1, (-rect.top - 2) / (turnDist - 2)));
         break;
       }
     }
@@ -205,7 +189,7 @@
         outStage.svgLine.setAttribute('y2', geom.line.y2);
       }
 
-      // 3. Active Incoming Stage (Section 2): LOCKED TO FIXED VIEWPORT WITH PROGRESSIVE FADE IN
+      // 3. Active Incoming Stage (Section 2): Full intact page underneath, revealed as Section 1 peels away
       if (inStage) {
         inStage.panel.style.display = 'flex';
         inStage.panel.classList.remove('is-peeling');
@@ -216,7 +200,7 @@
         inStage.panel.style.clipPath = geom.inClip;
         inStage.panel.style.webkitClipPath = geom.inClip;
 
-        // Image 3 Fix: Progressive fade-in of revealed incoming section
+        // Progressive fade-in of revealed incoming section
         var incomingOpacity = Math.min(1, 0.35 + (activeProgress * 0.65));
         inStage.panel.style.setProperty('--incoming-opacity', incomingOpacity.toFixed(3));
       }

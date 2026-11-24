@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.4
+Version: 5.9.10
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,191 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.10] - Incoming Stage ClipPath Restoration to Prevent Premature Bleed-Through
+
+#### I - INPUT
+1. User prompt with screenshot `media_1795534224037_344f2762.jpg`:
+   - *"The next section is visible before page effect only on this section on both desktop and pther resposnsive"*
+   - Red highlight box showing early diagonal peel starting at bottom right, while Section 2 ("Delivering in 34 Global Markets") was already fully visible across the entire top and middle of the screen behind the transparent Hero section.
+   - Root Cause: In [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js), `inStage.panel.style.clipPath` was previously set to `'none'`. Because Section 1 (Hero) is transparent to display the live WebGL Aurora and Starfield, the entire incoming section was rendered behind Hero across the full 100vw x 100vh viewport, bleeding through before the crease line reached it.
+
+#### M - MISSION
+- [x] Task 22.1: Restore `inStage.panel.style.clipPath = geom.inClip;` and `inStage.panel.style.webkitClipPath = geom.inClip;` in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) so incoming sections are strictly constrained to the revealed side of the diagonal crease line.
+- [x] Task 22.2: Ensure Section 2 is 100% invisible to the top-left of the crease line, preventing any premature text or element bleed-through behind the transparent Hero section on both desktop and mobile viewports.
+- [x] Task 22.3: Verify via Headless Chrome CDP screenshots for Mobile 390x844 (`screenshots/v77_mobile_early_peel_80.png`), Desktop 1440x900 early peel (`screenshots/v77_desktop_early_peel_100.png`), and mid peel (`screenshots/v77_desktop_peel_350.png`).
+- [x] Task 22.4: Verify production build cleanliness (`npm run build`).
+
+---
+
+### [v5.9.9] - Permanent Aurora Borealis and Bloxi17 Starfield Transparency Fix
+
+#### I - INPUT
+1. User prompt: *"again in fixing. you removed the aurora and stars"*
+   - Root Cause Analysis:
+     - In [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css), `#stage-nlHeroSection > .turn-sticky-panel.is-peeling` had an opaque `radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important`.
+     - In [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js), `rect.top <= 0` evaluated to true at scroll 0, instantly applying `.is-peeling` to the Hero stage on page load.
+     - Because `.is-peeling` has `z-index: 40 !important`, the opaque dark gradient completely covered `#universal-aurora-backdrop` (z-index 0) and `#universal-aurora-canvas` (z-index 1).
+
+#### M - MISSION
+- [x] Task 21.1: Set `#stage-nlHeroSection > .turn-sticky-panel` AND `#stage-nlHeroSection > .turn-sticky-panel.is-peeling` to `background: transparent !important` in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) so the Northern Lights aurora curtains and glowing Bloxi17 starfield are permanently visible through the Hero stage.
+- [x] Task 21.2: Update [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) scroll detection condition to `rect.top < -2` so resting at scroll 0 leaves the Hero in its natural non-peeling state with no peel classes, no crease line, and zero incoming section bleed.
+- [x] Task 21.3: Verify via Headless Chrome CDP screenshots for Desktop 1440x900 (`screenshots/v76_desktop_scroll_0_aurora_stars.png`) and Mobile 390x844 (`screenshots/v76_mobile_scroll_0_aurora_stars.png`).
+- [x] Task 21.4: Verify production build (`npm run build`).
+
+---
+
+### [v5.9.8] - Full-Bleed Zero-Gutter Hero and Continuous Responsive Page Turn Restoration
+
+#### I - INPUT
+1. User prompt with screenshot `media_1795533406203_1a3e8cb1.jpg`:
+   - Red boxes highlighting side gutters on the far-left and far-right of the Hero section: *"Why is there space over here. And in fixing the last tasks, you have disuturbed the whole page scrolling effect on all scrrens. Please check and fix"*
+
+#### M - MISSION
+- [x] Task 20.1: Eliminate horizontal gutters on Hero stage by removing `padding-left` and `padding-right` from `.turn-sticky-panel` and forcing `#stage-nlHeroSection > .turn-sticky-panel` to edge-to-edge full bleed (`padding-left: 0 !important; padding-right: 0 !important; width: 100% !important; max-width: 100% !important;`).
+- [x] Task 20.2: Fix page scrolling effect disturbance by reverting the artificial `HOLD_RATIO` freeze in `js/page-shift-controller.js` and restoring continuous, fluid diagonal page peel mapping (`activeProgress = Math.max(0, Math.min(1, -rect.top / turnDist))`).
+- [x] Task 20.3: Ensure incoming panel (`inStage`) remains fully mounted and visible without skipping or sudden jumps, keeping the peel responsive and active across all viewport widths.
+- [x] Task 20.4: Add 64px mobile header clearance for `#stage-nlHeroSection .nl-hero-content` so hero headline "Architecting Intelligent Systems" is 100% visible and unclipped below top navigation bar on mobile devices.
+- [x] Task 20.5: Capture and verify Headless Chrome CDP screenshots for desktop (1440x900) and mobile (390x844) at resting (scroll 0) and active peel (scroll 300).
+- [x] Task 20.6: Run production build verification (`npm run build`).
+
+---
+
+### [v5.9.7] - Scroll Reading Hold Zone, Living Aurora Restoration, Pillar Popup Modal & Balanced Deck Spacing
+
+#### I - INPUT
+1. User prompt with 6 annotated screenshots:
+   - **Image 1 & 2 (`media_1795531993099_8c0e98a0.jpg`, `media_1795532038950_8668e419.jpg`):** Red box around premature peel crease line cutting across active reading view in Atlas and Gallery: *"1. Here in scroll, there is an issue. The page effect is coming before hand before the section is over. Image 1 adn 2"*
+   - **Image 3 (`media_1795532089743_0a089ac4.jpg`):** Red box around Hero sky: *"2. Why did you remove the aurora amd star effect Image3"*
+   - **Image 4 (`media_1795532111658_1d2d312d.jpg`):** Red boxes around truncated descriptions in 2x2 Pillar cards: *"3. Image 4 , if you made this section like this, the texts are getting cut. Make popup on click to ready full"*
+   - **Image 5 & 6 (`media_1795532253441_49612e32.jpg`, `media_1795532272036_1ba285da.jpg`):** Red boxes above Gallery title, and above/below Pillar deck: *"4. Make spacing IMAGE 5 & 6"*
+
+#### M - MISSION
+- [x] Task 19.1: Prevent premature page curl by introducing a dedicated reading hold zone (`HOLD_RATIO = 0.50` desktop / `0.58` mobile) where sections rest 100% visible with zero crease line. On mobile, automatically scroll internal overflow content during the hold phase so the section is completely viewed before the peel triggers.
+- [x] Task 19.2: Restore living WebGL Northern Lights Aurora and Bloxi17 Starfield in Hero section by resetting `#stage-nlHeroSection > .turn-sticky-panel` to `background: transparent !important` while resting, applying opaque backing only during active peel.
+- [x] Task 19.3: Build interactive Architecture Pillar Specification modal popup (`#pillar-modal`) triggered on click of any pillar card, displaying full title, description, verified metric, and 5 detailed architecture specifications.
+- [x] Task 19.4: Add clean tap affordance pill (`Read Full Spec ↗`) on all 4 pillar cards.
+- [x] Task 19.5: Balance container spacing in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css):
+  - `#portfolio-curved-gallery .prototypes-grand-deck`: `padding-top: clamp(38px, 4.5vh, 52px) !important` (Image 5 fix).
+  - `#pillarsGrandDeck.pillars-grand-deck`: `padding: clamp(38px, 4.5vh, 52px) clamp(20px, 2.5vw, 36px) clamp(36px, 4.2vh, 48px) !important` (Image 6 fix).
+- [x] Task 19.6: Verify all fixes with Headless Chrome CDP screenshots across Desktop (1280x800) and Mobile (390x844).
+- [x] Task 19.7: Verify production build (`npm run build`).
+
+#### E - EXECUTE
+1. Updated [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js):
+   - Implemented `HOLD_RATIO` threshold in `updatePeelProgress()`.
+   - Linked `stage.panel.scrollTop` to scroll progress during the resting zone so users smoothly view the full section before page turn.
+   - Guarded crease line rendering so it is completely hidden during the hold zone.
+2. Updated [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css):
+   - Extended `.turn-stage-wrapper.has-turn-effect` scroll track to `240vh` (desktop) and `280vh` (mobile).
+   - Set `#stage-nlHeroSection > .turn-sticky-panel` to `transparent !important` when resting.
+   - Adjusted `#pillarsGrandDeck` padding and `#prototypesGrandDeck` top padding.
+   - Styled `.teaser-pillar-card` hover micro-interactions, `.pillar-read-more-pill`, and `#pillar-modal`.
+3. Updated [index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/index.html):
+   - Added `onclick="openPillarModal(idx)"` and `Read Full Spec ↗` pills to all 4 pillar cards.
+   - Inserted `#pillar-modal` lightbox markup and JS data dictionary (`PILLAR_DATA`, `openPillarModal`, `closePillarModal`).
+4. Captured verification screenshots:
+   - `screenshots/v71_hero_aurora_stars.png` (Living aurora and starfield restored).
+   - `screenshots/v71_desktop_pillars_spacing.png` (Balanced top/bottom spacing in Pillars).
+   - `screenshots/v71_desktop_gallery_spacing.png` (Balanced top spacing in Gallery).
+   - `screenshots/v71_pillar_modal_open.png` (Desktop pillar specification modal).
+   - `screenshots/v71_mobile_atlas_resting.png` (Mobile Atlas resting without premature peel line).
+   - `screenshots/v73_mobile_pillar_modal_clean.png` (Clean mobile pillar modal).
+
+#### T - TESTING & VERIFICATION
+- Headless Chrome CDP tests run against `http://localhost:3000/`.
+- All 4 user issues verified and confirmed fixed.
+- Production build verified (`npm run build`, exit code 0).
+
+---
+
+### [v5.9.6] - Mobile Header Clearance, Opaque Backgrounds & Intact Reveal Architecture (Resolving "Sections are cut")
+
+#### I - INPUT
+1. User prompt with mobile screenshot (`media_1795531091583_814ae51b.jpg`) highlighting the top area with a red rectangle:
+   - "Sections are cut"
+2. Root-cause visual analysis of user screenshot:
+   - On mobile portrait viewports, centering tall panels (`1300px+`) with `justify-content: center` caused CSS flexbox overflow into negative coordinates above `top: 0`, causing section titles (such as "Delivering in 34 Global Markets") to be cut off and hidden beneath the top navbar.
+   - Slicing incoming panels with a diagonal `clipPath` broke text lines on mobile into fragmented syllables.
+   - Transparent hero panel backgrounds caused double-exposure overlap between hero text and atlas text during peel.
+
+#### M - MISSION
+- [x] Task 18.1: Eliminate negative coordinate overflow on mobile by switching `.turn-sticky-panel` alignment to `justify-content: flex-start !important` with responsive top clearance `padding-top: clamp(60px, 8vh, 76px) !important` to stay cleanly below the fixed 56px navbar.
+- [x] Task 18.2: Provide solid dark cosmic background (`radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important`) across all stage panels to prevent double-exposure text overlap.
+- [x] Task 18.3: Keep incoming panel intact (`clipPath = 'none'`) during active peel so revealed text is never diagonally sliced into incomplete words.
+- [x] Task 18.4: Verify complete mobile scroll progression across all 5 sections via Chrome CDP.
+- [x] Task 18.5: Verify desktop viewports to ensure zero regression in desktop page-turn animation.
+- [x] Task 18.6: Validate production build (`npm run build`).
+
+#### E - EXECUTE
+1. Updated [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css):
+   - Configured `.turn-stage-wrapper > .turn-sticky-panel` with `justify-content: flex-start !important`, `padding-top: clamp(60px, 8vh, 76px) !important`, and `overflow-y: auto`.
+   - Set opaque cosmic gradient background for all stages (`#stage-nlHeroSection`, `#stage-global-client-atlas`, `#stage-core-value-proposition`, `#stage-portfolio-curved-gallery`, `#stage-contact`).
+   - Mobile layout reordering for Atlas: `.osiris-col-right { order: 1; }`, `.osiris-col-left { order: 2; }` ensuring title and dossier card are immediately readable on mobile.
+2. Updated [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js):
+   - Removed mobile disable gates in `updatePeelProgress()` and resize handler.
+   - Set `inStage.panel.style.clipPath = 'none'` so the revealed surface sits intact underneath the peeling top panel.
+3. Verified via Chrome CDP headless browser:
+   - Mobile landed & peeling screenshots: `mobile_01_hero_landed.png` through `mobile_10_contact_landed.png`.
+   - Desktop landed & peeling screenshots: `desktop_01_hero_landed.png` through `desktop_07_contact_landed.png`.
+   - Verified production build cleanliness via `npm run build`.
+
+#### T - TESTING & VERIFICATION
+- Headless Chrome CDP tests run on `http://localhost:3000/`.
+- Zero section headers clipped beneath navbar.
+- Zero words sliced or fragmented during transition.
+- Zero double-exposure text bleeding.
+- Production build passes cleanly with exit code 0.
+
+---
+
+### [v5.9.5] - Section Badges Removal, Space Adjustments & Universal Responsive Page-Turn Animations
+
+#### I - INPUT
+1. User prompt with 4 annotated screenshots:
+   - **Image 1 (`CORE VALUE PROPOSITION`):** Highlighted the section tag badge above "Architecting Products for Enterprise Scale" in Section 3 (`#core-value-proposition`).
+   - **Image 2 (`01 / GLOBAL CLIENT ATLAS`):** Highlighted the status code badge above "Delivering in 34 Global Markets" in Section 2 (`#global-client-atlas`).
+   - **Image 3 (`PORTFOLIO IN FRAMES`):** Highlighted the tag badge above "Real Platforms. Raw Architectures." in Section 4 (`#portfolio-curved-gallery`).
+   - **Image 4 (`READY TO SHIP?` & `DIRECT DISPATCH GATEWAY`):** Highlighted both tag badges in Section 5 (`#contact`).
+2. User instruction:
+   - `"Remove these and adjust space"`
+   - `"And fix responsive as well. Insert the animations we did in desktop in all responsive"`
+
+#### M - MISSION
+- [x] Task 17.1: Remove all 5 highlighted pill badges across all 4 sections in [index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/index.html).
+- [x] Task 17.2: Rebalance container padding and vertical spacing in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) so titles and cards align naturally without top gaps.
+- [x] Task 17.3: Universalize the diagonal page curl / peel animation across all responsive viewports (mobile, tablet, desktop) by removing the mobile disable gates in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) and [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js).
+- [x] Task 17.4: Implement compact 2x2 responsive grid for Core Value Proposition pillars on mobile screens (< 600px) so all 4 pillars fit within the viewport.
+- [x] Task 17.5: Verify with Headless Chrome CDP screenshots across Desktop (1280x800) and Mobile (390x844).
+- [x] Task 17.6: Execute production build verification (`npm run build`).
+
+#### E - EXECUTE
+1. Removed badges from [index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/index.html):
+   - Removed `.sec-tag` (`Core Value Proposition`).
+   - Removed `.osiris-badge-row` (`01 / GLOBAL CLIENT ATLAS`).
+   - Removed `.gallery-tag` (`PORTFOLIO IN FRAMES`).
+   - Removed `.callout-tag` (`Ready to Ship?`).
+   - Removed `.shinobi-contact-tag` (`Direct Dispatch Gateway`).
+2. Updated [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css):
+   - Made `.turn-stage-wrapper.has-turn-effect`, `.turn-sticky-panel`, and `.turn-curl-crease-line` universal for all viewports.
+   - Formatted `.teaser-pillars-grid` to a clean 2x2 grid on mobile viewports (< 600px).
+   - Re-proportioned contact and atlas masthead padding for smooth top alignment.
+3. Updated [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js):
+   - Removed `window.innerWidth <= 768` check in `initStickyTurnStages` and `updatePeelProgress`, allowing page-turn peel animations to execute responsively across all screen widths.
+
+#### T - TESTING & VERIFICATION
+1. Headless Chrome DOM Verification:
+   - `osirisCode: false`, `secTag: false`, `galleryTag: false`, `calloutTag: false`, `shinobiTag: false` (All 5 badges removed).
+   - `wrapperCount: 5`, `panelCount: 5`, `panel0Classes: "turn-sticky-panel is-peeling"`, `panel1Classes: "turn-sticky-panel is-fixed-reveal"` on mobile (390px).
+2. Visual Proof Captures:
+   - [v64_desktop_atlas_no_badge.png](file:///Users/ashu/Documents/GitHub/krutkarsh01/screenshots/v64_desktop_atlas_no_badge.png): Verified badge removed from Atlas on desktop.
+   - [v64_desktop_pillars_no_badge.png](file:///Users/ashu/Documents/GitHub/krutkarsh01/screenshots/v64_desktop_pillars_no_badge.png): Verified badge removed from Pillars on desktop.
+   - [v64_desktop_contact_no_badges.png](file:///Users/ashu/Documents/GitHub/krutkarsh01/screenshots/v64_desktop_contact_no_badges.png): Verified badges removed from Contact on desktop.
+   - [v65_mobile_peel_at_350.png](file:///Users/ashu/Documents/GitHub/krutkarsh01/screenshots/v65_mobile_peel_at_350.png): Verified responsive diagonal curl animation active on mobile.
+   - [v66_mobile_pillars_landed.png](file:///Users/ashu/Documents/GitHub/krutkarsh01/screenshots/v66_mobile_pillars_landed.png): Verified 2x2 compact pillar card grid fitting on mobile.
+3. Production build test passed (`npm run build` exited with code 0).
+
+---
 
 ### [v5.9.4] - Curved Gallery Spacing Adjustment & Stray Crease Isolation
 

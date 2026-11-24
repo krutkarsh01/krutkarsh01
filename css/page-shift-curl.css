@@ -1,20 +1,21 @@
 /**
  * Code of Sagar Sticky Page-Turn & Section-Shift Architecture
  *
- * Strict Dual-Sided Page-Turn Architecture:
- * - Section 1 is clipped to the left of the diagonal crease line.
- * - Section 2 is clipped to the right of the diagonal crease line.
+ * Universal Responsive Architecture (Desktop, Tablet, Mobile):
+ * - Runs smoothly across all breakpoints.
+ * - Strict Dual-Sided Page-Turn Architecture:
+ *   - Section 1 is clipped to the left of the diagonal crease line.
+ *   - Section 2 is clipped to the right of the diagonal crease line.
  * - ZERO GAP / ZERO PADDING:
  *   When `.is-fixed-reveal` is applied during active peel, the incoming panel is locked to
  *   `position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;` sharing the exact
  *   same coordinate origin as the outgoing sticky panel (0,0).
- * - PROGRESSIVE FADE IN (IMAGE 3 FIX):
+ * - PROGRESSIVE FADE IN:
  *   Incoming section elements smoothly fade in as the paper turns.
- * - IMAGE 1 FIX:
- *   Zero gap between Contact section and Site Footer (`margin-bottom: 0 !important; border-top: none !important;`).
- * - IMAGE 2 FIX:
- *   Contact card padding and title font scaled so "Ready to Ship?" badge and "Need Living Specifications"
- *   headline never clip the top navigation bar.
+ * - ZERO STRIP / ZERO LEAK:
+ *   Crease lines only render on active peeling panels.
+ * - ZERO SPACE TO FOOTER:
+ *   Contact stage cleanly transitions into the site footer with 0px gap.
  */
 
 .turn-stage-wrapper {
@@ -23,211 +24,436 @@
   box-sizing: border-box;
 }
 
-@media (min-width: 769px) {
-  .turn-stage-wrapper.has-turn-effect {
-    /* Height provides smooth scroll track */
-    height: 180vh;
-    margin-bottom: 0;
-  }
-
-  /* Contact stage (last stage): Image 1 Fix: NO empty margin before footer! */
-  #stage-contact.turn-stage-wrapper {
-    height: 100vh !important;
-    height: 100svh !important;
-    margin-bottom: 0 !important;
-  }
-
-  .turn-stage-wrapper > .turn-sticky-panel {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100svh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    will-change: clip-path, transform, opacity;
-  }
-
-  /* FIXED REVEAL LOCK:
-     During active peel, incoming panel is fixed to top: 0, left: 0 so its viewport coordinates
-     mathematically match the outgoing panel at (0,0) with 0px gap! */
-  .turn-sticky-panel.is-fixed-reveal {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    height: 100svh !important;
-    z-index: 30 !important;
-  }
-
-  /* Hide crease line on non-peeling panels so no stray white corners show on incoming sections */
-  .turn-sticky-panel:not(.is-peeling) .turn-curl-crease-line {
-    display: none !important;
-    opacity: 0 !important;
-  }
-
-  /* Image 3 Fix: Incoming elements smoothly fade in across the revealed surface */
-  .turn-sticky-panel.is-fixed-reveal > :not(.turn-curl-crease-line) {
-    opacity: var(--incoming-opacity, 1);
-    transition: opacity 0.04s linear;
-  }
-
-  /* Realistic dark cosmic background on panels */
-  #stage-global-client-atlas > .turn-sticky-panel,
-  #stage-core-value-proposition > .turn-sticky-panel,
-  #stage-portfolio-curved-gallery > .turn-sticky-panel,
-  #stage-contact > .turn-sticky-panel {
-    background: radial-gradient(ellipse at 50% 30%, rgba(2, 18, 15, 0.98) 0%, rgba(1, 8, 6, 0.99) 100%) !important;
-  }
-
-  /* Outgoing peeling panel gets a realistic depth shadow cast onto incoming section */
-  .turn-sticky-panel.is-peeling {
-    filter: drop-shadow(-15px 15px 35px rgba(0, 0, 0, 0.85));
-    z-index: 40 !important;
-  }
-
-  /* Outgoing content progressive fade out across child elements */
-  .turn-sticky-panel.is-peeling > * {
-    opacity: var(--outgoing-opacity, 1);
-    transition: opacity 0.04s linear;
-  }
-
-  /* High-contrast crisp white borderline along the peeling diagonal edge */
-  .turn-curl-crease-line {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 50;
-    opacity: 0;
-    will-change: opacity, transform;
-    transition: opacity 0.1s ease-out;
-  }
-
-  .turn-sticky-panel.is-peeling .turn-curl-crease-line {
-    opacity: 1;
-  }
-
-  .turn-curl-crease-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-
-  .turn-curl-line-stroke {
-    stroke: #ffffff;
-    stroke-width: 3.5px;
-    stroke-linecap: round;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)) drop-shadow(-4px 4px 14px rgba(0, 0, 0, 0.95));
-  }
-
-  /* INCOMING SECTION POSITIONING:
-     Pulled directly behind the active peeling stage */
-  .turn-stage-wrapper.has-turn-effect + .turn-stage-wrapper {
-    margin-top: -100vh;
-    position: relative;
-  }
-
-  .turn-stage-wrapper > .turn-sticky-panel {
-    will-change: clip-path, opacity;
-  }
-
-  .turn-stage-wrapper.is-incoming > .turn-sticky-panel {
-    opacity: 1 !important;
-  }
-
-  .turn-stage-wrapper.is-fully-active > .turn-sticky-panel {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
-  }
+.turn-stage-wrapper.has-turn-effect {
+  /* Height provides smooth, responsive scroll track */
+  height: 180vh;
+  margin-bottom: 0;
 }
 
-/* Image 2 Fix: Prevent Contact section title & tag from clipping top navbar */
-#contact.home-section.teaser-callout {
-  padding-top: clamp(8px, 1.5vh, 20px) !important;
-  padding-bottom: clamp(12px, 2vh, 24px) !important;
-  border-top: none !important;
+/* Contact stage (last stage): Image 1 Fix: NO empty margin before footer! */
+#stage-contact.turn-stage-wrapper {
+  height: 100vh !important;
+  height: 100svh !important;
   margin-bottom: 0 !important;
 }
 
-#contact .callout-banner-split {
-  padding: clamp(20px, 2.5vw, 32px) !important;
-  margin-top: clamp(8px, 1.5vh, 16px) !important;
+.turn-stage-wrapper > .turn-sticky-panel {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important; /* CRITICAL: Always anchor from top to prevent headings from being cut off */
+  align-items: center;
+  padding-top: clamp(60px, 8vh, 76px) !important; /* Safe clearance below the 56px fixed navbar */
+  padding-bottom: clamp(16px, 2.5vh, 32px) !important;
+  padding-left: 0 !important; /* Image Fix: Zero horizontal padding so hero & content are full-bleed with no side gaps */
+  padding-right: 0 !important;
+  will-change: clip-path, transform, opacity;
+  box-sizing: border-box !important;
 }
 
-#contact .callout-tag {
-  margin-bottom: 8px !important;
+.turn-stage-wrapper > .turn-sticky-panel::-webkit-scrollbar {
+  display: none;
+}
+
+/* FIXED REVEAL LOCK:
+   During active peel, incoming panel is fixed to top: 0, left: 0 so its viewport coordinates
+   mathematically match the outgoing panel at (0,0) with 0px gap across all devices! */
+.turn-sticky-panel.is-fixed-reveal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  padding-top: clamp(60px, 8vh, 76px) !important;
+  padding-bottom: clamp(16px, 2.5vh, 32px) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  box-sizing: border-box !important;
+  z-index: 30 !important;
+}
+
+/* Hero Section: Full bleed edge-to-edge, zero side padding so character, hands, and sky span full viewport */
+#stage-nlHeroSection > .turn-sticky-panel {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  #stage-nlHeroSection .nl-hero-content {
+    padding-top: 64px !important;
+  }
+}
+
+/* Hide crease line on non-peeling panels so no stray white corners show on incoming sections */
+.turn-sticky-panel:not(.is-peeling) .turn-curl-crease-line {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* Incoming elements smoothly fade in across the revealed surface */
+.turn-sticky-panel.is-fixed-reveal > :not(.turn-curl-crease-line) {
+  opacity: var(--incoming-opacity, 1);
+  transition: opacity 0.04s linear;
+}
+
+/* Downstream stage panels have solid dark cosmic background to prevent transparent bleed */
+#stage-global-client-atlas > .turn-sticky-panel,
+#stage-core-value-proposition > .turn-sticky-panel,
+#stage-portfolio-curved-gallery > .turn-sticky-panel,
+#stage-contact > .turn-sticky-panel {
+  background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
+}
+
+/* Hero Stage keeps transparent background so WebGL Aurora & Glowing Starfield shine through at all times! */
+#stage-nlHeroSection > .turn-sticky-panel,
+#stage-nlHeroSection > .turn-sticky-panel.is-peeling {
+  background: transparent !important;
+}
+
+/* Outgoing peeling panel gets a realistic depth shadow cast onto incoming section */
+.turn-sticky-panel.is-peeling {
+  filter: drop-shadow(-15px 15px 35px rgba(0, 0, 0, 0.85));
+  z-index: 40 !important;
+}
+
+/* Outgoing content progressive fade out across child elements */
+.turn-sticky-panel.is-peeling > * {
+  opacity: var(--outgoing-opacity, 1);
+  transition: opacity 0.04s linear;
+}
+
+/* High-contrast crisp white borderline along the peeling diagonal edge */
+.turn-curl-crease-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  will-change: opacity, transform;
+  transition: opacity 0.1s ease-out;
+}
+
+.turn-sticky-panel.is-peeling .turn-curl-crease-line {
+  opacity: 1;
+}
+
+.turn-curl-crease-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.turn-curl-line-stroke {
+  stroke: #ffffff;
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)) drop-shadow(-4px 4px 14px rgba(0, 0, 0, 0.95));
+}
+
+/* INCOMING SECTION POSITIONING:
+   Pulled directly behind the active peeling stage */
+.turn-stage-wrapper.has-turn-effect + .turn-stage-wrapper {
+  margin-top: -100vh;
+  position: relative;
+}
+
+.turn-stage-wrapper > .turn-sticky-panel {
+  will-change: clip-path, opacity;
+}
+
+.turn-stage-wrapper.is-incoming > .turn-sticky-panel {
+  opacity: 1 !important;
+}
+
+.turn-stage-wrapper.is-fully-active > .turn-sticky-panel {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+}
+
+/* Contact section styling & space adjustment after badge removals */
+#contact.home-section.teaser-callout {
+  padding-top: clamp(8px, 1.5vh, 20px) !important;
+  padding-bottom: clamp(10px, 1.8vh, 20px) !important;
+  border-top: none !important;
+  margin-bottom: 0 !important;
+  width: 100% !important;
+}
+
+#contact .callout-banner-split {
+  padding: clamp(16px, 2.2vw, 30px) !important;
+  margin-top: 0 !important;
 }
 
 #contact .callout-title {
-  font-size: clamp(24px, 2.8vw, 38px) !important;
+  font-size: clamp(20px, 2.4vw, 34px) !important;
   line-height: 1.18 !important;
   margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+#contact .callout-desc {
+  font-size: clamp(0.82rem, 1vw, 0.92rem) !important;
   margin-bottom: 12px !important;
 }
 
-/* Image 1 Fix: Zero space between Contact section and Footer */
+#contact .shinobi-contact-title {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem) !important;
+  margin-top: 0 !important;
+  margin-bottom: 4px !important;
+}
+
+#contact .shinobi-contact-subtitle {
+  font-size: clamp(0.78rem, 0.95vw, 0.88rem) !important;
+  margin-bottom: 12px !important;
+}
+
+@media (max-width: 768px) {
+  #contact .callout-banner-split {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 12px 14px !important;
+  }
+
+  #contact .callout-guarantees-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  #contact .guarantee-chip {
+    padding: 6px 10px !important;
+    flex: 1 1 calc(50% - 6px) !important;
+  }
+
+  #contact .guarantee-chip p {
+    display: none !important;
+  }
+
+  #contact .shinobi-contact-wrap {
+    padding: 12px 14px !important;
+  }
+
+  #contact .shinobi-form-grid {
+    gap: 6px !important;
+  }
+
+  #contact .form-input,
+  #contact .form-select,
+  #contact .form-textarea {
+    padding: 6px 10px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* Zero space between Contact section and Footer */
 #siteFooter.ku-site-footer {
   margin-top: 0 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
-  padding-top: clamp(40px, 5vh, 60px) !important;
+  padding-top: clamp(36px, 4.5vh, 56px) !important;
 }
 
-/* Normalize font size of Core Value Proposition to match others */
+/* Core Value Proposition: Spacing & Responsive Grid after badge removal (Image 6 Spacing Fix) */
+#core-value-proposition.teaser-pillars {
+  padding-top: clamp(12px, 2vh, 24px) !important;
+  padding-bottom: clamp(12px, 2vh, 24px) !important;
+  width: 100% !important;
+}
+
+#pillarsGrandDeck.pillars-grand-deck,
+#pillarsGrandDeck {
+  width: 100% !important;
+  max-width: 1380px !important;
+  margin: 0 auto !important;
+  padding: clamp(38px, 4.5vh, 52px) clamp(20px, 2.5vw, 36px) clamp(36px, 4.2vh, 48px) !important;
+  box-sizing: border-box !important;
+}
+
+#pillarsGrandDeck .sec-header {
+  margin-bottom: clamp(20px, 2.8vh, 32px) !important;
+}
+
 #pillarsGrandDeck .sec-title,
 #core-value-proposition .sec-title {
-  font-size: clamp(1.75rem, 2.6vw, 2.35rem) !important;
-  line-height: 1.15 !important;
+  font-size: clamp(1.6rem, 2.5vw, 2.35rem) !important;
+  line-height: 1.18 !important;
+  margin-top: 0 !important;
   margin-bottom: 8px !important;
 }
 
 #pillarsGrandDeck .sec-desc,
 #core-value-proposition .sec-desc {
-  font-size: clamp(0.85rem, 1.1vw, 0.95rem) !important;
-  margin-bottom: 16px !important;
+  font-size: clamp(0.85rem, 1.1vw, 0.98rem) !important;
+  margin: 0 auto !important;
+  max-width: 680px !important;
+  line-height: 1.5 !important;
 }
 
-/* Portfolio Gallery: Restore full width, adjust container space after button removal */
+/* Pillar Interactive Cards with Read-Full Modal Popup Trigger (Image 4 Fix) */
+.teaser-pillar-card {
+  cursor: pointer !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.teaser-pillar-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(0, 229, 255, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(0, 229, 255, 0.16) !important;
+}
+
+.pillar-read-more-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  color: #00E5FF !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  background: rgba(0, 229, 255, 0.08) !important;
+  border: 1px solid rgba(0, 229, 255, 0.28) !important;
+  margin-top: auto !important;
+  width: fit-content !important;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+.teaser-pillar-card:hover .pillar-read-more-pill {
+  background: rgba(0, 229, 255, 0.18) !important;
+  border-color: rgba(0, 229, 255, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+/* 4-column on desktop, 2-column on tablet, compact 2x2 grid on mobile */
+@media (min-width: 1024px) {
+  .teaser-pillars-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: clamp(12px, 1.4vw, 18px) !important;
+    margin-top: clamp(12px, 2vh, 20px) !important;
+  }
+
+  .teaser-pillar-card {
+    padding: 24px 20px !important;
+    min-height: 200px !important;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 600px) {
+  .teaser-pillars-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .teaser-pillars-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 8px !important;
+  }
+
+  .teaser-pillar-card {
+    padding: 12px 10px !important;
+    border-radius: 14px !important;
+  }
+
+  .teaser-pillar-card .teaser-pillar-icon {
+    font-size: 1.3rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .teaser-pillar-card h3 {
+    font-size: 0.85rem !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+
+  .teaser-pillar-card p {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 6px !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  .teaser-pillar-card .pillar-read-more-pill {
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+}
+
+/* Portfolio Gallery: Restore full width, adjust container space after button and tag removal (Image 5 Spacing Fix) */
 #portfolio-curved-gallery.curved-gallery-section {
   width: 100% !important;
   max-width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  padding-top: clamp(8px, 1.5vh, 20px) !important;
-  padding-bottom: clamp(8px, 1.5vh, 20px) !important;
+  padding-top: clamp(12px, 2vh, 24px) !important;
+  padding-bottom: clamp(12px, 2vh, 24px) !important;
+}
+
+#portfolio-curved-gallery .section-meta {
+  margin-bottom: clamp(16px, 2vh, 24px) !important;
+}
+
+#portfolio-curved-gallery .sec-title {
+  font-size: clamp(1.6rem, 2.5vw, 2.35rem) !important;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
+}
+
+#portfolio-curved-gallery .sec-desc {
+  font-size: clamp(0.82rem, 1vw, 0.95rem) !important;
+  margin: 4px auto 0 !important;
+  max-width: 680px !important;
 }
 
 #portfolio-curved-gallery .con {
   max-width: 100% !important;
   width: 100% !important;
-  padding: 0 clamp(16px, 3vw, 40px) !important;
+  padding: 0 clamp(12px, 2.5vw, 36px) !important;
 }
 
 #portfolio-curved-gallery .prototypes-grand-deck {
   max-width: 1400px !important;
   width: 100% !important;
   margin: 0 auto !important;
-  padding-top: clamp(10px, 1.5vh, 18px) !important;
-  padding-bottom: clamp(10px, 1.5vh, 18px) !important;
+  padding-top: clamp(38px, 4.5vh, 52px) !important;
+  padding-bottom: clamp(24px, 3vh, 36px) !important;
 }
 
 #portfolio-curved-gallery .gallery-nav-bar {
-  margin-top: clamp(8px, 1.2vh, 14px) !important;
+  margin-top: clamp(10px, 1.5vh, 16px) !important;
   margin-bottom: 0 !important;
 }
 
-/* Tighten Atlas spacings and move elements upward */
+/* Global Client Atlas: Space adjustments after badge removal */
 #global-client-atlas.nl-atlas-section {
-  padding-top: clamp(12px, 2vh, 24px) !important;
-  padding-bottom: clamp(12px, 2vh, 24px) !important;
+  padding-top: clamp(8px, 1.5vh, 18px) !important;
+  padding-bottom: clamp(8px, 1.5vh, 18px) !important;
   max-width: 1380px !important;
   width: 100% !important;
   margin: 0 auto !important;
@@ -240,8 +466,8 @@
 }
 
 .osiris-split-grid {
-  padding: 16px 24px !important;
-  gap: 20px !important;
+  padding: clamp(8px, 1.5vh, 16px) clamp(12px, 2vw, 24px) !important;
+  gap: clamp(10px, 1.5vw, 20px) !important;
 }
 
 .osiris-col-left {
@@ -250,25 +476,25 @@
 }
 
 .osiris-col-left .osiris-globe-stage {
-  margin-top: -12px !important;
-  max-height: 400px !important;
+  margin-top: -8px !important;
+  max-height: clamp(240px, 35vh, 400px) !important;
 }
 
 .osiris-col-right {
-  gap: 10px !important;
+  gap: 8px !important;
 }
 
 .osiris-col-right .osiris-masthead,
 .osiris-masthead {
-  padding: 14px 20px !important;
+  padding: clamp(10px, 1.5vh, 14px) clamp(14px, 2vw, 20px) !important;
 }
 
 .osiris-dossier-card {
-  padding: 16px 20px !important;
+  padding: clamp(10px, 1.5vh, 14px) clamp(14px, 2vw, 20px) !important;
 }
 
 .osiris-actions-grid {
-  margin-top: 10px !important;
+  margin-top: 8px !important;
   gap: 8px !important;
   display: flex !important;
   flex-direction: row !important;
@@ -282,46 +508,151 @@
   opacity: 1 !important;
 }
 
-/* Mobile & Touch Responsive Guarantee:
-   On narrow mobile devices (<= 768px), keep standard fluid height and natural scroll */
+/* Hero section safe padding inside sticky turn panel */
+.turn-sticky-panel #nlHeroSection.nl-hero {
+  padding-top: 0 !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+.turn-sticky-panel #nlHeroSection .nl-hero-content {
+  padding-top: clamp(6px, 1.2vh, 16px) !important;
+  padding-bottom: clamp(10px, 2vh, 24px) !important;
+  box-sizing: border-box !important;
+}
+
+#nlHeroSection .nl-hero-title {
+  font-size: clamp(22px, 5.5vw, 48px) !important;
+  line-height: 1.15 !important;
+}
+
 @media (max-width: 768px) {
-  .turn-stage-wrapper {
-    height: auto !important;
+  #global-client-atlas .osiris-split-grid {
+    grid-template-columns: 1fr !important;
+    padding: 8px 12px !important;
+    gap: 10px !important;
+  }
+
+  #global-client-atlas .osiris-col-left {
+    order: 2 !important;
+  }
+
+  #global-client-atlas .osiris-col-right {
+    order: 1 !important;
+  }
+
+  #global-client-atlas .osiris-globe-stage {
+    max-height: 200px !important;
+  }
+
+  #global-client-atlas .osiris-col-left #globe-canvas-wrap.kh-scene {
+    min-height: 180px !important;
+    max-height: 200px !important;
+    max-width: 280px !important;
+  }
+
+  #global-client-atlas .osiris-masthead {
+    padding: 8px 12px !important;
+  }
+
+  #global-client-atlas .osiris-title {
+    font-size: clamp(20px, 5.2vw, 24px) !important;
     margin-top: 0 !important;
-    z-index: auto !important;
+    margin-bottom: 4px !important;
   }
 
-  #stage-contact.turn-stage-wrapper {
-    height: auto !important;
-    margin-bottom: 0 !important;
+  #global-client-atlas .osiris-subtitle {
+    font-size: 0.8rem !important;
+    line-height: 1.35 !important;
   }
 
-  .turn-stage-wrapper > .turn-sticky-panel {
-    position: relative !important;
-    top: auto !important;
-    height: auto !important;
-    overflow: visible !important;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    z-index: auto !important;
-    display: flex !important;
-    background: transparent !important;
+  #global-client-atlas .osiris-dossier-card {
+    padding: 10px 12px !important;
+  }
+}
+
+/* Architecture Pillar Specification Modal Styling (Image 4 Read-Full Modal) */
+#pillar-modal.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background: rgba(1, 8, 6, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-out;
+}
+
+#pillar-modal.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pillar-modal-content {
+  max-width: min(94vw, 780px);
+  width: 100%;
+  border-radius: 24px;
+  background: rgba(3, 16, 14, 0.98);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.92), 0 0 45px rgba(0, 229, 255, 0.16);
+  overflow: hidden;
+  color: #FFFFFF;
+  transform: scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#pillar-modal.lightbox-modal.active .pillar-modal-content {
+  transform: scale(1);
+}
+
+.pillar-modal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 1.1rem 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 600px) {
+  .pillar-modal-topbar {
+    padding: 0.9rem 1.2rem;
   }
 
-  .turn-sticky-panel.is-fixed-reveal {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    height: auto !important;
+  #pillar-modal-tag {
+    font-size: 0.65rem !important;
+    padding: 3px 8px !important;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .turn-curl-crease-line {
-    display: none !important;
+  .pillar-modal-inner {
+    padding: 1.2rem 1.2rem !important;
   }
+}
+
+.pillar-modal-inner {
+  padding: 1.8rem 2rem;
+  max-height: calc(88vh - 75px);
+  overflow-y: auto;
 }
 
 /* Reduced Motion Preference */
