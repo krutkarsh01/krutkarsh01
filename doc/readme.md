@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.16
+Version: 5.9.15
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,38 +13,6 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
-
-### [v5.9.16] - Elimination of Content Slicing via Luminous Card-Stack Turnover Architecture
-
-#### I - INPUT
-1. User prompt: *"See the problem"* with 4 annotated screenshots (`media_1795544317683_dcc3a6d6.jpg`, `media_1795544347697_d7330cc6.jpg`, `media_1795544401863_eff1636b.jpg`, `media_1795544429660_17ea9d06.jpg`):
-   - Red boxes around white horizontal cut lines slicing through text, buttons, and logos (`> I am a Senior Business Analyst`, quick jump chips, MEAX logo, and pillar card titles).
-   - Root Cause: `clip-path` cutting across DOM elements acts like a guillotine, chopping words and cards in half whenever the cut line crosses them.
-
-#### M - MISSION
-1. Completely eradicate the `clip-path` slicing mechanism that chops words, logos, and cards in half.
-2. Deliver a physical, tactile Card-Stack Turnover experience where each section moves as an intact visual sheet.
-3. Keep every headline, card, logo, and button 100% intact with zero truncation or split-screen collisions across all viewports.
-4. Provide a radiant, glowing cyan top border (`#00E5FF`) and deep ambient shadow on each rising section sheet.
-
-#### E - EXECUTION
-1. Overhauled [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js):
-   - Replaced `clip-path` polygon slicing with GPU-accelerated `translateY` sheet transitions.
-   - Incoming section rises smoothly from `translateY(100%)` to `translateY(0%)` at `z-index: 40`.
-   - Outgoing section stays pinned at `top: 0` at `z-index: 20` with subtle depth scaling (`scale(1.0 -> 0.96)`) and soft contrast dimming (`brightness(1.0 -> 0.65)`).
-   - The rising sheet features an illuminated `border-top: 2px solid #00E5FF` with a dramatic `box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95), 0 -2px 20px rgba(0, 229, 255, 0.7)`.
-   - Zero DOM elements are ever sliced or cut in half.
-2. Updated [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css):
-   - Permanently retired `.turn-curl-crease-line` SVG.
-   - Enforced hardware-accelerated `will-change: transform, filter`.
-3. Verified WebGL Aurora and Glowing Starfield persistence on Hero.
-
-#### T - TESTING
-1. Verified Mobile (390x844) across 9 scroll points: zero sliced text, zero cut logos, smooth card-stack turnover.
-2. Verified Desktop (1440x900) across 5 scroll points: pristine, full-width architectural sheet transitions.
-3. Verified `npm run build` succeeds cleanly.
-
----
 
 ### [v5.9.15] - Page Turnover Restoration and Universal Cross-Device Peel Polish
 
