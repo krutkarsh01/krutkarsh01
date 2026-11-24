@@ -141,8 +141,15 @@ body {
   background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
 }
 
-/* Outgoing peeling panel: Hardware-accelerated dynamic clipping without expensive Gaussian drop-shadow */
+/* Outgoing peeling panel: Locked to viewport with overflow hidden so Blink compositing clips 100% cleanly along the diagonal */
 .turn-sticky-panel.is-peeling {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  overflow: hidden !important;
   will-change: clip-path;
   z-index: 40 !important;
 }
@@ -701,6 +708,7 @@ body {
     box-sizing: border-box !important;
   }
 
+  .turn-stage-wrapper > .turn-sticky-panel.is-peeling,
   .turn-sticky-panel.is-fixed-reveal {
     position: fixed !important;
     top: 0 !important;
@@ -708,6 +716,10 @@ body {
     width: 100vw !important;
     height: 100vh !important;
     height: 100svh !important;
+    overflow: hidden !important;
+  }
+
+  .turn-sticky-panel.is-fixed-reveal {
     z-index: 30 !important;
   }
 
