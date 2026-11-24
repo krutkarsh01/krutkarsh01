@@ -107,12 +107,10 @@ body {
   }
 }
 
-/* Hide old SVG crease line permanently; incoming panels now feature radiant glowing top borders */
-.turn-curl-crease-line {
+/* Hide crease line on non-peeling stages so no stray white corners show on incoming sections */
+.turn-stage-wrapper:not(.is-peeling-wrapper) > .turn-curl-crease-line {
   display: none !important;
   opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
 }
 
 /* Crisp, solid opacity ensures text is never washed out or ghosted during active page turn */
@@ -149,19 +147,25 @@ body {
   z-index: 40 !important;
 }
 
-/* High-contrast crisp white borderline along the peeling diagonal edge */
+/* High-contrast crisp white borderline along the peeling diagonal edge, fixed to viewport so inner scroll never decouples it from clip-path */
 .turn-curl-crease-line {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
   pointer-events: none;
   z-index: 50;
   opacity: 0;
-  will-change: opacity, transform;
+  display: none;
+  will-change: opacity;
   transition: opacity 0.1s ease-out;
 }
 
-.turn-sticky-panel.is-peeling .turn-curl-crease-line {
-  opacity: 1;
+.turn-stage-wrapper.is-peeling-wrapper > .turn-curl-crease-line {
+  display: block !important;
+  opacity: 1 !important;
 }
 
 .turn-curl-crease-svg {
@@ -707,8 +711,8 @@ body {
     z-index: 30 !important;
   }
 
-  .turn-curl-crease-line {
-    display: none !important;
+  .turn-stage-wrapper.is-peeling-wrapper > .turn-curl-crease-line {
+    display: block !important;
   }
 
   #stage-nlHeroSection>.turn-sticky-panel {
