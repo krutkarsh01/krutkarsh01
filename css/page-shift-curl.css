@@ -19,7 +19,8 @@
  */
 
 /* Universal Full-Bleed Viewport Defaults: 0px side margins/gutters */
-html, body {
+html,
+body {
   margin: 0 !important;
   padding: 0 !important;
   width: 100% !important;
@@ -46,7 +47,7 @@ html, body {
   margin-bottom: 0 !important;
 }
 
-.turn-stage-wrapper > .turn-sticky-panel {
+.turn-stage-wrapper>.turn-sticky-panel {
   position: sticky;
   top: 0;
   width: 100%;
@@ -57,17 +58,20 @@ html, body {
   scrollbar-width: none;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start !important; /* CRITICAL: Always anchor from top to prevent headings from being cut off */
+  justify-content: flex-start !important;
+  /* CRITICAL: Always anchor from top to prevent headings from being cut off */
   align-items: center;
-  padding-top: clamp(60px, 8vh, 76px) !important; /* Safe clearance below the 56px fixed navbar */
+  padding-top: clamp(60px, 8vh, 76px) !important;
+  /* Safe clearance below the 56px fixed navbar */
   padding-bottom: clamp(16px, 2.5vh, 32px) !important;
-  padding-left: 0 !important; /* Image Fix: Zero horizontal padding so hero & content are full-bleed with no side gaps */
+  padding-left: 0 !important;
+  /* Image Fix: Zero horizontal padding so hero & content are full-bleed with no side gaps */
   padding-right: 0 !important;
   will-change: clip-path, transform, opacity;
   box-sizing: border-box !important;
 }
 
-.turn-stage-wrapper > .turn-sticky-panel::-webkit-scrollbar {
+.turn-stage-wrapper>.turn-sticky-panel::-webkit-scrollbar {
   display: none;
 }
 
@@ -90,7 +94,7 @@ html, body {
 }
 
 /* Hero Section: Full bleed edge-to-edge, zero side padding so character, hands, and sky span full viewport */
-#stage-nlHeroSection > .turn-sticky-panel {
+#stage-nlHeroSection>.turn-sticky-panel {
   padding-left: 0 !important;
   padding-right: 0 !important;
   width: 100% !important;
@@ -103,37 +107,39 @@ html, body {
   }
 }
 
-/* Hide crease line on non-peeling panels so no stray white corners show on incoming sections */
-.turn-sticky-panel:not(.is-peeling) .turn-curl-crease-line {
+/* Hide old SVG crease line permanently; incoming panels now feature radiant glowing top borders */
+.turn-curl-crease-line {
   display: none !important;
   opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Crisp, solid opacity ensures text is never washed out or ghosted during active page turn */
 .turn-sticky-panel.is-fixed-reveal > *,
-.turn-sticky-panel.is-peeling > * {
+.turn-sticky-panel.is-peeling>* {
   opacity: 1 !important;
 }
 
-.turn-stage-wrapper.is-fully-active > .turn-sticky-panel > * {
+.turn-stage-wrapper.is-fully-active>.turn-sticky-panel>* {
   opacity: 1 !important;
 }
 
 /* Downstream stage panels have solid dark cosmic background to prevent transparent bleed */
-#stage-global-client-atlas > .turn-sticky-panel,
-#stage-core-value-proposition > .turn-sticky-panel,
-#stage-portfolio-curved-gallery > .turn-sticky-panel,
-#stage-contact > .turn-sticky-panel {
+#stage-global-client-atlas>.turn-sticky-panel,
+#stage-core-value-proposition>.turn-sticky-panel,
+#stage-portfolio-curved-gallery>.turn-sticky-panel,
+#stage-contact>.turn-sticky-panel {
   background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
 }
 
 /* Hero Stage keeps transparent background when resting so WebGL Aurora & Glowing Starfield shine through at all times! */
-#stage-nlHeroSection > .turn-sticky-panel {
+#stage-nlHeroSection>.turn-sticky-panel {
   background: transparent !important;
 }
 
 /* When peeling, Hero receives solid dark gradient backing so Section 2 cannot shine through Hero before the crease sweeps */
-#stage-nlHeroSection > .turn-sticky-panel.is-peeling {
+#stage-nlHeroSection>.turn-sticky-panel.is-peeling {
   background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
 }
 
@@ -175,20 +181,20 @@ html, body {
 
 /* INCOMING SECTION POSITIONING:
    Pulled directly behind the active peeling stage */
-.turn-stage-wrapper.has-turn-effect + .turn-stage-wrapper {
+.turn-stage-wrapper.has-turn-effect+.turn-stage-wrapper {
   margin-top: -100vh;
   position: relative;
 }
 
-.turn-stage-wrapper > .turn-sticky-panel {
+.turn-stage-wrapper>.turn-sticky-panel {
   will-change: clip-path, opacity;
 }
 
-.turn-stage-wrapper.is-incoming > .turn-sticky-panel {
+.turn-stage-wrapper.is-incoming>.turn-sticky-panel {
   opacity: 1 !important;
 }
 
-.turn-stage-wrapper.is-fully-active > .turn-sticky-panel {
+.turn-stage-wrapper.is-fully-active>.turn-sticky-panel {
   opacity: 1 !important;
   filter: none !important;
   transform: none !important;
@@ -668,6 +674,7 @@ html, body {
 
 /* Mobile Responsive Architecture: Full-Width Turnover Peel Active Across All Mobile Viewports */
 @media (max-width: 768px) {
+
   .turn-stage-wrapper.has-turn-effect {
     height: 220vh !important;
   }
@@ -701,10 +708,10 @@ html, body {
   }
 
   .turn-curl-crease-line {
-    display: block !important;
+    display: none !important;
   }
 
-  #stage-nlHeroSection > .turn-sticky-panel {
+  #stage-nlHeroSection>.turn-sticky-panel {
     background: transparent !important;
     min-height: 100svh !important;
     padding-top: 60px !important;
@@ -715,10 +722,10 @@ html, body {
     background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
   }
 
-  #stage-global-client-atlas > .turn-sticky-panel,
-  #stage-core-value-proposition > .turn-sticky-panel,
-  #stage-portfolio-curved-gallery > .turn-sticky-panel,
-  #stage-contact > .turn-sticky-panel {
+  #stage-global-client-atlas>.turn-sticky-panel,
+  #stage-core-value-proposition>.turn-sticky-panel,
+  #stage-portfolio-curved-gallery>.turn-sticky-panel,
+  #stage-contact>.turn-sticky-panel {
     background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
   }
 }
@@ -730,7 +737,8 @@ html, body {
     margin-top: 0 !important;
     z-index: auto !important;
   }
-  .turn-stage-wrapper > .turn-sticky-panel {
+
+  .turn-stage-wrapper>.turn-sticky-panel {
     position: relative !important;
     top: auto !important;
     height: auto !important;
@@ -743,6 +751,7 @@ html, body {
     display: flex !important;
     background: transparent !important;
   }
+
   .turn-sticky-panel.is-fixed-reveal {
     position: relative !important;
     top: auto !important;
@@ -750,6 +759,7 @@ html, body {
     width: 100% !important;
     height: auto !important;
   }
+
   .turn-curl-crease-line {
     display: none !important;
   }
