@@ -671,6 +671,62 @@ html, body {
   overflow-y: auto;
 }
 
+/* Mobile Responsive Architecture: Natural Document Flow (Image Fix for Mobile Collision & Cutoff) */
+@media (max-width: 768px) {
+  .turn-stage-wrapper,
+  .turn-stage-wrapper.has-turn-effect,
+  .turn-stage-wrapper.has-turn-effect + .turn-stage-wrapper,
+  #stage-contact.turn-stage-wrapper {
+    height: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    z-index: auto !important;
+  }
+
+  .turn-stage-wrapper > .turn-sticky-panel,
+  .turn-sticky-panel.is-fixed-reveal,
+  .turn-sticky-panel.is-peeling {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    display: flex !important;
+    visibility: visible !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+    background: transparent !important;
+  }
+
+  .turn-sticky-panel > * {
+    opacity: 1 !important;
+  }
+
+  .turn-curl-crease-line {
+    display: none !important;
+  }
+
+  #stage-nlHeroSection > .turn-sticky-panel {
+    min-height: 100svh !important;
+    padding-top: 64px !important;
+    justify-content: flex-start !important;
+  }
+
+  #stage-global-client-atlas > .turn-sticky-panel,
+  #stage-core-value-proposition > .turn-sticky-panel,
+  #stage-portfolio-curved-gallery > .turn-sticky-panel,
+  #stage-contact > .turn-sticky-panel {
+    background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
+  }
+}
+
 /* Reduced Motion Preference */
 @media (prefers-reduced-motion: reduce) {
   .turn-stage-wrapper {

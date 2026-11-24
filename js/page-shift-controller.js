@@ -158,6 +158,27 @@
   }
 
   function updatePeelProgress() {
+    // Mobile devices (<= 768px): Use native, silky-smooth responsive document flow without sticky hijacking
+    if (window.innerWidth <= 768) {
+      for (var s = 0; s < stages.length; s++) {
+        var stg = stages[s];
+        if (stg.panel) {
+          stg.panel.style.display = 'flex';
+          stg.panel.style.clipPath = 'none';
+          stg.panel.style.webkitClipPath = 'none';
+          stg.panel.classList.remove('is-peeling', 'is-fixed-reveal');
+          stg.panel.style.removeProperty('--outgoing-opacity');
+          stg.panel.style.removeProperty('--incoming-opacity');
+        }
+        if (stg.wrapper) {
+          stg.wrapper.style.zIndex = 'auto';
+          stg.wrapper.classList.remove('is-incoming');
+          stg.wrapper.classList.add('is-fully-active');
+        }
+      }
+      return;
+    }
+
     var vh = window.innerHeight || 800;
 
     var activePeelIndex = -1;
