@@ -1,0 +1,357 @@
+/**
+ * Code of Sagar Sticky Page-Turn & Section-Shift Architecture
+ *
+ * Strict Dual-Sided Page-Turn Architecture:
+ * - Section 1 is clipped to the left of the diagonal crease line.
+ * - Section 2 is clipped to the right of the diagonal crease line.
+ * - ZERO GAP / ZERO PADDING:
+ *   When `.is-fixed-reveal` is applied during active peel, the incoming panel is locked to
+ *   `position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;` sharing the exact
+ *   same coordinate origin as the outgoing sticky panel (0,0).
+ * - PROGRESSIVE FADE IN (IMAGE 3 FIX):
+ *   Incoming section elements smoothly fade in as the paper turns.
+ * - IMAGE 1 FIX:
+ *   Zero gap between Contact section and Site Footer (`margin-bottom: 0 !important; border-top: none !important;`).
+ * - IMAGE 2 FIX:
+ *   Contact card padding and title font scaled so "Ready to Ship?" badge and "Need Living Specifications"
+ *   headline never clip the top navigation bar.
+ */
+
+.turn-stage-wrapper {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 769px) {
+  .turn-stage-wrapper.has-turn-effect {
+    /* Height provides smooth scroll track */
+    height: 180vh;
+    margin-bottom: 0;
+  }
+
+  /* Contact stage (last stage): Image 1 Fix: NO empty margin before footer! */
+  #stage-contact.turn-stage-wrapper {
+    height: 100vh !important;
+    height: 100svh !important;
+    margin-bottom: 0 !important;
+  }
+
+  .turn-stage-wrapper > .turn-sticky-panel {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    will-change: clip-path, transform, opacity;
+  }
+
+  /* FIXED REVEAL LOCK:
+     During active peel, incoming panel is fixed to top: 0, left: 0 so its viewport coordinates
+     mathematically match the outgoing panel at (0,0) with 0px gap! */
+  .turn-sticky-panel.is-fixed-reveal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    z-index: 30 !important;
+  }
+
+  /* Hide crease line on non-peeling panels so no stray white corners show on incoming sections */
+  .turn-sticky-panel:not(.is-peeling) .turn-curl-crease-line {
+    display: none !important;
+    opacity: 0 !important;
+  }
+
+  /* Image 3 Fix: Incoming elements smoothly fade in across the revealed surface */
+  .turn-sticky-panel.is-fixed-reveal > :not(.turn-curl-crease-line) {
+    opacity: var(--incoming-opacity, 1);
+    transition: opacity 0.04s linear;
+  }
+
+  /* Realistic dark cosmic background on panels */
+  #stage-global-client-atlas > .turn-sticky-panel,
+  #stage-core-value-proposition > .turn-sticky-panel,
+  #stage-portfolio-curved-gallery > .turn-sticky-panel,
+  #stage-contact > .turn-sticky-panel {
+    background: radial-gradient(ellipse at 50% 30%, rgba(2, 18, 15, 0.98) 0%, rgba(1, 8, 6, 0.99) 100%) !important;
+  }
+
+  /* Outgoing peeling panel gets a realistic depth shadow cast onto incoming section */
+  .turn-sticky-panel.is-peeling {
+    filter: drop-shadow(-15px 15px 35px rgba(0, 0, 0, 0.85));
+    z-index: 40 !important;
+  }
+
+  /* Outgoing content progressive fade out across child elements */
+  .turn-sticky-panel.is-peeling > * {
+    opacity: var(--outgoing-opacity, 1);
+    transition: opacity 0.04s linear;
+  }
+
+  /* High-contrast crisp white borderline along the peeling diagonal edge */
+  .turn-curl-crease-line {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    will-change: opacity, transform;
+    transition: opacity 0.1s ease-out;
+  }
+
+  .turn-sticky-panel.is-peeling .turn-curl-crease-line {
+    opacity: 1;
+  }
+
+  .turn-curl-crease-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .turn-curl-line-stroke {
+    stroke: #ffffff;
+    stroke-width: 3.5px;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)) drop-shadow(-4px 4px 14px rgba(0, 0, 0, 0.95));
+  }
+
+  /* INCOMING SECTION POSITIONING:
+     Pulled directly behind the active peeling stage */
+  .turn-stage-wrapper.has-turn-effect + .turn-stage-wrapper {
+    margin-top: -100vh;
+    position: relative;
+  }
+
+  .turn-stage-wrapper > .turn-sticky-panel {
+    will-change: clip-path, opacity;
+  }
+
+  .turn-stage-wrapper.is-incoming > .turn-sticky-panel {
+    opacity: 1 !important;
+  }
+
+  .turn-stage-wrapper.is-fully-active > .turn-sticky-panel {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+}
+
+/* Image 2 Fix: Prevent Contact section title & tag from clipping top navbar */
+#contact.home-section.teaser-callout {
+  padding-top: clamp(8px, 1.5vh, 20px) !important;
+  padding-bottom: clamp(12px, 2vh, 24px) !important;
+  border-top: none !important;
+  margin-bottom: 0 !important;
+}
+
+#contact .callout-banner-split {
+  padding: clamp(20px, 2.5vw, 32px) !important;
+  margin-top: clamp(8px, 1.5vh, 16px) !important;
+}
+
+#contact .callout-tag {
+  margin-bottom: 8px !important;
+}
+
+#contact .callout-title {
+  font-size: clamp(24px, 2.8vw, 38px) !important;
+  line-height: 1.18 !important;
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+}
+
+/* Image 1 Fix: Zero space between Contact section and Footer */
+#siteFooter.ku-site-footer {
+  margin-top: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding-top: clamp(40px, 5vh, 60px) !important;
+}
+
+/* Normalize font size of Core Value Proposition to match others */
+#pillarsGrandDeck .sec-title,
+#core-value-proposition .sec-title {
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem) !important;
+  line-height: 1.15 !important;
+  margin-bottom: 8px !important;
+}
+
+#pillarsGrandDeck .sec-desc,
+#core-value-proposition .sec-desc {
+  font-size: clamp(0.85rem, 1.1vw, 0.95rem) !important;
+  margin-bottom: 16px !important;
+}
+
+/* Portfolio Gallery: Restore full width, adjust container space after button removal */
+#portfolio-curved-gallery.curved-gallery-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: clamp(8px, 1.5vh, 20px) !important;
+  padding-bottom: clamp(8px, 1.5vh, 20px) !important;
+}
+
+#portfolio-curved-gallery .con {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 clamp(16px, 3vw, 40px) !important;
+}
+
+#portfolio-curved-gallery .prototypes-grand-deck {
+  max-width: 1400px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding-top: clamp(10px, 1.5vh, 18px) !important;
+  padding-bottom: clamp(10px, 1.5vh, 18px) !important;
+}
+
+#portfolio-curved-gallery .gallery-nav-bar {
+  margin-top: clamp(8px, 1.2vh, 14px) !important;
+  margin-bottom: 0 !important;
+}
+
+/* Tighten Atlas spacings and move elements upward */
+#global-client-atlas.nl-atlas-section {
+  padding-top: clamp(12px, 2vh, 24px) !important;
+  padding-bottom: clamp(12px, 2vh, 24px) !important;
+  max-width: 1380px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.osiris-deck {
+  margin: 0 auto !important;
+  max-width: 1380px !important;
+  width: 100% !important;
+}
+
+.osiris-split-grid {
+  padding: 16px 24px !important;
+  gap: 20px !important;
+}
+
+.osiris-col-left {
+  gap: 8px !important;
+  justify-content: flex-start !important;
+}
+
+.osiris-col-left .osiris-globe-stage {
+  margin-top: -12px !important;
+  max-height: 400px !important;
+}
+
+.osiris-col-right {
+  gap: 10px !important;
+}
+
+.osiris-col-right .osiris-masthead,
+.osiris-masthead {
+  padding: 14px 20px !important;
+}
+
+.osiris-dossier-card {
+  padding: 16px 20px !important;
+}
+
+.osiris-actions-grid {
+  margin-top: 10px !important;
+  gap: 8px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+}
+
+#hub-btn-action-primary,
+#hub-btn-action-secondary {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Mobile & Touch Responsive Guarantee:
+   On narrow mobile devices (<= 768px), keep standard fluid height and natural scroll */
+@media (max-width: 768px) {
+  .turn-stage-wrapper {
+    height: auto !important;
+    margin-top: 0 !important;
+    z-index: auto !important;
+  }
+
+  #stage-contact.turn-stage-wrapper {
+    height: auto !important;
+    margin-bottom: 0 !important;
+  }
+
+  .turn-stage-wrapper > .turn-sticky-panel {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    z-index: auto !important;
+    display: flex !important;
+    background: transparent !important;
+  }
+
+  .turn-sticky-panel.is-fixed-reveal {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .turn-curl-crease-line {
+    display: none !important;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .turn-stage-wrapper {
+    height: auto !important;
+    margin-top: 0 !important;
+    z-index: auto !important;
+  }
+  .turn-stage-wrapper > .turn-sticky-panel {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    z-index: auto !important;
+    display: flex !important;
+    background: transparent !important;
+  }
+  .turn-sticky-panel.is-fixed-reveal {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .turn-curl-crease-line {
+    display: none !important;
+  }
+}

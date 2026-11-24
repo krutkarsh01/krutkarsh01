@@ -1416,3 +1416,37 @@ div.footer-cta-wrap,
 
 
 
+
+
+/* Spacing Optimization for Global Client Atlas (Image 1 Fixes) */
+html body #global-client-atlas.nl-atlas-section,
+.nl-atlas-section {
+  padding-top: 16px !important;
+  padding-bottom: 24px !important;
+}
+
+.osiris-split-grid {
+  gap: 16px !important;
+}
+
+.osiris-col-left {
+  gap: 10px !important;
+}
+
+.osiris-col-right {
+  gap: 12px !important;
+}
+
+.osiris-col-right .osiris-masthead,
+.osiris-masthead {
+  padding: 18px 24px !important;
+}
+
+.osiris-dossier-card {
+  padding: 20px 24px !important;
+}
+
+.osiris-actions-grid {
+  margin-top: 10px !important;
+  gap: 8px !important;
+}
