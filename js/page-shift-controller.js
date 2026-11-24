@@ -140,6 +140,15 @@
     var vh = window.innerHeight || 800;
     var isMobile = (window.innerWidth || 800) <= 768;
 
+    var btt = document.getElementById('backToTopBtn');
+    if (btt) {
+      if ((window.scrollY || document.documentElement.scrollTop || 0) > 350) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+    }
+
     var activePeelIndex = -1;
     var activeProgress = 0;
 
@@ -149,14 +158,26 @@
 
       var rect = stage.wrapper.getBoundingClientRect();
       var turnDist = stage.wrapper.offsetHeight - vh;
-      
-      // Reading window: user enjoys 70% of the section before peel engages
-      var readingHold = Math.max(isMobile ? 250 : 350, turnDist * 0.70);
+      if (turnDist <= 0) continue;
 
-      // Only enter active peel after the comfortable reading window has completed
+      // Snappy reading pause (48% of track) before diagonal peel engages
+      var readingHold = Math.max(isMobile ? 160 : 180, turnDist * 0.48);
+
+      // Sync internal overflow scroll (e.g. tall mobile Atlas/Gallery) during reading pause
+      var maxInnerScroll = Math.max(0, stage.panel.scrollHeight - stage.panel.clientHeight);
+      if (maxInnerScroll > 0 && rect.top <= 0 && -rect.top <= readingHold) {
+        var readRatio = Math.max(0, Math.min(1, -rect.top / readingHold));
+        stage.panel.scrollTop = readRatio * maxInnerScroll;
+      } else if (maxInnerScroll > 0 && rect.top > 0) {
+        stage.panel.scrollTop = 0;
+      } else if (maxInnerScroll > 0 && -rect.top > readingHold) {
+        stage.panel.scrollTop = maxInnerScroll;
+      }
+
+      // Only enter active peel after the reading pause has completed
       if (-rect.top > readingHold && rect.top > -turnDist) {
         activePeelIndex = i;
-        var peelDist = turnDist - readingHold;
+        var peelDist = Math.max(1, turnDist - readingHold);
         activeProgress = Math.max(0, Math.min(1, (-rect.top - readingHold) / peelDist));
         break;
       }

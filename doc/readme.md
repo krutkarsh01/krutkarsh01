@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.15
+Version: 5.9.17
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,32 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.17] - Scrollbar Elimination, Snappy Scroll Tracks, and Mobile Inner-Scroll Sync
+
+#### I - INPUT
+1. User reported: *"the scroll for each section is too long and why is there a scrolling icon in desktop and mobile"* along with screenshot `media_1795547866955_53dcee55.jpg` highlighting the right-edge vertical scrollbar.
+2. Live Chrome CDP audit identified:
+   - Visible 15px vertical browser scrollbar on `html, body` (`docScrollWidth: 1425` vs `innerWidth: 1440`) and mobile overlay scrollbar.
+   - Excessive per-section scroll tracks (`200vh` desktop / `220vh` mobile).
+   - Mobile inner overflow in Atlas (`1351px`), Gallery (`960px`), and Contact (`1192px`).
+   - `#backToTopBtn` remaining visible at `scrollY = 0` on Hero.
+
+#### M - MISSION
+1. Hide `html, body` scrollbars across Desktop and Mobile while preserving full scroll behavior.
+2. Shorten section scroll tracks to `145vh` (Desktop) and `165vh` (Mobile) with a 48% reading pause.
+3. Sync `stage.panel.scrollTop` automatically during the reading pause so tall mobile sections scroll smoothly before the diagonal peel begins.
+4. Make `#stage-contact` flow naturally on mobile (`height: auto; overflow: visible`) so the Submit button and `#siteFooter` never trap touch scroll.
+5. Hide `#backToTopBtn` whenever `scrollY <= 350`.
+
+#### E - EXECUTION
+1. Updated [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) and [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js).
+
+#### T - TESTING
+1. Verified `docScrollWidth === innerWidth` (`1440` desktop, `390` mobile) and `scrollbarWidth: none`.
+2. Verified reduced document height (`3557px` desktop, `4513px` mobile), diagonal corner peel alignment, and `npm run build` exit code 0.
+
+---
 
 ### [v5.9.15] - Page Turnover Restoration and Universal Cross-Device Peel Polish
 
