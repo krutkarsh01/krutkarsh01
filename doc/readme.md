@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.12
+Version: 5.9.13
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,33 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.13] - Comprehensive Multi-Issue Resolution: Responsive Full-Width Page Peel, Zero-Collision Transitions, Extended Reading Window, and Deactivated Companion
+
+#### I - INPUT
+1. User prompt with 8 annotated issue screenshots:
+   - Image 1: Red box around redundant button `[ Explore All 17 Prototypes → ]` at the base of the Curved Gallery.
+   - Image 2: Red box around redundant badge `[ CORE VALUE PROPOSITION ]` at the top of the Architecture Pillars.
+   - Image 3: Mobile header overlap under navigation bar caused by premature diagonal page peel.
+   - Image 4: Mobile character and action button sliced diagonally by crease line during active peel.
+   - Image 5: Mobile MEAX card sliced in half diagonally with downstream section bleeding through.
+   - Image 6: Red boxes highlighting side gutters/margins on far left and far right of desktop Hero.
+   - Image 7: Mobile text collision with Hero and Global Client Atlas text superimposed simultaneously.
+   - Image 8: Desktop floating avatar feet artifact on top right of Global Client Atlas card.
+   - Images 9 & 10: Desktop text collision where Curved Gallery heading (`Real Platforms. Raw Architectures.`) and Contact heading (`Transmit Your Project Brief`) collide simultaneously on screen.
+
+#### M - MISSION
+- [x] Task 25.1: Expand section reading window to 65% of scroll track (`readingHold = Math.max(350, turnDist * 0.65)` in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js)). During this window, current section remains 100% stable, fully readable, and unclipped at `top: 0`; incoming section remains completely hidden with `display: 'none'`; and crease line is hidden.
+- [x] Task 25.2: Implement mobile-first full-width horizontal sheet peel in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) for viewports `<= 768px` (`clip-path: polygon(0 0, 100% 0, 100% yEdge%, 0 yEdge%)` with horizontal line sweeping from `yEdge = 100%` to `0%`). Eliminates diagonal text slicing across narrow viewports so words and cards are 100% preserved.
+- [x] Task 25.3: Implement complementary dual-sided opacity interpolation (`--outgoing-opacity: 1 -> 0` and `--incoming-opacity: 0 -> 1`) in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) and [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) to eliminate simultaneous 100% opaque heading collisions on desktop.
+- [x] Task 25.4: Apply solid dark cosmic gradient backing to `#stage-nlHeroSection > .turn-sticky-panel.is-peeling` in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) so Section 2 cannot bleed through Hero during active turn, while keeping resting state 100% transparent to display live WebGL Northern Lights and Bloxi17 Starfield.
+- [x] Task 25.5: Insert top-level execution kill switch in [js/anime-jumping-companion.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/anime-jumping-companion.js) to permanently eliminate floating avatar feet and background animation loops across all downstream sections while preserving the seated avatar on the Hero stone hand.
+- [x] Task 25.6: Enforce universal full-bleed edge-to-edge layout defaults with 0px margins/gutters for `html, body, #stage-nlHeroSection, #nlHeroSection` in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css).
+- [x] Task 25.7: Verify complete absence of `#open-all-prototypes-btn` and `CORE VALUE PROPOSITION` badge in DOM.
+- [x] Task 25.8: Capture and inspect Headless Chrome CDP screenshots for desktop (1440x900) at scroll 0, 300, 750, 1400, 2900, 3500 and mobile (390x844) at scroll 0, 800, 1600, 2400, 3200.
+- [x] Task 25.9: Verify production build passes cleanly (`npm run build`).
+
+---
 
 ### [v5.9.12] - Zero-Ghosting Solid Page Peel Architecture and 280px Reading Window
 
