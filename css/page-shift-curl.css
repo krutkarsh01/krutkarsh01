@@ -18,6 +18,15 @@
  *   Contact stage cleanly transitions into the site footer with 0px gap.
  */
 
+/* Universal Full-Bleed Viewport Defaults: 0px side margins/gutters */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: clip !important;
+}
+
 .turn-stage-wrapper {
   position: relative;
   width: 100%;
@@ -25,8 +34,8 @@
 }
 
 .turn-stage-wrapper.has-turn-effect {
-  /* Height provides smooth, responsive scroll track */
-  height: 180vh;
+  /* Height provides smooth, responsive scroll track with comfortable reading window */
+  height: 200vh;
   margin-bottom: 0;
 }
 
@@ -100,10 +109,19 @@
   opacity: 0 !important;
 }
 
-/* Incoming elements smoothly fade in across the revealed surface */
-.turn-sticky-panel.is-fixed-reveal > :not(.turn-curl-crease-line) {
+/* Graceful opacity transitions prevent overlapping text collision during active page turn */
+.turn-sticky-panel.is-fixed-reveal > * {
   opacity: var(--incoming-opacity, 1);
-  transition: opacity 0.04s linear;
+  transition: opacity 0.1s linear;
+}
+
+.turn-sticky-panel.is-peeling > * {
+  opacity: var(--outgoing-opacity, 1);
+  transition: opacity 0.1s linear;
+}
+
+.turn-stage-wrapper.is-fully-active > .turn-sticky-panel > * {
+  opacity: 1 !important;
 }
 
 /* Downstream stage panels have solid dark cosmic background to prevent transparent bleed */
@@ -114,22 +132,20 @@
   background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
 }
 
-/* Hero Stage keeps transparent background so WebGL Aurora & Glowing Starfield shine through at all times! */
-#stage-nlHeroSection > .turn-sticky-panel,
-#stage-nlHeroSection > .turn-sticky-panel.is-peeling {
+/* Hero Stage keeps transparent background when resting so WebGL Aurora & Glowing Starfield shine through at all times! */
+#stage-nlHeroSection > .turn-sticky-panel {
   background: transparent !important;
 }
 
-/* Outgoing peeling panel gets a realistic depth shadow cast onto incoming section */
-.turn-sticky-panel.is-peeling {
-  filter: drop-shadow(-15px 15px 35px rgba(0, 0, 0, 0.85));
-  z-index: 40 !important;
+/* When peeling, Hero receives solid dark gradient backing so Section 2 cannot shine through Hero before the crease sweeps */
+#stage-nlHeroSection > .turn-sticky-panel.is-peeling {
+  background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
 }
 
-/* Outgoing content progressive fade out across child elements */
-.turn-sticky-panel.is-peeling > * {
-  opacity: var(--outgoing-opacity, 1);
-  transition: opacity 0.04s linear;
+/* Outgoing peeling panel: Hardware-accelerated dynamic clipping without expensive Gaussian drop-shadow */
+.turn-sticky-panel.is-peeling {
+  will-change: clip-path;
+  z-index: 40 !important;
 }
 
 /* High-contrast crisp white borderline along the peeling diagonal edge */

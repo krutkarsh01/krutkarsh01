@@ -6,6 +6,8 @@
 
 (function () {
   'use strict';
+  // Deactivated per user request to eliminate floating companion artifacts and maximize 60fps performance
+  return;
   if (typeof window === 'undefined') return;
 
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

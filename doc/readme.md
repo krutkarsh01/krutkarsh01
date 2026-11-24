@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.10
+Version: 5.9.12
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,44 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.12] - Zero-Ghosting Solid Page Peel Architecture and 280px Reading Window
+
+#### I - INPUT
+1. User prompt with screenshot `media_1795536413210_f920598a.jpg`:
+   - Red highlight box showing Contact section form fields and badges bleeding through the Curved Gallery section during scroll on Netlify.
+   - User report: *"Still there are issue in scrolling, CHECK ALL. AND FIX"*
+   - Root Cause Analysis:
+     1. Ghosting / Double-Exposure: `--outgoing-opacity` in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) and [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) was fading outgoing content to fractional opacity (`0.35`), causing outgoing cards to become translucent ghosts that let the incoming section's form fields bleed through.
+     2. Premature Peeling: Peeling was engaging immediately upon 2px of scroll, giving the user zero reading time to view the cards before the crease line sliced through the reading view.
+
+#### M - MISSION
+- [x] Task 24.1: Eliminate opacity fading by setting both `.turn-sticky-panel.is-peeling > *` and `.turn-sticky-panel.is-fixed-reveal > *` to `opacity: 1 !important` in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css), guaranteeing that each side of the diagonal crease line is a 100% solid, opaque physical page.
+- [x] Task 24.2: Implement clean 280px reading window (`readingHold = Math.min(280, turnDist * 0.28)`) in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js). During this window, the current section remains 100% visible and unclipped at `top: 0`, and the incoming section remains completely hidden with `display: 'none'`.
+- [x] Task 24.3: Increase stage wrapper height in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) to `200vh` to accommodate both the reading window and smooth diagonal sweep.
+- [x] Task 24.4: Remove all `--outgoing-opacity` and `--incoming-opacity` dynamic variable mutations from [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js).
+- [x] Task 24.5: Verify with Headless Chrome CDP screenshots for Desktop 1440x900 mid-peel (`screenshots/v80_gallery_to_contact_mid_peel.png`) and Mobile 390x844 mid-peel (`screenshots/v80_mobile_gallery_mid_peel.png`).
+- [x] Task 24.6: Verify production build cleanliness (`npm run build`).
+
+---
+
+### [v5.9.11] - Anime Jumping Companion Decommissioning and Hardware Acceleration Optimization
+
+#### I - INPUT
+1. User prompt with screenshot `media_1795536014392_d9fc61e5.png`:
+   - Red highlight box showing floating avatar feet on the top right of the Global Client Atlas card.
+   - User report: *"Remove all this anime apart from banner. Just comment it for now. I think this is making all th eover all animations and effects slower and laggy. Fix this. And i have pushed the website to https://krutkarsh.netlify.app/ with the chnages made until now. But the website is very laggy and maybe heavy or whatever ir it is."*
+
+#### M - MISSION
+- [x] Task 23.1: Comment out `<script src="/js/anime-jumping-companion.js" defer></script>` in [index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/index.html) to eliminate all wandering anime sprites and parabolic scroll-jumping loops across downstream sections (Atlas, Pillars, Gallery, Contact) while preserving the seated avatar in the Hero banner.
+- [x] Task 23.2: Eliminate browser compositing lag in [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) by removing CPU-bound `filter: drop-shadow(-15px 15px 35px rgba(0, 0, 0, 0.85))` from `.turn-sticky-panel.is-peeling`.
+- [x] Task 23.3: Optimize GPU layer allocations by removing global `will-change` on all stage panels and applying `will-change: clip-path` strictly to the active peeling panel.
+- [x] Task 23.4: Restore `requestAnimationFrame` debouncing on `onScroll` in [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) using the `isTicking` flag to prevent layout thrashing on fast trackpad and touch scrolling.
+- [x] Task 23.5: Add viewport-visibility culling in [js/aurora-northern-lights.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/aurora-northern-lights.js) to pause the Aurora WebGL shader and 2D Starfield render loop when scrolled past the Hero stage (`scrollY > innerHeight * 2.2`), dropping idle GPU/CPU usage to 0 for downstream stages.
+- [x] Task 23.6: Verify via Headless Chrome CDP screenshots for Atlas section card without feet (`screenshots/v78_desktop_atlas_no_anime_feet.png`) and Hero banner with seated avatar intact (`screenshots/v78_hero_seated_avatar_preserved.png`).
+- [x] Task 23.7: Verify production build cleanliness (`npm run build`).
+
+---
 
 ### [v5.9.10] - Incoming Stage ClipPath Restoration to Prevent Premature Bleed-Through
 

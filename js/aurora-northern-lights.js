@@ -554,8 +554,21 @@
     }
   }
 
+  var isHeroVisible = true;
+
+  function checkHeroScroll() {
+    var vh = window.innerHeight || 800;
+    var heroVisible = (window.scrollY < vh * 2.2);
+    if (heroVisible !== isHeroVisible) {
+      isHeroVisible = heroVisible;
+      if (isHeroVisible && !animationId && isVisible) {
+        animationId = requestAnimationFrame(render);
+      }
+    }
+  }
+
   function render() {
-    if (!isVisible) {
+    if (!isVisible || !isHeroVisible) {
       animationId = null;
       return;
     }
@@ -610,6 +623,7 @@
     initStarfield();
     resizeAll();
     window.addEventListener('resize', resizeAll, { passive: true });
+    window.addEventListener('scroll', checkHeroScroll, { passive: true });
 
     document.addEventListener('visibilitychange', function () {
       isVisible = !document.hidden;

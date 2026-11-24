@@ -86,7 +86,13 @@
   }
 
   function onScroll() {
-    updatePeelProgress();
+    if (!isTicking) {
+      window.requestAnimationFrame(function () {
+        updatePeelProgress();
+        isTicking = false;
+      });
+      isTicking = true;
+    }
   }
 
   function onResize() {
@@ -95,8 +101,28 @@
 
   function computeTurnGeometry(progress) {
     var p = Math.max(0, Math.min(1, progress));
-    var C = 2.0 * (1.0 - p);
+    var isMobile = (window.innerWidth || 800) <= 768;
 
+    if (isMobile) {
+      // Mobile: Full-width horizontal sheet peel.
+      // Sweeps from bottom (100%) to top (0%) across full width so words and cards are NEVER sliced in half!
+      var yEdge = (1.0 - p) * 100;
+      var outClip = 'polygon(0 0, 100% 0, 100% ' + yEdge.toFixed(2) + '%, 0 ' + yEdge.toFixed(2) + '%)';
+      var inClip = 'polygon(0 ' + yEdge.toFixed(2) + '%, 100% ' + yEdge.toFixed(2) + '%, 100% 100%, 0 100%)';
+      var line = {
+        x1: '0%',
+        y1: yEdge.toFixed(2) + '%',
+        x2: '100%',
+        y2: yEdge.toFixed(2) + '%'
+      };
+      return {
+        outClip: outClip,
+        inClip: inClip,
+        line: line
+      };
+    }
+
+    var C = 2.0 * (1.0 - p);
     var outClip, inClip;
     var line = { x1: '100%', y1: '100%', x2: '100%', y2: '100%' };
 
@@ -143,11 +169,14 @@
 
       var rect = stage.wrapper.getBoundingClientRect();
       var turnDist = stage.wrapper.offsetHeight - vh;
+      // Generous reading window: user reads 65% of the section before peel engages
+      var readingHold = Math.max(350, turnDist * 0.65);
 
-      // Only enter active peel when scrolling has actually commenced (> 2px)
-      if (rect.top < -2 && rect.top > -turnDist) {
+      // Only enter active peel after the comfortable reading window has completed
+      if (-rect.top > readingHold && rect.top > -turnDist) {
         activePeelIndex = i;
-        activeProgress = Math.max(0, Math.min(1, (-rect.top - 2) / (turnDist - 2)));
+        var peelDist = turnDist - readingHold;
+        activeProgress = Math.max(0, Math.min(1, (-rect.top - readingHold) / peelDist));
         break;
       }
     }
@@ -177,10 +206,9 @@
       outStage.wrapper.classList.remove('is-incoming', 'is-fully-active');
       outStage.panel.style.clipPath = geom.outClip;
       outStage.panel.style.webkitClipPath = geom.outClip;
-
-      // Outgoing progressive fade out
-      var outgoingOpacity = Math.max(0, 1 - (activeProgress * 1.15));
-      outStage.panel.style.setProperty('--outgoing-opacity', outgoingOpacity.toFixed(3));
+      // Smooth fade-out of outgoing content as the page turns away
+      var outOpacity = Math.max(0, 1.0 - (activeProgress * 1.5));
+      outStage.panel.style.setProperty('--outgoing-opacity', outOpacity.toFixed(3));
 
       if (outStage.svgLine) {
         outStage.svgLine.setAttribute('x1', geom.line.x1);
@@ -199,10 +227,9 @@
         inStage.wrapper.classList.remove('is-fully-active');
         inStage.panel.style.clipPath = geom.inClip;
         inStage.panel.style.webkitClipPath = geom.inClip;
-
-        // Progressive fade-in of revealed incoming section
-        var incomingOpacity = Math.min(1, 0.35 + (activeProgress * 0.65));
-        inStage.panel.style.setProperty('--incoming-opacity', incomingOpacity.toFixed(3));
+        // Smooth fade-in of incoming content as it settles into place
+        var inOpacity = Math.min(1, Math.max(0.05, (activeProgress - 0.2) * 1.25));
+        inStage.panel.style.setProperty('--incoming-opacity', inOpacity.toFixed(3));
       }
 
       // 4. Downstream stages after inStage: hidden completely
@@ -241,13 +268,15 @@
           curStage.panel.style.clipPath = 'none';
           curStage.panel.style.webkitClipPath = 'none';
           curStage.panel.style.setProperty('--outgoing-opacity', '1');
+          curStage.panel.style.setProperty('--incoming-opacity', '1');
           curStage.wrapper.classList.remove('is-incoming');
           curStage.wrapper.classList.add('is-fully-active');
-          curStage.panel.style.removeProperty('--incoming-opacity');
         } else {
           curStage.wrapper.style.zIndex = curStage.baseZ;
           curStage.panel.style.clipPath = 'none';
           curStage.panel.style.webkitClipPath = 'none';
+          curStage.panel.style.setProperty('--outgoing-opacity', '1');
+          curStage.panel.style.setProperty('--incoming-opacity', '1');
           curStage.wrapper.classList.remove('is-incoming', 'is-fully-active');
           curStage.panel.style.display = 'none';
         }
