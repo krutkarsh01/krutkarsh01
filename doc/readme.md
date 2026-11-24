@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.14
+Version: 5.9.15
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,42 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.15] - Page Turnover Restoration and Universal Cross-Device Peel Polish
+
+#### I - INPUT
+1. User prompt: *"how did you remove the page scrolling efffect!!? And by affect i meane the turnover ything we haVE DID AND FIXED UNTIL NOW"* along with 9 detailed red-boxed screenshots highlighting:
+   - Sliced cards and text collisions during active peel transitions.
+   - Premature triggering before sections were finished being read.
+   - Transparent bleed-through between Hero and Atlas.
+   - Request to restore the turnover peel effect across desktop and mobile without artifacts.
+
+#### M - MISSION
+1. Re-enable the page turnover peel effect universally across all viewports (desktop, tablet, mobile).
+2. Eliminate text collisions by enforcing 100% solid opacity and removing intermediate opacity fades.
+3. Prevent downstream sections from showing through Hero by keeping downstream panels `display: none` at rest and adding an opaque radial gradient backing to Hero during active peel.
+4. Keep the incoming stage unclipped (`clipPath: none`) so it remains pristine underneath, naturally unveiled by the top panel's peel.
+5. Provide a generous 70% reading hold before the turnover transition begins.
+6. Use full-width horizontal sheet peel on mobile to prevent diagonal card slicing.
+
+#### E - EXECUTION
+1. Modified [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js):
+   - Removed mobile deactivation guard (`window.innerWidth <= 768`).
+   - Extended `readingHold` to 70% of the section scroll track.
+   - Removed `--outgoing-opacity` and `--incoming-opacity` variable mutations; enforced solid 1.0 opacity.
+   - Set incoming stage `clipPath: none` to prevent double-clipping.
+2. Modified [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css):
+   - Replaced mobile flow deactivation with 220vh scroll tracks and sticky peel panels.
+   - Enforced `opacity: 1 !important` on `.is-fixed-reveal > *` and `.is-peeling > *`.
+   - Verified opaque dark cosmic gradient backing on `.turn-sticky-panel.is-peeling`.
+3. Verified WebGL Aurora and Glowing Starfield persistence.
+
+#### T - TESTING
+1. Verified Desktop 1440x900 across 11 scroll positions: clean resting state, zero ghosting, smooth turnover.
+2. Verified Mobile 390x844 across 8 scroll positions: full-width horizontal sheet peel, no sliced cards.
+3. Verified `npm run build` succeeds cleanly.
+
+---
 
 ### [v5.9.14] - Mobile Responsive Architecture Overhaul: Native Fluid Document Flow
 

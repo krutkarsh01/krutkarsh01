@@ -109,15 +109,10 @@ html, body {
   opacity: 0 !important;
 }
 
-/* Graceful opacity transitions prevent overlapping text collision during active page turn */
-.turn-sticky-panel.is-fixed-reveal > * {
-  opacity: var(--incoming-opacity, 1);
-  transition: opacity 0.1s linear;
-}
-
+/* Crisp, solid opacity ensures text is never washed out or ghosted during active page turn */
+.turn-sticky-panel.is-fixed-reveal > *,
 .turn-sticky-panel.is-peeling > * {
-  opacity: var(--outgoing-opacity, 1);
-  transition: opacity 0.1s linear;
+  opacity: 1 !important;
 }
 
 .turn-stage-wrapper.is-fully-active > .turn-sticky-panel > * {
@@ -671,52 +666,53 @@ html, body {
   overflow-y: auto;
 }
 
-/* Mobile Responsive Architecture: Natural Document Flow (Image Fix for Mobile Collision & Cutoff) */
+/* Mobile Responsive Architecture: Full-Width Turnover Peel Active Across All Mobile Viewports */
 @media (max-width: 768px) {
-  .turn-stage-wrapper,
-  .turn-stage-wrapper.has-turn-effect,
-  .turn-stage-wrapper.has-turn-effect + .turn-stage-wrapper,
+  .turn-stage-wrapper.has-turn-effect {
+    height: 220vh !important;
+  }
+
   #stage-contact.turn-stage-wrapper {
-    height: auto !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    position: relative !important;
-    z-index: auto !important;
+    height: 100vh !important;
+    height: 100svh !important;
   }
 
-  .turn-stage-wrapper > .turn-sticky-panel,
-  .turn-sticky-panel.is-fixed-reveal,
-  .turn-sticky-panel.is-peeling {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
+  .turn-stage-wrapper > .turn-sticky-panel {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    display: flex !important;
-    visibility: visible !important;
-    padding-top: 48px !important;
-    padding-bottom: 48px !important;
-    background: transparent !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    overflow-y: auto !important;
+    padding-top: 56px !important;
+    padding-bottom: 20px !important;
+    box-sizing: border-box !important;
   }
 
-  .turn-sticky-panel > * {
-    opacity: 1 !important;
+  .turn-sticky-panel.is-fixed-reveal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100svh !important;
+    z-index: 30 !important;
   }
 
   .turn-curl-crease-line {
-    display: none !important;
+    display: block !important;
   }
 
   #stage-nlHeroSection > .turn-sticky-panel {
+    background: transparent !important;
     min-height: 100svh !important;
-    padding-top: 64px !important;
+    padding-top: 60px !important;
     justify-content: flex-start !important;
+  }
+
+  #stage-nlHeroSection > .turn-sticky-panel.is-peeling {
+    background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
   }
 
   #stage-global-client-atlas > .turn-sticky-panel,

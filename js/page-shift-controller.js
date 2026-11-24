@@ -158,28 +158,8 @@
   }
 
   function updatePeelProgress() {
-    // Mobile devices (<= 768px): Use native, silky-smooth responsive document flow without sticky hijacking
-    if (window.innerWidth <= 768) {
-      for (var s = 0; s < stages.length; s++) {
-        var stg = stages[s];
-        if (stg.panel) {
-          stg.panel.style.display = 'flex';
-          stg.panel.style.clipPath = 'none';
-          stg.panel.style.webkitClipPath = 'none';
-          stg.panel.classList.remove('is-peeling', 'is-fixed-reveal');
-          stg.panel.style.removeProperty('--outgoing-opacity');
-          stg.panel.style.removeProperty('--incoming-opacity');
-        }
-        if (stg.wrapper) {
-          stg.wrapper.style.zIndex = 'auto';
-          stg.wrapper.classList.remove('is-incoming');
-          stg.wrapper.classList.add('is-fully-active');
-        }
-      }
-      return;
-    }
-
     var vh = window.innerHeight || 800;
+    var isMobile = (window.innerWidth || 800) <= 768;
 
     var activePeelIndex = -1;
     var activeProgress = 0;
@@ -190,8 +170,9 @@
 
       var rect = stage.wrapper.getBoundingClientRect();
       var turnDist = stage.wrapper.offsetHeight - vh;
-      // Generous reading window: user reads 65% of the section before peel engages
-      var readingHold = Math.max(350, turnDist * 0.65);
+      
+      // Reading window: user enjoys 70% of the section before peel engages
+      var readingHold = Math.max(isMobile ? 250 : 350, turnDist * 0.70);
 
       // Only enter active peel after the comfortable reading window has completed
       if (-rect.top > readingHold && rect.top > -turnDist) {
@@ -219,7 +200,7 @@
         prev.panel.style.display = 'none';
       }
 
-      // 2. Active Outgoing Stage (Section 1): on LEFT side of line
+      // 2. Active Outgoing Stage (Section 1): on top (z-index: 40), clipped along peel line
       outStage.panel.style.display = 'flex';
       outStage.panel.classList.remove('is-fixed-reveal');
       outStage.panel.classList.add('is-peeling');
@@ -227,9 +208,7 @@
       outStage.wrapper.classList.remove('is-incoming', 'is-fully-active');
       outStage.panel.style.clipPath = geom.outClip;
       outStage.panel.style.webkitClipPath = geom.outClip;
-      // Smooth fade-out of outgoing content as the page turns away
-      var outOpacity = Math.max(0, 1.0 - (activeProgress * 1.5));
-      outStage.panel.style.setProperty('--outgoing-opacity', outOpacity.toFixed(3));
+      outStage.panel.style.setProperty('--outgoing-opacity', '1');
 
       if (outStage.svgLine) {
         outStage.svgLine.setAttribute('x1', geom.line.x1);
@@ -238,7 +217,8 @@
         outStage.svgLine.setAttribute('y2', geom.line.y2);
       }
 
-      // 3. Active Incoming Stage (Section 2): Full intact page underneath, revealed as Section 1 peels away
+      // 3. Active Incoming Stage (Section 2): Full intact page underneath (z-index: 30)
+      // Unveiled naturally as Section 1 peels away, zero double-clipping or text collision
       if (inStage) {
         inStage.panel.style.display = 'flex';
         inStage.panel.classList.remove('is-peeling');
@@ -246,11 +226,9 @@
         inStage.wrapper.style.zIndex = '30';
         inStage.wrapper.classList.add('is-incoming');
         inStage.wrapper.classList.remove('is-fully-active');
-        inStage.panel.style.clipPath = geom.inClip;
-        inStage.panel.style.webkitClipPath = geom.inClip;
-        // Smooth fade-in of incoming content as it settles into place
-        var inOpacity = Math.min(1, Math.max(0.05, (activeProgress - 0.2) * 1.25));
-        inStage.panel.style.setProperty('--incoming-opacity', inOpacity.toFixed(3));
+        inStage.panel.style.clipPath = 'none';
+        inStage.panel.style.webkitClipPath = 'none';
+        inStage.panel.style.setProperty('--incoming-opacity', '1');
       }
 
       // 4. Downstream stages after inStage: hidden completely
