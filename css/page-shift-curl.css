@@ -179,8 +179,9 @@ body::-webkit-scrollbar {
   z-index: 30 !important;
 }
 
-/* Hero Section: Full bleed edge-to-edge, zero side padding so character, hands, and sky span full viewport */
+/* Hero Section: Full bleed edge-to-edge AND top-to-bottom (0px padding-top so aurora glow & right stone hand reach y=0 seamlessly behind transparent navbar) */
 #stage-nlHeroSection>.turn-sticky-panel {
+  padding-top: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   width: 100% !important;
@@ -834,7 +835,7 @@ body::-webkit-scrollbar {
 
   #stage-nlHeroSection > .turn-sticky-panel {
     min-height: 100svh !important;
-    padding-top: 60px !important;
+    padding-top: 0 !important;
     justify-content: flex-start !important;
   }
 }
