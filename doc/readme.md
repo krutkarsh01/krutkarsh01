@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.18
+Version: 5.9.19
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,25 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.19] - 3D-Shaded Curved Paper-Curl Engine & Smooth Inertia Damping (codeofsagar.in Reference)
+
+#### I - INPUT
+1. User requested: *"I always wanted smooth like https://codeofsagar.in/ Hydrogen, can you do it. Flash wasnt able ot so i gave up earlier!! You can use skills accordingly to research, crawl, and then think about how to execute on our website without affecting our elements"* (`media_1795584853848_50192709.png`).
+
+#### M - MISSION
+1. Crawl `codeofsagar.in` to inspect its curved `clip-path` + 3D-shaded paper curl + smooth scroll architecture.
+2. Build a curved quadratic Bezier fold engine with 14-point polygon sampling for GPU-composited `outClip` / `inClip` with zero element modifications.
+3. Add `#turn-curl-overlay-canvas` rendering the 100% opaque 3D-shaded curled-back paper flap, cylindrical specular sheen, pearlescent rim, and soft cast shadow.
+4. Add 60fps RAF inertia damping (`smoothProgress += (targetProgress - smoothProgress) * 0.16`) to eliminate discrete wheel stepping.
+
+#### E - EXECUTION
+1. Rewrote [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) with `computeCurvedGeometry`, `drawCurlFlap`, and `stepCurlAnimation` RAF inertia loop.
+
+#### T - TESTING
+1. Verified on Desktop (`1440x900`) and Mobile (`390x844`) in Chrome DevTools: curved 3D paper flap, specular sheen, cast shadow, Aurora & Starfield visibility on all sections, and `npm run build` exit code 0.
+
+---
 
 ### [v5.9.18] - Universal Aurora & Starfield Across All Sections and Slower Eased Page-Turn Curl
 

@@ -1,18 +1,11 @@
 /**
- * Code of Sagar Page-Turn & Section-Shift Controller
- * 
- * Strict Dual-Sided Page-Turn Architecture:
- * 1. Outgoing Section (Section 1) stays strictly on the LEFT/TOP side of the diagonal crease line.
- *    - Progressively fades out: opacity: 1 -> 0.
- * 2. Incoming Section (Section 2) appears strictly on the RIGHT/BOTTOM side of the diagonal crease line.
- *    - FIXED VIEWPORT LOCK:
- *      During active peel (0 < progress < 1), the incoming section's panel is locked to
- *      `position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;` sharing the exact
- *      same coordinate origin as the outgoing panel at (0,0).
- *    - SMOOTH CONTENT FADE-IN (IMAGE 3 FIX):
- *      As the peel reveals Section 2, Section 2's contents progressively fade in from translucent
- *      to full crisp opacity: `--incoming-opacity: 0.2 + (progress * 0.8)`.
- *    - When the peel completes (progress >= 1), it cleanly transitions to standard flow.
+ * PlanWithKumar Page-Turn & Curved Paper-Curl Controller
+ *
+ * Smooth 60fps Curved Page-Turn Architecture (inspired by codeofsagar.in):
+ * 1. Curved quadratic Bezier fold edge sampled into a GPU-composited clip-path polygon.
+ * 2. Complementary non-overlapping outClip / inClip keep Aurora & Starfield visible on ALL sections.
+ * 3. Lightweight 2D Canvas overlay renders the 3D-shaded curled-back paper flap + cast shadow.
+ * 4. Smooth RAF inertia damping eliminates discrete mouse-wheel stepping.
  */
 
 (function () {
@@ -29,13 +22,49 @@
   ];
 
   var stages = [];
+  var curlCanvas = null;
+  var curlCtx = null;
   var isTicking = false;
+
+  // Smooth inertia state for buttery 60fps peel even with stepped mouse wheels
+  var targetPeelIndex = -1;
+  var targetProgress = 0;
+  var smoothPeelIndex = -1;
+  var smoothProgress = 0;
+  var animFrameId = null;
+
+  function ensureCurlCanvas() {
+    if (curlCanvas) return;
+    curlCanvas = document.createElement('canvas');
+    curlCanvas.id = 'turn-curl-overlay-canvas';
+    curlCanvas.setAttribute('aria-hidden', 'true');
+    curlCanvas.style.cssText =
+      'position:fixed;inset:0;width:100vw;height:100vh;height:100svh;pointer-events:none;z-index:50;display:none;';
+    document.body.appendChild(curlCanvas);
+    curlCtx = curlCanvas.getContext('2d');
+    resizeCurlCanvas();
+  }
+
+  function resizeCurlCanvas() {
+    if (!curlCanvas) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = window.innerWidth || 1440;
+    var h = window.innerHeight || 900;
+    if (curlCanvas.width !== Math.round(w * dpr) || curlCanvas.height !== Math.round(h * dpr)) {
+      curlCanvas.width = Math.round(w * dpr);
+      curlCanvas.height = Math.round(h * dpr);
+    }
+    if (curlCtx) {
+      curlCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+  }
 
   function initStickyTurnStages() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
 
+    ensureCurlCanvas();
     stages = [];
 
     for (var i = 0; i < SECTION_IDS.length; i++) {
@@ -51,16 +80,6 @@
         var stickyPanel = document.createElement('div');
         stickyPanel.className = 'turn-sticky-panel';
 
-        if (i < SECTION_IDS.length - 1) {
-          var creaseLine = document.createElement('div');
-          creaseLine.className = 'turn-curl-crease-line';
-          creaseLine.innerHTML = '<svg class="turn-curl-crease-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-            '<line class="turn-curl-shadow-stroke" x1="100%" y1="100%" x2="100%" y2="100%" />' +
-            '<line class="turn-curl-line-stroke" x1="100%" y1="100%" x2="100%" y2="100%" />' +
-            '</svg>';
-          wrapper.appendChild(creaseLine);
-        }
-
         sec.parentNode.insertBefore(wrapper, sec);
         stickyPanel.appendChild(sec);
         wrapper.appendChild(stickyPanel);
@@ -73,9 +92,6 @@
         id: SECTION_IDS[i],
         wrapper: wrapper,
         panel: wrapper.querySelector('.turn-sticky-panel'),
-        creaseLine: wrapper.querySelector('.turn-curl-crease-line'),
-        svgLine: wrapper.querySelector('.turn-curl-line-stroke'),
-        svgShadowLine: wrapper.querySelector('.turn-curl-shadow-stroke'),
         index: i,
         baseZ: baseZ
       });
@@ -84,65 +100,64 @@
     if (stages.length >= 2) {
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onResize, { passive: true });
-      window.updatePeelProgress = updatePeelProgress;
-      updatePeelProgress();
+      window.updatePeelProgress = function () {
+        updateTargetFromScroll();
+        // Snap immediately when invoked programmatically (e.g. jump or test)
+        smoothPeelIndex = targetPeelIndex;
+        smoothProgress = targetProgress;
+        renderPeelState(smoothPeelIndex, smoothProgress);
+      };
+      updateTargetFromScroll();
+      smoothPeelIndex = targetPeelIndex;
+      smoothProgress = targetProgress;
+      renderPeelState(smoothPeelIndex, smoothProgress);
     }
   }
 
   function onScroll() {
-    if (!isTicking) {
-      window.requestAnimationFrame(function () {
-        updatePeelProgress();
-        isTicking = false;
-      });
+    updateTargetFromScroll();
+    if (!isTicking && !animFrameId) {
       isTicking = true;
+      animFrameId = window.requestAnimationFrame(stepCurlAnimation);
     }
   }
 
   function onResize() {
-    updatePeelProgress();
+    resizeCurlCanvas();
+    updateTargetFromScroll();
+    smoothPeelIndex = targetPeelIndex;
+    smoothProgress = targetProgress;
+    renderPeelState(smoothPeelIndex, smoothProgress);
   }
 
-  function computeTurnGeometry(progress) {
-    var raw = Math.max(0, Math.min(1, progress));
-    // Smooth sine-in-out easing so the page corner lifts gently, sweeps naturally, and settles softly
-    var p = 0.5 - 0.5 * Math.cos(Math.PI * raw);
-    var C = 2.0 * (1.0 - p);
-    var outClip, inClip;
-    var line = { x1: '100%', y1: '100%', x2: '100%', y2: '100%' };
+  function stepCurlAnimation() {
+    isTicking = false;
+    animFrameId = null;
 
-    if (C >= 1.0) {
-      var yRight = (C - 1.0) * 100;
-      var xBottom = (C - 1.0) * 100;
-
-      outClip = 'polygon(0 0, 100% 0, 100% ' + yRight.toFixed(2) + '%, ' + xBottom.toFixed(2) + '% 100%, 0 100%)';
-      inClip = 'polygon(100% ' + yRight.toFixed(2) + '%, 100% 100%, ' + xBottom.toFixed(2) + '% 100%)';
-
-      line.x1 = '100%';
-      line.y1 = yRight.toFixed(2) + '%';
-      line.x2 = xBottom.toFixed(2) + '%';
-      line.y2 = '100%';
-    } else {
-      var xTop = C * 100;
-      var yLeft = C * 100;
-
-      outClip = 'polygon(0 0, ' + xTop.toFixed(2) + '% 0, 0 ' + yLeft.toFixed(2) + '%)';
-      inClip = 'polygon(' + xTop.toFixed(2) + '% 0, 100% 0, 100% 100%, 0 100%, 0 ' + yLeft.toFixed(2) + '%)';
-
-      line.x1 = xTop.toFixed(2) + '%';
-      line.y1 = '0%';
-      line.x2 = '0%';
-      line.y2 = yLeft.toFixed(2) + '%';
+    if (targetPeelIndex === -1) {
+      smoothPeelIndex = -1;
+      smoothProgress = 0;
+      renderPeelState(-1, 0);
+      return;
     }
 
-    return {
-      outClip: outClip,
-      inClip: inClip,
-      line: line
-    };
+    if (smoothPeelIndex !== targetPeelIndex) {
+      smoothPeelIndex = targetPeelIndex;
+      smoothProgress = targetProgress;
+    } else {
+      var diff = targetProgress - smoothProgress;
+      if (Math.abs(diff) < 0.0015) {
+        smoothProgress = targetProgress;
+      } else {
+        smoothProgress += diff * 0.16;
+        animFrameId = window.requestAnimationFrame(stepCurlAnimation);
+      }
+    }
+
+    renderPeelState(smoothPeelIndex, smoothProgress);
   }
 
-  function updatePeelProgress() {
+  function updateTargetFromScroll() {
     var vh = window.innerHeight || 800;
     var isMobile = (window.innerWidth || 800) <= 768;
 
@@ -155,8 +170,8 @@
       }
     }
 
-    var activePeelIndex = -1;
-    var activeProgress = 0;
+    targetPeelIndex = -1;
+    targetProgress = 0;
 
     for (var i = 0; i < stages.length - 1; i++) {
       var stage = stages[i];
@@ -166,8 +181,8 @@
       var turnDist = stage.wrapper.offsetHeight - vh;
       if (turnDist <= 0) continue;
 
-      // Comfortable reading pause (30% of track), leaving 70% (~470px+) for a slower, realistic page turn
-      var readingHold = Math.max(isMobile ? 140 : 160, turnDist * 0.30);
+      // 28% reading pause, 72% dedicated to slow, realistic curved page turn
+      var readingHold = Math.max(isMobile ? 140 : 160, turnDist * 0.28);
 
       // Sync internal overflow scroll (e.g. tall mobile Atlas/Gallery) during reading pause
       var maxInnerScroll = Math.max(0, stage.panel.scrollHeight - stage.panel.clientHeight);
@@ -180,20 +195,178 @@
         stage.panel.scrollTop = maxInnerScroll;
       }
 
-      // Only enter active peel after the reading pause has completed
       if (-rect.top > readingHold && rect.top > -turnDist) {
-        activePeelIndex = i;
+        targetPeelIndex = i;
         var peelDist = Math.max(1, turnDist - readingHold);
-        activeProgress = Math.max(0, Math.min(1, (-rect.top - readingHold) / peelDist));
+        targetProgress = Math.max(0, Math.min(1, (-rect.top - readingHold) / peelDist));
         break;
       }
     }
+  }
 
+  function sampleQuadBezier(P1, Ctrl, P2, steps) {
+    var pts = [];
+    for (var s = 0; s <= steps; s++) {
+      var t = s / steps;
+      var u = 1 - t;
+      pts.push({
+        x: u * u * P1.x + 2 * u * t * Ctrl.x + t * t * P2.x,
+        y: u * u * P1.y + 2 * u * t * Ctrl.y + t * t * P2.y
+      });
+    }
+    return pts;
+  }
+
+  function reflectPoint(Q, P1, ux, uy, scale) {
+    var dist = (Q.x - P1.x) * ux + (Q.y - P1.y) * uy;
+    var factor = 1.0 + (scale || 0.84);
+    return {
+      x: Q.x - factor * dist * ux,
+      y: Q.y - factor * dist * uy
+    };
+  }
+
+  function computeCurvedGeometry(progress) {
+    var raw = Math.max(0, Math.min(1, progress));
+    // Gentle sine-in-out curve for natural paper momentum
+    var p = 0.5 - 0.5 * Math.cos(Math.PI * raw);
+    var C = 2.0 * (1.0 - p);
+
+    var P1, P2;
+    if (C >= 1.0) {
+      var v1 = C - 1.0;
+      P1 = { x: 1.0, y: v1 };
+      P2 = { x: v1, y: 1.0 };
+    } else {
+      var v2 = C;
+      P1 = { x: v2, y: 0.0 };
+      P2 = { x: 0.0, y: v2 };
+    }
+
+    var dx = P2.x - P1.x;
+    var dy = P2.y - P1.y;
+    var len = Math.hypot(dx, dy) || 1e-5;
+    // Unit normal pointing toward top-left (0, 0)
+    var ux = -dy / len;
+    var uy = dx / len;
+
+    // Curved paper bend bows gently toward the unpeeled page
+    var bulge = Math.sin(Math.PI * p) * 0.055;
+    var Mx = (P1.x + P2.x) * 0.5;
+    var My = (P1.y + P2.y) * 0.5;
+    var Ctrl = { x: Mx + ux * bulge, y: My + uy * bulge };
+
+    var curvePts = sampleQuadBezier(P1, Ctrl, P2, 14);
+    var curveStrForward = curvePts.map(function (pt) {
+      return (pt.x * 100).toFixed(2) + '% ' + (pt.y * 100).toFixed(2) + '%';
+    }).join(', ');
+    var curveStrReverse = curvePts.slice().reverse().map(function (pt) {
+      return (pt.x * 100).toFixed(2) + '% ' + (pt.y * 100).toFixed(2) + '%';
+    }).join(', ');
+
+    var outClip, inClip;
+    if (C >= 1.0) {
+      outClip = 'polygon(0% 0%, 100% 0%, ' + curveStrForward + ', 0% 100%)';
+      inClip = 'polygon(' + curveStrReverse + ', 100% 100%)';
+    } else {
+      outClip = 'polygon(0% 0%, ' + curveStrForward + ')';
+      inClip = 'polygon(' + curveStrForward + ', 0% 100%, 100% 100%, 100% 0%)';
+    }
+
+    return {
+      p: p,
+      C: C,
+      P1: P1,
+      P2: P2,
+      Ctrl: Ctrl,
+      ux: ux,
+      uy: uy,
+      outClip: outClip,
+      inClip: inClip
+    };
+  }
+
+  function drawCurlFlap(geom) {
+    if (!curlCanvas || !curlCtx) return;
+    var w = window.innerWidth || 1440;
+    var h = window.innerHeight || 900;
+
+    if (geom.p <= 0.002 || geom.p >= 0.998) {
+      curlCanvas.style.display = 'none';
+      curlCtx.clearRect(0, 0, w, h);
+      return;
+    }
+
+    curlCanvas.style.display = 'block';
+    curlCtx.clearRect(0, 0, w, h);
+
+    var P1 = { x: geom.P1.x * w, y: geom.P1.y * h };
+    var P2 = { x: geom.P2.x * w, y: geom.P2.y * h };
+    var Ctrl = { x: geom.Ctrl.x * w, y: geom.Ctrl.y * h };
+
+    var dx = P2.x - P1.x;
+    var dy = P2.y - P1.y;
+    var len = Math.hypot(dx, dy);
+    if (len < 2) return;
+
+    var ux = -dy / len;
+    var uy = dx / len;
+
+    // Reflect the peeled corner(s) across the fold line to form the 3D curled-back paper flap
+    var cornerBR = reflectPoint({ x: w, y: h }, P1, ux, uy, 0.84);
+    var flapPoly;
+    if (geom.C >= 1.0) {
+      flapPoly = [cornerBR];
+    } else {
+      var cornerTR = reflectPoint({ x: w, y: 0 }, P1, ux, uy, 0.84);
+      var cornerBL = reflectPoint({ x: 0, y: h }, P1, ux, uy, 0.84);
+      flapPoly = [cornerBL, cornerBR, cornerTR];
+    }
+
+    // Midpoint of fold line to reflected tip defines the cylindrical paper-bend gradient axis
+    var Mx = (P1.x + P2.x) * 0.5;
+    var My = (P1.y + P2.y) * 0.5;
+    var grad = curlCtx.createLinearGradient(Mx, My, cornerBR.x, cornerBR.y);
+    grad.addColorStop(0.00, 'rgb(6, 18, 16)');
+    grad.addColorStop(0.14, 'rgb(24, 58, 54)');
+    grad.addColorStop(0.40, 'rgb(138, 202, 208)');
+    grad.addColorStop(0.72, 'rgb(30, 66, 62)');
+    grad.addColorStop(1.00, 'rgb(10, 26, 24)');
+
+    curlCtx.save();
+    curlCtx.shadowColor = 'rgba(0, 0, 0, 0.72)';
+    curlCtx.shadowBlur = 26;
+    curlCtx.shadowOffsetX = 6;
+    curlCtx.shadowOffsetY = 6;
+
+    curlCtx.beginPath();
+    curlCtx.moveTo(P1.x, P1.y);
+    curlCtx.quadraticCurveTo(Ctrl.x, Ctrl.y, P2.x, P2.y);
+    for (var f = 0; f < flapPoly.length; f++) {
+      curlCtx.lineTo(flapPoly[f].x, flapPoly[f].y);
+    }
+    curlCtx.closePath();
+    curlCtx.fillStyle = grad;
+    curlCtx.fill();
+    curlCtx.restore();
+
+    // Subtle pearlescent highlight rim along the curved fold edge
+    curlCtx.save();
+    curlCtx.beginPath();
+    curlCtx.moveTo(P1.x, P1.y);
+    curlCtx.quadraticCurveTo(Ctrl.x, Ctrl.y, P2.x, P2.y);
+    curlCtx.strokeStyle = 'rgba(220, 248, 255, 0.55)';
+    curlCtx.lineWidth = 1.5;
+    curlCtx.stroke();
+    curlCtx.restore();
+  }
+
+  function renderPeelState(activePeelIndex, activeProgress) {
     if (activePeelIndex !== -1) {
       var outStage = stages[activePeelIndex];
       var inStage = stages[activePeelIndex + 1];
 
-      var geom = computeTurnGeometry(activeProgress);
+      var geom = computeCurvedGeometry(activeProgress);
 
       // 1. Prior stages before active: peeled and hidden
       for (var b = 0; b < activePeelIndex; b++) {
@@ -206,7 +379,7 @@
         prev.panel.style.display = 'none';
       }
 
-      // 2. Active Outgoing Stage (Section 1): on top (z-index: 40), clipped along peel line
+      // 2. Active Outgoing Stage (Section 1): top-left side of curved fold
       outStage.panel.style.display = 'flex';
       outStage.panel.classList.remove('is-fixed-reveal');
       outStage.panel.classList.add('is-peeling');
@@ -217,21 +390,7 @@
       outStage.panel.style.webkitClipPath = geom.outClip;
       outStage.panel.style.setProperty('--outgoing-opacity', '1');
 
-      if (outStage.svgLine) {
-        outStage.svgLine.setAttribute('x1', geom.line.x1);
-        outStage.svgLine.setAttribute('y1', geom.line.y1);
-        outStage.svgLine.setAttribute('x2', geom.line.x2);
-        outStage.svgLine.setAttribute('y2', geom.line.y2);
-      }
-      if (outStage.svgShadowLine) {
-        outStage.svgShadowLine.setAttribute('x1', geom.line.x1);
-        outStage.svgShadowLine.setAttribute('y1', geom.line.y1);
-        outStage.svgShadowLine.setAttribute('x2', geom.line.x2);
-        outStage.svgShadowLine.setAttribute('y2', geom.line.y2);
-      }
-
-      // 3. Active Incoming Stage (Section 2): Clipped strictly to the revealed side of the diagonal crease
-      // Zero overlap with outStage, allowing transparent Aurora & Stars backdrop to shine through every section!
+      // 3. Active Incoming Stage (Section 2): strictly bottom-right side of curved fold (zero overlap)
       if (inStage) {
         inStage.panel.style.display = 'flex';
         inStage.panel.classList.remove('is-peeling');
@@ -254,7 +413,13 @@
         future.wrapper.classList.remove('is-incoming', 'is-fully-active', 'is-peeling-wrapper');
         future.panel.style.display = 'none';
       }
+
+      drawCurlFlap(geom);
     } else {
+      if (curlCanvas) {
+        curlCanvas.style.display = 'none';
+      }
+
       var landedIndex = 0;
       for (var k = stages.length - 1; k >= 0; k--) {
         var sRect = stages[k].wrapper.getBoundingClientRect();
