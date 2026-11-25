@@ -11,9 +11,9 @@
     content="Recommendations and verified client reviews for Kumar Utkarsh from founders, CEOs and clients on LinkedIn and Trustpilot.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/_astro/Layout.BgT8wDMR.css">
   <link rel="stylesheet" href="/css/site-overrides.css?v=mvaw1u5a">
   <link rel="stylesheet" href="/css/planwithkumar-core.css">
@@ -51,6 +51,8 @@
   <script src="/js/aurora-northern-lights.js" defer></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.krutkarsh.com/"}, {"@type": "ListItem", "position": 2, "name": "Verified Testimonials", "item": "https://www.krutkarsh.com/testimonials/"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Kumar Utkarsh — Senior BA & AI Product Strategist", "url": "https://www.krutkarsh.com/", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "reviewCount": "13"}}</script>
+  <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context">
+  <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full LLM Context">
 </head>
 
 <body>
@@ -142,8 +144,8 @@
         </div>
         <div class="subpage-character-col">
           <div class="subpage-character-frame">
-            <img src="/images/3d-kumar-tea.png" alt="3D Stylized Kumar Utkarsh relaxing with tea and verified global client endorsements"
-              class="subpage-character-img" width="340" height="425" loading="eager">
+            <img src="/images/3d-kumar-tea.webp" alt="3D Stylized Kumar Utkarsh relaxing with tea and verified global client endorsements"
+              class="subpage-character-img" width="340" height="425" loading="eager" fetchpriority=\"high\" decoding=\"async\">
           </div>
           <div class="subpage-character-caption">Kumar Utkarsh · 34 Global Markets Verified</div>
         </div>

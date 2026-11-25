@@ -740,6 +740,57 @@
     if (oldStage && oldStage.parentNode) {
       oldStage.parentNode.removeChild(oldStage);
     }
+
+    // WebMCP: Register read-only agentic browsing tools when supported by browser
+    if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigator.modelContext.registerTool === 'function') {
+      try {
+        navigator.modelContext.registerTool({
+          name: 'get_portfolio_summary',
+          description: 'Get executive profile, credentials, and navigation URLs for Kumar Utkarsh (Senior BA, AI Product Strategist & Project Manager).',
+          inputSchema: { type: 'object', properties: {} },
+          execute: async function () {
+            return {
+              content: [{
+                type: 'text',
+                text: JSON.stringify({
+                  name: 'Kumar Utkarsh',
+                  role: 'Senior Business Analyst, AI Product Strategist & Project Manager',
+                  experienceYears: '6+',
+                  deliveredPlatforms: '700+',
+                  globalMarkets: 34,
+                  reworkReduction: '35%+',
+                  satisfaction: '98%',
+                  website: 'https://www.krutkarsh.com/',
+                  llmsTxt: 'https://www.krutkarsh.com/llms.txt',
+                  llmsFullTxt: 'https://www.krutkarsh.com/llms-full.txt',
+                  sitemap: 'https://www.krutkarsh.com/sitemap.xml'
+                })
+              }]
+            };
+          }
+        });
+        navigator.modelContext.registerTool({
+          name: 'get_contact_channels',
+          description: 'Get direct contact channels, response SLA, and availability for Kumar Utkarsh.',
+          inputSchema: { type: 'object', properties: {} },
+          execute: async function () {
+            return {
+              content: [{
+                type: 'text',
+                text: JSON.stringify({
+                  email: 'work.krutkarsh@gmail.com',
+                  phoneWhatsApp: '+91 84471 43995',
+                  linkedin: 'https://linkedin.com/in/kumar-utkarsh01',
+                  github: 'https://github.com/krutkarsh01',
+                  responseSla: '< 4 Hours',
+                  bookingUrl: 'https://www.krutkarsh.com/contact/#book'
+                })
+              }]
+            };
+          }
+        });
+      } catch (_) { }
+    }
   }
 
   if (document.readyState === 'loading') {

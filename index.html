@@ -11,9 +11,9 @@
     content="Portfolio of Kumar Utkarsh, Senior Business Analyst, AI Product Strategist &amp; Project Manager. Documentation-first delivery, multi-role SaaS prototypes and AI product work for clients in 34 countries.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/_astro/Layout.BgT8wDMR.css">
   <link rel="stylesheet" href="/css/site-overrides.css?v=mvaw1u60">
   <link rel="stylesheet" href="/css/planwithkumar-core.css">
@@ -184,6 +184,9 @@
   <!-- <script src="/js/anime-jumping-companion.js" defer></script> -->
   <script src="/js/aurora-northern-lights.js" defer></script>
   <script src="/js/page-shift-controller.js" defer></script>
+  <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context">
+  <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full LLM Context">
+  <link rel="preload" as="image" href="/images/3d-kumar-sit.webp" fetchpriority="high">
 </head>
 
 <body>
@@ -282,11 +285,11 @@
           <img src="/images/hand-left.webp" alt="Stone hand supporting avatar" class="nl-hero-hand-mobile-cradle"
             aria-hidden="true">
           <div class="nl-anime-character-wrap">
-            <img src="/images/3d-kumar-sit.png" alt="3D Stylized Kumar Utkarsh seated on stone hand typing on laptop"
-              class="nl-anime-kumar" id="heroAnimeCharacter">
-            <img src="/images/3d-kumar-sit.png" alt="" aria-hidden="true"
+            <img src="/images/3d-kumar-sit.webp" alt="3D Stylized Kumar Utkarsh seated on stone hand typing on laptop"
+              class="nl-anime-kumar" id="heroAnimeCharacter" fetchpriority=\"high\" decoding=\"async\">
+            <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
               class="nl-anime-kumar nl-anime-fingers nl-anime-fingers-left">
-            <img src="/images/3d-kumar-sit.png" alt="" aria-hidden="true"
+            <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
               class="nl-anime-kumar nl-anime-fingers nl-anime-fingers-right">
           </div>
 
