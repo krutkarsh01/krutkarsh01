@@ -4597,7 +4597,7 @@ h3,
 
 .subpage-character-col {
   justify-self: end;
-  width: min(100%, 340px);
+  width: min(100%, 380px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -4609,7 +4609,7 @@ h3,
   justify-content: center;
   width: 100%;
   aspect-ratio: 4 / 5;
-  padding: 6px 6px 0;
+  padding: 0;
   border-radius: 999px 999px 24px 24px;
   border: 1px solid rgba(0, 229, 255, 0.45);
   background: radial-gradient(circle at 50% 35%, rgba(0, 229, 255, 0.18) 0%, rgba(3, 16, 14, 0.94) 80%);
@@ -4627,9 +4627,10 @@ h3,
 
 .subpage-character-img {
   width: 100%;
-  height: 96%;
-  max-height: 96%;
+  height: 100%;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center bottom;
   filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.8));
   animation: subpageCharFloat 5s ease-in-out infinite;
   transform-origin: center bottom;
@@ -4639,24 +4640,25 @@ h3,
 
   0%,
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1.06);
   }
 
   50% {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-8px) scale(1.09);
   }
 }
 
 .subpage-character-caption {
   margin-top: 0.95rem;
-  font: 700 11.5px var(--font-mono), monospace;
+  font: 700 12px var(--font-mono), monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #F8FAFC;
+  color: #00E5FF !important;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.55) !important;
   background: rgba(2, 13, 11, 0.86);
-  border: 1px solid rgba(0, 229, 255, 0.38);
+  border: 1px solid rgba(0, 229, 255, 0.42);
   border-radius: 9999px;
-  padding: 6px 14px;
+  padding: 7px 16px;
   text-align: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
 }
@@ -4827,7 +4829,29 @@ h3,
 }
 
 .methodology-list {
-  padding-bottom: 40px !important;
+  padding-bottom: 0 !important;
+}
+
+.methodology-list > .process-card:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Tighten bottom CTA & pre-footer spacing across all subpages (Image 1 fix) */
+.page-bottom-cta {
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.5rem !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body:not(:has(#nlHeroSection)) main {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+body:not(:has(#nlHeroSection)) main > section:last-of-type {
+  margin-bottom: 0 !important;
+  padding-bottom: 1.5rem !important;
 }
 
 .methodology-list > .process-card {
