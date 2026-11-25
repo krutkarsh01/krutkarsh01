@@ -3159,14 +3159,34 @@ html body .ku-site-footer .footer-contact-btn {
   border-radius: 24px !important;
 }
 
+.about-story-grid {
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr) !important;
+  gap: clamp(24px, 3.5vw, 48px) !important;
+  align-items: start !important;
+}
+
 .about-story-body {
+  width: 100% !important;
+  max-width: none !important;
   padding: clamp(28px, 3.5vw, 40px) !important;
   border-radius: 20px !important;
+}
+
+.about-story-body p {
+  max-width: none !important;
 }
 
 .about-story-title {
   position: static !important;
   margin-top: 10px !important;
+  font-size: clamp(2.3rem, 4.2vw, 3.4rem) !important;
+  line-height: 1.08 !important;
+}
+
+@media (max-width: 860px) {
+  .about-story-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Global Photo Lightbox Modal - Uncropped Full Aspect Ratio */
@@ -4322,9 +4342,9 @@ h3,
   -webkit-backdrop-filter: blur(18px) !important;
   border: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: 22px !important;
-  padding: clamp(22px, 3vw, 32px) !important;
+  padding: clamp(16px, 2.2vw, 22px) clamp(20px, 2.8vw, 28px) !important;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.72) !important;
-  margin-bottom: 2.5rem !important;
+  margin-bottom: 2rem !important;
 }
 
 @media (max-width: 768px) {
@@ -4358,7 +4378,8 @@ h3,
 .growth-chapter-sub {
   color: #CBD5E1 !important;
   font-size: 1rem !important;
-  line-height: 1.65 !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85) !important;
 }
 
@@ -4733,31 +4754,59 @@ h3,
   pointer-events: none !important;
   z-index: 10 !important;
   offset-path: inset(0 round 18px) !important;
-  offset-distance: 0% !important;
-  animation: aboutEdgeOrbit 5.5s linear infinite !important;
+  offset-anchor: center !important;
+  animation: aboutEdgeOrbit 16s linear infinite !important;
   will-change: offset-distance !important;
 }
 
-.about-client-card:nth-child(2)::after,
-.about-tenets .value-card:nth-child(3)::after {
-  animation-delay: -1.4s !important;
+.about-client-card:nth-child(1)::after {
+  animation-duration: 15.2s !important;
+  animation-delay: -1.6s !important;
 }
 
-.about-client-card:nth-child(3)::after,
-.about-tenets .value-card:nth-child(4)::after {
-  animation-delay: -2.8s !important;
+.about-client-card:nth-child(2)::after {
+  animation-duration: 17.6s !important;
+  animation-delay: -7.6s !important;
+}
+
+.about-client-card:nth-child(3)::after {
+  animation-duration: 14.4s !important;
+  animation-delay: -11.2s !important;
 }
 
 .about-client-card:nth-child(4)::after {
-  animation-delay: -4.1s !important;
+  animation-duration: 18.8s !important;
+  animation-delay: -4.8s !important;
 }
 
 .about-client-card:nth-child(5)::after {
-  animation-delay: -0.9s !important;
+  animation-duration: 16.4s !important;
+  animation-delay: -13.5s !important;
 }
 
 .about-client-card:nth-child(6)::after {
-  animation-delay: -3.4s !important;
+  animation-duration: 14.8s !important;
+  animation-delay: -9.2s !important;
+}
+
+.about-snapshot .info-card::after {
+  animation-duration: 19.2s !important;
+  animation-delay: -12.4s !important;
+}
+
+.about-tenets .value-card:nth-child(2)::after {
+  animation-duration: 16.8s !important;
+  animation-delay: -5.5s !important;
+}
+
+.about-tenets .value-card:nth-child(3)::after {
+  animation-duration: 15.6s !important;
+  animation-delay: -14s !important;
+}
+
+.about-tenets .value-card:nth-child(4)::after {
+  animation-duration: 18.2s !important;
+  animation-delay: -2.9s !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
