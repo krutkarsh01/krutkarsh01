@@ -4308,15 +4308,30 @@ h3,
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85) !important;
 }
 
+.growth,
+.growth-chapter {
+  overflow: visible !important;
+}
+
 .growth-chapter-head {
-  background: rgba(4, 18, 28, 0.85) !important;
+  position: sticky !important;
+  top: 84px !important;
+  z-index: 25 !important;
+  background: rgba(3, 16, 14, 0.94) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
   border: 1px solid rgba(255, 255, 255, 0.16) !important;
   border-radius: 22px !important;
   padding: clamp(22px, 3vw, 32px) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.72) !important;
   margin-bottom: 2.5rem !important;
+}
+
+@media (max-width: 768px) {
+  .growth-chapter-head {
+    top: 74px !important;
+    padding: 16px 18px !important;
+  }
 }
 
 .growth-chapter-num {
@@ -4651,5 +4666,104 @@ h3,
   .subpage-character-frame {
     aspect-ratio: 16 / 11;
     border-radius: 24px;
+  }
+}
+
+/* ==========================================================================
+   /about/ Page Polish: Blue Portrait Caption, Sticky Chapter 01/02 Headers,
+   and Orbiting Blue Edge Dots on Work-by-Market, Snapshot & Standard Cards
+   ========================================================================== */
+.about-portrait-caption {
+  color: #00E5FF !important;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.5) !important;
+  font-weight: 700 !important;
+}
+
+.growth,
+.growth .con,
+.growth-chapter {
+  overflow: visible !important;
+}
+
+.growth-chapter-head {
+  position: sticky !important;
+  top: 84px !important;
+  z-index: 25 !important;
+  background: rgba(3, 16, 14, 0.94) !important;
+  backdrop-filter: blur(16px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
+  border: 1px solid rgba(0, 229, 255, 0.25) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.72) !important;
+}
+
+@media (max-width: 768px) {
+  .growth-chapter-head {
+    top: 72px !important;
+  }
+}
+
+@keyframes aboutEdgeOrbit {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.about-client-card,
+.about-snapshot .info-card,
+.about-tenets .value-card {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.about-client-card::after,
+.about-snapshot .info-card::after,
+.about-tenets .value-card::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #00E5FF !important;
+  box-shadow: 0 0 10px #00E5FF, 0 0 20px rgba(0, 229, 255, 0.75) !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+  offset-path: inset(0 round 18px) !important;
+  offset-distance: 0% !important;
+  animation: aboutEdgeOrbit 5.5s linear infinite !important;
+  will-change: offset-distance !important;
+}
+
+.about-client-card:nth-child(2)::after,
+.about-tenets .value-card:nth-child(3)::after {
+  animation-delay: -1.4s !important;
+}
+
+.about-client-card:nth-child(3)::after,
+.about-tenets .value-card:nth-child(4)::after {
+  animation-delay: -2.8s !important;
+}
+
+.about-client-card:nth-child(4)::after {
+  animation-delay: -4.1s !important;
+}
+
+.about-client-card:nth-child(5)::after {
+  animation-delay: -0.9s !important;
+}
+
+.about-client-card:nth-child(6)::after {
+  animation-delay: -3.4s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-client-card::after,
+  .about-snapshot .info-card::after,
+  .about-tenets .value-card::after {
+    animation: none !important;
   }
 }
