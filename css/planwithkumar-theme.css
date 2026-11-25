@@ -1964,7 +1964,8 @@ body:has(#nlHeroSection) .nl-nav {
 
 html body nav.nl-nav.scrolled,
 html body .nl-nav.scrolled,
-body .nl-nav.scrolled {
+body .nl-nav.scrolled,
+body:has(#nlHeroSection) .nl-nav.scrolled {
   background: rgba(2, 13, 11, 0.78) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
