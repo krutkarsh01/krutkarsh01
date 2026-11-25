@@ -939,25 +939,73 @@
           if (card && window.openProtoQuickView) window.openProtoQuickView(card.getAttribute('data-proto-id'));
         });
       })();
-      window.filterPrototypes = function (category, event) {
-        if (event) event.preventDefault();
-        var btns = document.querySelectorAll('.proto-filter-btn');
-        btns.forEach(function (btn) {
-          var isTarget = btn.getAttribute('data-category-btn') === category || (category === 'all' && btn.getAttribute('data-category-btn') === 'all');
-          btn.classList.toggle('active', isTarget);
-          btn.setAttribute('aria-pressed', isTarget ? 'true' : 'false');
+      (function () {
+        var grid = document.getElementById('prototypesGrid');
+        if (!grid) return;
+        var allCards = Array.prototype.slice.call(grid.querySelectorAll('.proto-card'));
+        var lastCols = 0;
+
+        function getCols() {
+          if (window.innerWidth >= 1024) return 3;
+          if (window.innerWidth >= 640) return 2;
+          return 1;
+        }
+
+        function packProtoRows(force) {
+          var cols = getCols();
+          if (!force && cols === lastCols) return;
+          lastCols = cols;
+          grid.classList.add('projects-grid--rows');
+
+          var visible = [];
+          var hidden = [];
+          allCards.forEach(function (card) {
+            if (card.style.display === 'none') hidden.push(card);
+            else visible.push(card);
+          });
+
+          while (grid.firstChild) grid.removeChild(grid.firstChild);
+
+          for (var i = 0; i < visible.length; i += cols) {
+            var rowIdx = Math.floor(i / cols);
+            var row = document.createElement('div');
+            row.className = 'proto-sticky-row';
+            row.style.top = (cols === 1 ? 74 : 84 + Math.min(rowIdx, 6) * 10) + 'px';
+            row.style.zIndex = String(11 + rowIdx);
+            for (var j = i; j < i + cols && j < visible.length; j++) {
+              row.appendChild(visible[j]);
+            }
+            grid.appendChild(row);
+          }
+
+          hidden.forEach(function (card) {
+            grid.appendChild(card);
+          });
+        }
+
+        packProtoRows(true);
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { packProtoRows(false); }, 120);
         });
 
-        var cards = document.querySelectorAll('.proto-card');
-        cards.forEach(function (card) {
-          var cardCat = card.getAttribute('data-category');
-          if (category === 'all' || cardCat === category) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      };
+        window.filterPrototypes = function (category, event) {
+          if (event) event.preventDefault();
+          var btns = document.querySelectorAll('.proto-filter-btn');
+          btns.forEach(function (btn) {
+            var isTarget = btn.getAttribute('data-category-btn') === category || (category === 'all' && btn.getAttribute('data-category-btn') === 'all');
+            btn.classList.toggle('active', isTarget);
+            btn.setAttribute('aria-pressed', isTarget ? 'true' : 'false');
+          });
+
+          allCards.forEach(function (card) {
+            var cardCat = card.getAttribute('data-category');
+            card.style.display = (category === 'all' || cardCat === category) ? '' : 'none';
+          });
+          packProtoRows(true);
+        };
+      })();
     </script>
   </main> <!-- B4. Separate 0x0 hidden SVG for shared gradient (Item 8) --><svg width="0" height="0"
     style="position:absolute; visibility:hidden; pointer-events:none;" aria-hidden="true">

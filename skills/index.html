@@ -182,46 +182,154 @@
           </div>
         </div>
       </div>
-      <div style="margin-bottom: 2.5rem;">
-        <div class="skill-category-card" style="padding: clamp(24px, 3vw, 36px);">
-          <h3 class="skill-card-title"><span>🛠️</span> Engineering Stack &amp; <span
-              class="gradient-text">Platform Exposure</span></h3>
-          <div class="tech-cloud">
-            <div class="tech-item"><span class="skill-dot"></span> Flutter</div>
-            <div class="tech-item"><span class="skill-dot"></span> React / React Native</div>
-            <div class="tech-item"><span class="skill-dot"></span> JavaScript / TypeScript</div>
-            <div class="tech-item"><span class="skill-dot"></span> PHP / Laravel</div>
-            <div class="tech-item"><span class="skill-dot"></span> WordPress</div>
-            <div class="tech-item"><span class="skill-dot"></span> Shopify</div>
-            <div class="tech-item"><span class="skill-dot"></span> Python</div>
-            <div class="tech-item"><span class="skill-dot"></span> Firebase</div>
-            <div class="tech-item"><span class="skill-dot"></span> AWS Cloud</div>
-            <div class="tech-item"><span class="skill-dot"></span> Microsoft Azure</div>
-            <div class="tech-item"><span class="skill-dot"></span> Jira Software</div>
-            <div class="tech-item"><span class="skill-dot"></span> Confluence</div>
-            <div class="tech-item"><span class="skill-dot"></span> Figma</div>
-            <div class="tech-item"><span class="skill-dot"></span> Notion</div>
-            <div class="tech-item"><span class="skill-dot"></span> Whimsical</div>
-            <div class="tech-item"><span class="skill-dot"></span> GitHub</div>
+      <div class="skills-scroll-stage skills-scroll-stage--tech" id="techStackStage">
+        <div class="skill-category-card skills-scroll-sticky" style="padding: clamp(24px, 3vw, 36px);">
+          <div class="skills-stage-header">
+            <h3 class="skill-card-title"><span>🛠️</span> Engineering Stack &amp; <span
+                class="gradient-text">Platform Exposure</span></h3>
+            <span class="skills-stage-progress" id="techStageProgress">01 / 16 · SCROLL TO EXPLORE</span>
           </div>
+          <div class="skills-selector-strip" id="techSelectorStrip" role="tablist" aria-label="Engineering Stack Items"></div>
+          <div class="skills-spotlight" id="techSpotlight" aria-live="polite"></div>
         </div>
       </div>
-      <div style="margin-bottom: 4rem;">
-        <div class="skill-category-card" style="padding: clamp(24px, 3vw, 36px);">
-          <h3 class="skill-card-title"><span>📜</span> Verified Certifications &amp; <span
-              class="gradient-text">Licenses</span></h3>
-          <div class="cert-grid">
-            <div class="cert-card"><span>🤖</span> Generative AI: Evolution of Online Search</div>
-            <div class="cert-card"><span>💬</span> Microsoft AI Bing Streamlining</div>
-            <div class="cert-card"><span>📊</span> Google Ads Display Certification</div>
-            <div class="cert-card"><span>📈</span> Google Analytics Professional Certification</div>
-            <div class="cert-card"><span>🔍</span> SEO Principles &amp; Search Crash Course</div>
-            <div class="cert-card"><span>📱</span> Digital Marketing &amp; Social Strategy</div>
-            <div class="cert-card"><span>🌐</span> NID Principles &amp; Examination Course</div>
-            <div class="cert-card"><span>🎯</span> 900 Principles Business Standards</div>
+      <div class="skills-scroll-stage skills-scroll-stage--certs" id="certStackStage">
+        <div class="skill-category-card skills-scroll-sticky" style="padding: clamp(24px, 3vw, 36px);">
+          <div class="skills-stage-header">
+            <h3 class="skill-card-title"><span>📜</span> Verified Certifications &amp; <span
+                class="gradient-text">Licenses</span></h3>
+            <span class="skills-stage-progress" id="certStageProgress">01 / 08 · SCROLL TO EXPLORE</span>
           </div>
+          <div class="skills-selector-strip" id="certSelectorStrip" role="tablist" aria-label="Verified Certifications"></div>
+          <div class="skills-spotlight" id="certSpotlight" aria-live="polite"></div>
         </div>
       </div>
+      <script>
+        (function () {
+          var flutterSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>';
+          var reactSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="4.2"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/></svg>';
+          var figmaSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8.5 3h3.5v4.5H8.5a2.25 2.25 0 0 1 0-4.5zM12 3h3.5a2.25 2.25 0 0 1 0 4.5H12V3zM8.5 7.5H12V12H8.5a2.25 2.25 0 0 1 0-4.5zM8.5 12H12v4.5a2.25 2.25 0 1 1-3.5-4.5z"/><circle cx="14.25" cy="9.75" r="2.25"/></svg>';
+          var codeSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>';
+          var cloudSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>';
+          var layersSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>';
+
+          var techItems = [
+            { name: 'Flutter', tag: 'CROSS-PLATFORM MOBILE', icon: flutterSvg, points: ['Scoped multi-role iOS and Android apps with shared Dart component specs.', 'Mapped state machines, push notifications, and offline sync edge cases.', 'Verified Figma-to-Widget fidelity and responsive behavior in UAT.', 'Reduced mobile build rework through clear API contract definitions.'] },
+            { name: 'React / React Native', tag: 'FRONTEND & MOBILE UI', icon: reactSvg, points: ['Architected modular component trees and role-gated dashboard views.', 'Defined client state flows, optimistic UI states, and error boundaries.', 'Collaborated on React Native parity across iOS and Android releases.', 'Structured reusable design tokens and responsive breakpoint specs.'] },
+            { name: 'JavaScript / TypeScript', tag: 'CORE WEB ENGINEERING', icon: codeSvg, points: ['Specified strict TypeScript interfaces and API payload schemas.', 'Built interactive client prototypes and live sandbox proofs-of-concept.', 'Audited client-side validation, event handling, and runtime edge cases.', 'Translated complex business rules into deterministic state logic.'] },
+            { name: 'PHP / Laravel', tag: 'BACKEND & API SYSTEMS', icon: codeSvg, points: ['Designed multi-tenant RBAC permissions, queues, and webhook flows.', 'Authored ERDs, migration plans, and REST endpoint acceptance criteria.', 'Scoped SaaS billing, audit logging, and admin control panels.', 'Aligned backend sprint tasks with clear Gherkin test scenarios.'] },
+            { name: 'WordPress', tag: 'CMS & ENTERPRISE PORTALS', icon: layersSvg, points: ['Orchestrated delivery of 500+ CMS websites across global markets.', 'Scoped custom post types, ACF schemas, and WooCommerce workflows.', 'Standardized SEO metadata, Core Web Vitals, and launch checklists.', 'Streamlined client handover with modular editorial templates.'] },
+            { name: 'Shopify', tag: 'E-COMMERCE & HEADLESS', icon: layersSvg, points: ['Scoped custom storefronts, checkout flows, and ERP/inventory sync.', 'Designed multi-currency catalogs, tax rules, and fulfillment webhooks.', 'Evaluated app integrations vs custom middleware for scale.', 'Delivered conversion-focused product and cart user journeys.'] },
+            { name: 'Python', tag: 'AI & AUTOMATION BACKEND', icon: codeSvg, points: ['Architected FastAPI microservices, LLM orchestration, and RAG pipelines.', 'Defined structured JSON output schemas and deterministic fallback loops.', 'Built automated QA scripts, data parsers, and workflow tooling.', 'Scoped pgvector hybrid search and background worker pipelines.'] },
+            { name: 'Firebase', tag: 'REALTIME & AUTH PLATFORM', icon: cloudSvg, points: ['Designed Firestore document models, security rules, and role claims.', 'Scoped FCM push notification triggers and realtime presence sync.', 'Mapped Firebase Auth flows (OTP, OAuth, session lifecycle).', 'Planned Crashlytics and Analytics event taxonomies before launch.'] },
+            { name: 'AWS Cloud', tag: 'CLOUD INFRASTRUCTURE', icon: cloudSvg, points: ['Scoped EC2, S3, RDS, and CloudFront deployment architectures.', 'Defined IAM least-privilege boundaries and environment separation.', 'Planned backup, failover, and cost-effective scaling milestones.', 'Aligned DevOps release pipelines with client UAT sign-off gates.'] },
+            { name: 'Microsoft Azure', tag: 'ENTERPRISE CLOUD & AI', icon: cloudSvg, points: ['Scoped enterprise SSO, Azure AD/Entra ID, and tenant isolation.', 'Designed Azure OpenAI integration workflows with compliance guardrails.', 'Mapped App Service and SQL Database provisioning requirements.', 'Documented enterprise security and SLA readiness criteria.'] },
+            { name: 'Jira Software', tag: 'AGILE DELIVERY & SPRINTS', icon: layersSvg, points: ['Structured Epics, User Stories, and Gherkin acceptance criteria.', 'Managed sprint velocity, dependency tracking, and release burndowns.', 'Standardized bug triage workflows with severity/repro templates.', 'Kept engineering squads aligned from discovery through production.'] },
+            { name: 'Confluence', tag: 'KNOWLEDGE & SPECS HUB', icon: layersSvg, points: ['Authored living BRDs, FRDs, and architecture decision records.', 'Maintained single-source-of-truth API and RBAC matrices.', 'Linked sprint tickets directly to versioned specification pages.', 'Cut onboarding time for new engineers across distributed teams.'] },
+            { name: 'Figma', tag: 'UI/UX & DESIGN SYSTEMS', icon: figmaSvg, points: ['Translated business requirements into clickable high-fidelity flows.', 'Validated component states (empty, loading, error, edge) pre-dev.', 'Established design-to-dev handoff specs with exact spacing and tokens.', 'Conducted visual QA against Figma frames before client demos.'] },
+            { name: 'Notion', tag: 'PRODUCT OPS & ROADMAPS', icon: layersSvg, points: ['Built client-facing delivery portals, roadmaps, and milestone trackers.', 'Organized discovery notes, stakeholder feedback, and scope logs.', 'Created repeatable SOPs for onboarding, QA, and release sign-off.', 'Tracked cross-project risks, assumptions, and action owners.'] },
+            { name: 'Whimsical', tag: 'FLOWS & WIREFRAMING', icon: layersSvg, points: ['Mapped end-to-end user journeys and multi-role swimlanes rapidly.', 'Created low-friction wireframes during live client discovery calls.', 'Visualized state transitions and branching logic before UI design.', 'Aligned stakeholders on scope boundaries in minutes.'] },
+            { name: 'GitHub', tag: 'SOURCE & RELEASE WORKFLOW', icon: codeSvg, points: ['Reviewed PRs against functional specs and acceptance criteria.', 'Tracked release tags, hotfix branches, and deployment readiness.', 'Coordinated issue triage and automated CI/build verification.', 'Maintained clean documentation alongside production repositories.'] }
+          ];
+
+          var certItems = [
+            { name: 'Generative AI: Evolution of Online Search', tag: 'AI SEARCH & DISCOVERY', icon: '🤖', points: ['Applied generative search mechanics to AI product discovery and RAG UX.', 'Designed citation-backed answer flows that reduce user friction.', 'Translated LLM retrieval patterns into measurable product specs.'] },
+            { name: 'Microsoft AI Bing Streamlining', tag: 'AI WORKFLOW OPTIMIZATION', icon: '💬', points: ['Leveraged AI-assisted research and synthesis to accelerate scoping.', 'Built prompt-driven competitive intelligence and market audit workflows.', 'Integrated conversational AI patterns into enterprise client portals.'] },
+            { name: 'Google Ads Display Certification', tag: 'GROWTH & ACQUISITION', icon: '📊', points: ['Aligned landing page architecture with paid acquisition funnels.', 'Scoped conversion tracking, attribution, and retargeting touchpoints.', 'Connected product onboarding flows to campaign ROI metrics.'] },
+            { name: 'Google Analytics Professional Certification', tag: 'PRODUCT TELEMETRY', icon: '📈', points: ['Defined GA4 event schemas, funnel drop-off alerts, and KPI dashboards.', 'Used behavioral cohorts to prioritize post-launch product iterations.', 'Verified analytics instrumentation during pre-release QA gates.'] },
+            { name: 'SEO Principles & Search Crash Course', tag: 'TECHNICAL SEO', icon: '🔍', points: ['Built semantic HTML, schema markup, and Core Web Vitals into specs.', 'Prevented crawl/indexation regressions during CMS and site migrations.', 'Aligned information architecture with high-intent search journeys.'] },
+            { name: 'Digital Marketing & Social Strategy', tag: 'OMNICHANNEL GROWTH', icon: '📱', points: ['Integrated social attribution, referral loops, and CRM capture flows.', 'Scoped campaign landing experiences for 34 global client markets.', 'Balanced brand storytelling with conversion-focused UX clarity.'] },
+            { name: 'NID Principles & Examination Course', tag: 'DESIGN THINKING', icon: '🌐', points: ['Applied human-centered design principles to complex enterprise flows.', 'Structured visual hierarchy, contrast, and cognitive load reduction.', 'Bridged aesthetic craft with functional business requirements.'] },
+            { name: '900 Principles Business Standards', tag: 'QUALITY MANAGEMENT', icon: '🎯', points: ['Implemented ISO-style documentation-first quality gates across sprints.', 'Achieved a 35%+ reduction in post-launch engineering rework.', 'Standardized UAT sign-off, risk logs, and audit-ready delivery.'] }
+          ];
+
+          function initStage(cfg) {
+            var stage = document.getElementById(cfg.stageId);
+            var strip = document.getElementById(cfg.stripId);
+            var spotlight = document.getElementById(cfg.spotlightId);
+            var progress = document.getElementById(cfg.progressId);
+            if (!stage || !strip || !spotlight || !progress) return;
+
+            var activeIdx = -1;
+            var pills = [];
+
+            cfg.items.forEach(function (item, idx) {
+              var btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'skills-selector-pill';
+              btn.setAttribute('role', 'tab');
+              btn.textContent = item.name;
+              btn.addEventListener('click', function () {
+                setActive(idx);
+                var rect = stage.getBoundingClientRect();
+                var stageTop = window.scrollY + rect.top - 84;
+                var scrollable = Math.max(1, stage.offsetHeight - window.innerHeight * 0.75);
+                var targetY = stageTop + (idx / Math.max(1, cfg.items.length - 1)) * scrollable;
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+              });
+              strip.appendChild(btn);
+              pills.push(btn);
+            });
+
+            function setActive(idx) {
+              if (idx === activeIdx) return;
+              activeIdx = idx;
+              var item = cfg.items[idx];
+              pills.forEach(function (p, i) {
+                var on = i === idx;
+                p.classList.toggle('is-active', on);
+                p.setAttribute('aria-selected', on ? 'true' : 'false');
+              });
+              var numStr = String(idx + 1).padStart(2, '0') + ' / ' + String(cfg.items.length).padStart(2, '0');
+              progress.textContent = numStr + ' · SCROLL TO EXPLORE';
+              spotlight.innerHTML =
+                '<div class="skills-spotlight-logo">' + item.icon + '</div>' +
+                '<div>' +
+                  '<div class="skills-spotlight-eyebrow">' + item.tag + '</div>' +
+                  '<h4 class="skills-spotlight-title">' + item.name + '</h4>' +
+                  '<ul class="skills-spotlight-points">' +
+                    item.points.map(function (pt) { return '<li>' + pt + '</li>'; }).join('') +
+                  '</ul>' +
+                '</div>';
+            }
+
+            setActive(0);
+
+            var ticking = false;
+            function onScroll() {
+              if (ticking) return;
+              ticking = true;
+              requestAnimationFrame(function () {
+                ticking = false;
+                var rect = stage.getBoundingClientRect();
+                var scrollable = Math.max(1, stage.offsetHeight - window.innerHeight * 0.75);
+                var scrolled = Math.max(0, Math.min(scrollable, 84 - rect.top));
+                var ratio = scrolled / scrollable;
+                var nextIdx = Math.min(cfg.items.length - 1, Math.max(0, Math.floor(ratio * cfg.items.length)));
+                setActive(nextIdx);
+              });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+          }
+
+          initStage({
+            stageId: 'techStackStage',
+            stripId: 'techSelectorStrip',
+            spotlightId: 'techSpotlight',
+            progressId: 'techStageProgress',
+            items: techItems
+          });
+
+          initStage({
+            stageId: 'certStackStage',
+            stripId: 'certSelectorStrip',
+            spotlightId: 'certSpotlight',
+            progressId: 'certStageProgress',
+            items: certItems
+          });
+        })();
+      </script>
       <div class="page-bottom-cta"> <a href="/prototypes/" class="page-cta-btn"> <span>Explore My Interactive Portfolio
             Prototypes</span> <span class="cta-arrow">→</span> </a> </div>
     </div>
