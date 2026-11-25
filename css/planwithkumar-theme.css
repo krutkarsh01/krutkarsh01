@@ -4478,7 +4478,7 @@ h3,
   display: flex !important;
   flex-direction: column !important;
   gap: 1.75rem !important;
-  margin-bottom: 2.5rem !important;
+  margin-bottom: 0 !important;
   overflow: visible !important;
 }
 
@@ -4839,8 +4839,10 @@ h3,
 
 /* Tighten bottom CTA & pre-footer spacing across all subpages (Image 1 fix) */
 .page-bottom-cta {
-  margin-top: 1.25rem !important;
-  margin-bottom: 1.5rem !important;
+  position: relative !important;
+  z-index: 30 !important;
+  margin-top: 2.25rem !important;
+  margin-bottom: 2rem !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
