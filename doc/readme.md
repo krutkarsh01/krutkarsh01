@@ -12,6 +12,13 @@ Deployment Targets: Vercel / Netlify
 
 ---
 
+## Sitemap Maintenance Rule
+- **Always generate and update `sitemap.xml` (and verify `robots.txt`) whenever pages, routes, or significant content changes are made.**
+- Live production domain: `https://krutkarsh.com` (`https://krutkarsh.com/sitemap.xml`).
+- Update `<lastmod>` dates and add/remove `<url>` entries to match all active routes before committing or deploying.
+
+---
+
 ## Evolution Changelog and Version History
 
 ### [v5.9.19] - 3D-Shaded Curved Paper-Curl Engine & Smooth Inertia Damping (codeofsagar.in Reference)

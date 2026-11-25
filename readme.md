@@ -13,6 +13,8 @@
 
 *Rule: Existing version logs are immutable. Every subsequent execution, enhancement, and milestone appends a new version entry (`v1.1.0`, `v1.2.0`, etc.).*
 
+*Sitemap Maintenance Rule: Always regenerate and update `sitemap.xml` (and `robots.txt` if the domain changes) to reflect any new pages, removed routes, URL structure changes, or content updates on `https://krutkarsh.com/sitemap.xml`.*
+
 ---
 
 ### [v1.0.0] - 2026-11-13: Master Redesign Architecture & Execution Plan
