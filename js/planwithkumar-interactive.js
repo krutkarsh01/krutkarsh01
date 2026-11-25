@@ -728,8 +728,11 @@
     initNavbarScrollGlass();
     initMinimalistMenu();
     initLaptopTypewriter();
-    initSagarCursor();
-    initChakraCanvas();
+    var isTouchOrMobile = window.innerWidth <= 768 || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    if (!isTouchOrMobile) {
+      initSagarCursor();
+      initChakraCanvas();
+    }
     enhanceShinobiHeader();
     enhanceShinobiFooter();
     initShinobiForms();

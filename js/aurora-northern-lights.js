@@ -39,9 +39,10 @@
   var heroGlowingStars = [];
   var constellationNodes = [];
 
-  var NUM_BG_STARS = 320;
-  var NUM_HERO_STARS = 45;
-  var NUM_CONSTELLATION = 40;
+  var isMobilePerf = width <= 768;
+  var NUM_BG_STARS = isMobilePerf ? 110 : 320;
+  var NUM_HERO_STARS = isMobilePerf ? 18 : 45;
+  var NUM_CONSTELLATION = isMobilePerf ? 15 : 40;
 
   var STAR_COLOR_PALETTES = [
     { core: '#FFFFFF', inner: 'rgba(0, 240, 255, 0.85)', mid: 'rgba(0, 240, 255, 0.25)', outer: 'rgba(0, 240, 255, 0)' },   // Cyan starlight
@@ -570,11 +571,18 @@
     }
   }
 
-  function render() {
+  var lastRenderTime = 0;
+  function render(now) {
     if (!isVisible || !isHeroVisible) {
       animationId = null;
       return;
     }
+
+    if (isMobilePerf && now && (now - lastRenderTime) < 32) {
+      animationId = requestAnimationFrame(render);
+      return;
+    }
+    lastRenderTime = now || performance.now();
 
     var elapsedSeconds = (performance.now() - startTime) * 0.001;
 
@@ -638,9 +646,17 @@
     animationId = requestAnimationFrame(render);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  function scheduleInit() {
+    if (isMobilePerf) {
+      setTimeout(init, 650);
+    } else {
+      setTimeout(init, 60);
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    scheduleInit();
   } else {
-    init();
+    window.addEventListener('load', scheduleInit, { once: true });
   }
 })();
