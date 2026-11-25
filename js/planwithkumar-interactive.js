@@ -709,9 +709,15 @@
   function initNavbarScrollGlass() {
     var nav = document.querySelector('.nl-nav');
     if (!nav) return;
+    var hasHero = !!document.getElementById('nlHeroSection');
     function syncNavGlass() {
+      if (!hasHero) {
+        // Subpages (/about/ to /contact/): always frosted glass like Image 3
+        nav.classList.add('scrolled');
+        return;
+      }
       var y = window.scrollY || document.documentElement.scrollTop || 0;
-      if (y > 24) {
+      if (y > 120) {
         nav.classList.add('scrolled');
       } else {
         nav.classList.remove('scrolled');
