@@ -557,13 +557,10 @@
   var isHeroVisible = true;
 
   function checkHeroScroll() {
-    var vh = window.innerHeight || 800;
-    var heroVisible = (window.scrollY < vh * 2.2);
-    if (heroVisible !== isHeroVisible) {
-      isHeroVisible = heroVisible;
-      if (isHeroVisible && !animationId && isVisible) {
-        animationId = requestAnimationFrame(render);
-      }
+    // Keep Aurora Borealis & Bloxi17 Starfield animating smoothly across all sections
+    isHeroVisible = true;
+    if (!animationId && isVisible) {
+      animationId = requestAnimationFrame(render);
     }
   }
 

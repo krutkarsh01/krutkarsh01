@@ -1,6 +1,6 @@
 # Master Architectural Plan and Evolution Blueprint
 Project: Kumar Utkarsh Professional Portfolio and AI Product Architecture Suite
-Version: 5.9.17
+Version: 5.9.18
 Framework: Next.js (App Router), Tailwind CSS, shadcn/ui
 Deployment Targets: Vercel / Netlify
 
@@ -13,6 +13,29 @@ Deployment Targets: Vercel / Netlify
 ---
 
 ## Evolution Changelog and Version History
+
+### [v5.9.18] - Universal Aurora & Starfield Across All Sections and Slower Eased Page-Turn Curl
+
+#### I - INPUT
+1. User requested:
+   - *"1. THE PAGE SCROLL ANIMATION IS TOO FAST. MAKE IT LITTLE SLOWER AND REALSTIC"* (`media_1795584205831_895565a8.jpg`).
+   - *"2. Make the aurora and stars animation on all sections"* (`media_1795584291941_1f31e269.jpg`).
+
+#### M - MISSION
+1. Keep `#webgl-aurora-canvas` and `#universal-aurora-canvas` animating continuously across all sections regardless of scroll depth.
+2. Make all stage panels transparent (`background: transparent !important`) while restoring complementary non-overlapping `outClip` / `inClip` polygons during active peel so Hero, Atlas, Pillars, Gallery, and Contact all display the live Aurora & Starfield with zero overlap.
+3. Slow down and smooth the diagonal page-turn animation using `175vh` (desktop) / `185vh` (mobile) tracks, `30%` reading hold (allocating `70%` of scroll distance to the peel), sine-in-out easing, and a soft cast fold shadow (`turn-curl-shadow-stroke`).
+
+#### E - EXECUTION
+1. Modified [js/aurora-northern-lights.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/aurora-northern-lights.js) to keep the Aurora & Starfield render loop active across all sections.
+2. Modified [js/page-shift-controller.js](file:///Users/ashu/Documents/GitHub/krutkarsh01/js/page-shift-controller.js) to add sine-in-out easing, `30%` readingHold, complementary `inClip` on `inStage`, and `.turn-curl-shadow-stroke`.
+3. Modified [css/page-shift-curl.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/page-shift-curl.css) to set transparent stage backgrounds across all sections, `175vh`/`185vh` peel tracks, and soft fold shadow styling.
+
+#### T - TESTING
+1. Verified in Chrome DevTools on Desktop (`1440x900`) and Mobile (`390x844`): Aurora & Starfield render behind Atlas, Pillars, Gallery, and Contact, and the eased diagonal peel sweeps smoothly with realistic fold shadow.
+2. Verified `npm run build` exits with code 0.
+
+---
 
 ### [v5.9.17] - Scrollbar Elimination, Snappy Scroll Tracks, and Mobile Inner-Scroll Sync
 

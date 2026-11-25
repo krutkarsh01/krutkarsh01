@@ -50,8 +50,8 @@ body::-webkit-scrollbar {
 }
 
 .turn-stage-wrapper.has-turn-effect {
-  /* Snappy scroll track: crisp reading pause + smooth diagonal peel */
-  height: 145vh;
+  /* Balanced scroll track: comfortable reading pause + slower, realistic diagonal peel */
+  height: 175vh;
   margin-bottom: 0;
 }
 
@@ -138,22 +138,14 @@ body::-webkit-scrollbar {
   opacity: 1 !important;
 }
 
-/* Downstream stage panels have solid dark cosmic background to prevent transparent bleed */
-#stage-global-client-atlas>.turn-sticky-panel,
-#stage-core-value-proposition>.turn-sticky-panel,
-#stage-portfolio-curved-gallery>.turn-sticky-panel,
-#stage-contact>.turn-sticky-panel {
-  background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
-}
-
-/* Hero Stage keeps transparent background when resting so WebGL Aurora & Glowing Starfield shine through at all times! */
-#stage-nlHeroSection>.turn-sticky-panel {
+/* All stage panels keep transparent background so WebGL Aurora & Glowing Starfield shine through on EVERY section! */
+#stage-nlHeroSection > .turn-sticky-panel,
+#stage-nlHeroSection > .turn-sticky-panel.is-peeling,
+#stage-global-client-atlas > .turn-sticky-panel,
+#stage-core-value-proposition > .turn-sticky-panel,
+#stage-portfolio-curved-gallery > .turn-sticky-panel,
+#stage-contact > .turn-sticky-panel {
   background: transparent !important;
-}
-
-/* When peeling, Hero receives solid dark gradient backing so Section 2 cannot shine through Hero before the crease sweeps */
-#stage-nlHeroSection>.turn-sticky-panel.is-peeling {
-  background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
 }
 
 /* Outgoing peeling panel: Locked to viewport with overflow hidden so Blink compositing clips 100% cleanly along the diagonal */
@@ -198,11 +190,18 @@ body::-webkit-scrollbar {
   overflow: visible;
 }
 
-.turn-curl-line-stroke {
-  stroke: #ffffff;
-  stroke-width: 3.5px;
+.turn-curl-shadow-stroke {
+  stroke: rgba(0, 0, 0, 0.78);
+  stroke-width: 22px;
   stroke-linecap: round;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)) drop-shadow(-4px 4px 14px rgba(0, 0, 0, 0.95));
+  filter: blur(7px);
+}
+
+.turn-curl-line-stroke {
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(200, 255, 255, 0.75)) drop-shadow(-3px 3px 10px rgba(0, 0, 0, 0.9));
 }
 
 /* INCOMING SECTION POSITIONING:
@@ -698,11 +697,11 @@ body::-webkit-scrollbar {
   overflow-y: auto;
 }
 
-/* Mobile Responsive Architecture: Snappy Diagonal Turnover Peel & Natural Contact/Footer Flow */
+/* Mobile Responsive Architecture: Slower Realistic Diagonal Turnover Peel & Natural Contact/Footer Flow */
 @media (max-width: 768px) {
 
   .turn-stage-wrapper.has-turn-effect {
-    height: 165vh !important;
+    height: 185vh !important;
   }
 
   #stage-contact.turn-stage-wrapper {
@@ -751,22 +750,19 @@ body::-webkit-scrollbar {
     display: block !important;
   }
 
-  #stage-nlHeroSection>.turn-sticky-panel {
+  #stage-nlHeroSection > .turn-sticky-panel,
+  #stage-nlHeroSection > .turn-sticky-panel.is-peeling,
+  #stage-global-client-atlas > .turn-sticky-panel,
+  #stage-core-value-proposition > .turn-sticky-panel,
+  #stage-portfolio-curved-gallery > .turn-sticky-panel,
+  #stage-contact > .turn-sticky-panel {
     background: transparent !important;
+  }
+
+  #stage-nlHeroSection > .turn-sticky-panel {
     min-height: 100svh !important;
     padding-top: 60px !important;
     justify-content: flex-start !important;
-  }
-
-  #stage-nlHeroSection > .turn-sticky-panel.is-peeling {
-    background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
-  }
-
-  #stage-global-client-atlas>.turn-sticky-panel,
-  #stage-core-value-proposition>.turn-sticky-panel,
-  #stage-portfolio-curved-gallery>.turn-sticky-panel,
-  #stage-contact>.turn-sticky-panel {
-    background: radial-gradient(ellipse at 50% 30%, #02120f 0%, #010806 100%) !important;
   }
 }
 

@@ -54,7 +54,10 @@
         if (i < SECTION_IDS.length - 1) {
           var creaseLine = document.createElement('div');
           creaseLine.className = 'turn-curl-crease-line';
-          creaseLine.innerHTML = '<svg class="turn-curl-crease-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line class="turn-curl-line-stroke" x1="100%" y1="100%" x2="100%" y2="100%" /></svg>';
+          creaseLine.innerHTML = '<svg class="turn-curl-crease-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+            '<line class="turn-curl-shadow-stroke" x1="100%" y1="100%" x2="100%" y2="100%" />' +
+            '<line class="turn-curl-line-stroke" x1="100%" y1="100%" x2="100%" y2="100%" />' +
+            '</svg>';
           wrapper.appendChild(creaseLine);
         }
 
@@ -72,6 +75,7 @@
         panel: wrapper.querySelector('.turn-sticky-panel'),
         creaseLine: wrapper.querySelector('.turn-curl-crease-line'),
         svgLine: wrapper.querySelector('.turn-curl-line-stroke'),
+        svgShadowLine: wrapper.querySelector('.turn-curl-shadow-stroke'),
         index: i,
         baseZ: baseZ
       });
@@ -100,7 +104,9 @@
   }
 
   function computeTurnGeometry(progress) {
-    var p = Math.max(0, Math.min(1, progress));
+    var raw = Math.max(0, Math.min(1, progress));
+    // Smooth sine-in-out easing so the page corner lifts gently, sweeps naturally, and settles softly
+    var p = 0.5 - 0.5 * Math.cos(Math.PI * raw);
     var C = 2.0 * (1.0 - p);
     var outClip, inClip;
     var line = { x1: '100%', y1: '100%', x2: '100%', y2: '100%' };
@@ -160,8 +166,8 @@
       var turnDist = stage.wrapper.offsetHeight - vh;
       if (turnDist <= 0) continue;
 
-      // Snappy reading pause (48% of track) before diagonal peel engages
-      var readingHold = Math.max(isMobile ? 160 : 180, turnDist * 0.48);
+      // Comfortable reading pause (30% of track), leaving 70% (~470px+) for a slower, realistic page turn
+      var readingHold = Math.max(isMobile ? 140 : 160, turnDist * 0.30);
 
       // Sync internal overflow scroll (e.g. tall mobile Atlas/Gallery) during reading pause
       var maxInnerScroll = Math.max(0, stage.panel.scrollHeight - stage.panel.clientHeight);
@@ -217,9 +223,15 @@
         outStage.svgLine.setAttribute('x2', geom.line.x2);
         outStage.svgLine.setAttribute('y2', geom.line.y2);
       }
+      if (outStage.svgShadowLine) {
+        outStage.svgShadowLine.setAttribute('x1', geom.line.x1);
+        outStage.svgShadowLine.setAttribute('y1', geom.line.y1);
+        outStage.svgShadowLine.setAttribute('x2', geom.line.x2);
+        outStage.svgShadowLine.setAttribute('y2', geom.line.y2);
+      }
 
-      // 3. Active Incoming Stage (Section 2): Full intact page underneath (z-index: 30)
-      // Unveiled naturally as Section 1 peels away, zero double-clipping or text collision
+      // 3. Active Incoming Stage (Section 2): Clipped strictly to the revealed side of the diagonal crease
+      // Zero overlap with outStage, allowing transparent Aurora & Stars backdrop to shine through every section!
       if (inStage) {
         inStage.panel.style.display = 'flex';
         inStage.panel.classList.remove('is-peeling');
@@ -227,8 +239,8 @@
         inStage.wrapper.style.zIndex = '30';
         inStage.wrapper.classList.add('is-incoming');
         inStage.wrapper.classList.remove('is-fully-active', 'is-peeling-wrapper');
-        inStage.panel.style.clipPath = 'none';
-        inStage.panel.style.webkitClipPath = 'none';
+        inStage.panel.style.clipPath = geom.inClip;
+        inStage.panel.style.webkitClipPath = geom.inClip;
         inStage.panel.style.setProperty('--incoming-opacity', '1');
       }
 
