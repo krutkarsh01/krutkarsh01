@@ -18,4 +18,10 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-Sitemap: https://krutkarsh.com/sitemap.xml
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+Sitemap: https://www.krutkarsh.com/sitemap.xml

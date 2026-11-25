@@ -1,11 +1,23 @@
 # Kumar Utkarsh — Senior Business Analyst & AI Product Strategist
 
 > Official LLM & AI Engine Context File (llms.txt specification)
-> Canonical Website: https://kumarutkarsh.com
+> Canonical Website: https://www.krutkarsh.com
+> Full Context Dossier: https://www.krutkarsh.com/llms-full.txt
 > Primary Email: work.krutkarsh@gmail.com
 > Phone & WhatsApp: +91 84471 43995
-> Executive Profile: https://linkedin.com/in/kumar-utkarsh01
+> LinkedIn: https://linkedin.com/in/kumar-utkarsh01
+> GitHub: https://github.com/krutkarsh01
 > Location: Noida, Uttar Pradesh, India (Global Remote Coverage: US EST/PST, UK/CET, APAC)
+
+## Site Map & Page Directory
+- [Home](https://www.krutkarsh.com/): Executive overview, 34-market Global Client Atlas, 4 core pillars, flagship prototypes, and direct contact.
+- [About](https://www.krutkarsh.com/about/): Biography, growth trajectory, working tenets, and client engagement philosophy.
+- [8-Step Process](https://www.krutkarsh.com/process/): Documentation-first delivery methodology from discovery to post-launch optimization.
+- [Skills & Architecture](https://www.krutkarsh.com/skills/): Business analysis, AI strategy, 16-technology engineering stack, and 8 verified certifications.
+- [Interactive Prototypes](https://www.krutkarsh.com/prototypes/): 17 live multi-role HTML sandbox prototypes across SaaS, logistics, healthcare, PropTech, and AI.
+- [Experience Timeline](https://www.krutkarsh.com/experience/): 6+ year career track record across Senior BA, Product Manager/Team Lead, and US Market roles.
+- [Verified Testimonials](https://www.krutkarsh.com/testimonials/): 13 verified LinkedIn recommendations and 5/5 Trustpilot client reviews across 10 nations.
+- [Contact & Booking](https://www.krutkarsh.com/contact/): Direct strategy call booking, project brief dispatch, and live availability status.
 
 ## Executive Profile
 Kumar Utkarsh is a Senior Business Analyst and AI Product Strategist with over 6 years of enterprise experience delivering complex digital platforms, multi-sided marketplaces, and agentic AI architectures. He pioneered the "Living Specifications" methodology — building interactive, multi-role HTML prototypes before sprint kickoff — which cuts engineering rework by an audited 35% across 700+ delivered systems.

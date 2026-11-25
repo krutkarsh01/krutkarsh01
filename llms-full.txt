@@ -1,0 +1,66 @@
+# Kumar Utkarsh — Complete AI & Search Dossier (llms-full.txt)
+
+> Canonical Website: https://www.krutkarsh.com
+> Summary File: https://www.krutkarsh.com/llms.txt
+> Sitemap: https://www.krutkarsh.com/sitemap.xml
+> Contact: work.krutkarsh@gmail.com | +91 84471 43995
+> LinkedIn: https://linkedin.com/in/kumar-utkarsh01 | GitHub: https://github.com/krutkarsh01
+> Location: Noida, Uttar Pradesh, India (Global Remote Coverage: US EST/PST, UK/CET, APAC)
+
+## 1. Identity & Core Value Proposition
+Kumar Utkarsh is a Senior Business Analyst, AI Product Strategist, and Project Manager with 6+ years of experience delivering 700+ web applications, mobile platforms, and enterprise software systems across 34 global client markets. By replacing ambiguous static text specifications with interactive, multi-role HTML "Living Specifications" before sprint kickoff, his methodology achieves a measured 35%+ reduction in post-launch engineering rework and maintains a 98% positive client satisfaction rating.
+
+## 2. Career & Leadership Timeline (/experience/)
+1. **Senior Business Analyst** (Jan 2025 – Present · Noida, India · Full-time)
+   - Lead client onboarding and pre-sales business analysis, authoring SOWs, BRDs, and FRDs for dedicated engineering squads.
+   - Spearhead AI and prompt engineering initiatives integrated into client software products.
+   - Pioneered documentation-first delivery protocols, achieving a 35%+ drop in post-launch code rework.
+2. **Senior Product Manager / Team Lead** (Oct 2023 – Jan 2025 · Noida, India · Full-time)
+   - Orchestrated delivery of 500+ CMS websites and 100+ custom software applications across global markets.
+   - Directed cross-functional engineering, QA, and UI/UX squads using Agile/Scrum sprints.
+3. **Senior Business Developer (US Market)** (Jul 2023 – Oct 2023 · Austin, Texas, USA · Remote)
+   - Managed North American enterprise technology accounts, pre-sales scoping, and technical solution architecture.
+4. **Business Development Executive** (May 2023 – Jul 2023 · Noida, India · Full-time)
+   - Delivered B2B enterprise scoping proposals, commercial estimates, and discovery workshops.
+5. **Business Development & Analysis Intern** (May 2022 – May 2023 · Noida, India · Internship)
+   - Conducted market research, competitor benchmarking, and client operations support.
+
+## 3. Core Capabilities & Engineering Stack (/skills/)
+- **Product & Business Analysis**: Role-Based Access Control (RBAC), BRD & FRS Authoring, SOW Scope Engineering, Interactive Rapid Prototyping, User Journey Mapping, State Machine Modeling, Entity Relationship Diagrams (ERD), Agile & Scrum Sprint Leadership, Pre-Sales & Solution Scoping, Gherkin Acceptance Criteria, Risk Assessment & Mitigation.
+- **AI Strategy & Business Consulting**: AI Prompt Engineering, LLM Product Integration, Multi-Sided Marketplaces, Digital Transformation Roadmaps, Process Automation & RPA, B2B SaaS Architecture, Market & Competitor Intelligence, Client Onboarding Frameworks, MVP Definition & Prioritization, IT Business Consulting.
+- **Engineering Stack & Platform Exposure (16)**: Flutter, React / React Native, JavaScript / TypeScript, PHP / Laravel, WordPress, Shopify, Python, Firebase, AWS Cloud, Microsoft Azure, Jira Software, Confluence, Figma, Notion, Whimsical, GitHub.
+- **Verified Certifications & Licenses (8)**: Generative AI: Evolution of Online Search; Microsoft AI Bing Streamlining; Google Ads Display Certification; Google Analytics Professional Certification; SEO Principles & Search Crash Course; Digital Marketing & Social Strategy; NID Principles & Examination Course; 900 Principles Business Standards.
+
+## 4. 8-Step Client Delivery Methodology (/process/)
+1. Discovery & Requirements Elicitation
+2. Draft Case Study & Scope Architecture
+3. Interactive Living HTML Prototyping
+4. Logic Architecture, ERD & RBAC Matrix
+5. Gherkin BDD Agile Sprint Planning
+6. UAT & Edge-Case Verification
+7. Release Orchestration & Handover
+8. Post-Launch Analytics & Optimization
+
+## 5. 17 Interactive Flagship Prototypes (/prototypes/)
+1. MEAX Delivery Marketplace & Multi-Role Logistics (Spain) — 5 roles
+2. 112 Veterinarios Multi-Clinic Clinical & Emergency Healthcare (Spain) — 5 roles
+3. El Manantial HOA Community & Residential Operations Hub (Spain) — 5 roles
+4. Team1 Display Services Trade Show Inventory Reservation System (TSRS) (USA) — 2 roles
+5. Kelioniu Kryptis Dynamic Packaging & GDS Travel Engine (Lithuania) — 2 roles
+6. Stealth Manager CPQ & White-Label Scoping Architecture (USA)
+7. Ovella Systems Bike Parking Planning Calculator (Finland)
+8. Harmony Kids & MelodyCare AI-Assisted Music EdTech (USA)
+9. QMA System MedTech Dynamometry SaaS (USA)
+10. Industrial Cutting Tools USA OSHA Catalog (USA)
+11. Latens & Forma Art & Spatial Design Studio (Switzerland)
+12. SMP Dakar Turnkey Energy & Industrial EPC Portal (Senegal)
+13. Pola Vida Somatic Healing & Transformation (Portugal)
+14. Time for Tea HK Luxury Hospitality & Tableware (Hong Kong)
+15. Tecnica FA Youth Football Academy Platform (United Kingdom)
+16. MSV Technologies ICT Services & Authorized LG/AirLux Brand Shop (Rwanda)
+17. Leather India Council for Leather Exports (CLE) Portal (India)
+
+## 6. Verified Client Endorsements (/testimonials/)
+- **13 Verified Reviews (100% 5-Star / Recommended)** across 10 nations: USA (4), Spain (1), Switzerland (1), Germany/Serbia (1), UK (1), Netherlands (1), France (1), Israel (1), UAE (1), Australia (1).
+- Sources: 4 LinkedIn Executive Recommendations + 9 Trustpilot 5/5 Verified Reviews.
+- Direct Engagement: `< 4 Hours` typical response time; Consulting, Contract, and Full-Time models available.
