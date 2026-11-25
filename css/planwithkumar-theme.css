@@ -4816,3 +4816,43 @@ h3,
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   /process/ Page: Sticky Stacking Cards (Steps 01 -> 08 layer over each other)
+   ========================================================================== */
+.con:has(.methodology-list),
+.methodology-list {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+.methodology-list {
+  padding-bottom: 40px !important;
+}
+
+.methodology-list > .process-card {
+  position: sticky !important;
+  top: 84px !important;
+  background: rgba(3, 16, 14, 0.97) !important;
+  backdrop-filter: blur(20px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  border: 1px solid rgba(0, 229, 255, 0.22) !important;
+  box-shadow: 0 -14px 36px rgba(0, 0, 0, 0.85), 0 18px 44px rgba(0, 0, 0, 0.72) !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.methodology-list > .process-card:nth-child(1) { top: 84px !important; z-index: 11 !important; }
+.methodology-list > .process-card:nth-child(2) { top: 96px !important; z-index: 12 !important; }
+.methodology-list > .process-card:nth-child(3) { top: 108px !important; z-index: 13 !important; }
+.methodology-list > .process-card:nth-child(4) { top: 120px !important; z-index: 14 !important; }
+.methodology-list > .process-card:nth-child(5) { top: 132px !important; z-index: 15 !important; }
+.methodology-list > .process-card:nth-child(6) { top: 144px !important; z-index: 16 !important; }
+.methodology-list > .process-card:nth-child(7) { top: 156px !important; z-index: 17 !important; }
+.methodology-list > .process-card:nth-child(8) { top: 168px !important; z-index: 18 !important; }
+
+@media (max-width: 768px) {
+  .methodology-list > .process-card:nth-child(n) {
+    top: 74px !important;
+  }
+}
+
