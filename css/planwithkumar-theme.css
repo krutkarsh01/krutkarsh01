@@ -4973,11 +4973,30 @@ main,
   top: 84px !important;
 }
 
-.timeline-wrap>.timeline-entry:nth-of-type(1) { top: 84px !important; z-index: 11 !important; }
-.timeline-wrap>.timeline-entry:nth-of-type(2) { top: 96px !important; z-index: 12 !important; }
-.timeline-wrap>.timeline-entry:nth-of-type(3) { top: 108px !important; z-index: 13 !important; }
-.timeline-wrap>.timeline-entry:nth-of-type(4) { top: 120px !important; z-index: 14 !important; }
-.timeline-wrap>.timeline-entry:nth-of-type(5) { top: 132px !important; z-index: 15 !important; }
+.timeline-wrap>.timeline-entry:nth-of-type(1) {
+  top: 84px !important;
+  z-index: 11 !important;
+}
+
+.timeline-wrap>.timeline-entry:nth-of-type(2) {
+  top: 96px !important;
+  z-index: 12 !important;
+}
+
+.timeline-wrap>.timeline-entry:nth-of-type(3) {
+  top: 108px !important;
+  z-index: 13 !important;
+}
+
+.timeline-wrap>.timeline-entry:nth-of-type(4) {
+  top: 120px !important;
+  z-index: 14 !important;
+}
+
+.timeline-wrap>.timeline-entry:nth-of-type(5) {
+  top: 132px !important;
+  z-index: 15 !important;
+}
 
 .timeline-wrap>.timeline-entry .exp-box {
   background: rgba(3, 16, 14, 0.97) !important;
@@ -4994,19 +5013,70 @@ main,
 }
 
 /* --- 3. Testimonials (/testimonials/): Sticky z-index sequence --- */
-.reviews-masonry .review-card:nth-child(1) { top: 84px !important; z-index: 11 !important; }
-.reviews-masonry .review-card:nth-child(2) { top: 94px !important; z-index: 12 !important; }
-.reviews-masonry .review-card:nth-child(3) { top: 104px !important; z-index: 13 !important; }
-.reviews-masonry .review-card:nth-child(4) { top: 114px !important; z-index: 14 !important; }
-.reviews-masonry .review-card:nth-child(5) { top: 124px !important; z-index: 15 !important; }
-.reviews-masonry .review-card:nth-child(6) { top: 134px !important; z-index: 16 !important; }
-.reviews-masonry .review-card:nth-child(7) { top: 144px !important; z-index: 17 !important; }
-.reviews-masonry .review-card:nth-child(8) { top: 154px !important; z-index: 18 !important; }
-.reviews-masonry .review-card:nth-child(9) { top: 164px !important; z-index: 19 !important; }
-.reviews-masonry .review-card:nth-child(10) { top: 174px !important; z-index: 20 !important; }
-.reviews-masonry .review-card:nth-child(11) { top: 184px !important; z-index: 21 !important; }
-.reviews-masonry .review-card:nth-child(12) { top: 194px !important; z-index: 22 !important; }
-.reviews-masonry .review-card:nth-child(13) { top: 204px !important; z-index: 23 !important; }
+.reviews-masonry .review-card:nth-child(1) {
+  top: 84px !important;
+  z-index: 11 !important;
+}
+
+.reviews-masonry .review-card:nth-child(2) {
+  top: 94px !important;
+  z-index: 12 !important;
+}
+
+.reviews-masonry .review-card:nth-child(3) {
+  top: 104px !important;
+  z-index: 13 !important;
+}
+
+.reviews-masonry .review-card:nth-child(4) {
+  top: 114px !important;
+  z-index: 14 !important;
+}
+
+.reviews-masonry .review-card:nth-child(5) {
+  top: 124px !important;
+  z-index: 15 !important;
+}
+
+.reviews-masonry .review-card:nth-child(6) {
+  top: 134px !important;
+  z-index: 16 !important;
+}
+
+.reviews-masonry .review-card:nth-child(7) {
+  top: 144px !important;
+  z-index: 17 !important;
+}
+
+.reviews-masonry .review-card:nth-child(8) {
+  top: 154px !important;
+  z-index: 18 !important;
+}
+
+.reviews-masonry .review-card:nth-child(9) {
+  top: 164px !important;
+  z-index: 19 !important;
+}
+
+.reviews-masonry .review-card:nth-child(10) {
+  top: 174px !important;
+  z-index: 20 !important;
+}
+
+.reviews-masonry .review-card:nth-child(11) {
+  top: 184px !important;
+  z-index: 21 !important;
+}
+
+.reviews-masonry .review-card:nth-child(12) {
+  top: 194px !important;
+  z-index: 22 !important;
+}
+
+.reviews-masonry .review-card:nth-child(13) {
+  top: 204px !important;
+  z-index: 23 !important;
+}
 
 @media (max-width: 768px) {
   .reviews-masonry .review-card:nth-child(n) {
@@ -5204,21 +5274,26 @@ main,
 }
 
 @media (max-width: 768px) {
+
   .skills-wrapper>.skill-category-card:nth-child(n),
   .skills-scroll-sticky {
     top: 74px !important;
     min-height: 0;
   }
+
   .skills-scroll-stage {
     min-height: 680px;
   }
+
   .skills-scroll-stage--certs {
     min-height: 620px;
   }
+
   .skills-spotlight {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   .skills-spotlight-logo {
     width: 56px;
     height: 56px;
@@ -5283,31 +5358,76 @@ main,
 }
 
 @keyframes contactPhoneRing {
-  0%, 70%, 100% { transform: rotate(0deg) scale(1); }
-  75% { transform: rotate(-12deg) scale(1.08); }
-  80% { transform: rotate(12deg) scale(1.08); }
-  85% { transform: rotate(-8deg) scale(1.05); }
-  90% { transform: rotate(8deg) scale(1.05); }
+
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  75% {
+    transform: rotate(-12deg) scale(1.08);
+  }
+
+  80% {
+    transform: rotate(12deg) scale(1.08);
+  }
+
+  85% {
+    transform: rotate(-8deg) scale(1.05);
+  }
+
+  90% {
+    transform: rotate(8deg) scale(1.05);
+  }
 }
 
 @keyframes contactIconFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px) scale(1.05); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px) scale(1.05);
+  }
 }
 
 @keyframes contactIconPulse {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0, 229, 255, 0)); }
-  50% { transform: scale(1.08); filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.65)); }
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(0, 229, 255, 0));
+  }
+
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.65));
+  }
 }
 
 @keyframes contactPinBob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
 }
 
 @keyframes contactGlobeSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* ==========================================================================
@@ -5355,11 +5475,28 @@ main,
 }
 
 @keyframes subpageHandWave {
-  0%, 45%, 100% { transform: rotate(0deg); }
-  55% { transform: rotate(-10deg) translateY(-2px); }
-  65% { transform: rotate(10deg) translateY(1px); }
-  75% { transform: rotate(-8deg) translateY(-1px); }
-  85% { transform: rotate(6deg); }
+
+  0%,
+  45%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  55% {
+    transform: rotate(-10deg) translateY(-2px);
+  }
+
+  65% {
+    transform: rotate(10deg) translateY(1px);
+  }
+
+  75% {
+    transform: rotate(-8deg) translateY(-1px);
+  }
+
+  85% {
+    transform: rotate(6deg);
+  }
 }
 
 /* 2. Skills (/skills/): Realistic squash-and-stretch jump with knee-bend */
@@ -5369,24 +5506,32 @@ main,
 }
 
 @keyframes subpageRealJump {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) scaleX(1) scaleY(1);
   }
+
   14% {
     transform: translateY(4px) scaleX(1.07) scaleY(0.91);
   }
+
   28% {
     transform: translateY(-28px) scaleX(0.95) scaleY(1.05);
   }
+
   42% {
     transform: translateY(-34px) scaleX(0.98) scaleY(1.02);
   }
+
   58% {
     transform: translateY(3px) scaleX(1.06) scaleY(0.92);
   }
+
   72% {
     transform: translateY(-4px) scaleX(0.99) scaleY(1.01);
   }
+
   84% {
     transform: translateY(0) scaleX(1) scaleY(1);
   }
@@ -5406,9 +5551,25 @@ main,
 }
 
 @keyframes subpageJumpShadow {
-  0%, 100%, 84% { transform: translateX(-50%) scale(1); opacity: 0.75; }
-  14%, 58% { transform: translateX(-50%) scale(1.16); opacity: 0.95; }
-  35%, 42% { transform: translateX(-50%) scale(0.62); opacity: 0.32; }
+
+  0%,
+  100%,
+  84% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.75;
+  }
+
+  14%,
+  58% {
+    transform: translateX(-50%) scale(1.16);
+    opacity: 0.95;
+  }
+
+  35%,
+  42% {
+    transform: translateX(-50%) scale(0.62);
+    opacity: 0.32;
+  }
 }
 
 /* 3 & 6. Prototypes & Contact: Finger typing animation on laptop */
@@ -5438,15 +5599,20 @@ main,
 }
 
 @keyframes subpageRunStride {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate3d(-4px, 0, 0) rotate(-1.5deg);
   }
+
   25% {
     transform: translate3d(2px, -9px, 0) rotate(2deg);
   }
+
   50% {
     transform: translate3d(5px, 0, 0) rotate(1deg);
   }
+
   75% {
     transform: translate3d(-1px, -7px, 0) rotate(-2deg);
   }
@@ -5484,9 +5650,19 @@ main,
 }
 
 @keyframes subpageSpeedDash {
-  0% { transform: translateX(18px); opacity: 0; }
-  45% { opacity: 0.9; }
-  100% { transform: translateX(-22px); opacity: 0; }
+  0% {
+    transform: translateX(18px);
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateX(-22px);
+    opacity: 0;
+  }
 }
 
 /* 5. Testimonials (/testimonials/): Relaxed tea-sipping + cup lift + steam */
@@ -5503,8 +5679,16 @@ main,
 }
 
 @keyframes subpageCupDrink {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  45%, 58% { transform: translateY(-14px) rotate(-6deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  45%,
+  58% {
+    transform: translateY(-14px) rotate(-6deg);
+  }
 }
 
 .subpage-char-steam {
@@ -5527,14 +5711,35 @@ main,
   animation: subpageSteamRise 2.4s ease-out infinite;
 }
 
-.subpage-char-steam span:nth-child(1) { left: 4px; animation-delay: 0s; }
-.subpage-char-steam span:nth-child(2) { left: 15px; animation-delay: 0.8s; }
-.subpage-char-steam span:nth-child(3) { left: 26px; animation-delay: 1.6s; }
+.subpage-char-steam span:nth-child(1) {
+  left: 4px;
+  animation-delay: 0s;
+}
+
+.subpage-char-steam span:nth-child(2) {
+  left: 15px;
+  animation-delay: 0.8s;
+}
+
+.subpage-char-steam span:nth-child(3) {
+  left: 26px;
+  animation-delay: 1.6s;
+}
 
 @keyframes subpageSteamRise {
-  0% { transform: translateY(0) scaleX(1); opacity: 0; }
-  30% { opacity: 0.75; }
-  100% { transform: translateY(-34px) scaleX(1.6); opacity: 0; }
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.75;
+  }
+
+  100% {
+    transform: translateY(-34px) scaleX(1.6);
+    opacity: 0;
+  }
 }
 
 /* 6. Contact (/contact/): Incoming message/email icon flying to laptop */
@@ -5567,18 +5772,22 @@ main,
     transform: translate(0, 0) scale(0.75) rotate(-10deg);
     opacity: 0;
   }
+
   18% {
     transform: translate(12px, 10px) scale(1.05) rotate(0deg);
     opacity: 1;
   }
+
   62% {
     transform: translate(118px, 108px) scale(0.92) rotate(6deg);
     opacity: 1;
   }
+
   80% {
     transform: translate(128px, 116px) scale(0.55);
     opacity: 0;
   }
+
   100% {
     transform: translate(128px, 116px) scale(0.55);
     opacity: 0;
@@ -5586,6 +5795,7 @@ main,
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .subpage-char-wave-hand,
   .subpage-char-anim--jump,
   .subpage-char-shadow,
