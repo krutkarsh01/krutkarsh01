@@ -217,12 +217,12 @@
     return pts;
   }
 
-  function reflectPoint(Q, P1, ux, uy, scale) {
+  function reflectPointClamped(Q, P1, ux, uy, maxDepth) {
     var dist = (Q.x - P1.x) * ux + (Q.y - P1.y) * uy;
-    var factor = 1.0 + (scale || 0.84);
+    var clamped = Math.max(-maxDepth, Math.min(maxDepth, dist));
     return {
-      x: Q.x - factor * dist * ux,
-      y: Q.y - factor * dist * uy
+      x: Q.x - (dist + clamped) * ux,
+      y: Q.y - (dist + clamped) * uy
     };
   }
 
@@ -312,14 +312,15 @@
     var ux = -dy / len;
     var uy = dx / len;
 
-    // Reflect the peeled corner(s) across the fold line to form the 3D curled-back paper flap
-    var cornerBR = reflectPoint({ x: w, y: h }, P1, ux, uy, 0.84);
+    // Compact realistic cylindrical curl width (tapers smoothly at start and end)
+    var maxFlap = Math.min(w, h) * 0.24 * Math.sin(Math.PI * geom.p) + 28;
+    var cornerBR = reflectPointClamped({ x: w, y: h }, P1, ux, uy, maxFlap);
     var flapPoly;
     if (geom.C >= 1.0) {
       flapPoly = [cornerBR];
     } else {
-      var cornerTR = reflectPoint({ x: w, y: 0 }, P1, ux, uy, 0.84);
-      var cornerBL = reflectPoint({ x: 0, y: h }, P1, ux, uy, 0.84);
+      var cornerTR = reflectPointClamped({ x: w, y: 0 }, P1, ux, uy, maxFlap * 0.72);
+      var cornerBL = reflectPointClamped({ x: 0, y: h }, P1, ux, uy, maxFlap * 0.72);
       flapPoly = [cornerBL, cornerBR, cornerTR];
     }
 
