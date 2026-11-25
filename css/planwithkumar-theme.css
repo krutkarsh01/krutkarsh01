@@ -5048,13 +5048,13 @@ main,
 
 .skills-scroll-stage {
   position: relative;
-  min-height: 2100px;
+  min-height: 980px;
   margin-bottom: 2rem;
   overflow: visible !important;
 }
 
 .skills-scroll-stage--certs {
-  min-height: 1350px;
+  min-height: 820px;
   z-index: 14;
 }
 
@@ -5065,6 +5065,10 @@ main,
 .skills-scroll-sticky {
   position: sticky !important;
   top: 84px !important;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .skills-stage-header {
@@ -5073,7 +5077,7 @@ main,
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: 1.35rem;
 }
 
 .skills-stage-header .skill-card-title {
@@ -5094,8 +5098,8 @@ main,
 .skills-selector-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
 }
 
 .skills-selector-pill {
@@ -5201,12 +5205,13 @@ main,
   .skills-wrapper>.skill-category-card:nth-child(n),
   .skills-scroll-sticky {
     top: 74px !important;
+    min-height: 0;
   }
   .skills-scroll-stage {
-    min-height: 1350px;
+    min-height: 680px;
   }
   .skills-scroll-stage--certs {
-    min-height: 980px;
+    min-height: 620px;
   }
   .skills-spotlight {
     grid-template-columns: 1fr;

@@ -253,6 +253,12 @@
             var activeIdx = -1;
             var pills = [];
 
+            var stickyCard = stage.querySelector('.skills-scroll-sticky');
+            function getScrollable() {
+              var cardH = stickyCard ? stickyCard.offsetHeight : 440;
+              return Math.max(120, stage.offsetHeight - cardH - 24);
+            }
+
             cfg.items.forEach(function (item, idx) {
               var btn = document.createElement('button');
               btn.type = 'button';
@@ -263,7 +269,7 @@
                 setActive(idx);
                 var rect = stage.getBoundingClientRect();
                 var stageTop = window.scrollY + rect.top - 84;
-                var scrollable = Math.max(1, stage.offsetHeight - window.innerHeight * 0.75);
+                var scrollable = getScrollable();
                 var targetY = stageTop + (idx / Math.max(1, cfg.items.length - 1)) * scrollable;
                 window.scrollTo({ top: targetY, behavior: 'smooth' });
               });
@@ -302,7 +308,7 @@
               requestAnimationFrame(function () {
                 ticking = false;
                 var rect = stage.getBoundingClientRect();
-                var scrollable = Math.max(1, stage.offsetHeight - window.innerHeight * 0.75);
+                var scrollable = getScrollable();
                 var scrolled = Math.max(0, Math.min(scrollable, 84 - rect.top));
                 var ratio = scrolled / scrollable;
                 var nextIdx = Math.min(cfg.items.length - 1, Math.max(0, Math.floor(ratio * cfg.items.length)));
