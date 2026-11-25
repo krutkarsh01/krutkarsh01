@@ -18,37 +18,67 @@
  *   Contact stage cleanly transitions into the site footer with 0px gap.
  */
 
-/* Seated 3D Anime Typing Effect (GPU-composited subtle keystroke rhythm) */
-@keyframes animeTypingRhythm {
+/* Seated 3D Anime Fingers-Only Typing Effect (Body stays 100% still; only fingers tap keys) */
+@keyframes fingerTapLeft {
   0%, 100% {
     transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  18% {
-    transform: translate3d(0, -1.5px, 0) rotate(-0.4deg);
+  35% {
+    transform: translate3d(0.4px, 1.8px, 0) rotate(1.6deg);
   }
-  34% {
-    transform: translate3d(0.5px, 0.5px, 0) rotate(0.35deg);
+  65% {
+    transform: translate3d(-0.2px, 0.5px, 0) rotate(0.4deg);
   }
-  52% {
-    transform: translate3d(-0.5px, -1.2px, 0) rotate(-0.3deg);
+}
+
+@keyframes fingerTapRight {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  70% {
-    transform: translate3d(0.4px, 0.4px, 0) rotate(0.3deg);
+  40% {
+    transform: translate3d(-0.3px, 1.6px, 0) rotate(-1.4deg);
   }
-  85% {
-    transform: translate3d(0, -1px, 0) rotate(-0.2deg);
+  75% {
+    transform: translate3d(0.2px, 0.4px, 0) rotate(-0.3deg);
   }
 }
 
 #heroAnimeCharacter {
+  animation: none !important;
+  transform: none !important;
+}
+
+.nl-anime-character-wrap {
+  position: relative;
+}
+
+.nl-anime-fingers {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
   will-change: transform;
-  transform-origin: center bottom;
-  animation: animeTypingRhythm 1.35s ease-in-out infinite;
+}
+
+.nl-anime-fingers-left {
+  clip-path: polygon(38% 46%, 56% 46%, 56% 52%, 44% 52%, 38% 49.5%);
+  -webkit-clip-path: polygon(38% 46%, 56% 46%, 56% 52%, 44% 52%, 38% 49.5%);
+  transform-origin: 40% 47.5%;
+  animation: fingerTapLeft 0.44s ease-in-out infinite;
+}
+
+.nl-anime-fingers-right {
+  clip-path: polygon(54% 46%, 60% 45.5%, 60% 51%, 55% 51%);
+  -webkit-clip-path: polygon(54% 46%, 60% 45.5%, 60% 51%, 55% 51%);
+  transform-origin: 57% 47%;
+  animation: fingerTapRight 0.38s ease-in-out 0.16s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #heroAnimeCharacter {
+  .nl-anime-fingers {
     animation: none !important;
+    display: none !important;
   }
 }
 
