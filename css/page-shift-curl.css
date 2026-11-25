@@ -782,7 +782,7 @@ body::-webkit-scrollbar {
     min-height: 100svh !important;
   }
 
-  #stage-contact > .turn-sticky-panel {
+  #stage-contact > .turn-sticky-panel:not(.is-fixed-reveal) {
     position: relative !important;
     top: auto !important;
     height: auto !important;

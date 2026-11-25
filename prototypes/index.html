@@ -1379,13 +1379,13 @@
       onclick="event.stopPropagation()">
       <!-- Modal Top Branding Bar (KU Logo & PlanWithKumar) -->
       <div class="proto-modal-topbar"
-        style="display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02);">
-        <div style="display: flex; align-items: center; gap: 12px;">
+        style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 1.1rem 1.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02);">
+        <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
           <img src="/images/ku-monogram-white.svg" alt="KU" width="30" height="30"
-            style="display: block; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
+            style="display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
           <span
-            style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em;">PlanWithKumar</span>
-          <span
+            style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; white-space: nowrap;">PlanWithKumar</span>
+          <span class="proto-modal-badge"
             style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; background: rgba(0, 229, 255, 0.12); border: 1px solid rgba(0, 229, 255, 0.35); color: #00E5FF; font-weight: 600; letter-spacing: 0.05em;">Architecture
             Dossier</span>
         </div>
@@ -1419,21 +1419,21 @@
         <div id="pmodal-specs" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;"></div>
 
         <!-- Problem & Solution Grid -->
-        <div
-          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 1.75rem; background: rgba(4, 16, 26, 0.75); padding: 1.4rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12);">
+        <div class="proto-dossier-grid"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem; margin-bottom: 1.5rem; background: rgba(4, 16, 26, 0.75); padding: 1.1rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.12); box-sizing: border-box; width: 100%; max-width: 100%;">
           <div
-            style="background: rgba(239, 68, 68, 0.06); padding: 1rem 1.15rem; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.25);">
+            style="background: rgba(239, 68, 68, 0.06); padding: 1rem; border-radius: 12px; border: 1px solid rgba(239, 68, 68, 0.25); min-width: 0; box-sizing: border-box;">
             <h4
               style="font-size: 0.82rem; text-transform: uppercase; color: #f87171; font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
               ⚠️ The Problem Solved</h4>
-            <p id="pmodal-problem" style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6;"></p>
+            <p id="pmodal-problem" style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; overflow-wrap: break-word;"></p>
           </div>
           <div
-            style="background: rgba(16, 185, 129, 0.06); padding: 1rem 1.15rem; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.25);">
+            style="background: rgba(16, 185, 129, 0.06); padding: 1rem; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.25); min-width: 0; box-sizing: border-box;">
             <h4
               style="font-size: 0.82rem; text-transform: uppercase; color: #34d399; font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
               ✅ Architectural Solution</h4>
-            <p id="pmodal-solution" style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6;"></p>
+            <p id="pmodal-solution" style="font-size: 0.9rem; color: #E2E8F0; line-height: 1.6; overflow-wrap: break-word;"></p>
           </div>
         </div>
 

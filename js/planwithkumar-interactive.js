@@ -706,10 +706,26 @@
     });
   }
 
+  function initNavbarScrollGlass() {
+    var nav = document.querySelector('.nl-nav');
+    if (!nav) return;
+    function syncNavGlass() {
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > 24) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+    syncNavGlass();
+    window.addEventListener('scroll', syncNavGlass, { passive: true });
+  }
+
   /* ==========================================================================
      Bootstrap Shinobi Engine on DOM Ready
      ========================================================================== */
   function init() {
+    initNavbarScrollGlass();
     initMinimalistMenu();
     initLaptopTypewriter();
     initSagarCursor();
