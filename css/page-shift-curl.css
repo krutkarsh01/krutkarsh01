@@ -839,8 +839,8 @@ body::-webkit-scrollbar {
     justify-content: flex-start !important;
   }
 
-  #stage-nlHeroSection .nl-hero-content {
-    padding-top: 76px !important;
+  .turn-sticky-panel #nlHeroSection .nl-hero-content {
+    padding-top: 84px !important;
   }
 }
 
