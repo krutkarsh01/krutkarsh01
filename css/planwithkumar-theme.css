@@ -5314,7 +5314,7 @@ main,
 .subpage-char-wrap {
   position: relative;
   width: 90%;
-  max-height: 92%;
+  height: 90%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -5322,7 +5322,10 @@ main,
 
 .subpage-char-wrap .subpage-character-img {
   width: 100%;
+  height: 100%;
   max-height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .subpage-char-overlay {
@@ -5330,6 +5333,7 @@ main,
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  max-height: 100% !important;
   object-fit: contain !important;
   object-position: center bottom !important;
   pointer-events: none !important;
@@ -5342,9 +5346,9 @@ main,
 }
 
 .subpage-char-wave-hand {
-  clip-path: polygon(58% 22%, 88% 22%, 88% 48%, 58% 48%);
-  -webkit-clip-path: polygon(58% 22%, 88% 22%, 88% 48%, 58% 48%);
-  transform-origin: 62% 43%;
+  clip-path: polygon(66% 23%, 84% 23%, 84% 39%, 66% 39%);
+  -webkit-clip-path: polygon(66% 23%, 84% 23%, 84% 39%, 66% 39%);
+  transform-origin: 67% 36%;
   animation: subpageHandWave 2.4s ease-in-out infinite;
 }
 
@@ -5483,16 +5487,22 @@ main,
   100% { transform: translateX(-22px); opacity: 0; }
 }
 
-/* 5. Testimonials (/testimonials/): Relaxed tea-sipping + steam */
+/* 5. Testimonials (/testimonials/): Relaxed tea-sipping + cup lift + steam */
 .subpage-char-anim--tea {
-  animation: subpageTeaSip 4.2s ease-in-out infinite !important;
-  transform-origin: center bottom !important;
+  animation: none !important;
+  transform: none !important;
 }
 
-@keyframes subpageTeaSip {
+.subpage-char-tea-cup {
+  clip-path: polygon(30% 21%, 60% 21%, 60% 35%, 30% 35%);
+  -webkit-clip-path: polygon(30% 21%, 60% 21%, 60% 35%, 30% 35%);
+  transform-origin: 45% 32%;
+  animation: subpageCupDrink 3.8s ease-in-out infinite;
+}
+
+@keyframes subpageCupDrink {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  45% { transform: translateY(-4px) rotate(-1.2deg); }
-  70% { transform: translateY(-2px) rotate(1deg); }
+  45%, 58% { transform: translateY(-14px) rotate(-6deg); }
 }
 
 .subpage-char-steam {
