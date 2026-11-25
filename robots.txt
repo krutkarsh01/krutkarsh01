@@ -18,5 +18,4 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-Sitemap: https://kumarutkarsh.com/sitemap.xml
-Sitemap: https://kumarutkarsh.com/sitemap-index.xml
+Sitemap: https://krutkarsh.com/sitemap.xml
