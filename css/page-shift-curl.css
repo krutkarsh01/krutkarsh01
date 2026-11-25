@@ -838,6 +838,10 @@ body::-webkit-scrollbar {
     padding-top: 0 !important;
     justify-content: flex-start !important;
   }
+
+  #stage-nlHeroSection .nl-hero-content {
+    padding-top: 76px !important;
+  }
 }
 
 /* Reduced Motion Preference */
