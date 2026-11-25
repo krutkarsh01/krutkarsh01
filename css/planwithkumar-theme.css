@@ -4734,14 +4734,16 @@ h3,
 
 .about-client-card,
 .about-snapshot .info-card,
-.about-tenets .value-card {
+.about-tenets .value-card,
+.availability-board {
   position: relative !important;
   overflow: visible !important;
 }
 
 .about-client-card::after,
 .about-snapshot .info-card::after,
-.about-tenets .value-card::after {
+.about-tenets .value-card::after,
+.availability-board::after {
   content: "" !important;
   position: absolute !important;
   top: 0 !important;
@@ -5215,4 +5217,88 @@ main,
     height: 56px;
     font-size: 1.5rem;
   }
+}
+
+/* ==========================================================================
+   v5.9.32: CONTACT PAGE HIGH-CONTRAST TEXT & ANIMATED CHANNEL ICONS
+   ========================================================================== */
+.contact-link-item .channel-label {
+  color: #00E5FF !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  opacity: 1 !important;
+}
+
+.contact-link-item .channel-val {
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+}
+
+.availability-board .avail-key {
+  color: #CBD5E1 !important;
+  font-weight: 500 !important;
+}
+
+.availability-board .avail-val {
+  color: #FFFFFF !important;
+}
+
+.contact-anim-icon {
+  color: #00E5FF !important;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 229, 255, 0.22), rgba(0, 229, 255, 0.05)) !important;
+  border: 1px solid rgba(0, 229, 255, 0.38) !important;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.16) !important;
+}
+
+.contact-anim-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.contact-anim-icon--phone svg {
+  animation: contactPhoneRing 2.6s ease-in-out infinite;
+}
+
+.contact-anim-icon--mail svg {
+  animation: contactIconFloat 3s ease-in-out infinite;
+}
+
+.contact-anim-icon--linkedin svg {
+  animation: contactIconPulse 2.8s ease-in-out infinite;
+}
+
+.contact-anim-icon--pin svg {
+  animation: contactPinBob 2.4s ease-in-out infinite;
+}
+
+.contact-anim-icon--globe svg {
+  animation: contactGlobeSpin 12s linear infinite;
+}
+
+@keyframes contactPhoneRing {
+  0%, 70%, 100% { transform: rotate(0deg) scale(1); }
+  75% { transform: rotate(-12deg) scale(1.08); }
+  80% { transform: rotate(12deg) scale(1.08); }
+  85% { transform: rotate(-8deg) scale(1.05); }
+  90% { transform: rotate(8deg) scale(1.05); }
+}
+
+@keyframes contactIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px) scale(1.05); }
+}
+
+@keyframes contactIconPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(0, 229, 255, 0)); }
+  50% { transform: scale(1.08); filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.65)); }
+}
+
+@keyframes contactPinBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes contactGlobeSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
