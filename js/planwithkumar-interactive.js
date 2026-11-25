@@ -566,13 +566,13 @@
     if (!textEl) return;
 
     var phrases = [
-      "I am a Senior Business Analyst",
-      "I am an AI Product Strategist",
-      "I am an Agile Project Manager",
-      "I architect intelligent AI systems",
-      "I translate vision into scalable products",
-      "I lead enterprise delivery end-to-end",
-      "I slash engineering rework by 35%"
+      "Senior Business Analyst",
+      "AI Product Strategist",
+      "Agile Project Manager",
+      "Architecting intelligent AI systems",
+      "Translating vision into scalable products",
+      "Leading enterprise delivery end-to-end",
+      "Slashing engineering rework by 35%"
     ];
 
     var phraseIdx = 0;

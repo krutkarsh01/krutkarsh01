@@ -18,6 +18,47 @@
  *   Contact stage cleanly transitions into the site footer with 0px gap.
  */
 
+/* Seated 3D Anime Typing Effect (GPU-composited subtle keystroke rhythm) */
+@keyframes animeTypingRhythm {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  18% {
+    transform: translate3d(0, -1.5px, 0) rotate(-0.4deg);
+  }
+  34% {
+    transform: translate3d(0.5px, 0.5px, 0) rotate(0.35deg);
+  }
+  52% {
+    transform: translate3d(-0.5px, -1.2px, 0) rotate(-0.3deg);
+  }
+  70% {
+    transform: translate3d(0.4px, 0.4px, 0) rotate(0.3deg);
+  }
+  85% {
+    transform: translate3d(0, -1px, 0) rotate(-0.2deg);
+  }
+}
+
+#heroAnimeCharacter {
+  will-change: transform;
+  transform-origin: center bottom;
+  animation: animeTypingRhythm 1.35s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #heroAnimeCharacter {
+    animation: none !important;
+  }
+}
+
+/* Performance Optimization: Eliminate 110+ nested backdrop-filter passes over live WebGL Aurora/Stars
+   while keeping crisp frosted glass on top navbar and modals */
+.turn-sticky-panel *:not(.back-to-top-btn) {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
 /* Universal Full-Bleed Viewport Defaults: 0px side margins/gutters & hidden scrollbar */
 html,
 body {
@@ -161,8 +202,8 @@ body::-webkit-scrollbar {
   z-index: 40 !important;
 }
 
-/* High-contrast crisp white borderline along the peeling diagonal edge, fixed to viewport so inner scroll never decouples it from clip-path */
-.turn-curl-crease-line {
+/* Canvas 3D-shaded curved paper curl flap & shadow overlay */
+.turn-curl-overlay-canvas {
   position: fixed;
   top: 0;
   left: 0;
@@ -171,10 +212,12 @@ body::-webkit-scrollbar {
   height: 100svh;
   pointer-events: none;
   z-index: 50;
-  opacity: 0;
   display: none;
-  will-change: opacity;
-  transition: opacity 0.1s ease-out;
+}
+
+/* Hide legacy SVG crease line when canvas 3D curl overlay is active */
+.turn-curl-crease-line {
+  display: none !important;
 }
 
 .turn-stage-wrapper.is-peeling-wrapper > .turn-curl-crease-line {

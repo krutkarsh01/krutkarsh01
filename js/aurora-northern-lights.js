@@ -186,17 +186,22 @@
       var curHalo = star.haloRadius * (0.8 + 0.4 * pulse);
       var curCore = star.coreRadius * (0.85 + 0.3 * pulse);
 
-      // Multi-stop radial glow halo
-      var radGrad = starCtx.createRadialGradient(sx, sy, 0, sx, sy, curHalo);
-      radGrad.addColorStop(0.0, star.palette.core);
-      radGrad.addColorStop(0.18, star.palette.inner);
-      radGrad.addColorStop(0.55, star.palette.mid);
-      radGrad.addColorStop(1.0, star.palette.outer);
-
-      starCtx.fillStyle = radGrad;
-      starCtx.beginPath();
-      starCtx.arc(sx, sy, curHalo, 0, Math.PI * 2);
-      starCtx.fill();
+      // Pre-cached offscreen radial glow sprite (eliminates 45 per-frame createRadialGradient allocations)
+      if (!star.sprite) {
+        var spr = document.createElement('canvas');
+        spr.width = 64;
+        spr.height = 64;
+        var sCtx = spr.getContext('2d');
+        var rg = sCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+        rg.addColorStop(0.0, star.palette.core);
+        rg.addColorStop(0.18, star.palette.inner);
+        rg.addColorStop(0.55, star.palette.mid);
+        rg.addColorStop(1.0, star.palette.outer);
+        sCtx.fillStyle = rg;
+        sCtx.fillRect(0, 0, 64, 64);
+        star.sprite = spr;
+      }
+      starCtx.drawImage(star.sprite, sx - curHalo, sy - curHalo, curHalo * 2, curHalo * 2);
 
       // High-intensity diamond core
       starCtx.fillStyle = 'rgba(255, 255, 255, ' + currentAlpha + ')';
@@ -537,11 +542,12 @@
   function resizeAll() {
     width = window.innerWidth || 1440;
     height = window.innerHeight || 900;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Render soft atmospheric WebGL aurora at 0.5x resolution (4x-16x faster GPU shader with silky upscaling)
+    var glScale = 0.5;
 
     if (glCanvas) {
-      glCanvas.width = Math.floor(width * dpr);
-      glCanvas.height = Math.floor(height * dpr);
+      glCanvas.width = Math.max(320, Math.floor(width * glScale));
+      glCanvas.height = Math.max(200, Math.floor(height * glScale));
       glCanvas.style.width = width + 'px';
       glCanvas.style.height = height + 'px';
     }
