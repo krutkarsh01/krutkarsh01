@@ -3418,3 +3418,59 @@ Transform the hero headers of all 6 subpages (`process`, `experience`, `skills`,
 #### T — TESTING & VERIFICATION
 - **`/testimonials/` (Desktop 1440×900):** Verified sticky scroll-over card stack at `y=5500` (UK card) and `y=8434` (footer) via Chrome CDP (`v4251_test_5500.png`, `v4251_test_8434.png`) — `pos: sticky`, `overflow: false`, **zero** dark-rectangle compositor artifacts.
 - **`/prototypes/` (Desktop 1440×900 & Mobile 393×852):** Verified sticky scroll-over rows on desktop (`y=1500`, `y=4300` footer) and per-card sticky scroll-over on mobile (`y=1400`) via Chrome CDP (`v4251_proto_1500.png`, `v4251_proto_4300.png`, `v4251_proto_mobile.png`) — `rowPos: sticky`, `cardPos: sticky` on mobile, `ictH: 24px`, `overflow: false`.
+
+
+---
+
+### [v4.26.0] - 2026-11-26: 6-Per-Page Pagination & Latest-to-Oldest Reordering on Reviews & Prototypes
+
+#### I — INPUT & USER CONTEXT
+- **User Request:** "Yes, great nad then we can also reoder the testimonial and protoypes from latest to old rather than old to latest. ALSO PLAN AAND CHANGE  AND CHECK RESPONSIVE AS WELL"
+- **Current State Analysis:**
+  - `testimonials/index.html` has 13 review cards grouped by source (LinkedIn then Trustpilot) rather than chronological order (Sep 2026 down to Aug 2023), all stacked on one page.
+  - `prototypes/index.html` has 17 prototype cards ordered `meax` → `leatherindia`, all 6 sticky rows on one page.
+
+#### M — MISSION & ATOMIC TASK BREAKDOWN (I-M-E-T)
+- [x] **Task 18.1:** Add responsive `.ku-pagination` glass-pill styles to `css/planwithkumar-theme.css` and rebuild `css/planwithkumar-theme.min.css` & `css/bundle.min.css`.
+- [x] **Task 18.2:** Reorder the 13 reviews in `testimonials/index.html` strictly latest → oldest (`Sep 2026` → `Aug 2023`) and add 6-per-page client-side pagination (`6 + 6 + 1`) integrated with country/source filters and `?page=` URL state; test on desktop, tablet, and mobile via Chrome CDP.
+- [x] **Task 18.3:** Reorder the 17 prototypes in `prototypes/index.html` latest → oldest (`leatherindia` → `meax`) and add 6-per-page client-side pagination (`6 + 6 + 5`) integrated with `packProtoRows()` and `filterPrototypes()`; test on desktop, tablet, and mobile via Chrome CDP.
+
+#### E — EXECUTION
+- Added `.ku-pagination`, `.ku-page-btn`, and `.ku-page-info` styles to [css/planwithkumar-theme.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.css) and rebuilt [css/planwithkumar-theme.min.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.min.css) & [css/bundle.min.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/bundle.min.css).
+- Updated [testimonials/index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/testimonials/index.html):
+  - Reordered all 13 reviews chronologically latest → oldest: `Motor Impact FZE (Sep 2026)` → `Stephen (Jul 2026)` → `Moises Saez Segarra (Sep 2025)` → `Dr. Jim Taylor (Jul 2025)` → `Esther Molenaar (Jul 2025)` → `Ioannis (Apr 2025)` → `Lee Wilson (Mar 2025)` → `Cynthia (Mar 2025)` → `Miroslav Malbasic (Oct 2024)` → `Sharona (Jun 2024)` → `Gali Katz (Feb 2024)` → `Samuel Taylor (Sep 2023)` → `Todd Blyleven (Aug 2023)`.
+  - Added `<div class="ku-pagination" id="reviewsPagination" role="navigation">` with 6-per-page pagination (`6 + 6 + 1`), `?page=` URL sync, dynamic sticky `top`/`z-index` per page, and filter integration.
+- Updated [prototypes/index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/prototypes/index.html):
+  - Reordered all 17 prototype cards latest → oldest (`leatherindia` → `meax`).
+  - Added `<div class="ku-pagination" id="prototypesPagination" role="navigation">` with 6-per-page pagination (`6 + 6 + 5`), `?page=` URL sync, and `packProtoRows()` / `filterPrototypes()` integration.
+
+#### T — TESTING & VERIFICATION
+- **`/testimonials/` (Desktop 1440×900, Tablet 768×1024, Mobile 393×852):**
+  - Page 1: `visCount: 6`, `first: Motor Impact FZE`, `last: Ioannis`, `pos: sticky`, `overflow: false`, `pagPos: relative`.
+  - Page 2: `p2Count: 6`, `p2First: Lee Wilson`. Page 3: `p3Count: 1`, `p3First: Todd Blyleven`.
+  - Visual screenshots verified (`v4260_test_pag_desktop.png`, `v4260_test_pag_mobile.png`).
+- **`/prototypes/` (Desktop 1440×900, Tablet 768×1024, Mobile 393×852):**
+  - Page 1: `visCount: 6`, `first: leatherindia`, `last: ovella`, `rowCount: 2` (desktop) / `3` (tablet) / `6` (mobile), `rowPos: sticky`, `overflow: false`, `pagPos: relative`.
+  - Page 2: `p2Count: 6`, `p2First: kelioniukryptis`. Page 3: `p3Count: 5`, `p3First: qmasystem`, `p3Last: meax`.
+  - Category filter `platforms`: `filterCount: 4`, `pagHiddenOnFilter: true`.
+  - Visual screenshots verified (`v4260_proto_pag_desktop.png`, `v4260_proto_pag_mobile.png`).
+
+
+---
+
+### [v4.26.1] - 2026-11-26: Fix Off-Page Card Hiding (`display: flex !important` Override) for Pagination
+
+#### I — INPUT & USER CONTEXT
+- **User Feedback:** "after 6, the pagination doesnt appear. FIX AND CHECK" with screenshot (`media_1795702698359_c31c28af.jpg`) showing cards 7+ (`SMP Dakar`, etc.) still rendering below the 6th card (`Ovella`) and pushing the pagination bar down.
+- **Root Cause:** `.proto-card` in `css/planwithkumar-theme.css:4391` had `display: flex !important;`, which overrode both inline `card.style.display = 'none'` and the HTML `[hidden]` attribute, keeping all 17 cards visible in the DOM.
+
+#### M — MISSION & ATOMIC TASK BREAKDOWN (I-M-E-T)
+- [x] **Task 19.1:** Add `.proto-card[hidden], .review-card[hidden] { display: none !important; }` in `css/planwithkumar-theme.css`, rebuild `css/planwithkumar-theme.min.css` & `css/bundle.min.css`, and verify via Chrome CDP `getComputedStyle(card).display` that exactly 6 cards are rendered on Page 1 of `/prototypes/` and `/testimonials/` with the pagination bar immediately visible after card 6.
+
+#### E — EXECUTION
+- Added `.proto-card[hidden], .review-card[hidden], .reviews-masonry .review-card[hidden] { display: none !important; }` in [css/planwithkumar-theme.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.css) and rebuilt [css/planwithkumar-theme.min.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.min.css) & [css/bundle.min.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/bundle.min.css).
+- Bumped CSS cache-buster `?v=5944` in [prototypes/index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/prototypes/index.html) and [testimonials/index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/testimonials/index.html).
+
+#### T — TESTING & VERIFICATION
+- **`/prototypes/`:** `totalDom: 17`, `computedRenderedCount: 6`, `pagTop: 1491`, `pagHeight: 96`, `pagVisible: true`.
+- **`/testimonials/`:** `totalDom: 13`, `computedRenderedCount: 6`, `pagTop: 3705`, `pagHeight: 96`, `pagVisible: true`.
