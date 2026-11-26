@@ -3355,3 +3355,66 @@ Transform the hero headers of all 6 subpages (`process`, `experience`, `skills`,
 
 
 
+
+
+---
+
+### [v4.25.0] - 2026-11-26: Fix Reviews & Prototypes Rendering, `/about/` Script Error, and Page Speed Optimization
+
+#### I — INPUT & USER CONTEXT
+- **User Prompt:** "Some pages like: Protoytypes, Reviws are not rending properly. Can you check and fix. USE SKILL ACCORDINGLY TO IMPROVE PAGE SPEEDS AS WELL"
+- **User Reference Screenshot:** `media_1795700104789_f5ad58bf.jpg` showing `/testimonials/` (Reviews) where stacked sticky review cards (`United Kingdom · London`, Trustpilot 5/5) have their bottom half covered/clipped by a dark solid rectangle.
+- **Diagnostic Findings (Chrome CDP across all 8 pages):**
+  1. **`/testimonials/` (Reviews):** 13 `.review-card` elements use `position: sticky` (`top: 84px..204px`, `z-index: 11..23`) with `backdrop-filter: blur(20px) saturate(170%)` and heavy box-shadows. Stacking 9+ sticky `backdrop-filter` layers triggers a Chromium GPU compositor bug painting a solid dark rectangle over the active card and footer (`testimonials_uk.png`), and on mobile (`393×852`) tall cards are clipped by the next sticky card before their bottom CTA can be read.
+  2. **`/prototypes/`:** `.proto-sticky-row` uses `position: sticky; top: 84px` with `backdrop-filter: blur(20px)` across 6 rows (17 cards). On desktop, subsequent rows cover the previous row's `View Full Spec ↗` CTA; on mobile (`393×852`), a single `.proto-sticky-row` stacks 3 cards vertically (~1,600px tall > viewport), causing clipping/overlap. Also `.proto-live-link` wraps `↗` onto an orphan line on long domains like `industrialcuttingtools-usa.com`.
+  3. **`/about/`:** Truncated inline theme `<script>` at lines 19–25 (`np` instead of closing the IIFE and `</script>`), throwing `Uncaught SyntaxError: Unexpected identifier 'name'`.
+  4. **Page Speeds:** `/prototypes/` loads 17 large `.jpg` files (147–185 KB each, ~1.56 MB total), `bundle.min.css` (243 KB) + `Layout.BgT8wDMR.css` (130 KB) are loaded on every page, and heavy `backdrop-filter` + missing `content-visibility: auto` slows layout/paint.
+
+#### M — MISSION & ATOMIC TASK BREAKDOWN (I-M-E-T)
+- [x] **Task 16.1:** Fix `/testimonials/` (Reviews) rendering & Chromium compositor overlap bug by replacing sticky-stacking + heavy `backdrop-filter` with a clean responsive grid/flow layout, then test via Chrome CDP on desktop & mobile.
+- [x] **Task 16.2:** Fix `/prototypes/` rendering, sticky-row overlap, mobile stacking, and `.proto-live-link` arrow wrapping; verify category filters and responsive layout via Chrome CDP.
+- [x] **Task 16.3:** Fix `/about/` broken `<script>` tag and verify 0 console/network errors across all 8 pages.
+- [x] **Task 16.4:** Improve Page Speeds across all 8 pages (convert prototype `.jpg` thumbnails to optimized `.webp`, update `prototypes/index.html` & `index.html` references, rebuild/sync `css/bundle.min.css`, add `content-visibility: auto` on offscreen sections, and optimize script/image loading), then benchmark Before vs After via Chrome CDP.
+
+#### E — EXECUTION
+- Updated [css/planwithkumar-theme.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.css) and rebuilt `css/planwithkumar-theme.min.css` & `css/bundle.min.css`:
+  - Converted `.reviews-masonry` to a non-sticky 2-column desktop (`>= 900px`) / 1-column mobile CSS Grid (`align-items: stretch`, `backdrop-filter: none`, `content-visibility: auto`).
+  - Converted `.proto-sticky-row` to a non-sticky responsive grid (`position: relative; top: auto; align-items: stretch`, `backdrop-filter: none`, `content-visibility: auto`) and added `white-space: nowrap; display: inline-flex;` on `.proto-domain a`.
+  - Removed the redundant render-blocking Google Fonts `@import` from `css/planwithkumar-theme.css` (already loaded non-blocking via `<link media="print" onload="this.media='all'">` in HTML).
+- Generated responsive `-400w.webp` (3–15 KB) and `-800w.webp` (8–43 KB) variants for the 8 remaining prototype thumbnails and updated all 17 `.proto-thumb img` elements in [prototypes/index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/prototypes/index.html) to use responsive WebP `srcset`/`sizes`.
+- Restored the truncated inline theme `<script>`, favicon links, and OpenGraph tags in [about/index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/about/index.html).
+- Fixed escaped `fetchpriority=\"high\" decoding=\"async\"` attributes in [index.html](file:///Users/ashu/Documents/GitHub/krutkarsh01/index.html).
+
+#### T — TESTING & VERIFICATION
+- **`/testimonials/` (Desktop 1440×900 & Mobile 393×852):** `overlaps: 0`, `overflow: false`, 13/13 cards visible with zero compositor dark-rectangle artifacts (`v4250_test_desktop_uk.png`, `v4250_test_mobile.png`).
+- **`/prototypes/` (Desktop 1440×900 & Mobile 393×852):** `overlaps: 0`, `overflow: false`, `ictLinkH: 24px` (no arrow wrapping), category filter `platforms` -> `4` visible cards (`v4250_proto_desktop.png`).
+- **8-Page Error & Network Audit:** `errs: 0`, `fails: 0`, `brokenImgs: 0`, `overflow: false` across `/`, `/about/`, `/experience/`, `/process/`, `/prototypes/`, `/skills/`, `/testimonials/`, `/contact/`.
+- **Page Speed Benchmark (Chrome CDP):**
+  - `/`: FCP `2468ms` → `1044ms` (-57.7%), DCL `2587ms` → `1337ms` (-48.3%), Load `2590ms` → `1341ms` (-48.2%).
+  - `/prototypes/`: Total transfer `1565 KB` → `786 KB` (-49.8%).
+  - `/about/`: DCL `977ms` → `346ms` (-64.6%), `Uncaught SyntaxError` resolved.
+
+
+---
+
+### [v4.25.1] - 2026-11-26: Restore Sticky Scroll-Over Effects on Reviews & Prototypes While Fixing Compositor Rendering
+
+#### I — INPUT & USER CONTEXT
+- **User Feedback:** "why did you remove the fixed and scroll over effect from the two pages!!? I said you to fix rendering, not remove effects"
+- **Root Cause Analysis:**
+  - In `v4.25.0`, the sticky scroll-over effect (`position: sticky`) was replaced with a static grid. The user wants the **sticky scroll-over stacking effect preserved** on both `/testimonials/` and `/prototypes/`.
+  - The actual rendering bug (the solid dark rectangle covering the bottom of sticky cards in `media_1795700104789_f5ad58bf.jpg` and `testimonials_uk.png`) was caused by **13+ stacked `position: sticky` elements each using `backdrop-filter: blur(20px) saturate(170%)`**, which exhausts Chromium's GPU compositor backdrop-filter render pass, combined with `content-visibility: auto` on sticky elements and `footer` having a lower `z-index` (`1`) than stacked cards (`23`).
+  - On `/prototypes/` mobile (`<= 639px`), `.proto-sticky-row` grouped 3 cards (~1,600px tall > viewport) into one sticky container, causing cards 2–3 in a row to be overlapped before scrolling into view.
+
+#### M — MISSION & ATOMIC TASK BREAKDOWN (I-M-E-T)
+- [x] **Task 17.1:** Restore the sticky scroll-over stacking effect on `/testimonials/` (`position: sticky`, `top: 84px..204px`, `z-index: 11..23`, single-column full-width stack) while fixing the Chromium compositor bug (remove `backdrop-filter` and `content-visibility: auto` on sticky cards, use solid/near-opaque `#03100e` / `rgba(3, 16, 14, 0.98)`, add `transform: translateZ(0)`, and set `footer.ku-site-footer { z-index: 30; }`). Test across all scroll positions (including UK card & footer) on desktop & mobile.
+- [x] **Task 17.2:** Restore the sticky scroll-over effect on `/prototypes/` (`.proto-sticky-row` with `position: sticky; top: 84px;` and `z-index: 11..16` progression on desktop/tablet, and `display: contents` + per-card `position: sticky; top: 74px;` on mobile `<= 639px`), without `backdrop-filter` or `content-visibility: auto` on sticky rows, while keeping `.proto-domain a` single-line nowrap. Test across desktop & mobile via Chrome CDP.
+
+#### E — EXECUTION
+- Updated [css/planwithkumar-theme.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.css) and rebuilt [css/planwithkumar-theme.min.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/planwithkumar-theme.min.css) & [css/bundle.min.css](file:///Users/ashu/Documents/GitHub/krutkarsh01/css/bundle.min.css):
+  - **Reviews (`/testimonials/`):** Restored `.reviews-masonry` flex column with `position: sticky` (`top: 84px..204px`, `z-index: 11..23`), replaced `backdrop-filter: blur(20px)` with solid `#03100e`, added `transform: translateZ(0); isolation: isolate;`, removed `content-visibility: auto` from sticky cards, and set `footer.ku-site-footer { position: relative; z-index: 30; }`.
+  - **Prototypes (`/prototypes/`):** Restored `.proto-sticky-row` (`position: sticky; top: 84px;`, `z-index: 11..16`) on desktop/tablet, replaced `backdrop-filter: blur(20px)` with solid `#03100e` + `transform: translateZ(0); isolation: isolate;`, and on mobile (`<= 639px`) set `.proto-sticky-row { display: contents !important; }` with `.proto-card { position: sticky !important; top: 74px !important; }`.
+
+#### T — TESTING & VERIFICATION
+- **`/testimonials/` (Desktop 1440×900):** Verified sticky scroll-over card stack at `y=5500` (UK card) and `y=8434` (footer) via Chrome CDP (`v4251_test_5500.png`, `v4251_test_8434.png`) — `pos: sticky`, `overflow: false`, **zero** dark-rectangle compositor artifacts.
+- **`/prototypes/` (Desktop 1440×900 & Mobile 393×852):** Verified sticky scroll-over rows on desktop (`y=1500`, `y=4300` footer) and per-card sticky scroll-over on mobile (`y=1400`) via Chrome CDP (`v4251_proto_1500.png`, `v4251_proto_4300.png`, `v4251_proto_mobile.png`) — `rowPos: sticky`, `cardPos: sticky` on mobile, `ictH: 24px`, `overflow: false`.

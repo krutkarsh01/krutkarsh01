@@ -4,7 +4,7 @@
  * Primary: #111111 · Secondary: #0F0F0F · Tertiary/Accent: #DDE4C3 · Surface: #FFFFFF · Muted: #E5E7EB
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+/* Google Fonts loaded non-blocking via HTML <link media="print" onload="this.media='all'"> */
 
 :root {
   /* Colors (Universal Northern Lights Dark Theme with Frosted Glass) */
@@ -4493,12 +4493,19 @@ h3,
   height: auto !important;
   margin: 0 !important;
   padding: clamp(1.5rem, 2.8vw, 2.25rem) !important;
-  background: rgba(3, 16, 14, 0.97) !important;
-  backdrop-filter: blur(20px) saturate(170%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  background: #03100e !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border: 1px solid rgba(0, 229, 255, 0.22) !important;
   border-radius: 22px !important;
   box-shadow: 0 -14px 36px rgba(0, 0, 0, 0.85), 0 18px 44px rgba(0, 0, 0, 0.72) !important;
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+footer.ku-site-footer {
+  position: relative;
+  z-index: 30;
 }
 
 /* ==========================================================================
@@ -4935,19 +4942,40 @@ main,
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 1.5rem !important;
+  align-items: stretch !important;
   position: sticky !important;
   top: 84px !important;
   padding-top: 4px !important;
   overflow: visible !important;
+  transform: translateZ(0);
+  isolation: isolate;
 }
 
+.proto-sticky-row:nth-child(1) { z-index: 11 !important; }
+.proto-sticky-row:nth-child(2) { z-index: 12 !important; }
+.proto-sticky-row:nth-child(3) { z-index: 13 !important; }
+.proto-sticky-row:nth-child(4) { z-index: 14 !important; }
+.proto-sticky-row:nth-child(5) { z-index: 15 !important; }
+.proto-sticky-row:nth-child(6) { z-index: 16 !important; }
+
 .proto-sticky-row .proto-card {
-  background: rgba(3, 16, 14, 0.97) !important;
-  backdrop-filter: blur(20px) saturate(170%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+  background: #03100e !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border: 1px solid rgba(0, 229, 255, 0.22) !important;
   box-shadow: 0 -14px 36px rgba(0, 0, 0, 0.85), 0 18px 44px rgba(0, 0, 0, 0.72) !important;
   margin: 0 !important;
+  height: 100% !important;
+}
+
+.proto-domain a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 1023px) {
@@ -4958,8 +4986,14 @@ main,
 
 @media (max-width: 639px) {
   .proto-sticky-row {
-    grid-template-columns: minmax(0, 1fr) !important;
+    display: contents !important;
+  }
+  .proto-sticky-row .proto-card {
+    position: sticky !important;
     top: 74px !important;
+    height: auto !important;
+    transform: translateZ(0);
+    isolation: isolate;
   }
 }
 
