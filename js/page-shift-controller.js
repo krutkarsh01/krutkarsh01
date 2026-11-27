@@ -47,9 +47,10 @@
 
   function resizeCurlCanvas() {
     if (!curlCanvas) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w = window.innerWidth || 1440;
     var h = window.innerHeight || 900;
+    // Keep the fold crisp on phones while avoiding a full 2x canvas on high-DPR screens.
+    var dpr = Math.min(window.devicePixelRatio || 1, w <= 768 ? 1.25 : 2);
     if (curlCanvas.width !== Math.round(w * dpr) || curlCanvas.height !== Math.round(h * dpr)) {
       curlCanvas.width = Math.round(w * dpr);
       curlCanvas.height = Math.round(h * dpr);
@@ -115,7 +116,6 @@
   }
 
   function onScroll() {
-    updateTargetFromScroll();
     if (!isTicking && !animFrameId) {
       isTicking = true;
       animFrameId = window.requestAnimationFrame(stepCurlAnimation);
@@ -133,6 +133,8 @@
   function stepCurlAnimation() {
     isTicking = false;
     animFrameId = null;
+    // Read layout once per animation frame instead of once per raw scroll event.
+    updateTargetFromScroll();
 
     if (targetPeelIndex === -1) {
       smoothPeelIndex = -1;
@@ -141,7 +143,9 @@
       return;
     }
 
-    if (smoothPeelIndex !== targetPeelIndex) {
+    var isMobile = (window.innerWidth || 800) <= 768;
+    if (isMobile || smoothPeelIndex !== targetPeelIndex) {
+      // On phones, track the real scroll position to prevent the fold lagging behind content.
       smoothPeelIndex = targetPeelIndex;
       smoothProgress = targetProgress;
     } else {
@@ -256,7 +260,7 @@
     var My = (P1.y + P2.y) * 0.5;
     var Ctrl = { x: Mx + ux * bulge, y: My + uy * bulge };
 
-    var curvePts = sampleQuadBezier(P1, Ctrl, P2, 14);
+    var curvePts = sampleQuadBezier(P1, Ctrl, P2, (window.innerWidth || 1440) <= 768 ? 10 : 14);
     var curveStrForward = curvePts.map(function (pt) {
       return (pt.x * 100).toFixed(2) + '% ' + (pt.y * 100).toFixed(2) + '%';
     }).join(', ');
@@ -336,7 +340,7 @@
 
     curlCtx.save();
     curlCtx.shadowColor = 'rgba(0, 0, 0, 0.72)';
-    curlCtx.shadowBlur = 26;
+    curlCtx.shadowBlur = w <= 768 ? 16 : 26;
     curlCtx.shadowOffsetX = 6;
     curlCtx.shadowOffsetY = 6;
 

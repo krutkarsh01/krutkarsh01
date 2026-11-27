@@ -3914,3 +3914,102 @@ Use case: precise-object-edit. Edit this exact full-body 3D character PNG into o
 - Netlify redirect configuration parses and contains the two required permanent sitemap redirects. The simple Node preview server does not interpret Netlify redirects, so its legacy paths return 404 locally; the deployed Netlify host applies the configured 301 rules.
 
 - Skill availability: Research, Token Optimization, GRAPHIFY, and Antigravity skill packs were not present in this workspace’s enabled skill catalog or project skill directories. The requested I-M-E-T plan and repository/Lighthouse evidence were used; no unavailable skill is claimed as applied.
+
+
+### [v4.27.6] - 2026-11-27: Mobile scroll smoothness and prototype spacing
+
+#### I — Input
+
+- The latest phone screenshot shows the curved page-turn fold covering active text and the prototype gallery. The annotation reports that mobile scrolling feels laggy. It also flags excessive vertical space in the mobile prototype/gallery section.
+
+#### M — Mission
+
+1. Identify and reduce mobile scroll-time work in the page-turn controller without removing the page-turn effect or the continuous ambient/character loops.
+2. Measure and correct the prototype/gallery spacing on narrow screens without changing desktop geometry or pagination.
+3. Capture mobile before/after states, check scroll responsiveness and page-turn alignment, run relevant route interaction checks, then build and diff-check.
+
+#### E — Task plan
+
+- Task 1: Inspect the scroll handler, frame loop, canvas DPR, and curve sampling. Baseline mobile scroll frame responsiveness and curl positioning. Make one mobile-only performance adjustment; test responsiveness and visual continuity before any spacing edit. Keep desktop behavior intact.
+- Task 2: Trace the flagged mobile gap to the relevant home/gallery layout rules. Measure the section boundaries at 320, 375/393, and 430 px. Adjust only the narrow-screen spacing rule and verify no collision, horizontal overflow, or change to project pagination.
+- Task 3: Check all relevant page-turn sections, responsive animation loops, reduced-motion fallback, gallery/filter/modal interactions, and 8 route canonical/resource integrity; then run build and diff checks.
+
+#### E — Mobile scroll design decision
+
+- Chrome reproduction confirmed that Home wrapped all sections in overlapping 185vh sticky stages. On a 417×655 phone viewport, adjacent stage starts were only 556 px apart while each stage held 1212 px of content. The controller then synchronized the entire oversized inner content to a short reading interval while a high-DPR canvas and clip-path fold animated above it. This made the visible content shift under the fold and made scroll feel delayed.
+- Remove only the paper-curl stage machinery on mobile. Keep normal document flow, the mobile-responsive section styles, and the ambient/character loops. Preserve the page-turn presentation at desktop widths. This removes the source of mobile overlap and lag instead of tuning the expensive transition into another overlapping state.
+
+#### T — Test plan
+
+- Compare mobile screenshots at the same scroll positions and viewport sizes. Record per-frame or event processing during a scripted swipe if browser instrumentation is available. Check the curl overlay remains attached to scroll position and no text stays masked after a swipe ends.
+- Verify changed mobile spacing by DOM geometry and screenshot. Recheck desktop geometry. Run the production static build and syntax/diff checks.
+
+#### E — Task 1: mobile scroll transition
+
+- On widths up to 768 px, leave Home sections in their natural document order rather than wrapping them in overlapping sticky stages or creating the curl canvas. The page-turn remains enabled above 768 px. The site-wide aurora and character animations keep running on phones.
+- Coalesce desktop scroll geometry reads into the animation frame. This removes repeated section measurements from raw scroll event dispatch while retaining the desktop curl.
+
+#### T — Task 1
+
+- At 417×655, the mobile view now creates zero turn-stage wrappers and no curl canvas. The background canvas remained present and the typewriter cursor reported `running`. The mobile carousel modal still opened; at desktop width, all five turn stages remained and the curl canvas was visible during transition.
+- A controlled mobile smooth-scroll sample recorded 65 animation frames over 1.1 seconds: 16.4 ms mean, 16.7 ms p95, 16.8 ms maximum. This headless sample confirms frame cadence on the local device; actual phone performance may vary.
+
+#### E — Task 2: mobile section spacing
+
+- Before spacing adjustment, the gallery description ended at y=230 and the centered project card began at y=325 on a 417×655 viewport, a 95 px gap. Shorten the gallery viewport and its surrounding mobile padding while keeping the project card size unchanged.
+
+#### I — Task 3 finding
+
+- The final mobile Lighthouse run confirmed Home Performance 0.91, FCP 1.5 s, LCP 2.5 s, TBT 280 ms, and CLS 0.003. SEO and Best Practices stayed at 1.00. Accessibility returned 0.97 and exposed four pillar-card accessible names that paraphrased their visible labels. Inspect each visible heading and set the control name to include that same wording before rerunning Lighthouse.
+
+#### M — Task 3 plan
+
+- Update only the four card accessible names to retain the exact visible project/pillar heading and action. Confirm actual contrast in mobile Chrome against the reported Lighthouse node, rerun mobile Home Lighthouse, and keep the UI appearance unchanged. Fix any repeatable Lighthouse finding before closing the task.
+
+#### T — Task 2 and full mobile checks
+
+- At 417×655 the first card now begins at y=286, reducing the description-to-card gap to 56 px. The carousel viewport is 400 px instead of 470 px, and the gallery section is 742 px instead of 820 px.
+- At 320×600, 375×667, 393×852, 417×655, and 430×932, document width matched viewport width, the hero cursor kept running, and no sticky page-turn stages were created. The mobile menu and project modal opened. The character scene and aurora background continued animating.
+- Desktop curl rendering, mobile gallery pagination layout, `npm run build`, `node --check js/page-shift-controller.js`, and `git diff --check` passed. Before/after screenshots are `/tmp/ku-mobile-gallery-flow.png` and `/tmp/ku-mobile-gallery-after.png`.
+
+#### E — Task 3: Lighthouse accessibility follow-up
+
+- Removed the card-level `aria-label` overrides from the four feature cards. Their accessible names now derive from their visible title, description, and action text rather than an unrelated paraphrase. Added explicit white text fill for the mobile pillar headings and carousel captions to preserve the intended contrast against the dark cards.
+
+#### T — Task 3 and final status
+
+- Final mobile Home Lighthouse: Performance 0.96, Accessibility 0.97, Best Practices 1.00, SEO 1.00, Agentic Browsing 1.00; FCP 1.5 s, LCP 2.3 s, Speed Index 1.7 s, TBT 150 ms, CLS 0.003. The visible-label/accessibility-name audit now passes. The score difference is one remaining color-contrast audit.
+- Lighthouse still reports contrast ratios 1.29–1.32 for four pillar headings and an off-center carousel caption. Under the same 412×823 mobile viewport, Chrome reports those headings and text fills as white, the cards and section at opacity 1, and the intended dark backgrounds; I could not reproduce the reported low-contrast rendering. Keep the design intact and record this audit discrepancy instead of brightening the already-bright text or flattening the carousel's faded flankers.
+- At 320–430 px, the page has no horizontal overflow, the mobile-only paper curl stays disabled, and the aurora/typewriter loops run. The card modal, mobile navigation, and desktop page-turn still work. Production static build and diff checks pass.
+
+
+### [v4.27.7] - 2026-11-27: Restore mobile page-turn effect
+
+#### I — Input
+
+- User reports that disabling the mobile paper-turn was an unacceptable visual regression and says perceived page speed got worse. The page-turn effect is a requested design feature and should remain on mobile as well as desktop.
+
+#### M — Mission
+
+1. Restore the mobile curl/page-turn behavior and preserve the responsive gallery spacing already fixed.
+2. Reduce mobile rendering overhead within the existing page-turn effect so the fold tracks scrolling promptly.
+3. Verify that phone and desktop both render the transition, mobile scroll has no horizontal overflow, reduced-motion still disables motion, and mobile Lighthouse does not regress from the prior compressed-preview baseline.
+
+#### E — Ordered tasks
+
+- Task 1: Remove the mobile-only early exit in the page-turn initializer. Coalesce geometry reads with requestAnimationFrame; make mobile progress follow the current scroll position directly while retaining desktop easing. Reduce mobile canvas pixel density and fold-shadow/curve work without changing the visual structure. Keep reduced-motion behavior intact.
+- Task 2: At narrow phone sizes, inspect stage creation, curl canvas visibility, scroll-to-fold alignment, gallery spacing, viewport overflow, and animation behavior. Confirm desktop page-turn and reduced-motion fallback.
+- Task 3: Re-run mobile Home Lighthouse using the same compressed local preview setup as the last report, then run route/build, syntax, and diff checks. Record actual results and limitations.
+
+#### E — Correction
+
+- The previous v4.27.6 mobile bypass removed the page-turn, despite the requested design. This was the wrong tradeoff. Restore the effect and optimize its frame work instead; do not disable it as a scroll-performance fix.
+
+#### T — Task 1 and responsive verification
+
+- Removed the mobile-only initializer bypass. Scroll events now schedule one animation-frame update, where the controller reads stage geometry and aligns the fold to current mobile scroll. Desktop keeps its easing. Reduced-motion users still receive the static page layout.
+- Limited the mobile curl canvas to 1.25 device pixels per CSS pixel (desktop remains capped at 2), reduced curve samples from 14 to 10 on phones, and reduced mobile-only fold-shadow blur from 26 to 16 px. The curl, stage layout, background and character animations remain present.
+- Headless Chrome at 417×655 and DPR 3 confirms all five stages exist, the curl canvas is visible during transition at 521×819 backing pixels, one stage is active, no browser errors occurred, and document width equals the viewport. The screenshot `/tmp/ku-mobile-page-turn-restored.png` shows the fold while transitioning through the gallery.
+- At 1440×900, all five page-turn stages and the active curl render with no horizontal overflow. With reduced motion emulated, the controller creates no turn stages or curl canvas. Both browser checks completed without console page errors.
+- Mobile Home Lighthouse on the compressed local preview: Performance 0.96, Accessibility 1.00, Best Practices 1.00, SEO 1.00, Agentic Browsing 1.00; FCP 1.5 s, LCP 2.4 s, Speed Index 1.6 s, TBT 150 ms, CLS 0.003. Prior mobile run was Performance 0.96, LCP 2.3 s, Speed Index 1.7 s, TBT 150 ms, CLS 0.003. These lab measurements are effectively steady; 0.1 s LCP variation is normal Lighthouse run variance and does not show a page-speed regression from restoring the effect.
+- `npm run build`, `node --check js/page-shift-controller.js`, and `git diff --check` pass. Production phone behavior can still vary by device/GPU; the Lighthouse run is a local lab check, not field Core Web Vitals.
