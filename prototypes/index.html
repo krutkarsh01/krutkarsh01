@@ -11,9 +11,9 @@
     content="Click through live, functional, role-based HTML prototypes. 6+ years validating multi-sided user journeys, state machines, and RBAC.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=optional">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=optional" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/_astro/Layout.BgT8wDMR.css">
   <link rel="stylesheet" href="/css/bundle.min.css?v=5944">
   <link rel="canonical" href="https://www.krutkarsh.com/prototypes/">
@@ -27,7 +27,7 @@
     })();
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Interactive Prototype Portfolio (17 Projects & Platforms) — Kumar Utkarsh">
@@ -45,8 +45,10 @@
   <script
     type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kumar Utkarsh","jobTitle":"Senior Business Analyst & AI Product Strategist","email":"work.krutkarsh@gmail.com","telephone":"+918447143995","url":"https://www.krutkarsh.com","sameAs":["https://linkedin.com/in/kumar-utkarsh01"],"address":{"@type":"PostalAddress","addressLocality":"Noida","addressRegion":"Uttar Pradesh","addressCountry":"IN"}}</script>
   <link rel="stylesheet" href="/_astro/index.DqraZV1o.css">
-  <script src="/js/planwithkumar-interactive.js" defer></script>
-  <script src="/js/aurora-northern-lights.js" defer></script>
+  <link rel="stylesheet" href="/css/character-scenes.css?v=5950">
+  <script src="/js/planwithkumar-interactive.js?v=5948" defer></script>
+  <script src="/js/character-typing.js?v=5947" defer></script>
+  <script src="/js/aurora-northern-lights.js?v=5948" defer></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.krutkarsh.com/"}, {"@type": "ListItem", "position": 2, "name": "Interactive Prototypes", "item": "https://www.krutkarsh.com/prototypes/"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "17 Living Sandbox Prototypes by Kumar Utkarsh", "numberOfItems": 17, "url": "https://www.krutkarsh.com/prototypes/"}</script>
   <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context">
@@ -65,7 +67,7 @@
   <nav class="nl-nav" aria-label="Main Navigation">
     <div class="nl-nav-container">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
+        <img src="/images/ku-monogram-white-288w.webp" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
           height="26">
       </a>
 
@@ -84,7 +86,7 @@
   <div id="nlMenuOverlay" class="nl-menu-overlay" aria-hidden="true" role="dialog" aria-label="Site Navigation">
     <div class="nl-menu-top">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
+        <img src="/images/ku-monogram-white-288w.webp" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
       </a>
       <a href="/" class="nl-brand-center" aria-label="PlanWithKumar — Return to Home">PlanWithKumar</a>
       <div class="nl-nav-right">
@@ -142,14 +144,11 @@
           </div>
         </div>
         <div class="subpage-character-col">
-          <div class="subpage-character-frame">
+          <div class="subpage-character-frame" data-character-scene>
+            <div class="character-backdrop character-backdrop--prototype" aria-hidden="true"><span></span><span></span><span></span></div>
             <div class="subpage-char-wrap">
-              <img src="/images/3d-kumar-sit.webp" alt="3D Stylized Kumar Utkarsh building interactive living sandbox prototypes"
-                class="subpage-character-img subpage-char-anim--typing-base" width="340" height="425" loading="eager" fetchpriority=\"high\" decoding=\"async\">
-              <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
-                class="subpage-char-overlay subpage-char-fingers-left">
-              <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
-                class="subpage-char-overlay subpage-char-fingers-right">
+              <img src="/images/3d-kumar-sit.webp" srcset="/images/3d-kumar-sit-192w.webp 192w, /images/3d-kumar-sit-320w.webp 320w, /images/3d-kumar-sit.webp 533w" sizes="(max-width: 768px) 105px, 220px" alt="3D Stylized Kumar Utkarsh building interactive living sandbox prototypes"
+                class="subpage-character-img subpage-char-anim--typing-base character-typing-pose" width="533" height="948" fetchpriority="high" decoding="async">
             </div>
           </div>
           <div class="subpage-character-caption">Kumar Utkarsh · 17 Living Sandbox Prototypes</div>
@@ -202,7 +201,7 @@
               <span class="proto-category">🏛️ National Trade Body Website</span>
               <span class="proto-badge-roles">TRADE PORTAL</span>
             </div>
-            <h3 class="proto-title">Council for Leather Exports (CLE) Official Portal</h3>
+            <h2 class="proto-title">Council for Leather Exports (CLE) Official Portal</h2>
             <div class="proto-domain"><a href="https://leatherindia.org" target="_blank" rel="noopener noreferrer">🌐
                 leatherindia.org ↗</a></div>
           </div>
@@ -245,7 +244,7 @@
               <span class="proto-category">💻 ICT Services & Retail</span>
               <span class="proto-badge-roles">2 SITES</span>
             </div>
-            <h3 class="proto-title">MSV Technologies ICT & LG Brand Shop</h3>
+            <h2 class="proto-title">MSV Technologies ICT & LG Brand Shop</h2>
             <div class="proto-domain"><a href="https://msvtechnologies.com" target="_blank" rel="noopener noreferrer">🌐
                 msvtechnologies.com ↗</a></div>
           </div>
@@ -289,7 +288,7 @@
               <span class="proto-category">⚽ Sports Academy & Development</span>
               <span class="proto-badge-roles">ACADEMY PORTAL</span>
             </div>
-            <h3 class="proto-title">Tecnica FA — Austin Berkley Football Academy</h3>
+            <h2 class="proto-title">Tecnica FA — Austin Berkley Football Academy</h2>
             <div class="proto-domain"><a href="http://tecnicafa.com" target="_blank" rel="noopener noreferrer">🌐
                 tecnicafa.com ↗</a></div>
           </div>
@@ -331,7 +330,7 @@
               <span class="proto-category">🎨 Spatial Architecture & Design</span>
               <span class="proto-badge-roles">STUDIO PORTFOLIO</span>
             </div>
-            <h3 class="proto-title">Latens & Forma Design Studio (Zurich)</h3>
+            <h2 class="proto-title">Latens & Forma Design Studio (Zurich)</h2>
             <div class="proto-domain"><a href="http://latensandforma.com/" target="_blank" rel="noopener noreferrer">🌐
                 latensandforma.com ↗</a></div>
           </div>
@@ -372,7 +371,7 @@
               <span class="proto-category">🎵 Sensory-Friendly EdTech</span>
               <span class="proto-badge-roles">2 APPS</span>
             </div>
-            <h3 class="proto-title">Harmony Kids & MelodyCare AI</h3>
+            <h2 class="proto-title">Harmony Kids & MelodyCare AI</h2>
 
           </div>
           <p class="proto-description">Mobile app ecosystem for sensory-friendly children's music education featuring
@@ -415,7 +414,7 @@
               <span class="proto-category">🧮 Planning & Quotation Tool</span>
               <span class="proto-badge-roles">CALCULATOR</span>
             </div>
-            <h3 class="proto-title">Ovella Bike Parking Calculator</h3>
+            <h2 class="proto-title">Ovella Bike Parking Calculator</h2>
             <div class="proto-domain"><a href="https://ovella.net" target="_blank" rel="noopener noreferrer">🌐
                 ovella.net ↗</a></div>
           </div>
@@ -456,7 +455,7 @@
               <span class="proto-category">✈️ Travel Tech & Booking</span>
               <span class="proto-badge-roles">2 ROLES</span>
             </div>
-            <h3 class="proto-title">Kelionių Kryptis Tour Booking Engine</h3>
+            <h2 class="proto-title">Kelionių Kryptis Tour Booking Engine</h2>
             <div class="proto-domain"><a href="https://kelioniukryptis.lt" target="_blank" rel="noopener noreferrer">🌐
                 kelioniukryptis.lt ↗</a></div>
           </div>
@@ -499,7 +498,7 @@
               <span class="proto-category">🌿 Somatic Coaching & Retreats</span>
               <span class="proto-badge-roles">DUAL DESIGNS</span>
             </div>
-            <h3 class="proto-title">Pola Vida Somatic Healing Platform</h3>
+            <h2 class="proto-title">Pola Vida Somatic Healing Platform</h2>
             <div class="proto-domain"><a href="http://polavida.com/" target="_blank" rel="noopener noreferrer">🌐
                 polavida.com ↗</a></div>
           </div>
@@ -542,7 +541,7 @@
               <span class="proto-category">🫖 Luxury Hospitality & Retail</span>
               <span class="proto-badge-roles">LUXURY COMMERCE</span>
             </div>
-            <h3 class="proto-title">Time for Tea HK — Luxury Tableware</h3>
+            <h2 class="proto-title">Time for Tea HK — Luxury Tableware</h2>
             <div class="proto-domain"><a href="http://timeforteahk.com" target="_blank" rel="noopener noreferrer">🌐
                 timeforteahk.com ↗</a></div>
           </div>
@@ -584,7 +583,7 @@
               <span class="proto-category">⚡ Agency SaaS & CPQ</span>
               <span class="proto-badge-roles">CPQ BUILDER</span>
             </div>
-            <h3 class="proto-title">Stealth Manager CPQ Architecture</h3>
+            <h2 class="proto-title">Stealth Manager CPQ Architecture</h2>
             <div class="proto-domain"><a href="https://go.stealthmanager.com/builder-page" target="_blank"
                 rel="noopener noreferrer">🌐 go.stealthmanager.com/builder-page ↗</a></div>
           </div>
@@ -626,7 +625,7 @@
               <span class="proto-category">⚡ Energy EPC & Infrastructure</span>
               <span class="proto-badge-roles">TURNKEY EPC</span>
             </div>
-            <h3 class="proto-title">SMP Dakar Turnkey Energy EPC Platform</h3>
+            <h2 class="proto-title">SMP Dakar Turnkey Energy EPC Platform</h2>
             <div class="proto-domain"><a href="http://smpdakar.com/" target="_blank" rel="noopener noreferrer">🌐
                 smpdakar.com ↗</a></div>
           </div>
@@ -668,7 +667,7 @@
               <span class="proto-category">🛡️ Industrial Safety & Procurement</span>
               <span class="proto-badge-roles">B2B CATALOG</span>
             </div>
-            <h3 class="proto-title">Industrial Cutting Tools USA</h3>
+            <h2 class="proto-title">Industrial Cutting Tools USA</h2>
             <div class="proto-domain"><a href="http://industrialcuttingtools-usa.com/" target="_blank"
                 rel="noopener noreferrer">🌐 industrialcuttingtools-usa.com ↗</a></div>
           </div>
@@ -710,7 +709,7 @@
               <span class="proto-category">🔬 MedTech Clinical SaaS</span>
               <span class="proto-badge-roles">CLINICAL DEMO</span>
             </div>
-            <h3 class="proto-title">QMA System | Quantitative Muscle Assessment</h3>
+            <h2 class="proto-title">QMA System | Quantitative Muscle Assessment</h2>
             <div class="proto-domain"><a href="http://qmasystem.com/" target="_blank" rel="noopener noreferrer">🌐
                 qmasystem.com ↗</a></div>
           </div>
@@ -752,7 +751,7 @@
               <span class="proto-category">📦 Trade Show Prepress & ERP</span>
               <span class="proto-badge-roles">2 ROLES</span>
             </div>
-            <h3 class="proto-title">Team 1 Display Production ERP</h3>
+            <h2 class="proto-title">Team 1 Display Production ERP</h2>
 
           </div>
           <p class="proto-description">High-throughput trade show exhibit fabrication, prepress printing, and physical
@@ -795,7 +794,7 @@
               <span class="proto-category">🏢 PropTech & Community Ecosystem</span>
               <span class="proto-badge-roles">4 ROLES</span>
             </div>
-            <h3 class="proto-title">El Manantial Residential Management</h3>
+            <h2 class="proto-title">El Manantial Residential Management</h2>
             <div class="proto-domain"><a href="https://elmanantial.es" target="_blank" rel="noopener noreferrer">🌐
                 elmanantial.es ↗</a></div>
           </div>
@@ -844,7 +843,7 @@
               <span class="proto-category">🩺 Healthcare & Veterinary SaaS</span>
               <span class="proto-badge-roles">5 ROLES</span>
             </div>
-            <h3 class="proto-title">112 Veterinarios Multi-Clinic Portal</h3>
+            <h2 class="proto-title">112 Veterinarios Multi-Clinic Portal</h2>
             <div class="proto-domain"><a href="https://112veterinarios.com" target="_blank" rel="noopener noreferrer">🌐
                 112veterinarios.com ↗</a></div>
           </div>
@@ -895,7 +894,7 @@
               <span class="proto-category">🚚 On-Demand Logistics</span>
               <span class="proto-badge-roles">5 ROLES</span>
             </div>
-            <h3 class="proto-title">MEAX Delivery Marketplace</h3>
+            <h2 class="proto-title">MEAX Delivery Marketplace</h2>
 
           </div>
           <p class="proto-description">Engineered the functional architecture for a complex 5-sided on-demand delivery
@@ -975,7 +974,7 @@
           }
           paginationEl.hidden = false;
           var htmlStr = '';
-          htmlStr += '<button type="button" class="ku-page-btn" data-page="' + (currentPage - 1) + '"' + (currentPage <= 1 ? ' disabled' : '') + ' aria-label="Previous page">← Prev</button>';
+          htmlStr += '<button type="button" class="ku-page-btn" data-page="' + (currentPage - 1) + '"' + (currentPage <= 1 ? ' disabled' : '') + ' aria-label="Prev page">← Prev</button>';
           for (var p = 1; p <= totalPages; p++) {
             htmlStr += '<button type="button" class="ku-page-btn' + (p === currentPage ? ' active' : '') + '" data-page="' + p + '" aria-label="Page ' + p + '"' + (p === currentPage ? ' aria-current="page"' : '') + '>' + p + '</button>';
           }
@@ -1512,7 +1511,7 @@
       <div class="proto-modal-topbar"
         style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 1.1rem 1.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02);">
         <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-          <img src="/images/ku-monogram-white.svg" alt="KU" width="30" height="30"
+          <img src="/images/ku-monogram-white-288w.webp" alt="KU" width="30" height="30" class="ku-modal-emblem"
             style="display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
           <span
             style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; white-space: nowrap;">PlanWithKumar</span>

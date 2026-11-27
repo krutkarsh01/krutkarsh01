@@ -10,8 +10,10 @@
   if (typeof window === 'undefined') return;
 
   var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isVisible = true;
+  var isVisible = !document.hidden;
   var animationId = null;
+  var nextBackdropFrame = 0;
+  var mobileFrameInterval = 1000 / 30;
 
   // Window & Canvas dimensions
   var width = window.innerWidth || 1440;
@@ -542,11 +544,12 @@
   function resizeAll() {
     width = window.innerWidth || 1440;
     height = window.innerHeight || 900;
+    nextBackdropFrame = 0;
     // Render soft atmospheric WebGL aurora at 0.5x resolution (4x-16x faster GPU shader with silky upscaling)
     var glScale = 0.5;
 
     if (glCanvas) {
-      glCanvas.width = Math.max(320, Math.floor(width * glScale));
+      glCanvas.width = Math.max(1, Math.floor(width * glScale));
       glCanvas.height = Math.max(200, Math.floor(height * glScale));
       glCanvas.style.width = width + 'px';
       glCanvas.style.height = height + 'px';
@@ -560,31 +563,24 @@
     }
   }
 
-  var isHeroVisible = true;
-
-  function checkHeroScroll() {
-    // Keep Aurora Borealis & Bloxi17 Starfield animating smoothly across all sections
-    isHeroVisible = true;
-    if (!animationId && isVisible) {
-      animationId = requestAnimationFrame(render);
-    }
-  }
-
-  function render() {
-    if (!isVisible || !isHeroVisible) {
+  function render(frameTime) {
+    if (!isVisible) {
       animationId = null;
       return;
     }
 
-    var elapsedSeconds = (performance.now() - startTime) * 0.001;
-
-    // 1. Render WebGL GLSL Aurora Curtains
-    renderWebGLAurora(elapsedSeconds);
-
-    // 2. Render Bloxi17 Glowing Starfield & Constellations Over Aurora
-    renderStarfield();
-
     animationId = requestAnimationFrame(render);
+    if (width <= 768) {
+      if (frameTime + 1 < nextBackdropFrame) return;
+      if (nextBackdropFrame === 0 || frameTime - nextBackdropFrame > mobileFrameInterval) {
+        nextBackdropFrame = frameTime;
+      }
+      nextBackdropFrame += mobileFrameInterval;
+    }
+
+    var elapsedSeconds = (frameTime - startTime) * 0.001;
+    renderWebGLAurora(elapsedSeconds);
+    renderStarfield();
   }
 
   function init() {
@@ -626,11 +622,11 @@
     initStarfield();
     resizeAll();
     window.addEventListener('resize', resizeAll, { passive: true });
-    window.addEventListener('scroll', checkHeroScroll, { passive: true });
 
     document.addEventListener('visibilitychange', function () {
       isVisible = !document.hidden;
       if (isVisible && !animationId) {
+        nextBackdropFrame = 0;
         animationId = requestAnimationFrame(render);
       }
     });

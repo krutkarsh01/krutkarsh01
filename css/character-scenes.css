@@ -1,0 +1,707 @@
+.is-character-visible {
+  --character-play-state: running;
+}
+
+/* Position effects in the image's own coordinate space, inside its object-fit box. */
+.character-laptop-effects {
+  position: absolute;
+  inset: auto 0 0;
+  margin-inline: auto;
+  height: 100%;
+  aspect-ratio: 533 / 948;
+  pointer-events: none;
+}
+
+.nl-character-typing:hover,
+.nl-character-typing {
+  transform: none;
+  cursor: default;
+}
+
+#nlHeroSection .nl-stream-cursor {
+  animation-play-state: var(--character-play-state, paused) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nl-stream-cursor { display: none !important; }
+}
+
+.character-presenting { animation: none; }
+
+.is-character-ready .character-presenting {
+  animation: character-present 6.4s ease-in-out infinite;
+}
+
+@keyframes character-present {
+  0%, 100% { transform: none; }
+  38%, 56% { transform: rotate(1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-presenting { animation: none !important; }
+}
+
+.character-running {
+  position: relative;
+  animation: none;
+}
+
+.is-character-ready .character-running {
+  animation: character-stride 0.92s ease-in-out infinite;
+}
+
+@keyframes character-stride {
+  0%, 100% { transform: none; }
+  48% { transform: translate(3px, -5px) rotate(1deg); }
+}
+
+.career-orbit {
+  position: absolute;
+  top: 15%;
+  left: 16%;
+  width: 33%;
+  display: grid;
+  justify-items: center;
+  gap: 0.3rem;
+  color: #b1f6ff;
+  pointer-events: none;
+}
+
+.career-orbit-globe {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid #65e8ffa0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 36%, #15789670, #02272be0 72%);
+  box-shadow: 0 0 1rem #02d7f333;
+}
+
+.career-orbit-globe::before,
+.career-orbit-globe::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #65e8ff70;
+  border-radius: 50%;
+}
+
+.career-orbit-globe::before { inset: 0 27%; }
+.career-orbit-globe::after { inset: 29% 0; }
+
+.career-orbit-globe span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #a8ffea;
+  box-shadow: 0 0 0.6rem #5dffd5;
+  offset-path: ellipse(47% 28% at 50% 50%);
+  offset-distance: var(--orbit-start, 0%);
+}
+
+.is-character-ready .career-orbit-globe span {
+  animation: career-orbit-travel 4.6s linear infinite;
+}
+
+.career-orbit-globe span:nth-child(2) { --orbit-start: 48%; }
+
+@keyframes career-orbit-travel {
+  to { offset-distance: calc(var(--orbit-start, 0%) + 100%); }
+}
+
+.career-orbit-label {
+  font: 700 clamp(0.58rem, 1vw, 0.76rem)/1.2 var(--font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-shadow: 0 1px 3px #001519, 0 0 0.5em #001519;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-running,
+  .career-orbit-globe span { animation: none !important; }
+}
+
+.character-tea-scene .subpage-character-img {
+  animation: none;
+}
+
+.character-tea-sip {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+
+.character-tea-scene.is-sipping {
+  animation: tea-lean 4.6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.is-sipping .character-tea-rest { animation: tea-rest 4.6s step-end infinite; }
+.is-sipping .character-tea-sip { animation: tea-sip 4.6s step-end infinite; }
+
+@keyframes tea-lean {
+  0%, 100% { transform: none; }
+  30%, 63% { transform: rotate(-1deg); }
+}
+
+@keyframes tea-rest {
+  0%, 66%, 100% { visibility: visible; }
+  30% { visibility: hidden; }
+}
+
+@keyframes tea-sip {
+  0%, 66%, 100% { visibility: hidden; }
+  30% { visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-tea-scene.is-sipping,
+  .is-sipping .subpage-character-img { animation: none !important; }
+}
+
+.contact-notifications {
+  --inbox-x: 78%;
+  --inbox-y: 48%;
+}
+
+.contact-notification {
+  position: absolute;
+  inset: 0;
+  color: var(--notification-color);
+  opacity: 0;
+  transform-origin: var(--inbox-x) var(--inbox-y);
+}
+
+.is-character-ready .contact-notification {
+  animation: contact-notification-arrival 5.8s ease-in-out var(--notification-delay) infinite;
+}
+
+.contact-notification--whatsapp {
+  --notification-color: #64f5a5;
+  --notification-start-x: -43%;
+  --notification-start-y: -19%;
+  --notification-delay: 0s;
+}
+
+.contact-notification--email {
+  --notification-color: #75eaff;
+  --notification-start-x: 23%;
+  --notification-start-y: -24%;
+  --notification-delay: 1.45s;
+}
+
+.contact-notification--message {
+  --notification-color: #d9b3ff;
+  --notification-start-x: 20%;
+  --notification-start-y: 15%;
+  --notification-delay: 2.9s;
+}
+
+.contact-notification-icon,
+.contact-notification-pulse {
+  position: absolute;
+  left: var(--inbox-x);
+  top: var(--inbox-y);
+  width: clamp(1.45rem, 3.1vw, 2.35rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid currentColor;
+  border-radius: 28%;
+}
+
+.is-character-ready .contact-notification-pulse {
+  animation: contact-inbox-pulse 5.8s ease-out infinite;
+}
+
+.contact-notification-icon {
+  background: #081b22;
+  box-shadow: 0 0 0.65rem currentColor;
+}
+
+.contact-notification-icon svg {
+  width: 60%;
+  height: 60%;
+}
+
+.contact-notification-pulse {
+  border-radius: 50%;
+  color: #9bfff2;
+  opacity: 0;
+}
+
+@keyframes contact-notification-arrival {
+  0% {
+    opacity: 0;
+    transform: translate(var(--notification-start-x), var(--notification-start-y)) scale(0.8);
+  }
+  5%, 10% {
+    opacity: 1;
+    transform: translate(var(--notification-start-x), var(--notification-start-y));
+  }
+  19% { opacity: 1; }
+  24%, 100% { opacity: 0; transform: scale(0.25); }
+}
+
+@keyframes contact-inbox-pulse {
+  0%, 18%, 43%, 68% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  21%, 46%, 71% { opacity: 0.8; }
+  27%, 52%, 77%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-notifications { display: none; }
+}
+
+/* The filter coordinates match the bitmap’s content box at every hero size. */
+.nl-anime-character-wrap .character-typing-pose,
+.subpage-char-wrap .character-typing-pose {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 533 / 948;
+  margin-inline: auto;
+}
+
+.character-typing-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .character-typing-pose.is-typing {
+    filter: url("#character-typing-fingers");
+  }
+
+  .subpage-char-wrap .character-typing-pose.is-typing {
+    filter: url("#character-typing-fingers") drop-shadow(0 16px 32px rgba(0, 0, 0, 0.8));
+  }
+}
+
+.character-process {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-character-ready .character-process {
+    animation: subpageCharFloat 5s ease-in-out infinite;
+  }
+
+  .is-character-ready .about-portrait-frame picture {
+    animation: about-portrait-float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes about-portrait-float {
+  0%, 100% { transform: none; }
+  50% { transform: translateY(-3px); }
+}
+
+/* Apply after the animation shorthands so visibility changes preserve each playhead. */
+.is-character-ready .character-presenting,
+.is-character-ready .character-running,
+.is-character-ready .career-orbit-globe span,
+.is-character-ready.character-tea-scene.is-sipping,
+.is-character-ready.is-sipping .subpage-character-img,
+.is-character-ready .contact-notification,
+.is-character-ready .contact-notification-pulse,
+.is-character-ready .character-process,
+.is-character-ready .about-portrait-frame picture {
+  animation-play-state: var(--character-play-state, paused);
+}
+
+@media (max-width: 768px) {
+  #nlHeroSection .nl-hero-content {
+    min-height: min(calc(100svh - 32px), 880px);
+  }
+
+  #nlHeroSection .nl-hero-titles-wrap {
+    margin-bottom: 24px !important;
+  }
+
+  #nlHeroSection .nl-character-hand-anchor {
+    width: min(100%, 360px);
+    margin-top: auto !important;
+  }
+
+  #nlHeroSection .nl-laptop-stream-bubble {
+    width: 100%;
+  }
+
+  #nlHeroSection .nl-stream-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 480px) and (max-height: 700px) {
+  .nl-hero#nlHeroSection .nl-hero-content {
+    padding-top: 64px !important;
+  }
+
+  #nlHeroSection .nl-hero-titles-wrap {
+    margin-top: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  #nlHeroSection .nl-hero-bio {
+    margin-top: 12px !important;
+    padding: 12px 16px !important;
+  }
+
+  #nlHeroSection .nl-hero-bio p {
+    line-height: 19px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #nlHeroSection .nl-hero-line-1 {
+    font-size: clamp(26px, 7.6vw, 36px) !important;
+  }
+
+  #nlHeroSection .nl-hero-line-2 {
+    font-size: clamp(23px, 6.8vw, 32px) !important;
+  }
+
+  #nlHeroSection .nl-hero-hand-right {
+    width: clamp(150px, 41vw, 214px) !important;
+  }
+
+  .home-page #nlMenuBtn {
+    min-width: 74px !important;
+    min-height: 46px !important;
+    padding-inline: 15px !important;
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 480px) and (max-height: 700px) {
+  #nlHeroSection .nl-hero-line-1 {
+    font-size: clamp(24px, 7.1vw, 30px) !important;
+  }
+
+  #nlHeroSection .nl-hero-line-2 {
+    font-size: clamp(21px, 6.2vw, 27px) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  html body.home-page .nl-nav {
+    padding-inline: 12px !important;
+  }
+
+  .home-page .nl-brand-center {
+    font-size: 13px !important;
+  }
+
+  .home-page .nl-nav-right {
+    position: relative;
+    inset-inline-end: -4px;
+  }
+}
+
+html body #global-client-atlas.nl-atlas-section {
+  padding-top: clamp(40px, 4.4svh, 48px) !important;
+}
+
+/* The drawings share the portrait’s visibility state and stay behind its silhouette. */
+.character-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  --scene-period: 7.2s;
+}
+
+.character-backdrop span {
+  position: absolute;
+  display: block;
+}
+
+.subpage-character-frame,
+.about-portrait,
+.nl-anime-character-wrap {
+  isolation: isolate;
+}
+
+.about-portrait,
+.about-portrait-frame,
+.about-portrait-caption,
+.nl-anime-character-wrap > .character-typing-pose,
+.subpage-character-frame > .subpage-character-img,
+.subpage-character-frame > .subpage-char-wrap,
+.character-tea-rest {
+  position: relative;
+}
+
+.about-portrait-frame,
+.about-portrait-caption,
+.nl-anime-character-wrap > .character-typing-pose,
+.subpage-character-frame > .subpage-character-img,
+.subpage-character-frame > .subpage-char-wrap,
+.character-tea-scene > .subpage-character-img {
+  z-index: 1;
+}
+
+/* Home and Career trace the global theme with an arc that reads through the transparent portrait. */
+.character-backdrop--home span,
+.character-backdrop--career span,
+.character-backdrop--contact span {
+  width: 82%;
+  height: 49%;
+  left: 9%;
+  top: 19%;
+  border: 1px solid #77d9e247;
+  border-inline-start-color: #77d9e28c;
+  border-block-end-color: #77d9e217;
+  border-radius: 50%;
+  --scene-angle: -24deg;
+  transform: rotate(var(--scene-angle));
+}
+
+.character-backdrop--home span + span,
+.character-backdrop--career span + span {
+  width: 72%;
+  left: 14%;
+  top: 21%;
+  --scene-angle: 25deg;
+  --scene-delay: -3.1s;
+}
+
+.character-backdrop--career span {
+  height: 31%;
+  top: 48%;
+  --scene-angle: -22deg;
+}
+
+.character-backdrop--career span + span {
+  top: 51%;
+}
+
+/* About uses the framing around its opaque portrait for a subtle rim of light. */
+.character-backdrop--about {
+  inset: -7px -6px 22px;
+  --scene-period: 8.4s;
+}
+
+.character-backdrop--about span {
+  inset: 0;
+  border: 1px solid #6fc9d456;
+  border-radius: 999px 999px 29px 29px;
+  background: radial-gradient(ellipse at top, #51bac32e, transparent 58%);
+  --scene-angle: 0deg;
+}
+
+.character-backdrop--about span + span {
+  inset: 4px -4px;
+  border-color: #6fc9d429;
+  --scene-delay: -4.2s;
+}
+
+@media (max-width: 768px) {
+  .character-backdrop--about span { border-radius: 26px; }
+}
+
+/* Architecture traces sit on either side of the presenter’s face and raised hand. */
+.character-backdrop--skills {
+  background: radial-gradient(ellipse at 50% 46%, #19798324, transparent 64%);
+}
+
+.character-backdrop--skills span {
+  left: 13%;
+  top: 36%;
+  width: 41%;
+  height: 15%;
+  border-top: 1px solid #62d9df80;
+  border-right: 1px solid #62d9df69;
+  border-top-right-radius: 13px;
+}
+
+.character-backdrop--skills span:nth-child(2) {
+  top: 24%;
+  left: 54%;
+  width: 27%;
+  height: 14%;
+  --scene-delay: -2.4s;
+}
+
+.character-backdrop--skills span:nth-child(3) {
+  top: 62%;
+  left: 22%;
+  width: 59%;
+  height: 16%;
+  --scene-delay: -4.8s;
+}
+
+.character-backdrop--skills span::before,
+.character-backdrop--skills span::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #8ce9eb;
+  border-radius: 2px;
+  background: #0b2931;
+  box-shadow: 0 0 8px #5ddce980;
+}
+
+.character-backdrop--skills span::before { top: -4px; left: -2px; }
+.character-backdrop--skills span::after { bottom: -2px; right: -4px; }
+
+/* Eight checkpoints follow the perimeter of the delivery workflow. */
+.character-backdrop--process {
+  inset: 25% 16% 18%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.character-backdrop--process::before {
+  content: "";
+  position: absolute;
+  inset: 12.5% 3px;
+  border: 1px solid #79d8bb65;
+  border-radius: 17px;
+}
+
+.character-backdrop--process span {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #8ae0cd;
+  border-radius: 50%;
+  background: #163838;
+  box-shadow: 0 0 10px #6ae7c0;
+  opacity: 0.6;
+}
+
+/* Browser wireframes assemble around the laptop as the prototype is built. */
+.character-backdrop--prototype span {
+  top: 26%;
+  left: 10%;
+  width: 35%;
+  aspect-ratio: 1.48;
+  border: 1px solid #78dbea99;
+  border-radius: 8px;
+  background:
+    linear-gradient(#88e6ee70, #88e6ee70) 0 23% / 100% 1px no-repeat,
+    radial-gradient(circle, #88e6ee 0 1px, transparent 1.5px) 10% 11% / 7px 7px no-repeat,
+    linear-gradient(#65d2e641, #65d2e641) 13% 57% / 24% 40% no-repeat,
+    repeating-linear-gradient(180deg, #77dbe084 0 1px, transparent 1px 5px) 82% 60% / 39% 39% no-repeat,
+    #0a232b;
+  opacity: 0.58;
+  --board-tilt: -7deg;
+  transform: rotate(var(--board-tilt));
+}
+
+.character-backdrop--prototype span:nth-child(2) {
+  top: 20%;
+  left: 58%;
+  width: 31%;
+  --board-tilt: 8deg;
+  --scene-delay: -2.4s;
+}
+
+.character-backdrop--prototype span:nth-child(3) {
+  top: 57%;
+  left: 16%;
+  width: 27%;
+  --board-tilt: -5deg;
+  --scene-delay: -4.8s;
+}
+
+/* The quieter scenes use rising tea wisps and offset contact signal rings. */
+.character-backdrop--tea span {
+  top: 18%;
+  left: 25%;
+  width: 14%;
+  height: 36%;
+  border-left: 1px solid #c6e8cf8c;
+  border-radius: 50%;
+  transform: rotate(24deg);
+  --scene-period: 8.8s;
+}
+
+.character-backdrop--tea span + span {
+  left: 37%;
+  top: 14%;
+  width: 20%;
+  --scene-delay: -3.8s;
+}
+
+.character-backdrop--contact span {
+  left: 40%;
+  top: 28%;
+  width: 53%;
+  height: 41%;
+  --scene-angle: -36deg;
+  border-inline-start-color: #80e4b7a6;
+}
+
+.character-backdrop--contact span:nth-child(2) {
+  left: 44%;
+  top: 23%;
+  --scene-angle: -16deg;
+  --scene-delay: -2.4s;
+}
+
+.character-backdrop--contact span:nth-child(3) {
+  left: 44%;
+  top: 31%;
+  --scene-angle: 16deg;
+  --scene-delay: -4.8s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-character-ready .character-backdrop span {
+    animation: backdrop-drift var(--scene-period) ease-in-out var(--scene-delay, 0s) infinite;
+    animation-play-state: var(--character-play-state, paused);
+  }
+
+  .is-character-ready .character-backdrop--skills span { animation-name: architecture-signal; }
+  .is-character-ready .character-backdrop--prototype span { animation-name: assemble-wireframe; }
+  .is-character-ready .character-backdrop--tea span { animation-name: backdrop-wisp; }
+
+  .is-character-ready .character-backdrop--process span {
+    animation-name: process-checkpoint;
+    animation-duration: 6.4s;
+    animation-delay: calc(var(--checkpoint) * 0.8s);
+  }
+}
+
+@keyframes backdrop-drift {
+  0%, 100% { opacity: 0.48; transform: rotate(var(--scene-angle, 0deg)) scale(0.98); }
+  50% { opacity: 0.9; transform: rotate(var(--scene-angle, 0deg)) scale(1.025); }
+}
+
+@keyframes architecture-signal {
+  0%, 100% { opacity: 0.45; }
+  32%, 56% { opacity: 0.95; }
+}
+
+@keyframes process-checkpoint {
+  0%, 21%, 100% { opacity: 0.58; transform: scale(0.86); }
+  9% { opacity: 1; transform: scale(1.42); }
+}
+
+@keyframes assemble-wireframe {
+  0%, 100% { opacity: 0.38; transform: translateY(5px) rotate(var(--board-tilt)) scale(0.96); }
+  32%, 57% { opacity: 0.9; transform: rotate(var(--board-tilt)) scale(1); }
+}
+
+@keyframes backdrop-wisp {
+  0%, 100% { opacity: 0.28; transform: translateY(5px) rotate(24deg) scale(0.92); }
+  55% { opacity: 0.8; transform: translateY(-6px) rotate(18deg) scale(1.05); }
+}
+
+.ku-modal-emblem {
+  object-fit: contain;
+}

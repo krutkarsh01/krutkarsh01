@@ -27,7 +27,7 @@
     })();
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="What Clients &#38; Leaders Say About My Work — Kumar Utkarsh">
@@ -45,8 +45,10 @@
   <script
     type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kumar Utkarsh","jobTitle":"Senior Business Analyst & AI Product Strategist","email":"work.krutkarsh@gmail.com","telephone":"+918447143995","url":"https://www.krutkarsh.com","sameAs":["https://linkedin.com/in/kumar-utkarsh01"],"address":{"@type":"PostalAddress","addressLocality":"Noida","addressRegion":"Uttar Pradesh","addressCountry":"IN"}}</script>
   <link rel="stylesheet" href="/_astro/index.DqraZV1o.css">
-  <script src="/js/planwithkumar-interactive.js" defer></script>
-  <script src="/js/aurora-northern-lights.js" defer></script>
+  <link rel="stylesheet" href="/css/character-scenes.css?v=5950">
+  <script src="/js/character-tea.js?v=5947" defer></script>
+  <script src="/js/planwithkumar-interactive.js?v=5948" defer></script>
+  <script src="/js/aurora-northern-lights.js?v=5948" defer></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.krutkarsh.com/"}, {"@type": "ListItem", "position": 2, "name": "Verified Testimonials", "item": "https://www.krutkarsh.com/testimonials/"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Kumar Utkarsh — Senior BA & AI Product Strategist", "url": "https://www.krutkarsh.com/", "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "reviewCount": "13"}}</script>
   <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context">
@@ -65,7 +67,7 @@
   <nav class="nl-nav" aria-label="Main Navigation">
     <div class="nl-nav-container">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
+        <img src="/images/ku-monogram-white-288w.webp" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
           height="26">
       </a>
 
@@ -84,7 +86,7 @@
   <div id="nlMenuOverlay" class="nl-menu-overlay" aria-hidden="true" role="dialog" aria-label="Site Navigation">
     <div class="nl-menu-top">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
+        <img src="/images/ku-monogram-white-288w.webp" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
       </a>
       <a href="/" class="nl-brand-center" aria-label="PlanWithKumar — Return to Home">PlanWithKumar</a>
       <div class="nl-nav-right">
@@ -142,8 +144,13 @@
         </div>
         <div class="subpage-character-col">
           <div class="subpage-character-frame">
-            <img src="/images/3d-kumar-tea.webp" alt="3D Stylized Kumar Utkarsh relaxing with tea and verified global client endorsements"
-              class="subpage-character-img" width="340" height="425" loading="eager" fetchpriority=\"high\" decoding=\"async\">
+            <div class="subpage-char-wrap character-tea-scene" data-character-scene>
+              <div class="character-backdrop character-backdrop--tea" aria-hidden="true"><span></span><span></span></div>
+              <img src="/images/3d-kumar-tea.webp" srcset="/images/3d-kumar-tea-144w.webp 144w, /images/3d-kumar-tea-240w.webp 240w, /images/3d-kumar-tea.webp 435w" sizes="(max-width: 768px) 73px, 145px" alt="3D Stylized Kumar Utkarsh relaxing with tea"
+                class="subpage-character-img character-tea-rest" width="435" height="1237" fetchpriority="high" decoding="async">
+              <img src="/images/3d-kumar-tea-sip.webp" srcset="/images/3d-kumar-tea-sip-144w.webp 144w, /images/3d-kumar-tea-sip-240w.webp 240w, /images/3d-kumar-tea-sip.webp 435w" sizes="(max-width: 768px) 73px, 145px" alt="" aria-hidden="true"
+                class="subpage-character-img character-tea-sip" width="435" height="1237" loading="lazy" fetchpriority="low" decoding="async">
+            </div>
           </div>
           <div class="subpage-character-caption">Kumar Utkarsh · 34 Global Markets Verified</div>
         </div>
@@ -634,7 +641,7 @@
           }
           paginationEl.hidden = false;
           var htmlStr = '';
-          htmlStr += '<button type="button" class="ku-page-btn" data-page="' + (currentPage - 1) + '"' + (currentPage <= 1 ? ' disabled' : '') + ' aria-label="Previous page">← Prev</button>';
+          htmlStr += '<button type="button" class="ku-page-btn" data-page="' + (currentPage - 1) + '"' + (currentPage <= 1 ? ' disabled' : '') + ' aria-label="Prev page">← Prev</button>';
           for (var p = 1; p <= totalPages; p++) {
             htmlStr += '<button type="button" class="ku-page-btn' + (p === currentPage ? ' active' : '') + '" data-page="' + p + '" aria-label="Page ' + p + '"' + (p === currentPage ? ' aria-current="page"' : '') + '>' + p + '</button>';
           }
@@ -1132,7 +1139,7 @@
       <div class="proto-modal-topbar"
         style="display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02);">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <img src="/images/ku-monogram-white.svg" alt="KU" width="30" height="30"
+          <img src="/images/ku-monogram-white-288w.webp" alt="KU" width="30" height="30" class="ku-modal-emblem"
             style="display: block; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
           <span
             style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em;">PlanWithKumar</span>

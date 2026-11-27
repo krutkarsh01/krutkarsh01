@@ -26,7 +26,7 @@
     })();
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Let's Connect &#38; Collaborate — Kumar Utkarsh">
@@ -69,8 +69,9 @@
 }
 </script>
   <link rel="stylesheet" href="/_astro/index.DqraZV1o.css">
-  <script src="/js/planwithkumar-interactive.js" defer></script>
-  <script src="/js/aurora-northern-lights.js" defer></script>
+  <link rel="stylesheet" href="/css/character-scenes.css?v=5950">
+  <script src="/js/planwithkumar-interactive.js?v=5948" defer></script>
+  <script src="/js/aurora-northern-lights.js?v=5948" defer></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.krutkarsh.com/"}, {"@type": "ListItem", "position": 2, "name": "Contact & Booking", "item": "https://www.krutkarsh.com/contact/"}]}</script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Kumar Utkarsh typical response time and engagement model?", "acceptedAnswer": {"@type": "Answer", "text": "Direct responses are provided within 4 hours across IST (UTC+5:30) with high overlap for US EST/PST and UK/CET timezones. Engagement models include Consulting, Contract, and Full-Time."}}]}</script>
   <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context">
@@ -89,7 +90,7 @@
   <nav class="nl-nav" aria-label="Main Navigation">
     <div class="nl-nav-container">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
+        <img src="/images/ku-monogram-white-288w.webp" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
           height="26">
       </a>
 
@@ -108,7 +109,7 @@
   <div id="nlMenuOverlay" class="nl-menu-overlay" aria-hidden="true" role="dialog" aria-label="Site Navigation">
     <div class="nl-menu-top">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
+        <img src="/images/ku-monogram-white-288w.webp" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
       </a>
       <a href="/" class="nl-brand-center" aria-label="PlanWithKumar — Return to Home">PlanWithKumar</a>
       <div class="nl-nav-right">
@@ -165,20 +166,34 @@
           </div>
         </div>
         <div class="subpage-character-col">
-          <div class="subpage-character-frame">
-            <div class="subpage-char-mail-incoming" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
+          <div class="subpage-character-frame" data-character-scene>
+            <div class="character-backdrop character-backdrop--contact" aria-hidden="true"><span></span><span></span><span></span></div>
             <div class="subpage-char-wrap">
-              <img src="/images/3d-kumar-sit.webp" alt="3D Stylized Kumar Utkarsh ready to connect and collaborate"
-                class="subpage-character-img subpage-char-anim--typing-base" width="340" height="425" loading="eager" fetchpriority=\"high\" decoding=\"async\">
-              <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
-                class="subpage-char-overlay subpage-char-fingers-left">
-              <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
-                class="subpage-char-overlay subpage-char-fingers-right">
+              <img src="/images/3d-kumar-sit.webp" srcset="/images/3d-kumar-sit-192w.webp 192w, /images/3d-kumar-sit-320w.webp 320w, /images/3d-kumar-sit.webp 533w" sizes="(max-width: 768px) 105px, 220px" alt="3D Stylized Kumar Utkarsh ready to connect and collaborate"
+                class="subpage-character-img subpage-char-anim--typing-base" width="533" height="948" fetchpriority="high" decoding="async">
+              <div class="character-laptop-effects contact-notifications" aria-hidden="true">
+                <span class="contact-notification contact-notification--whatsapp"><span class="contact-notification-icon">
+                  <svg width="20" height="20"
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.979-.276-.1-.477-.15-.678.15-.2.301-.778.979-.954 1.18-.176.2-.351.226-.652.075-.301-.15-1.27-.468-2.42-1.493-.895-.798-1.5-1.784-1.676-2.085-.176-.301-.019-.464.132-.614.136-.135.301-.351.452-.527.15-.176.2-.301.301-.502.1-.2.05-.376-.025-.527-.075-.15-.678-1.633-.929-2.238-.244-.59-.493-.51-.678-.52l-.578-.01c-.2 0-.527.075-.803.376s-1.054 1.03-1.054 2.513c0 1.483 1.079 2.914 1.23 3.115.15.2 2.124 3.243 5.145 4.547.719.31 1.28.496 1.718.635.722.23 1.378.197 1.898.12.579-.087 1.782-.728 2.033-1.431.251-.703.251-1.305.176-1.431-.076-.126-.277-.201-.578-.352zM12.04 2C6.514 2 2.025 6.488 2.025 12.013c0 1.98.577 3.827 1.576 5.393L2 22l4.747-1.55a9.96 9.96 0 0 0 5.293 1.517c5.526 0 10.015-4.488 10.015-10.013C22.055 6.488 17.566 2 12.04 2zm0 18.23a8.21 8.21 0 0 1-4.2-1.15l-.3-.18-2.82.92.94-2.75-.2-.31a8.204 8.204 0 0 1-1.26-4.39c0-4.54 3.69-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23 0 4.55-3.69 8.24-8.23 8.24z">
+              </path>
+            </svg>
+                </span></span>
+                <span class="contact-notification contact-notification--email"><span class="contact-notification-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m3 6 9 7 9-7"/>
+                  </svg>
+                </span></span>
+                <span class="contact-notification contact-notification--message"><span class="contact-notification-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16v12H9l-5 4z"/>
+                    <path d="M8 8h8m-8 4h5"/>
+                  </svg>
+                </span></span>
+                <span class="contact-notification-pulse"></span>
+              </div>
             </div>
           </div>
           <div class="subpage-character-caption">Kumar Utkarsh · Noida, India · Global Remote</div>
@@ -836,7 +851,7 @@
       <div class="proto-modal-topbar"
         style="display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02);">
         <div style="display: flex; align-items: center; gap: 12px;">
-          <img src="/images/ku-monogram-white.svg" alt="KU" width="30" height="30"
+          <img src="/images/ku-monogram-white-288w.webp" alt="KU" width="30" height="30" class="ku-modal-emblem"
             style="display: block; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
           <span
             style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em;">PlanWithKumar</span>

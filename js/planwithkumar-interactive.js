@@ -563,7 +563,9 @@
      ========================================================================== */
   function initLaptopTypewriter() {
     var textEl = document.getElementById('nlStreamTypewriter');
-    if (!textEl) return;
+    var scene = textEl && textEl.closest('[data-character-scene]');
+    if (!scene) return;
+    var motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     var phrases = [
       "Senior Business Analyst",
@@ -581,6 +583,7 @@
     var typingSpeed = 65;
     var deletingSpeed = 32;
     var pauseEnd = 2200;
+    var timer;
 
     function tick() {
       var fullText = phrases[phraseIdx];
@@ -591,23 +594,36 @@
         if (charIdx <= 0) {
           isDeleting = false;
           phraseIdx = (phraseIdx + 1) % phrases.length;
-          setTimeout(tick, 400);
+          timer = setTimeout(tick, 400);
           return;
         }
-        setTimeout(tick, deletingSpeed);
+        timer = setTimeout(tick, deletingSpeed);
       } else {
         charIdx++;
         textEl.textContent = fullText.substring(0, charIdx);
         if (charIdx >= fullText.length) {
           isDeleting = true;
-          setTimeout(tick, pauseEnd);
+          timer = setTimeout(tick, pauseEnd);
           return;
         }
-        setTimeout(tick, typingSpeed);
+        timer = setTimeout(tick, typingSpeed);
       }
     }
 
-    tick();
+    function syncTypewriter() {
+      clearTimeout(timer);
+      if (scene.classList.contains('is-character-visible')) {
+        tick();
+      } else if (motionPreference.matches) {
+        phraseIdx = 0;
+        charIdx = phrases[0].length;
+        isDeleting = true;
+        textEl.textContent = phrases[0];
+      }
+    }
+
+    scene.addEventListener('character-scene-visibility', syncTypewriter);
+    syncTypewriter();
   }
 
   /* ==========================================================================
@@ -706,6 +722,38 @@
     });
   }
 
+  function initCharacterScenes() {
+    var scenes = document.querySelectorAll('[data-character-scene]');
+    if (!scenes.length || !('IntersectionObserver' in window)) return;
+
+    var motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var scenesInView = new Set();
+    var visibleThreshold = 0.01;
+
+    function updateScene(scene) {
+      var active = scenesInView.has(scene) && !document.hidden && !motionPreference.matches;
+      if (active) scene.classList.add('is-character-ready');
+      if (scene.classList.contains('is-character-visible') === active) return;
+
+      scene.classList.toggle('is-character-visible', active);
+      scene.dispatchEvent(new Event('character-scene-visibility'));
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && entry.intersectionRatio >= visibleThreshold) scenesInView.add(entry.target);
+        else scenesInView.delete(entry.target);
+        updateScene(entry.target);
+      });
+    }, { threshold: visibleThreshold });
+
+    function updateScenes() { scenes.forEach(updateScene); }
+
+    document.addEventListener('visibilitychange', updateScenes);
+    motionPreference.addEventListener('change', updateScenes);
+    scenes.forEach(function (scene) { observer.observe(scene); });
+  }
+
   function initNavbarScrollGlass() {
     var nav = document.querySelector('.nl-nav');
     if (!nav) return;
@@ -728,6 +776,7 @@
     initNavbarScrollGlass();
     initMinimalistMenu();
     initLaptopTypewriter();
+    initCharacterScenes();
     initSagarCursor();
     initChakraCanvas();
     enhanceShinobiHeader();

@@ -45,3 +45,18 @@
     Content-Type = "text/markdown; charset=utf-8"
     Cache-Control = "public, max-age=3600"
 
+
+[[redirects]]
+  from = "/sitemap-0.xml"
+  to = "/sitemap.xml"
+  status = 301
+
+[[redirects]]
+  from = "/sitemap-index.xml"
+  to = "/sitemap.xml"
+  status = 301
+
+[[redirects]]
+  from = "/public/*"
+  to = "/:splat"
+  status = 301

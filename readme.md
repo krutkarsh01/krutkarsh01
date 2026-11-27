@@ -3492,3 +3492,425 @@ Transform the hero headers of all 6 subpages (`process`, `experience`, `skills`,
 
 #### T — TESTING & VERIFICATION
 - Validated `sitemap.xml` XML well-formedness via Python `xml.etree.ElementTree`.
+
+---
+
+### [v4.27.0] - 2026-11-27: Indexing, page speed, and character animations
+
+#### I — Input
+
+- Image 1 shows one Search Console URL excluded as “Page with redirect.” The screenshot omits the URL. Also improve page speed.
+- Images 2 and 3 highlight the seated laptop character on Home and Prototypes, including the hands and keyboard.
+- Images 4 and 5 request distinct animation using the existing character on Skills and the Career timeline.
+- Image 6 requests a tea sip on Testimonials. The Image 7 description requests WhatsApp, email, and message notifications arriving at a laptop on Contact.
+- Keep the earlier README versions and verify each task before starting the next. The latest prior entries cover six-item pagination and canonical sitemap dates.
+
+#### M — Mission and task order
+
+1. Map the deployment, canonical routes, styles, scripts, and character assets. Locate requested skills and browser tooling. Capture representative browser baselines and confirm existing card pagination.
+2. Inspect robots, sitemap, canonical metadata, and public redirect chains. Compare with Google’s guidance. Correct any concrete canonical inconsistency and verify each sitemap destination and retained aliases.
+3. Measure startup requests and asset sizes. Address verified early-load bottlenecks while preserving interactions. Repeat the measurements with identical settings.
+4. Fix Home’s seated scene. Identify duplicate or misaligned layers and give the character a stable position relative to the hand and typing effects. Check desktop, mobile, and reduced motion.
+5. Fix the shared typing effect on Prototypes. Ensure a single clean character and aligned effects, and verify its navigation, filtering, and pagination.
+6. Add a Skills sequence that follows the existing character’s presenting gesture. Check alignment within the arch at desktop and mobile sizes.
+7. Add an Experience sequence that highlights global reach around the running character. Keep factual geography tied to the site’s existing content.
+8. Add a Testimonials sipping sequence with a matching character and cup pose. Check the start, sip, and return frames and preserve reviews and pagination.
+9. Add a Contact sequence that animates WhatsApp, email, and message indicators toward the laptop. Verify existing contact actions and reduced motion.
+10. Verify all canonical pages, desktop and mobile full-page captures, accessibility fallback, pagination, and final asset sizes. Update sitemap dates for materially changed URLs where appropriate.
+
+#### E — Execution
+
+- Append findings, file changes, and execution steps by task as work progresses.
+
+#### T — Testing
+
+- Record each task’s verification before proceeding. Fix and rerun failed checks. Record any externally blocked verification together with local results.
+
+#### E — Tasks 1–2
+- Task 1 captured Chrome baselines at 1440×900 and 393×852. The primary pages fit both widths, Prototypes and Reviews showed six cards, and the seated heroes each rendered three copies of the character. The repository README is the durable plan for future sessions.
+- Dependency map of current entry points:
+
+```mermaid
+flowchart LR
+  Netlify --> HTML["Eight static HTML routes"]
+  Robots["robots.txt"] --> Sitemap["sitemap.xml"]
+  Legacy["Legacy sitemap URLs"] --> Sitemap
+  Sitemap --> HTML
+  HTML --> CSS["Shared bundle and Astro CSS"]
+  HTML --> Aurora["Shared aurora and starfield"]
+  HTML --> Poses["Character WebP and page-specific effects"]
+  Home["Home"] --> Globe["Atlas globe module"]
+  Home --> Peel["Page-turn controller"]
+  Collections["Prototypes and Testimonials"] --> Pagination["Inline filter and pagination"]
+```
+
+- Task 2 input and mission. The live bare host returns a 301 to the canonical home, and all eight canonical routes return 200. Both legacy sitemap endpoints also return 200, but their checked-in XML points to a separate site. Make the legacy index reference the main sitemap and forward the legacy leaf URL directly to it. Use read-only HTTP checks and parse the sitemap XML and each page canonical.
+
+#### T — Task 2
+- Validated both checked-in XML documents and all eight self-canonical annotations. The legacy leaf has a permanent Netlify redirect and the legacy index points at the preferred sitemap. Live canonical URLs returned 200 before local changes. The missing Search Console sample URL prevents identifying the exact exclusion. Google documents redirect aliases as expected exclusions.
+
+#### I-M-E-T — Task 3, page startup
+- I. Chrome recorded a 592 KB atlas script and 459 KB of offscreen gallery thumbnails on the first desktop view. The page-turn layout can make the globe appear intersecting while its stage remains offscreen.
+- M. Gate the globe on the normal-flow stage, lazy-load gallery images, and give hero imagery priority. Preserve atlas controls, other navigation, and the existing page-turn layout.
+- E. Replace the generated startup hook with a small readable module that observes the stage after the page-turn controller runs. Normalize invalid gallery loading attributes. Bump the new module through its own URL.
+- T. Run the same Chrome audit and verify that the atlas still mounts after navigating to it, then compare first-view resource bytes.
+
+#### T — Task 3
+- The initial wrapper observer was triggered by the intentional overlap between page-turn stages. Retested with the globe canvas observed after the controller initializes and a 1% visible-area threshold.
+- On desktop Chrome, the first view's images dropped from 567,110 to 108,074 bytes and scripts from 667,570 to 75,085 bytes. The trial LCP changed from 2,424 to 316 ms, which is a local lab observation. Mobile images dropped by the same 459,036 bytes. On both viewports, the atlas loaded on navigation and its playback toggle responded.
+- The validation session uses local Chrome in place of REA and saves captures under the temporary audit directory.
+
+#### I-M-E-T — Task 4, Home seated pose
+- I. The keyboard artifacts are clipped regions of the same character rendered twice over its original pose. The screenshots show the wrist and laptop intersecting.
+- M. Keep the existing hero placement and cradle. Give typing visual feedback from the keyboard using the asset's actual aspect ratio while keeping one character per view.
+- E. Remove the extra character images, attach a soft keyboard light to the keyboard coordinates, and give the existing typing text a stable reduced-motion value.
+- T. Check both viewport compositions, one decoded character image, and the reduced-motion state in Chrome.
+
+#### T — Task 4
+- Chrome confirmed exactly one decoded Home pose, the keyboard effect, no horizontal overflow, and no decorative character animation in reduced motion on desktop and mobile.
+
+#### I-M-E-T — Task 5, Prototypes seated pose
+- I. The Prototypes hero repeats Home's image stack. The surrounding gallery and six-item pagination already work.
+- M. Apply the verified keyboard effect and keep the arch, content, filtering, and pagination.
+- E. Replace both overlay images with the shared keyboard effect and fix the base WebP's dimensions and malformed attributes.
+- T. Check the character and reduced-motion modes in Chrome. Test page 2, page 3, the platform filter, and the launch link.
+
+#### T — Task 5
+- Desktop and mobile each rendered one decoded character with a keyboard pulse and no reduced-motion animation. Prototypes page 2 showed 6 cards, page 3 showed 5, and the platforms filter showed 4 and hid pagination.
+
+#### I-M-E-T — Task 6, Skills
+- I. The existing presenter has a raised palm and a standing pose, while the hero applies a generic squash-and-stretch jump.
+- M. Make the presenter introduce a compact systems diagram beside the palm while keeping the original portrait, CTA, and skills content.
+- E. Add a diagram of three connected nodes with an activation sequence. Replace the jump with a brief anchored presenting gesture. Leave the diagram readable with motion disabled.
+- T. Confirm the diagram and pose render within the arch on both widths, check the motion-reduction state, and verify the Skills hero's links.
+
+#### T — Task 6
+- Chrome verified the presenting gesture, node reveal, and still state on both widths. Adjusted the diagram position after the first screenshot showed it covering the character's face and reran the checks.
+
+#### I-M-E-T — Task 7, Career timeline
+- I. The running pose already represents momentum. The experience page also documents delivery across 34 client markets.
+- M. Show global reach within the character frame without introducing extra location claims.
+- E. Replace the speed streaks with a globe motif, moving route points, and the existing market count. Keep the runner in front and use short, steady motion.
+- T. Capture both widths and verify that the orbit stays inside the arch, the runner remains visible, and reduced motion shows a still globe.
+
+#### T — Task 7
+- Browser checked the two traveling route lights, running pose, and reduced-motion state on both widths. Moved the market label above the globe after visual review showed the character's shoulder partly obscuring it.
+
+#### I-M-E-T — Task 8, Testimonials
+- I. The current image is a flattened transparent character with a cup held at chest level. Shifting a clipped copy would reproduce the original typing artifacts.
+- M. Show a recognizable sip with the existing character and stable feet and framing.
+- E. Use the imagegen skill to produce an alternate cup-at-lips pose. Validate the generated alpha and character silhouette, export a small WebP, and show the sip with a brief hold and return and a static reduced-motion fallback.
+- T. Verify the resting and sip frames, transparency, and pagination at both widths.
+
+#### T — Task 8
+- Used built-in imagegen with the existing PNG as the edit target. The prompt requested one registered alternate cel with the ivory cup touching the lips, both arms lifting naturally, slight eyelid movement, an intact identity and outfit, full-body framing, and a transparent background. Exported the alpha WebP to `images/3d-kumar-tea-sip.webp`.
+- Chrome confirmed the visibility states at 0.4, 1.9, and 3.6 seconds were rest only, sip only, then rest only, at both widths. The captured sip frame showed the cup at the character's mouth. Reduced motion left the still pose and reviews page 2 and 3 showed 6 and 1 items.
+
+#### I-M-E-T — Task 9, Contact
+- I. The old email-only effect travels a fixed pixel distance and the scene stacks the same typing illustration three times. Image 7's description specifies WhatsApp, email, and message notifications.
+- M. Use one character and route three distinct icons to a single laptop destination. Keep the website's actual contact actions.
+- E. Draw from the existing icon styles, stagger each notification, and base its path on the displayed image coordinates. Mark the animation decorative and honor reduced motion.
+- T. Inspect the three icons and destination in Chrome at both widths. Verify the booking anchor, WhatsApp and email links, and the contact form's required-field validation without submitting.
+
+#### T — Task 9
+- Chrome verified the WhatsApp, email, and message phases independently at 1440×900 and 393×852. The notification plane matched the WebP aspect ratio and reduced motion disabled the decorative effects. The booking anchor, WhatsApp and email destinations, and required form fields worked without a submission.
+
+#### I-M-E-T — Task 2 follow-up, submitted legacy sitemaps
+- I. The Research skill surfaced that Search Console does not follow redirects when fetching a submitted sitemap URL. Both legacy endpoints previously returned HTTP 200.
+- M. Preserve that response behavior and steer both legacy sitemap submissions to the same valid URL set.
+- E. Replace the tentative legacy leaf redirect with a valid XML sitemap index at that URL. Keep the preferred sitemap in robots.txt and as the direct target of both legacy indexes.
+- T. Parse all three documents and require an exact match between the eight listed URLs and eight self-canonicals. Confirm Netlify can serve the two static alias files directly.
+
+#### T — Task 2 follow-up
+- All three sitemap documents parsed. Both legacy endpoints are served from static files and point directly to the main sitemap on the correct host.
+- Google documents [canonical signals](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [intentional redirect exclusions](https://support.google.com/webmasters/answer/7440203?hl=en), and [directly submitted sitemap URLs](https://support.google.com/webmasters/answer/7451001?hl=en). Chrome's [lazy loading guide](https://web.dev/articles/browser-level-image-lazy-loading) and the [Intersection Observer specification](https://www.w3.org/TR/intersection-observer/) support the first-view loading strategy.
+
+#### I-M-E-T — Task 10, viewport activation and final verification
+- I. Baseline mobile renders put several character arches below a short phone's initial viewport. Page-start animation could finish before someone reaches it.
+- M. Start each brief scene once when visible, keep static fallbacks, update sitemap dates for the six revised pages, and verify the site through its normal entry points.
+- E. Use one shared visibility observer for the affected pages. Keep the tea pose static until the alternate image decodes. Exercise cold loads, shorter phone scroll, reduced motion, filters and pagination, then capture viewport and full-page screenshots.
+- T. Check JavaScript, sitemap agreement, image decoding, desktop and mobile layout, scene activation, and keyboard/contact interactions. Record deployment and Search Console limits.
+
+#### I-M-E-T — Task 10 follow-up, Prototypes layout stability
+- I. The final desktop Chrome sweep reproduced a pre-existing 0.35 layout shift. A Layout Instability trace showed the hero, notice, and filters moving together during the late web-font swap.
+- M. Preserve the branded font when available on time and keep the initial layout when the font arrives late.
+- E. Use Google Fonts' optional display mode for Prototypes. Keep the font stylesheet nonblocking.
+- T. Repeat cold Chrome loads and confirm the visible card counts, filters, and pagination.
+
+#### T — Final verification
+- `npm run build`, all changed JavaScript syntax checks, `git diff --check`, and the eight-route XML/canonical/date validation passed. The README's earlier version entries match HEAD byte-for-byte.
+- Chrome completed all eight routes at 1440×900 and 393×852. The six revised scenes showed no horizontal overflow and honored reduced motion. At 320×600, Prototypes, Testimonials, and Contact remained still below the fold and activated on scroll.
+- Home's tracked first-view resources fell from 1,721,210 to 677,738 encoded asset bytes in local Chrome. The globe and gallery loaded on scroll. The globe playback toggle and gallery specification modal worked at both widths.
+- The Prototypes optional font change reduced the cold desktop layout-shift measurement from as high as 0.35 to 0.0053 in two repeat runs. It keeps the fallback typeface for the initial view if the web font arrives too late. Pagination and the platform filter passed afterward. [Google's web-font guidance](https://web.dev/learn/performance/optimize-web-fonts?hl=en)
+- Both collections retained their six-item first pages and verified final pages of 5 Prototypes and 1 review. Contact link and form checks ran without sending a submission.
+- Captured 16 full-page screenshots and individual animation states under `/tmp/ku-portfolio-audit`. Full-page captures used reduced motion so the Home scroll panels could appear together.
+- Graphify analyzed five focused site JavaScript files locally and produced 53 nodes, 88 edges, and 11 communities in the temporary source-map directory. The README diagram includes the HTML, styles, and deployment relationships. Used the available GSD context-budget guidance for targeted source reads and focused output because the exact Token Optimization skill was unavailable.
+- The production directory redirects and canonical pages were checked before code changes. Deployment and reinspection of the undisclosed Search Console sample remain external to the local verification.
+
+<details>
+<summary>Testimonials alternate-pose imagegen prompt</summary>
+
+Use case: precise-object-edit. Edit this exact full-body 3D character PNG into one alternate animation cel. Raise his same ivory teacup with both hands approximately 90 source pixels until the rim touches the lips and the cup tilts very slightly toward him in a natural quiet sip. Bend forearms naturally and lower eyelids a little. Keep the original character identity, facial structure, hair, beard, lighting, gray hoodie, dark jeans and white shoes. Match the existing camera, vertical proportions, exact overall character height, body center, and feet placement. Keep the legs, shoes, lower hoodie and all other details as closely registered to the source as possible. The result must show one head, one cup and two hands. Crisp silhouette, true transparent background, full body, no extra graphics or text.
+
+</details>
+
+---
+
+### [v4.27.1] - 2026-11-27: Restore finger typing on Home and Prototypes
+
+#### I — Input
+
+- Image 1 highlights the fingers on the laptop keyboard. The previous change fixed the overlap but replaced visible finger movement with a keyboard light. Restore visible typing on Home and Prototypes.
+- Confirm what the owner should check in Google Search Console after the sitemap cleanup and deployment.
+
+#### M — Mission
+
+1. Map the fingers and keyboard in the existing seated bitmap. Build a localized motion effect from the original image, keeping the original pose and the laptop in registration.
+2. Apply and verify the effect on Home. Reuse it on Prototypes once the Home rendering passes.
+3. Verify Search Console guidance and check the public sitemap and canonical endpoints.
+
+#### E — Execution plan
+
+- Inspect the source image at native coordinates and use a small, softly bounded displacement inside each finger region. Keep the existing image as the static fallback. Start motion when the scene is visible and honor reduced motion.
+- Preserve the Home typewriter and cradle and the Prototypes hero, filter and pagination. Version the shared assets through the two consuming pages.
+
+#### T — Test plan
+
+- Seek the animation to several fixed frames in Chrome. Compare the keyboard-area pixels and check that areas outside the hands remain stable. Test desktop, mobile, reduced motion, and Prototypes pagination.
+- Compare the deployed sitemap with the checked-in version, then give Search Console steps based on the canonical URL and existing sitemap status.
+
+#### E — Task 1, source coordinates and Home integration
+
+- The native 533×948 image places the fingertips around x=268–310 and y=465–488. The laptop lid starts to their right and the keyboard is directly below. Define two smoothly bounded displacement fields around alternating fingertips and drive them out of phase in the browser. Each field affects the existing image in place.
+- Add the filter and single-image layout to Home first. Use fixed-time crops to verify finger movement and registration on both viewports before applying the same effect to Prototypes.
+
+#### T — Home first pass
+
+- Chrome captured alternating finger groups at each viewport. The first larger displacement produced too sharp a stretch near the keyboard, so reduce the motion amplitude and preserve smooth contours before reusing it.
+
+#### T — Home retest
+
+- At 1440×900 and 393×852, Chrome showed alternating finger motion with one seated image and no horizontal overflow. Pixel comparisons restricted to the opaque pose showed changes localized to the fingers, with the face, leg, and laptop lid stable. Reduced motion removed the filter.
+
+#### E — Task 2, Prototypes integration
+
+- Reuse the verified script, bitmapped pose and filter styles in the Prototypes hero. Remove the superseded glow markup and styles after both pages have moved to finger motion. Recheck the arch placement and the existing pagination and filter controls.
+
+#### T — Prototypes and final regression
+
+- Chrome confirmed alternating fingertip movement on both routes at 1440×900 and 393×852. Captured five fixed phases per route and width. Opaque-pixel comparisons confirmed movement around the fingers and stable pixels on the face, leg and laptop lid. Both scenes use one copy of the original image and disable the effect for reduced motion.
+- Prototypes retained visible page counts of 6, 6 and 5, and the Platforms filter showed 4 items. The build, new JavaScript syntax, diff whitespace and eight sitemap canonical checks passed. The local animated capture is at `/tmp/ku-portfolio-audit/restored-finger-typing.gif`.
+
+#### T — Search Console
+
+- The public primary sitemap currently lists the eight correct canonical URLs, while the two public legacy files still contain the older domain. Both checked-in legacy XML files point to the primary sitemap and await deployment.
+- After deployment, use the Sitemaps report to submit the canonical sitemap if it is missing or retry it if its last read failed. A canonical sitemap already marked Success is recrawled automatically. The typing update does not warrant an indexing request. [Google's Sitemaps report](https://support.google.com/webmasters/answer/7451001?hl=en)
+- Open the affected “Page with redirect” row and inspect the final URL separately. An intentional alias can remain excluded when the destination is indexed. The screenshot omitted the sample URL, so its exact destination remains unverified. [Google's Page indexing report](https://support.google.com/webmasters/answer/7440203?hl=en)
+
+---
+
+### [v4.27.2] - 2026-11-27: Loop the portfolio hero animations
+
+#### I — Input
+
+- The revised character scenes currently stop after one sequence or a fixed number of repeats. The user wants the animations to loop across the portfolio.
+
+#### M — Mission
+
+1. Give all eight canonical hero scenes a shared viewport and tab-visibility lifecycle. Preserve static reduced-motion states.
+2. Repeat the existing fingertip, Skills, Career, tea and Contact sequences without synchronizing separate notification arrivals into the same beat. Keep the Process character floating and add subtle movement to the existing About portrait.
+3. Verify second and later cycles and pause/resume behavior in local Chrome. Recheck the established prototype and review pagination and the sitemap URLs.
+
+#### E — Execution plan
+
+- Extend the existing scene observer to control visible, offscreen, background-tab, and reduced-motion states. Use it for CSS, typing and tea rather than creating additional observers.
+- Keep the existing timing and responsive registration where possible. Use a common repeat period for the three Contact icons and pulses. Version the changed shared resources across their consumers.
+
+#### T — Test plan
+
+- Seek beyond the first cycle on Home, Prototypes, Skills, Career, Testimonials, Contact, Process and About. Verify two visible phases, no duplicate poses, the three Contact channels completing repeated cycles, and the tea scene returning to rest.
+- Confirm scrolling away and tab hiding pause each scene, scrolling back resumes it, and reduced motion leaves a static pose. Run desktop and mobile checks, the portfolio build, syntax checks and pagination regressions.
+
+#### E — Implementation
+
+- Reused the shared scene observer for all eight hero sections. Visibility and reduced-motion preference control the CSS playheads and the Home/Prototypes SVG finger filter. Testimonials waits for its alternate pose to decode before entering the tea cycle.
+- Set the typing, Skills, Career, Process, and Testimonials motion to repeat. Contact uses a shared 5.8-second timeline with three staggered arrivals and an idle beat. About uses a 3-pixel portrait float within its existing frame.
+- Updated cache versions on the eight consuming pages. Sitemap paths and canonical URLs were verified.
+
+#### T — Results
+
+- Chrome verified the third cycle on all eight pages at 1440×900 and 393×852. Typing alternated, Skills nodes and the Career orbit repeated, and the tea scene returned to rest between sips. The Contact icons stayed in WhatsApp, email, and message order on successive loops.
+- Checked viewport pause and resume, the tab-visibility handler, and live reduced-motion changes on all eight pages. Home and Contact also stayed active past seven seconds of live playback.
+- Prototypes retained page counts of 6, 6, and 5 and showed four Platform cards with the filter. Testimonials retained 6, 6, and 1. The static build, JavaScript syntax checks, XML and canonical agreement, and `git diff --check` passed.
+
+---
+
+### [v4.27.3] - 2026-11-27: Mobile Home hero spacing and sustained animation
+
+#### I — Input
+
+- The screenshot shows the mobile Home headline followed by a character, typewriter, and biography grouped too high in the available viewport. The highlighted group should sit lower with responsive spacing.
+- Loops have appeared to stop later across pages. Diagnose against elapsed-time playback and real scroll/visibility states, and check whether the live site contains the previous fixes.
+- Use Antigravity Character Animation QA, Browser QA, Benchmark Optimization Loop, and SEO Audit.
+
+#### M — Mission
+
+1. Measure the Home hero at short phone, typical phone, tablet, and desktop sizes. Use available height to lower the mobile group without hiding the biography or blocking normal scrolling.
+2. Establish a live and local playback baseline. Check whether viewport gating, browser paint, or deployed version explains the reported stops. Fix reproducible causes and verify the motion remains visible through multiple real-time cycles.
+3. Compare loading cost and verify live indexing prerequisites. Keep independent layout and animation changes out of crawl metadata.
+
+#### E — Execution plan
+
+- Capture mobile geometry and compare the existing deployed HTML, asset versions, robots, and sitemap against local source. Inspect the playhead and visible frames with the tab in the foreground and after scrolling.
+- Make the narrow Home adjustment in the shared character stylesheet. Use the existing observer for resource-conscious pausing. Test one visibility rule change at a time and retain the existing pose and motion preference.
+- Compare like-for-like cold browser measurements and check canonical pages, robots, and sitemap separately.
+
+#### T — Test plan
+
+- Measure the title, character, typewriter and biography positions at 320×600, 375×667, 393×852, 768×1024, and 1440×900.
+- Verify real-time forward progress and visually distinct frames across all eight pages, including partial visibility, scroll-away/return, reduced motion, and responsive interaction. Check the full Home scroll path and existing prototype/review pagination.
+- Run build, JavaScript syntax, sitemap and whitespace checks. Report local measurements separately from live service and field metrics.
+
+#### E — Baseline and Task 1
+
+- The public eight canonical routes respond with HTTP 200 and matching self-canonicals. The public HTML still uses the old unversioned shared script and omits the local character typing/tea scripts. The public legacy sitemaps still reference the older domain. Public page speed field data was not available in this check.
+- At 393×852 the biography ended at y=667, leaving 185 px below it. At 320×600 it ended at y=661 and needed inner-panel scrolling. The previous observer also paused Contact at about 22% visible.
+- Let the mobile title keep its position while a flexible gap lowers the highlighted group into unused space. Use smaller vertical gaps on compact phones to keep the biography in view. Keep the typewriter pill width stable through different phrase lengths.
+- The first screenshot pass moved the 393 px layout down as intended, but the tablet gap was larger than needed and the 320 px biography edge still overran by 4 px. Cap the flexible slot on tall screens and tighten the compact-phone spacing, then rerun geometry checks before changing the animation lifecycle.
+
+#### T — Task 1
+
+- The revised mobile group moved the 393×852 portrait and biography down by 128 px. The biography now ends at y=795. At 320×600 the entire biography ends at y=594 and the hero panel no longer needs inner scrolling for its first screen. Confirmed no horizontal overflow at six widths and identical desktop hero geometry.
+
+#### E — Task 2, partial visibility and long playback
+
+- Lower the playback threshold from 45% to 1% of the scene. Preserve the offscreen/tab and reduced-motion pause. Enclose Home's laptop and typing pill in the same scene and let its string update timer pause with the character. Test naturally advancing playheads and changing frames across all eight pages.
+
+#### I-M-E-T — Latest mobile sizing and Search Console feedback
+
+- I. The follow-up mobile screenshot highlights the headline and the upper-right menu/stone-hand area for more scale. The Search Console screenshot shows one submitted sitemap at `https://www.krutkarsh.com/sitemap.xml`, status Success, last read November 27, 2026, and eight discovered pages.
+- M. Increase the highlighted elements on phones while preserving the new lower character placement and keeping the compact layout readable. Reflect the actual Search Console state.
+- E. Scale headline type and the menu affordance by viewport width and leave enough room on short phones. Give the upper stone hand slightly more presence without competing with the controls. Keep the existing canonical sitemap submission.
+- T. Compare the revised headline, navigation bounds, and biography at short and tall phone sizes. Verify the deployed and checked-in legacy sitemap differences and confirm that the correct submission already succeeds.
+
+#### E — Task 3, mobile backdrop workload
+
+- The instrumented pre-optimization trial at 393×852 recorded 109 WebGL draws in 1.80 seconds, using a 320×426 buffer. The revised partial-visibility rule kept Contact playing at 22% visible.
+- Keep the desktop framebuffer dimensions and cadence. On phones and tablets, render the backdrop at up to 30 draw calls per second using the existing half-resolution target. Leave the character timelines independent. Keep the larger phone headline and menu adjustments and confirm the final visual balance.
+- The final screenshot showed the larger Menu nearly touching the brand at 320 px. Keep the 74×46 px target and adjust the narrow navigation padding and wordmark to create separation.
+- The first narrow-navbar measurement showed a 4 px gap. Increase the separation by 4 px at 360 px and below, then retest the geometry and render rate.
+
+#### T — Final verification
+
+- At 393×852 the headline increased from about 27/24 px to 30/27 px. The character, typing pill and bio stayed 128 px lower than the initial baseline. The right stone hand and Menu are larger on phones. The 320×600 biography ended at y=594, the Menu remained 74×46 px, and the gap to the brand measured 8 px in the repeat trial. No horizontal overflow at six test sizes. Desktop hero geometry stayed unchanged.
+- In mobile Chrome, all eight hero playheads advanced for 10.15–10.18 real seconds, with five or more visually distinct sampled states per page. The 22% visible Contact character kept playing. Offscreen, tab-visibility, and reduced-motion handling passed. Home Menu, the scroll-loaded atlas and gallery modal, Prototypes pagination/filtering, and Reviews pagination also passed.
+- At 393×852, the background rendered 54–55 draws over roughly 1.81 seconds after optimization, compared with 109 draws before. The buffer went from 320×426 to 196×426 pixels. Together these yielded approximately 69% fewer framebuffer pixels drawn per second in the local sample. The earlier first-view asset optimization remains in the branch. These measurements are local rendering and loading observations.
+- Both local legacy sitemap files point to the primary sitemap. The public legacy files still require deployment. The user's Search Console screenshot confirms the only submitted sitemap was already successful with eight discovered URLs on November 27, so the existing submission needs no change.
+- `npm run build`, syntax checks, sitemap/canonical agreement, and `git diff --check` passed. Local visual comparison at `/tmp/ku-portfolio-audit/mobile-home-before-after.jpg`.
+
+---
+
+### [v4.27.4] - 2026-11-27: Atlas clearance and page-specific character backgrounds
+
+#### I — Input
+
+- Screenshot 1 marks the narrow gap between the fixed Home navigation and the Global Client Atlas deck.
+- Screenshot 2 asks for more elegant Skills motion and suggests placing it behind the existing character.
+- Screenshot 3 requests an animation for the 8-Step Process character. Screenshot 4 asks for Prototypes to have its own animation and extends the behind-character treatment to all pages.
+
+#### M — Mission
+
+1. Add visible, responsive clearance above the Atlas deck while keeping the globe and controls reachable.
+2. Establish one decorative background layer behind the existing character or portrait in all eight heroes, with different visual cues tied to the page subject. Preserve existing hero content and interactions.
+3. Make the Skills circuit, Process eight-step path, and Prototypes wireframe assembly visibly distinct. Retain earlier typing, tea, career and notification details.
+4. Check mobile and desktop compositing, recurring motion, reduced motion, and relevant interactions.
+
+#### E — Design and execution plan
+
+- Apply Antigravity Frontend Design and Character Animation QA. Carry the existing deep greens and blues through slim cyan or mint strokes. The character stays the brightest foreground element. Place the richer illustration behind it, leaving the current typography and copy intact.
+- Measure the Atlas from the actual sticky navigation and make a scoped CSS spacing change first.
+- Add light CSS-native details that use the existing visibility play state. Skills uses connected circuitry, Process uses a sequence of eight checkpoints, and Prototypes uses assembling wireframes. Home, About, Career, Testimonials, and Contact use variations that fit their subjects. Use static artwork in reduced motion.
+
+#### T — Test plan
+
+- Check Atlas clearance in Chrome after scrolling to it and verify globe selection and playback. Capture all eight hero layers at desktop and mobile sizes, verify that the character remains visually in front, sample repeated states and confirm that hidden and reduced-motion scenes pause.
+- Verify one scene per route and the existing pagination, filters, canonical URLs and stylesheet delivery. Run build and diff checks.
+
+#### E — Atlas spacing
+
+- Baseline sticky navigation measurements showed 13 px at 1440×900, 6 px at 1280×720, and a 7 px overlap at 393×852. Increase top padding on the Atlas section itself so the full deck follows the header clearance without repositioning its controls.
+- The first CSS trial was overridden by the bundle's higher-specificity selector. Match that selector in the later stylesheet and retest at all three widths.
+
+#### T — Atlas
+
+- The deck now clears the fixed navigation by 37 px at 1440×900, 30 px at 1280×720, and 17 px at 393×852. The globe mounted and no horizontal overflow was present.
+
+#### E — Hero backgrounds
+
+- Use a thin, low-contrast background plane behind each portrait. The Skills circuitry replaces the floating diagram box. Process follows eight checkpoints around a track, and Prototypes cycles three small interface wireframes to suggest building and testing. Keep existing tea, finger, career, and notification animation code. Reuse the current viewport pause with static reduced-motion versions.
+
+#### T — Final verification
+
+- Desktop and mobile Chrome captured all eight backdrops. Each scene's foreground rendered above its background. The background layers are decorative and ignore pointer events.
+- Confirmed all eight scene playheads advancing in real time. Sampled matching phases in the third and fifth cycles, confirmed pausing when offscreen, and confirmed a still backdrop in reduced motion.
+- Rechecked Atlas market selection and reset, globe playback controls, and clearance at desktop and mobile sizes. Prototypes maintained page counts of 6/6/5 and four Platform results. Testimonials maintained 6/6/1.
+- The build, eight canonical URLs, unique backdrop assignments, stylesheet cache versions, and diff whitespace checks passed. The local desktop and mobile previews are saved under `/tmp/ku-portfolio-audit`.
+
+---
+
+### [v4.27.5] - 2026-11-27: Repository cleanup and mobile Lighthouse audit
+
+#### I — Input
+
+- Search Console's submitted sitemap is `/sitemap.xml`. The workspace shows two historic sitemap paths and a duplicate download. Maintain one sitemap and preserve useful legacy URLs with redirects if verified safe.
+- Audit repository-wide duplicates and current references before deletion. Preserve existing site design, architecture, animation, SEO, and load behavior.
+- Use Mobile Navigation Lighthouse on all eight canonical routes. Address verified first-party results in Performance, Accessibility, Best Practices, SEO, and Agentic Browsing where the installed runner supports it.
+
+#### M — Mission
+
+1. Inventory active files, development inputs, legacy files, and exact duplicates. Locate any references to sitemap aliases and verify Google and Netlify behavior.
+2. Establish an eight-route mobile Lighthouse baseline and choose fixes supported by repeatable evidence.
+3. Consolidate sitemaps and remove provably redundant files. Apply targeted audit fixes without changing the hero design or interaction paths.
+4. Re-run Mobile Navigation Lighthouse, validate resource and route integrity, and verify responsive animation and key interactions.
+
+#### E — Execution plan
+
+- Use Antigravity SEO Audit, Browser QA, Benchmark Optimization Loop, and Safe Refactor. Document the dependency boundaries and retain source files and historic evidence with active uses.
+- Use the same Lighthouse configuration before and after. Keep the primary sitemap's current URL. Preserve old public sitemap paths through redirect rules where those paths have callers.
+
+#### T — Test plan
+
+- Verify sitemap XML, robots, canonical HTML, redirects, resource/link references, and production build. Compare category scores and note laboratory and third-party limitations.
+- Test desktop and mobile Chrome, backdrop layering, viewport/reduced-motion behavior, and collection interactions. Report removed files and remaining issues.
+
+#### E — Sitemap and file ownership audit
+
+- The old `sitemap-index.xml` and `sitemap-0.xml` came from the prior generated setup. The current copies are identical alias indexes. The untracked `sitemap-0 2.xml` is byte-identical to the former Git revision of `sitemap-0.xml`. Keep the eight-URL primary sitemap and the existing robots and Search Console reference. Handle the two formerly published paths with permanent Netlify redirects.
+- No runtime or development input references `public/`. Eighty-nine files there exactly match paths at the site root. Remove those copies and let the hosting layer forward legacy asset URLs to their equivalent root paths. Keep the four byte-distinct legacy assets in place.
+- Retain referenced screenshots and the curated audit, redesign, and existing-state collections. Retire loose, unreferenced captures, five unreachable hashed stylesheets, and two unreferenced legacy Aurora video files. Keep removed working copies in a local recovery directory.
+
+#### E — Verified Lighthouse fixes
+
+- Correct the heading outline on Experience, Process, Prototypes, and Skills. Process currently binds detailed styling to native heading tags in a hashed stylesheet, so use explicit accessible levels there to preserve its presentation. Make both pagers' accessible labels match the visible Prev control.
+- Optimize responsive image transfers by resizing exact source artwork. Keep the desktop originals and intrinsic dimensions, preserve the PNG favicon's existing appearance, and keep the portrait drawing and masks registered. Verify source selection and compare each route's Mobile Navigation results.
+- The first image trial reduced subpage transfer sizes and cleared the original accessibility findings. Lighthouse then caught a 30×30 modal logo stretching the new raster. Apply `object-fit: contain` to preserve the SVG's previous letterbox. The Home trace also showed native lazy loading requesting seven gallery mockups and the carousel writing styles on every frame before the section appeared. Gate both with the gallery viewport's intersection after page-turn initialization.
+- The live Netlify host already Brotli-compresses CSS and XML. The local static server sent all text at full size, inflating Lighthouse's render-blocking cost. Add optional Brotli or gzip to the Node server for comparable preview delivery. Measure the application-only effect on the original server and the combined effect on the compressed preview separately.
+
+
+#### E — Mobile performance follow-up
+
+- Mobile Navigation Lighthouse on the Brotli-enabled preview scored Home 0.87 before the final image-priority correction; the other routes scored About 0.95, Experience 0.97, Skills 0.98, Process 1.00, Prototypes 1.00, Testimonials 1.00, and Contact 0.98. All audited accessibility, Best Practices, SEO, and Agentic Browsing categories scored 1.00.
+- Home's LCP breakdown identified the stone hand image as the LCP element. A second earlier image using the same URL was discovered first at low priority, so the LCP element's hint alone did not promote the request. Set high fetch priority on the first matching hero image as well. Keep the character scene and continuous background motion active.
+- The final Home rerun scored Performance 0.96, Accessibility 1.00, Best Practices 1.00, SEO 1.00, and Agentic Browsing 1.00. Mobile lab metrics were FCP 1.5 s, LCP 2.4 s, Speed Index 1.6 s, TBT 130 ms, CLS 0.003; the LCP audit confirmed the resource is discoverable, eager, and high priority. Scores are Lighthouse lab results, not field Core Web Vitals.
+- Verified the local static server returns byte-correct Brotli, gzip, and identity CSS responses with `Vary: Accept-Encoding`. The 251,142-byte shared stylesheet measured 42,256 bytes with Brotli and 41,057 bytes with gzip. Netlify production compression remains the host's responsibility; this server change keeps local previews representative.
+
+#### T — Verification results
+
+- All eight Mobile Navigation Lighthouse runs passed with full scores in Accessibility, Best Practices, SEO, and Agentic Browsing. The completed per-route Performance scores are recorded above; the separate final Home rerun confirmed the LCP priority correction.
+- `fetchpriority=high` moved to the first shared hand image request; the LCP trace changed from priority hint false to true. The Home LCP measurement improved from 2.9 s to 2.4 s and TBT from 320 ms to 130 ms in the final run.
+- The uncompressed preview materially overstated transfer costs compared with the compressed preview. A remaining `unused-css-rules` opportunity is roughly 54–55 KiB compressed on the tested routes; splitting the shared component stylesheet risks omitting dynamic modal, responsive, or animation states, so retain the known-good shared layout rather than applying destructive CSS purging.
+- Search Console already has the canonical `/sitemap.xml` submitted successfully with eight discovered URLs. No Search Console change is required; after deployment, confirm the existing sitemap row remains successful.
+
+- Netlify redirect configuration parses and contains the two required permanent sitemap redirects. The simple Node preview server does not interpret Netlify redirects, so its legacy paths return 404 locally; the deployed Netlify host applies the configured 301 rules.
+
+- Skill availability: Research, Token Optimization, GRAPHIFY, and Antigravity skill packs were not present in this workspace’s enabled skill catalog or project skill directories. The requested I-M-E-T plan and repository/Lighthouse evidence were used; no unavailable skill is claimed as applied.

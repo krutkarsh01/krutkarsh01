@@ -44,7 +44,7 @@
     };
   </script>
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title"
@@ -175,18 +175,21 @@
 }
 </script>
   <link rel="stylesheet" href="/_astro/index.DqraZV1o.css">
-  <script type="module" src="/_astro/hoisted.Bjdt1Es-.js"></script>
-  <script src="/js/planwithkumar-interactive.js" defer></script>
+  <link rel="stylesheet" href="/css/character-scenes.css?v=5950">
+  <script src="/js/planwithkumar-interactive.js?v=5948" defer></script>
+  <script src="/js/character-typing.js?v=5947" defer></script>
   <!-- Anime Jumping Companion commented out per user request to boost performance and remove extra sprites -->
   <!-- <script src="/js/anime-jumping-companion.js" defer></script> -->
-  <script src="/js/aurora-northern-lights.js" defer></script>
+  <script src="/js/aurora-northern-lights.js?v=5948" defer></script>
   <script src="/js/page-shift-controller.js" defer></script>
+  <script type="module" src="/js/atlas-loader.js"></script>
   <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context">
   <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Full LLM Context">
-  <link rel="preload" as="image" href="/images/3d-kumar-sit.webp" fetchpriority="high">
+  <link rel="preload" as="image" imagesrcset="/images/3d-kumar-sit-192w.webp 192w, /images/3d-kumar-sit-320w.webp 320w, /images/3d-kumar-sit.webp 533w" imagesizes="(max-width: 768px) 120px, 200px" fetchpriority="high">
+  <noscript><style>img[data-gallery-src] { display: none !important; }</style></noscript>
 </head>
 
-<body>
+<body class="home-page">
   <!-- Universal Real Moving Northern Lights Aurora Engine (Matching Code of Sagar, Zero Lines, 60fps) -->
   <div id="universal-aurora-backdrop" class="universal-aurora-backdrop" aria-hidden="true">
     <div class="aurora-sky-base"></div>
@@ -199,7 +202,7 @@
   <nav class="nl-nav" aria-label="Main Navigation">
     <div class="nl-nav-container">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
+        <img src="/images/ku-monogram-white-288w.webp" alt="Kumar Utkarsh KU Logo" class="nl-monogram-img" width="54"
           height="26">
       </a>
 
@@ -217,7 +220,7 @@
   <div id="nlMenuOverlay" class="nl-menu-overlay" aria-hidden="true" role="dialog" aria-label="Site Navigation">
     <div class="nl-menu-top">
       <a href="/" class="nl-monogram" aria-label="Kumar Utkarsh Home">
-        <img src="/images/ku-monogram-white.svg" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
+        <img src="/images/ku-monogram-white-288w.webp" alt="KU Logo" width="80" height="38" class="nl-monogram-img">
       </a>
       <a href="/" class="nl-brand-center" aria-label="PlanWithKumar — Return to Home">PlanWithKumar</a>
       <div class="nl-nav-right">
@@ -262,10 +265,10 @@
     <!-- Minimalist Northern Lights Hero Canvas (Matching Code of Sagar Reference) -->
     <section class="nl-hero" id="nlHeroSection" aria-labelledby="nl-hero-title">
       <div class="nl-hero-aurora-glow" aria-hidden="true"></div>
-      <img src="/images/hand-left.webp" alt="Stone hand reaching from left" class="nl-hero-hand-left"
-        aria-hidden="true">
-      <img src="/images/hand-right.webp" alt="Stone hand reaching from right" class="nl-hero-hand-right"
-        aria-hidden="true">
+      <img src="/images/hand-left.webp" srcset="/images/hand-left-480w.webp 480w, /images/hand-left-720w.webp 720w, /images/hand-left.webp 820w" sizes="(max-width: 768px) clamp(340px, 90vw, 480px), 720px" alt="Stone hand reaching from left" class="nl-hero-hand-left"
+        aria-hidden="true" fetchpriority="high" decoding="async">
+      <img src="/images/hand-right.webp" srcset="/images/hand-right-320w.webp 320w, /images/hand-right-480w.webp 480w, /images/hand-right.webp 820w" sizes="(max-width: 600px) clamp(150px, 41vw, 214px), (max-width: 768px) 220px, 800px" alt="Stone hand reaching from right" class="nl-hero-hand-right"
+        aria-hidden="true" fetchpriority="high">
 
       <div class="nl-hero-content">
         <div class="nl-hero-titles-wrap">
@@ -277,23 +280,20 @@
         </div>
 
         <!-- 3D Stylized Anime Character on Left Stone Hand Anchor (Seated typing on laptop) -->
-        <div class="nl-character-hand-anchor" id="nlHeroCharacterAnchor">
+        <div class="nl-character-hand-anchor" id="nlHeroCharacterAnchor" data-character-scene>
           <!-- Direct Mobile/Tablet Stone Hand Support Anchor (Cradles avatar seamlessly on responsive viewports) -->
-          <img src="/images/hand-left.webp" alt="Stone hand supporting avatar" class="nl-hero-hand-mobile-cradle"
-            aria-hidden="true">
-          <div class="nl-anime-character-wrap">
-            <img src="/images/3d-kumar-sit.webp" alt="3D Stylized Kumar Utkarsh seated on stone hand typing on laptop"
-              class="nl-anime-kumar" id="heroAnimeCharacter" fetchpriority="high" decoding="async">
-            <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
-              class="nl-anime-kumar nl-anime-fingers nl-anime-fingers-left">
-            <img src="/images/3d-kumar-sit.webp" alt="" aria-hidden="true"
-              class="nl-anime-kumar nl-anime-fingers nl-anime-fingers-right">
+          <img src="/images/hand-left.webp" srcset="/images/hand-left-480w.webp 480w, /images/hand-left-720w.webp 720w, /images/hand-left.webp 820w" sizes="(max-width: 768px) clamp(340px, 90vw, 480px), 720px" alt="Stone hand supporting avatar" class="nl-hero-hand-mobile-cradle"
+            aria-hidden="true" fetchpriority="high" decoding="async">
+          <div class="nl-anime-character-wrap nl-character-typing">
+            <div class="character-backdrop character-backdrop--home" aria-hidden="true"><span></span><span></span></div>
+            <img src="/images/3d-kumar-sit.webp" srcset="/images/3d-kumar-sit-192w.webp 192w, /images/3d-kumar-sit-320w.webp 320w, /images/3d-kumar-sit.webp 533w" sizes="(max-width: 768px) 120px, 200px" alt="3D Stylized Kumar Utkarsh seated on stone hand typing on laptop"
+              class="nl-anime-kumar character-typing-pose" id="heroAnimeCharacter" width="533" height="948" fetchpriority="high" decoding="async">
           </div>
 
           <!-- Typewriter Stream Emerging from Laptop Display (Matching User Images 3 & 4) -->
-          <div class="nl-laptop-stream-bubble" id="nlLaptopStream" aria-live="polite">
+          <div class="nl-laptop-stream-bubble" id="nlLaptopStream" aria-hidden="true">
             <span class="nl-stream-prefix">&gt;</span>
-            <span class="nl-stream-text" id="nlStreamTypewriter"></span>
+            <span class="nl-stream-text" id="nlStreamTypewriter">Senior Business Analyst</span>
             <span class="nl-stream-cursor" aria-hidden="true">|</span>
           </div>
         </div>
@@ -550,8 +550,10 @@
                 onclick="handleCurvedCardClick(this, 'meax')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🚚 On-Demand Logistics</span>
-                  <img src="/images/mockup-meax.webp" alt="MEAX Delivery Marketplace" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-meax.webp" data-gallery-srcset="/images/mockup-meax-400w.webp 400w, /images/mockup-meax.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="MEAX Delivery Marketplace" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-meax.webp" srcset="/images/mockup-meax-400w.webp 400w, /images/mockup-meax.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="MEAX Delivery Marketplace" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -566,8 +568,12 @@
                 onclick="handleCurvedCardClick(this, 'veterinarios')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🩺 Healthcare & Veterinary SaaS</span>
-                  <img src="/images/mockup-veterinarios.webp" alt="112 Veterinarios Multi-Clinic Portal"
-                    class="curved-card-img" loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-veterinarios.webp" data-gallery-srcset="/images/mockup-veterinarios-400w.webp 400w, /images/mockup-veterinarios.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="112 Veterinarios Multi-Clinic Portal"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-veterinarios.webp" srcset="/images/mockup-veterinarios-400w.webp 400w, /images/mockup-veterinarios.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="112 Veterinarios Multi-Clinic Portal"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -582,8 +588,10 @@
                 onclick="handleCurvedCardClick(this, 'qmasystem')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🔬 MedTech Clinical Trial SaaS</span>
-                  <img src="/images/mockup-qmasystem.webp" alt="QMA System & Dynamometry" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-qmasystem.webp" data-gallery-srcset="/images/mockup-qmasystem-400w.webp 400w, /images/mockup-qmasystem.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="QMA System & Dynamometry" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-qmasystem.webp" srcset="/images/mockup-qmasystem-400w.webp 400w, /images/mockup-qmasystem.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="QMA System & Dynamometry" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -598,8 +606,12 @@
                 onclick="handleCurvedCardClick(this, 'elmanantial')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🏢 PropTech & Residential</span>
-                  <img src="/images/mockup-elmanantial.webp" alt="El Manantial Community Ecosystem"
-                    class="curved-card-img" loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-elmanantial.webp" data-gallery-srcset="/images/mockup-elmanantial-400w.webp 400w, /images/mockup-elmanantial.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="El Manantial Community Ecosystem"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-elmanantial.webp" srcset="/images/mockup-elmanantial-400w.webp 400w, /images/mockup-elmanantial.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="El Manantial Community Ecosystem"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -614,8 +626,10 @@
                 onclick="handleCurvedCardClick(this, 'team1display')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">📦 Trade Show Prepress & ERP</span>
-                  <img src="/images/mockup-team1display.webp" alt="Team 1 Display Production ERP" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-team1display.webp" data-gallery-srcset="/images/mockup-team1display-400w.webp 400w, /images/mockup-team1display.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Team 1 Display Production ERP" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-team1display.webp" srcset="/images/mockup-team1display-400w.webp 400w, /images/mockup-team1display.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Team 1 Display Production ERP" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -630,8 +644,10 @@
                 onclick="handleCurvedCardClick(this, 'timeforteahk')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🫖 Luxury Hospitality & Tableware</span>
-                  <img src="/images/mockup-timeforteahk.webp" alt="Time for Tea HK" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-timeforteahk.webp" data-gallery-srcset="/images/mockup-timeforteahk-400w.webp 400w, /images/mockup-timeforteahk.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Time for Tea HK" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-timeforteahk.webp" srcset="/images/mockup-timeforteahk-400w.webp 400w, /images/mockup-timeforteahk.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Time for Tea HK" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -646,8 +662,12 @@
                 onclick="handleCurvedCardClick(this, 'industrialcuttingtools')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🛡️ OSHA Safety & B2B Procurement</span>
-                  <img src="/images/mockup-industrialcuttingtools.webp" alt="Industrial Cutting Tools USA"
-                    class="curved-card-img" loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-industrialcuttingtools.webp" data-gallery-srcset="/images/mockup-industrialcuttingtools-400w.webp 400w, /images/mockup-industrialcuttingtools.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Industrial Cutting Tools USA"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-industrialcuttingtools.webp" srcset="/images/mockup-industrialcuttingtools-400w.webp 400w, /images/mockup-industrialcuttingtools.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Industrial Cutting Tools USA"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -662,8 +682,10 @@
                 onclick="handleCurvedCardClick(this, 'meax')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🚚 On-Demand Logistics</span>
-                  <img src="/images/mockup-meax.webp" alt="MEAX Delivery Marketplace" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-meax.webp" data-gallery-srcset="/images/mockup-meax-400w.webp 400w, /images/mockup-meax.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="MEAX Delivery Marketplace" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-meax.webp" srcset="/images/mockup-meax-400w.webp 400w, /images/mockup-meax.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="MEAX Delivery Marketplace" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -678,8 +700,12 @@
                 onclick="handleCurvedCardClick(this, 'veterinarios')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🩺 Healthcare & Veterinary SaaS</span>
-                  <img src="/images/mockup-veterinarios.webp" alt="112 Veterinarios Multi-Clinic Portal"
-                    class="curved-card-img" loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-veterinarios.webp" data-gallery-srcset="/images/mockup-veterinarios-400w.webp 400w, /images/mockup-veterinarios.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="112 Veterinarios Multi-Clinic Portal"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-veterinarios.webp" srcset="/images/mockup-veterinarios-400w.webp 400w, /images/mockup-veterinarios.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="112 Veterinarios Multi-Clinic Portal"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -694,8 +720,10 @@
                 onclick="handleCurvedCardClick(this, 'qmasystem')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🔬 MedTech Clinical Trial SaaS</span>
-                  <img src="/images/mockup-qmasystem.webp" alt="QMA System & Dynamometry" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-qmasystem.webp" data-gallery-srcset="/images/mockup-qmasystem-400w.webp 400w, /images/mockup-qmasystem.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="QMA System & Dynamometry" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-qmasystem.webp" srcset="/images/mockup-qmasystem-400w.webp 400w, /images/mockup-qmasystem.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="QMA System & Dynamometry" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -710,8 +738,12 @@
                 onclick="handleCurvedCardClick(this, 'elmanantial')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🏢 PropTech & Residential</span>
-                  <img src="/images/mockup-elmanantial.webp" alt="El Manantial Community Ecosystem"
-                    class="curved-card-img" loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-elmanantial.webp" data-gallery-srcset="/images/mockup-elmanantial-400w.webp 400w, /images/mockup-elmanantial.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="El Manantial Community Ecosystem"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-elmanantial.webp" srcset="/images/mockup-elmanantial-400w.webp 400w, /images/mockup-elmanantial.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="El Manantial Community Ecosystem"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -726,8 +758,10 @@
                 onclick="handleCurvedCardClick(this, 'team1display')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">📦 Trade Show Prepress & ERP</span>
-                  <img src="/images/mockup-team1display.webp" alt="Team 1 Display Production ERP" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-team1display.webp" data-gallery-srcset="/images/mockup-team1display-400w.webp 400w, /images/mockup-team1display.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Team 1 Display Production ERP" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-team1display.webp" srcset="/images/mockup-team1display-400w.webp 400w, /images/mockup-team1display.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Team 1 Display Production ERP" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -742,8 +776,10 @@
                 onclick="handleCurvedCardClick(this, 'timeforteahk')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🫖 Luxury Hospitality & Tableware</span>
-                  <img src="/images/mockup-timeforteahk.webp" alt="Time for Tea HK" class="curved-card-img"
-                    loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-timeforteahk.webp" data-gallery-srcset="/images/mockup-timeforteahk-400w.webp 400w, /images/mockup-timeforteahk.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Time for Tea HK" class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-timeforteahk.webp" srcset="/images/mockup-timeforteahk-400w.webp 400w, /images/mockup-timeforteahk.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Time for Tea HK" class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -758,8 +794,12 @@
                 onclick="handleCurvedCardClick(this, 'industrialcuttingtools')" tabindex="0">
                 <div class="curved-card-inner">
                   <span class="curved-card-top-tag">🛡️ OSHA Safety & B2B Procurement</span>
-                  <img src="/images/mockup-industrialcuttingtools.webp" alt="Industrial Cutting Tools USA"
-                    class="curved-card-img" loading="eager" decoding="async" loading=\"lazy\" decoding=\"async\">
+                  <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-gallery-src="/images/mockup-industrialcuttingtools.webp" data-gallery-srcset="/images/mockup-industrialcuttingtools-400w.webp 400w, /images/mockup-industrialcuttingtools.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Industrial Cutting Tools USA"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async">
+                  <noscript><img src="/images/mockup-industrialcuttingtools.webp" srcset="/images/mockup-industrialcuttingtools-400w.webp 400w, /images/mockup-industrialcuttingtools.webp 800w" sizes="(max-width: 600px) 230px, (max-width: 768px) 290px, 340px" alt="Industrial Cutting Tools USA"
+                    class="curved-card-img"
+                    loading="lazy" decoding="async"></noscript>
                   <div class="curved-card-glass-glow"></div>
                   <div class="curved-card-hover-overlay">
                     <button type="button" class="curved-case-study-btn" tabindex="-1">View Case Study &rarr;</button>
@@ -975,7 +1015,7 @@
           var hasDragged = false;
           var autoRotate = false;
           var autoSpeed = 0;
-          var isOffscreen = false;
+          var carouselFrame = 0;
           var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
           function getDimensions() {
@@ -1083,9 +1123,35 @@
             }
             currentAngle += (targetAngle - currentAngle) * 0.1;
             updateCards();
-            requestAnimationFrame(animateSlider);
+            carouselFrame = requestAnimationFrame(animateSlider);
           }
-          requestAnimationFrame(animateSlider);
+
+          function startSlider() {
+            track.querySelectorAll('[data-gallery-src]').forEach(function (image) {
+              image.srcset = image.dataset.gallerySrcset;
+              image.src = image.dataset.gallerySrc;
+              image.removeAttribute('data-gallery-src');
+              image.removeAttribute('data-gallery-srcset');
+            });
+            if (!carouselFrame) carouselFrame = requestAnimationFrame(animateSlider);
+          }
+
+          updateCards();
+          document.addEventListener('DOMContentLoaded', function () {
+            if (!('IntersectionObserver' in window)) {
+              startSlider();
+              return;
+            }
+
+            new IntersectionObserver(function (entries) {
+              if (entries[0].intersectionRatio >= 0.01) {
+                startSlider();
+              } else {
+                cancelAnimationFrame(carouselFrame);
+                carouselFrame = 0;
+              }
+            }, { threshold: 0.01 }).observe(viewport);
+          }, { once: true });
 
           // Unified Card Activation: Clicking any card aligns it and opens the interactive modal
           var justTriggeredTap = false;
@@ -1925,7 +1991,7 @@
       <div class="proto-modal-topbar"
         style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 1.1rem 1.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.02);">
         <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-          <img src="/images/ku-monogram-white.svg" alt="KU" width="30" height="30"
+          <img src="/images/ku-monogram-white-288w.webp" alt="KU" width="30" height="30" class="ku-modal-emblem"
             style="display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
           <span
             style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF; letter-spacing: -0.02em; white-space: nowrap;">PlanWithKumar</span>
@@ -2011,7 +2077,7 @@
     <div class="lightbox-content pillar-modal-content" onclick="event.stopPropagation()">
       <div class="pillar-modal-topbar">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <img src="/images/ku-monogram-white.svg" alt="KU" width="30" height="30"
+          <img src="/images/ku-monogram-white-288w.webp" alt="KU" width="30" height="30" class="ku-modal-emblem"
             style="display: block; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.4));">
           <span style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">PlanWithKumar</span>
         </div>

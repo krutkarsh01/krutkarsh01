@@ -1,6 +1,8 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { pipeline } = require('node:stream');
+const { constants, createBrotliCompress, createGzip } = require('node:zlib');
 
 const PORT = process.env.PORT || 3000;
 const ROOT = path.resolve(__dirname);
@@ -23,6 +25,25 @@ const MIME_TYPES = {
   '.xml': 'application/xml',
   '.txt': 'text/plain; charset=utf-8',
 };
+
+const COMPRESSIBLE = new Set(['.html', '.css', '.js', '.mjs', '.json', '.svg', '.xml', '.txt']);
+
+function preferredEncoding(header = '') {
+  const qualities = new Map();
+
+  for (const entry of header.split(',')) {
+    const [encoding, preference] = entry.trim().toLowerCase().split(';');
+    const quality = preference === undefined ? 1 : Number(preference.trim().replace(/^q=/, ''));
+    qualities.set(encoding, quality);
+  }
+
+  const wildcard = qualities.get('*') ?? 0;
+  const brotli = qualities.get('br') ?? wildcard;
+  const gzip = qualities.get('gzip') ?? wildcard;
+  if (brotli > 0 && brotli >= gzip) return 'br';
+  if (gzip > 0) return 'gzip';
+  return null;
+}
 
 const server = http.createServer((req, res) => {
   let reqPath = decodeURI(req.url.split('?')[0]);
@@ -64,6 +85,11 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
+    const compressible = COMPRESSIBLE.has(ext) && stats.size >= 1024;
+    const encoding = compressible ? preferredEncoding(req.headers['accept-encoding']) : null;
+    if (compressible) res.setHeader('Vary', 'Accept-Encoding');
+    if (encoding) res.setHeader('Content-Encoding', encoding);
+
     res.writeHead(200, {
       'Content-Type': contentType,
       'Cache-Control': 'no-cache',
@@ -75,7 +101,21 @@ const server = http.createServer((req, res) => {
       'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' https://api.web3forms.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.web3forms.com; frame-src 'self'; object-src 'none'; base-uri 'self';"
     });
 
-    fs.createReadStream(filePath).pipe(res);
+    if (req.method === 'HEAD') {
+      res.end();
+      return;
+    }
+
+    const body = fs.createReadStream(filePath);
+    const streams = [body];
+    if (encoding === 'br') {
+      streams.push(createBrotliCompress({ params: { [constants.BROTLI_PARAM_QUALITY]: 4 } }));
+    } else if (encoding === 'gzip') {
+      streams.push(createGzip());
+    }
+    pipeline(...streams, res, error => {
+      if (error && error.code !== 'ERR_STREAM_PREMATURE_CLOSE') console.error(error);
+    });
   });
 });
 
