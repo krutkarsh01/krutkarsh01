@@ -4013,3 +4013,47 @@ Use case: precise-object-edit. Edit this exact full-body 3D character PNG into o
 - At 1440×900, all five page-turn stages and the active curl render with no horizontal overflow. With reduced motion emulated, the controller creates no turn stages or curl canvas. Both browser checks completed without console page errors.
 - Mobile Home Lighthouse on the compressed local preview: Performance 0.96, Accessibility 1.00, Best Practices 1.00, SEO 1.00, Agentic Browsing 1.00; FCP 1.5 s, LCP 2.4 s, Speed Index 1.6 s, TBT 150 ms, CLS 0.003. Prior mobile run was Performance 0.96, LCP 2.3 s, Speed Index 1.7 s, TBT 150 ms, CLS 0.003. These lab measurements are effectively steady; 0.1 s LCP variation is normal Lighthouse run variance and does not show a page-speed regression from restoring the effect.
 - `npm run build`, `node --check js/page-shift-controller.js`, and `git diff --check` pass. Production phone behavior can still vary by device/GPU; the Lighthouse run is a local lab check, not field Core Web Vitals.
+
+
+### [v4.27.8] - 2026-11-27: Skills mobile selector and section spacing
+
+#### I — Input
+
+- The Skills page screenshot shows the technology selector wrapping across rows and becoming difficult to use at phone width. It also marks a large blank area beneath the sticky technology card on desktop and asks for similarly excessive section spacing to be addressed across pages.
+
+#### M — Mission
+
+1. Replace the crowded Skills category pills with accessible native dropdowns on narrow viewports, preserving the desktop selector and the selected-item/scroll interaction.
+2. Reduce the Skills page's desktop-only sticky scroll runway while retaining enough scroll distance to explore every technology and certification.
+3. Audit the other routes for the same kind of empty section gap; change only repeated, unintended whitespace, not content-driven timeline/review/process areas.
+4. Verify mobile selection, desktop selection, item counts, route overflow, animation/page-turn integrity, Lighthouse SEO, and the production build.
+
+#### E — Ordered task plan
+
+- Task 1: Inspect the Skills HTML, selector construction, scroll-to-item math, responsive styles, and rendered dimensions. Add paired native select controls for technology and certification, synchronize selection with the spotlight and scroll, and show them only at mobile widths. Keep desktop pill selectors intact. Verify all 16 and 8 options remain reachable.
+- Task 2: Measure stage and sticky-card dimensions. Shorten the desktop technology stage from 980 px to 880 px and certification stage from 820 px to 740 px, retaining at least 25 px and 34 px per-item scroll progress respectively at the measured desktop card heights. Keep the existing mobile stage dimensions. Re-measure the gaps and confirm the scroll indexes reach the final item.
+- Task 3: Audit all eight rendered routes for comparable empty gaps. Do not change intentional page lengths driven by story, process, timeline, review, or project content. Check phone and desktop widths for overflow and animation regressions, run mobile Skills Lighthouse, then build/syntax/diff checks.
+
+#### I — Layout evidence
+
+- At 1440×1000, the Skills tech stage measured 980 px with a 456 px sticky card and 500 px remaining scroll runway. The certification stage measured 820 px with a 440 px card and 356 px runway. The route audit found no other comparable empty sticky-card runway; other long pages were occupied by process, timeline, review, or project content.
+
+#### E — Task 1: mobile skill selectors
+
+- Added mobile-only, visibly labeled native dropdowns for technologies and certifications. Their selection, spotlight text, progress counter, and scroll position stay synchronized. Desktop pill selectors remain unchanged. The route-specific responsive stylesheet is `css/skills-responsive.css`.
+
+#### T — Task 1
+
+- At 390 px wide, the phone UI hides the wrapping pill strips, displays both dropdowns, exposes all 16 technologies and 8 certifications, and has zero horizontal overflow. Selecting the final option updates the spotlight and progress to GitHub (16/16) and 900 Principles Business Standards (8/8). No runtime errors occurred. Screenshot: `/tmp/ku-skills-mobile-dropdown.png`.
+
+#### E — Task 2: desktop Skills spacing
+
+- Reduced only the desktop scroll stages: technology from 980 to 880 px and certifications from 820 to 740 px. At 1440×1000 this shortens the two blank runways by 100 and 80 px while keeping 400 and 276 px of scroll travel for the existing scroll-to-explore control. Mobile retains the existing 680 and 620 px stage minimums.
+
+#### T — Task 2 and route audit
+
+- Desktop pill controls still select GitHub (16/16) and the final certification (8/8). Mobile dropdowns remain visible at 390 px; the measured stage heights are 680 and 624 px, with no horizontal overflow. Desktop screenshot: `/tmp/ku-skills-desktop-compact.png`.
+- Checked Home, About, Process, Skills, Prototypes, Experience, Testimonials, and Contact at 320, 390, 430, and 1440 px. All 32 route/width combinations have no horizontal overflow and no browser runtime errors. Other pages had no equivalent empty sticky selector runway; their longer sections contain process, timeline, reviews, or project content, so those section heights were left intact.
+- Mobile Skills Lighthouse: Performance 0.97, Accessibility 1.00, Best Practices 1.00, SEO 1.00, Agentic Browsing 1.00; FCP 1.7 s, LCP 2.0 s, Speed Index 1.7 s, TBT 130 ms, CLS 0.000.
+- The enabled skill catalog does not include a frontend design or Antigravity skill. Used the supplied screenshot, existing Skills page interactions/styles, route measurements, and browser checks rather than claiming an unavailable skill.
+- Skills inline JavaScript syntax, `npm run build`, `node --check js/page-shift-controller.js`, and `git diff --check` pass.

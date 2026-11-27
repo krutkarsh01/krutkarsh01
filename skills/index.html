@@ -45,6 +45,7 @@
     type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Kumar Utkarsh","jobTitle":"Senior Business Analyst & AI Product Strategist","email":"work.krutkarsh@gmail.com","telephone":"+918447143995","url":"https://www.krutkarsh.com","sameAs":["https://linkedin.com/in/kumar-utkarsh01"],"address":{"@type":"PostalAddress","addressLocality":"Noida","addressRegion":"Uttar Pradesh","addressCountry":"IN"}}</script>
   <link rel="stylesheet" href="/_astro/index.DqraZV1o.css">
   <link rel="stylesheet" href="/css/character-scenes.css?v=5950">
+  <link rel="stylesheet" href="/css/skills-responsive.css?v=1">
   <script src="/js/planwithkumar-interactive.js?v=5948" defer></script>
   <script src="/js/aurora-northern-lights.js?v=5948" defer></script>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.krutkarsh.com/"}, {"@type": "ListItem", "position": 2, "name": "Skills & Architecture", "item": "https://www.krutkarsh.com/skills/"}]}</script>
@@ -282,6 +283,24 @@
             var activeIdx = -1;
             var pills = [];
 
+            var mobileSelector = document.createElement('label');
+            mobileSelector.className = 'skills-selector-mobile';
+            var mobileLabel = document.createElement('span');
+            mobileLabel.textContent = cfg.mobileLabel;
+            var select = document.createElement('select');
+            select.className = 'skills-selector-mobile-select';
+            select.setAttribute('aria-label', cfg.mobileLabel);
+            select.id = cfg.stripId + 'MobileSelect';
+            cfg.items.forEach(function (item, idx) {
+              var option = document.createElement('option');
+              option.value = String(idx);
+              option.textContent = item.name;
+              select.appendChild(option);
+            });
+            mobileSelector.appendChild(mobileLabel);
+            mobileSelector.appendChild(select);
+            strip.parentNode.insertBefore(mobileSelector, strip);
+
             var stickyCard = stage.querySelector('.skills-scroll-sticky');
             function getScrollable() {
               var cardH = stickyCard ? stickyCard.offsetHeight : 440;
@@ -295,15 +314,23 @@
               btn.setAttribute('role', 'tab');
               btn.textContent = item.name;
               btn.addEventListener('click', function () {
-                setActive(idx);
-                var rect = stage.getBoundingClientRect();
-                var stageTop = window.scrollY + rect.top - 84;
-                var scrollable = getScrollable();
-                var targetY = stageTop + (idx / Math.max(1, cfg.items.length - 1)) * scrollable;
-                window.scrollTo({ top: targetY, behavior: 'smooth' });
+                scrollToItem(idx);
               });
               strip.appendChild(btn);
               pills.push(btn);
+            });
+
+            function scrollToItem(idx) {
+              setActive(idx);
+              var rect = stage.getBoundingClientRect();
+              var stageTop = window.scrollY + rect.top - 84;
+              var scrollable = getScrollable();
+              var targetY = stageTop + (idx / Math.max(1, cfg.items.length - 1)) * scrollable;
+              window.scrollTo({ top: targetY, behavior: 'smooth' });
+            }
+
+            select.addEventListener('change', function () {
+              scrollToItem(Number(select.value));
             });
 
             function setActive(idx) {
@@ -315,6 +342,7 @@
                 p.classList.toggle('is-active', on);
                 p.setAttribute('aria-selected', on ? 'true' : 'false');
               });
+              select.value = String(idx);
               var numStr = String(idx + 1).padStart(2, '0') + ' / ' + String(cfg.items.length).padStart(2, '0');
               progress.textContent = numStr + ' · SCROLL TO EXPLORE';
               spotlight.innerHTML =
@@ -353,6 +381,7 @@
             stripId: 'techSelectorStrip',
             spotlightId: 'techSpotlight',
             progressId: 'techStageProgress',
+            mobileLabel: 'Choose a technology',
             items: techItems
           });
 
@@ -361,6 +390,7 @@
             stripId: 'certSelectorStrip',
             spotlightId: 'certSpotlight',
             progressId: 'certStageProgress',
+            mobileLabel: 'Choose a certification',
             items: certItems
           });
         })();
